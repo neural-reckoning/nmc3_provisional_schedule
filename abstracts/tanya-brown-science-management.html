@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Science Management</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 17:00");</script>
+            /
+            Track 3
+            /
+            Traditional talk
+        </h3>
+        <h1>Science Management</h1><h2>Tanya Brown</h2><h2>Abstract</h1><p>The landscape of scientific research is changing. Today’s researchers need to participate in large-scale collaborations, obtain competitive funding, share and manage big data, publish and undertake knowledge translation activities, all while conducting ground-breaking science and act as their own PR agent, in order to be successful. As per these increasing demands, Science Management is now a vital piece of the environment in order for the growing multidisciplinary needs of scientific research be met with efficacy. Moreover, this topic is relevant across the career spectrum – whether you’re a young investigator or an established senior scientist, adopting Science Management will help optimize your approach and workflow for greater discovery. My goal is to motivate my colleagues and field counterparts to regard Science Management as an essential component to their research workflow and begin to integrate formalized project management into regular practise.</p>
+    </body>
+    </html>
+    

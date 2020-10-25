@@ -1,0 +1,41 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Relating the power law decay of power and eigenvalue spectra of neural population data</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-28 22:00");</script>
+            /
+            Track 2
+            /
+            Traditional talk
+        </h3>
+        <h1>Relating the power law decay of power and eigenvalue spectra of neural population data</h1><h2>Brian Barry</h2><h3>Bradley Voytek, University of California San Diego; Richard Gao, University of California San Diego</h3><h2>Abstract</h1><p>    Neural data of all kinds exhibit 1/f-like statistics, which is often interpreted as evidence that the brain operates at the edge of criticality. Indeed, systems at criticality display scale-free temporal and spatial correlations, typically characterized by power law distributions of avalanche size and duration with related exponents. Previous works have demonstrated this in neural activity, and it is thought that long-range correlations across space and time maximize information processing. Alternatively, temporal and spatial correlation in neural population data can be characterized by the power spectrum and eigendecomposition (via PCA). It is well known that neural power spectra often follow a 1/f power law, where power decays as a function of frequency. More recently, it’s been shown that neural population activity resides on a low-dimensional manifold, and that the eigenvalue spectrum also follows a power law.
+
+    Here we investigate the relationship between the eigenvalue and power spectra – decompositions across space and time, respectively – in population spiking recordings and simulated data. We fit power law models to population power spectra and eigenspectra, and compute the correlation between their power law exponents as a function of population subsampling size, to find a subset size at which potential correlations between the exponents may arise. We find that space and time decompositions were correlated for select brain regions (e.g. V1, V2 and hippocampal formation) in some mice and no definitive subset size initiated inter-spectral correlations. In comparison, we simulate independent colored noise “recordings” with varying exponents, and find 1) their eigenvalue spectra spuriously also follow power law distributions, where 2) the decay exponents in time and space are closely related, despite being independently generated processes. This seems to arise naturally as a consequence of correlating any power law distributed processes. This suggests that low-dimensional (typically power law obeying) neural manifolds can arise purely as a result of the temporal statistics of potentially independent neuronal activity, thus calling for more robust measures of neural manifolds and criticality in the brain.
+</p>
+    </body>
+    </html>
+    

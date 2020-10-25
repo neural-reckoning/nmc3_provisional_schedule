@@ -1,0 +1,40 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Maximum Entropy Models for Connectivity Estimation in Neural Signals</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 21:30");</script>
+            /
+            Track 5
+            /
+            Interactive talk
+        </h3>
+        <h1>Maximum Entropy Models for Connectivity Estimation in Neural Signals</h1><h2>Ali Haydaroglu</h2><h3>Ali Haydaroglu, University College London; Taufik A. Valiante, University of Toronto</h3><h2>Abstract</h1><p>Maximum Entropy (ME) models, specifically the Ising model, have been proposed as estimators of connectivity in biological neural networks, although their efficacy for this purpose is not well characterized. Moreover, existing ME estimators are constrained to binary signals, which limit their application to non-spiking, continuous signals. This works proposes the Q-Potts model from statistical physics as an alternative Maximum Entropy-based connectivity estimation framework which enables the use of signals with Q discrete levels. A comparison between Potts estimators using a range of Q parameters is carried out. The methods are compared across several network topologies, including common-input networks which have been shown to cause systematic errors across connectivity inference methods. Simulated data is generated from the topologies using  Multi-Variate Autoregressive (MVAR) Models and Dynamic Potts (DP) models. The Ising estimator, equivalent to a 2-Potts estimator, is shown to be a robust estimator of connectivity compared to higher-order Q-Potts estimator, even when data is generated with a model that matches the latter. When compared to widely used information-theoretic connectivity estimators, the Ising model performs at a similar level for data generated through MVAR models, and outperforms them in DP-generated models. While ME models remain susceptible to systematic errors in connectivity estimation, they are shown to be robust estimators of connectivity with some tolerance to model mismatch compared to other common methods. The possibility of hardware-accelerated inference for ME models make them a strong candidate for rapid online connectivity estimation for clinical purposes.
+
+</p>
+    </body>
+    </html>
+    

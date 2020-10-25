@@ -1,0 +1,41 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Spiking Time-Dependent Plasticity implements self-organized resonances</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 18:00");</script>
+            /
+            Track 8
+            /
+            Interactive talk
+        </h3>
+        <h1>Spiking Time-Dependent Plasticity implements self-organized resonances</h1><h2>Pau Vilimelis Aceituno</h2><h3>Pau Vilimelis Aceituno, ETH Zürich</h3><h2>Abstract</h1><p>Neural populations exposed to a certain stimulus learn to represent it better. However, the process that leads local, self-organized rules to do so is unclear. We address the question of how can a neural periodic input be learned and use the Differential Hebbian Learning framework, coupled with a homeostatic mechanism to derive two self-consistency equations that lead to increased responses to the same stimulus. Although all our simulations are done with simple Leaky-Integrate and Fire neurons and standard Spiking Time Dependent Plasticity learning rules,
+our results can be easily interpreted in terms of rates and population codes.
+This talk is mostly theoretical, but during the interactive part I would like to discuss biological predictions and neurorobotic implementations.
+</p>
+    </body>
+    </html>
+    

@@ -1,0 +1,51 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Data Quality metrics to improve EEG / ERP research - the Standardized Measurement Error SME</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 22:30");</script>
+            /
+            Track 6
+            /
+            Traditional talk
+        </h3>
+        <h1>Data Quality metrics to improve EEG / ERP research - the Standardized Measurement Error SME</h1><h2>Andrew Stewart</h2><h3>Prof Steven J Luck, UC Davis</h3><h2>Abstract</h1><p>Using EEG / ERP data allows non-invasive brain recording with high temporal precision.It is well understood that signal-to-noise ratio is key in EEG / ERP data. While removing periods with artifacts and “noisy” subjects should generally improve this signal-to-noise ratio, the nature of this improvement is often poorly quantified.
+
+Despite this, there is no widely accepted metric of ERP data quality.
+
+Here, we propose a concrete, reportable, auto-documented, heuristic approach for assessing data quality in averaged ERPs.
+
+We build upon 'standard error' (SE) as a well understood measure, and formalize a specific procedure for applying SE to ERPs, called 'Standardized Measurement Error' (SME). We implement this by declaring, for a given analysis, the ERP score measure type (say, 'Mean Amplitude'), and the time window of interest (say, 300 to 400 ms). With that, 
+
+SME(score,time_period)= std_dev(score_value) / n_valid_epochs
+
+A higher number indicates higher ‘spread’ or higher standard error, specifically at the score measure and time period of interest. We suggest that extensive use and reporting of SME would allow better calibration of researchers in assessing data quality. We include automatic calculation, saving, and parameter reporting of SME in our ERPLAB processing toolbox.
+
+Preprint of paper at: https://psyarxiv.com/jc3sd/
+ERPLAB v8 at: https://github.com/lucklab/erplab/releases</p>
+    </body>
+    </html>
+    

@@ -1,0 +1,39 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Task classification from pre-stimulus functional connectivity on EEG-data</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-30 08:15");</script>
+            /
+            Track 3
+            /
+            Interactive talk
+        </h3>
+        <h1>Task classification from pre-stimulus functional connectivity on EEG-data</h1><h2>Timofey Adamovich</h2><h3>Timofey Adamovich, Psychological Institute of Russian Academy of Education; Ilia Zaharov, Psychological Institute of Russian Academy of Education; Anna Tabueva, Psychological Institute of Russian Academy of Education</h3><h2>Abstract</h1><p>Execution of cognitive tasks is associated with a task-specific pattern of the brain functional connectivity. However, much less attention is been drawn to pre-stimulus preparatory processes. Previously, the brain preparation topology was shown on fMRI-data, we aimed to replicate this result and distinguish pre-stimulus reconfiguration of brain functional network on EEG-data. During EEG recording 76 participants were asked to identify the correctness of stimuli, belonging to one of three types: sentence in the native language, algebraic equations and simple addition. 2 seconds before each stimulus, the cue was shown. Functional connectivity in this interval was estimated in sensor space via the imaginary part of coherency and graph was constructed from the 25% of strongest connections. Multiclass sparse logistic regression was used as the classifier on 5 global (median path length, assortativity degree, average clustering coefficient, global and local efficiency) and 5 local measures (degree, rich-club coefficient, clustering coefficient, betweenness centrality k-core index) and with Leave-one-out as the train-test split. We were not able to correctly classified pre-stimulus functional connectivity with accuracy ranging from 31% to 38% for the different frequency bands. This result might reflect several drawbacks in our analysis. First, the topological resolution of 64-channel EEG might be inadequate for the extraction of differences between stimuli. Second, issues with the graph construction, poor choice of synchronization measure or threshold of the strongest connections. Third, target differences could hide in the temporal dynamics of network reconfiguration, which is completely obscured by averaging across the whole pre-stimulus time window. We also want to point out that similar classification applied to participants shows accuracy from 61% to 90%, thus emphasizing the importance of individual differences in functional connectivity studies.
+</p>
+    </body>
+    </html>
+    

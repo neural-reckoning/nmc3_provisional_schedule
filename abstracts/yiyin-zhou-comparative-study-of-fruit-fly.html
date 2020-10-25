@@ -1,0 +1,42 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Comparative Study of Fruit Fly Brain Circuit Models with FlyBrainLab</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-26 16:00");</script>
+            /
+            Track 3
+            /
+            Traditional talk
+        </h3>
+        <h1>Comparative Study of Fruit Fly Brain Circuit Models with FlyBrainLab</h1><h2>Yiyin Zhou</h2><h3>Aurel A. Lazar; Tingkai Liu; Mehmet Kerem Turkcan; Yiyin Zhou;</h3><h2>Abstract</h1><p>Comparison of circuit models, either among versions developed by one’s own, or among those published in literature, is the critical but often neglected step towards discovering the functional logic of brain circuits. Three types of comparisons are of particular interest. The first is, starting from a given dataset and after building a number of circuit models published in the literature, to analyze and compare them under the same evaluation criteria. The second is to automate the construction of executable circuits from datasets gathered by different labs and, to analyze, evaluate and compare the different circuit realizations. The third is to analyze, evaluate and compare brain circuits at different developmental stages.
+
+We recently developed the FlyBrainLab interactive computing platform whose main capabilities include 1) 3D exploration and visualization of fruit fly brain data, 2) creation of executable circuits directly from the fly brain data explored in step 1), and 3) interactive exploration of the functional logic of the devised executable circuits. Consequently, FlyBrainLab automates and greatly simplifies the construction of and the comparison between executable fly brain circuits.
+
+To demonstrate the comprehensive capabilities of the FlyBrainLab, we present, respectively, three comparative studies of fruit fly brain circuit models. In the first example, we compare three circuit models of the fruit fly central complex from the literature, all based on the FlyCircuit dataset. In the second example, we demonstrate the effect on modeling the Antenna and the Antennal Lobe circuits developed upon, respectively, the FlyCircuit and the Hemibrain datasets. In the third example, we investigate the differences in odorant encoding and processing in the Drosophila early olfactory system at two different developmental stages, the adult and larva, based on the Hemibrain dataset and the Larva L1EM dataset, respectively. Each example is supported by a FlyBrainLab Circuit Library developed to facilitate the exploration of the neural circuit/subsystem of interest.</p>
+    </body>
+    </html>
+    

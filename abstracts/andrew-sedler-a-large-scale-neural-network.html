@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>A large-scale neural network training framework for generalized estimation of single-trial population dynamics</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-26 22:00");</script>
+            /
+            Track 2
+            /
+            Traditional talk
+        </h3>
+        <h1>A large-scale neural network training framework for generalized estimation of single-trial population dynamics</h1><h2>Andrew Sedler</h2><h3>Mohammad Reza Keshtkaran (co-first author),  Emory/Georgia Tech; Raeed H. Chowdhury, U of Pittsburgh; Raghav Tandon, Georgia Tech; Diya Basrai, UCSD; Sarah L. Nguyen, Georgia Tech; Hansem Sohn, MIT; Mehrdad Jazayeri, MIT; Lee E. Miller, Northwestern U; Chethan Pandarinath, Emory/Georgia Tech;</h3><h2>Abstract</h1><p>Large-scale recordings of neural activity are becoming ubiquitous, providing new opportunities to study network-level dynamics in diverse brain areas and during increasingly complex, natural behaviors. However, the sheer volume of data and its dynamical complexity are critical barriers to uncovering and interpreting these dynamics. Deep learning methods are a particularly promising approach due to their ability to uncover meaningful relationships from large, complex, and noisy datasets. One such method, latent factor analysis via dynamical systems (LFADS), uses recurrent neural networks to infer latent dynamics from high-D neural spiking data. When applied to motor cortical (M1) activity during stereotyped behaviors, LFADS substantially improved the ability to uncover dynamics and their relation to subjects’ behaviors on a moment-by-moment, millisecond timescale. However, applying LFADS to less-structured behaviors, or in brain areas that are not predominantly driven by intrinsic dynamics, is far more challenging. This is because LFADS, like many deep learning methods, requires careful hand-tuning of complex model hyperparameters (HPs) to achieve good performance. Here we demonstrate AutoLFADS, a large-scale, automated model tuning framework that can characterize dynamics in diverse brain areas without regard to behavior. AutoLFADS uses distributed computing to train dozens of models simultaneously while using evolutionary algorithms to optimally tune HPs in a completely unsupervised way. AutoLFADS required 10-fold less data to uncover dynamics from macaque M1/PMd, with better generalization to unseen behavioral conditions than previous LFADS models. We then tested data from the somatosensory and dorsomedial frontal cortices, areas with very different dynamics from M1/PMd. AutoLFADS produced estimates of population dynamics that were precisely linked to behavior without any prior knowledge of the areas’ dynamics, tasks, or subjects’ behaviors, outperforming any individually-trained LFADS model obtained through random HP searches.</p>
+    </body>
+    </html>
+    

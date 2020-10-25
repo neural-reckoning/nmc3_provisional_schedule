@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Expectation, In and Of Choice</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 18:00");</script>
+            /
+            Track 5
+            /
+            Traditional talk
+        </h3>
+        <h1>Expectation, In and Of Choice</h1><h2>Brandon Caie</h2><h3>Brandon Caie, Queen's University; Paul Schrater, University of Minnesota, Aarlenne Khan, Universite de Montreal; Gunnar Blohm, Queen's University</h3><h2>Abstract</h1><p>Expectations guide choice. Scientists repeat the sensory conditions in which a choice is made so as to statistically sample an underlying expectation. The statistics of a process can be deduced in this manner if it is ergodic, that is if a collection of samples at one time captures the dynamics of the process at all times. Popular models of choice treat expectation as ergodic within a trial, subject to change between trials. We analyzed the temporal dynamics of expectation in a free choice saccade task, and found that expectations evolved within as well as between trials. We embedded reinforcement learning into an Ornstein-Uhlenbeck (OU) process to model expectation as a continuous dynamic. The OU process reaches a steady-state at a predicted time of choice, rather than at true sensory onset, accounting for empirical history effects in anticipatory behaviour. The model suggests that expectations should be understood as a predictive dynamic interacting with an environment, rather than a stationary parameter locked to choice onset. We provide normative arguments for the cost and benefit of different reinforcement strategies in this model. </p>
+    </body>
+    </html>
+    

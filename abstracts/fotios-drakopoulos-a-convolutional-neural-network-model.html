@@ -1,0 +1,65 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>A convolutional neural-network model of the human inner-hair-cell and auditory-nerve-fiber complex</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-30 13:30");</script>
+            /
+            Track 7
+            /
+            Traditional talk
+        </h3>
+        <h1>A convolutional neural-network model of the human inner-hair-cell and auditory-nerve-fiber complex</h1><h2>Fotios Drakopoulos</h2><h3>Deepak Baby, Ghent University, Sarah Verhulst, Ghent University</h3><h2>Abstract</h1><p>Analytical descriptions of inner-hair-cell (IHC) and auditory-nerve-fiber (ANF) processing have evolved
+over the years, with IHC transduction models shifting from simplified low-pass filters to detailed
+conductance models which include basolateral outward K+ currents. State-of-the-art models of the IHC-
+ANF synapse complex describe the vibrations of the IHC stereocilia based on the mechanical drive to the
+IHC and model ANF spikes or instantaneous firing rates as resulting from the depletion and
+replenishment of different neurotransmitter stores. While such sensory models have progressed to
+accurately capture the nonlinear and dynamic properties of the neuronal processes associated with
+hearing, they typically comprise mechanistic descriptions and coupled sets of ordinary differential
+equations, rendering these models slow to compute.
+Here, we present a hybrid computational neuroscience - deep neural network (DNN) framework which
+simulates auditory IHC-ANF processing, to offer a fast and differentiable model which can be used in
+large-scale neuronal network models. Based on a state-of-the-art biophysical model of the auditory
+periphery (including human cochlear mechanics, IHC and ANF processing), we trained several
+convolutional neural network (CNN) architectures to learn the computations performed by the IHC-ANF
+complex (CoNNear IHC-ANF ). We determined the hyperparameters in these architectures (different layers,
+filter lengths, input and context windows, activation functions) on the basis of well-known single-unit
+IHC and ANF properties derived from experimental neuroscience studies. The model was trained using
+an acoustic speech corpus, and its performance evaluated using basic acoustic stimuli which were not
+included in the training set.
+The final CoNNear IHC-ANF model offers a 70-fold speed-up factor on a CPU and a 280-fold factor on a GPU
+when compared to the analytical IHC-ANF model processing computations. When connected to a DNN-
+based cochlear model, preferably CoNNear cochlea , population responses (e.g. CAP, ABR wave-I) can be
+simulated across a large number of cochlear tonotopic locations, and be used for backpropagation
+purposes. Our auditory periphery framework can be applied for the development of large-scale neural-
+network circuits aimed to advance our knowledge of unknown neuronal systems such as the brainstem
+and subcortical pathways, or the human auditory cortex.
+
+Work supported by European Research Council ERC-StG-678120 (RobSpear)</p>
+    </body>
+    </html>
+    

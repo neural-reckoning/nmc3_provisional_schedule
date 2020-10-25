@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Quantifying causality with quasi-experiments </title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 18:30");</script>
+            /
+            Track 3
+            /
+            Traditional talk
+        </h3>
+        <h1>Quantifying causality with quasi-experiments </h1><h2>Tony Liu (he/him)</h2><h2>Abstract</h1><p>Causality is at the heart of many important questions in science, as the goal is often to either inform decision making or understand the underlying mechanisms of a system. Though causal ground truth is typically obtained through conducting experiments, experimentation can often be impractical or infeasible, and we would like to be able to obtain causality from observational data if possible. Econometrics has, over decades of focused work, developed a rich toolkit for estimating causal effects from non-experimental data exploiting (quasi) random variation in existing data, so-called quasi-experiments. Here we review such approaches and how they can be combined with machine learning to answer causal questions across domains such as medicine, society, and neuroscience.</p>
+    </body>
+    </html>
+    

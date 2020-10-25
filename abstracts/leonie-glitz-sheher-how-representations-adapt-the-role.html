@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>How representations adapt: the role of structure in model-based planning </title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 17:15");</script>
+            /
+            Track 7
+            /
+            Traditional talk
+        </h3>
+        <h1>How representations adapt: the role of structure in model-based planning </h1><h2>Leonie Glitz (she/her)</h2><h3>Garrett, N.*; Jüchems, K.; Summerfield, C.;</h3><h2>Abstract</h1><p>Updating a model of the world that is used for planning faces a trade-off between computational efficiency (generalisation across different contexts) on the one hand and context-specific encoding on the other. Humans are exceptionally good at navigating this trade-off, though the neural implementation of this balance remains elusive. We developed a two-stage sequential learning task which allowed us to probe human state transition probability learning across two sets of contexts. One set (dependent blocks) involved two contexts with identical transition probabilities whereas the other set (independent blocks) consisted of two contexts with uncorrelated transition probabilities. We find that participants collapse across contexts in the dependent but not the independent set of contexts, using information from both contexts to inform choices when adaptive, which is confirmed by our computational modelling.  Comparing the neural (fMRI) encoding of model-derived state transition functions and updating between the two contexts in each set allowed us to investigate where in the brain this selective combination or separation of representations is implemented.  Using representational similarity analysis, we find that the pattern of neural activity associated with using and updating transition functions is more similar between contexts in dependent than in independent blocks in parts of the hippocampal formation (including parts of amygdala and entorhinal cortex). This suggests that, in line with recent theoretical proposals, the hippocampus and surrounding structures may be the parts of the brain that allow for an adaptive degree of generalisation and separation of environmental information, enabling us to both plan and learn from experience. </p>
+    </body>
+    </html>
+    

@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Architecture to learn untrained joints in macaques and other species</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-26 21:00");</script>
+            /
+            Track 2
+            /
+            Traditional talk
+        </h3>
+        <h1>Architecture to learn untrained joints in macaques and other species</h1><h2>Benjamin Hayden</h2><h3>Praneet Bala, Hyun Soo Park, Jan Zimmermann</h3><h2>Abstract</h1><p>Pose tracking of animals is of utmost importance in systems neuroscience and related fields like neuroethology. It is also of growing importance in fields that use behavioral assays in model organisms, such as addiction and mental health research. While off-the-shelf solutions exist for many laboratory animals, monkeys have proven especially challenging and require a bespoke solution. We recently developed a tracking system for rhesus macaques called OpenMonkeyStudio (Bala et al., 2020). Like other supervised approaches, our system makes use of machine learning based on carefully annotated example datasets. However, like other approaches, ours has a major limitation: it cannot generalize to new joints that were not explicitly trained through annotated examples. Here we describe two novel approaches that can do this. First, the prediction of novel 2D key points via 3D MLP augmentation and second, a 50-layer convolutional neural network (CNN) with point rendering supervision to perform full 3D segmentation of our macaque subjects. We then project the 3D voxel space into a mesh space using the marching cubes algorithm and overlay the 2D image textures. Our initial supervised training set used 13 joints; our new approach can track arbitrarily many, including a deformable mesh grid for the entire body of arbitrary density. For example, we demonstrate a version with 30,000 points on the subject’s body. One benefit of this approach is that we can perform high resolution head position and orientation tracking, thus giving us a rudimentary estimate of gaze direction. While our focus is on macaques, our approach can readily be applied to other species as well.  </p>
+    </body>
+    </html>
+    

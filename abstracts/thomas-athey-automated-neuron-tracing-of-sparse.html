@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Automated Neuron Tracing of Sparse Fluorescently Labeled Neurons</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 21:15");</script>
+            /
+            Track 8
+            /
+            Traditional talk
+        </h3>
+        <h1>Automated Neuron Tracing of Sparse Fluorescently Labeled Neurons</h1><h2>Thomas Athey</h2><h3>Jeremias Sulam, JHU; Joshua T. Vogelsetin, JHU; Daniel Tward, JHU; Ulrich Mueller, JHU; Michael I. Miller, JHU</h3><h2>Abstract</h1><p>Recent advances in brain clearing and imaging have made it possible to image entire mammalian brains at sub-micron resolution. These images offer the potential to assemble brain-wide atlases of neuron morphology, but manual neuron tracing remains a bottleneck. Here we present an automated tracing pipeline that leverages a hidden Markov model to allow tracers to intervene in the areas of least confidence, and utilizes dynamic programming to scale to large image data.</p>
+    </body>
+    </html>
+    

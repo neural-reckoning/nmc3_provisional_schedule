@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Neuromatch 3.0 Opening Session</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-26 13:00");</script>
+            /
+            Track 0
+            /
+            Special Event
+        </h3>
+        <h1>Neuromatch 3.0 Opening Session</h1><h2>Abstract</h1><p>Welcome to Neuromatch Conference 3.0! This year has been full of challenges and new opportunities. The neuromatch team is excited to welcome you to the meeting and highlight some of our ideas and experiments toward making the future of neuroscience conferences as open, accessible, and exciting as possible.</p>
+    </body>
+    </html>
+    

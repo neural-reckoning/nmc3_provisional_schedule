@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Adding dendrites to spiking neural networks in Brian 2 using Dendrify</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 10:00");</script>
+            /
+            Track 2
+            /
+            Interactive talk
+        </h3>
+        <h1>Adding dendrites to spiking neural networks in Brian 2 using Dendrify</h1><h2>Michalis Pagkalos</h2><h3>Michalis Pagkalos, University of Crete Dept. of Biology AND IMBB-FORTH; Spyridon Chavlis, IMBB-FORTH; Panayiota Poirazi, IMBB-FORTH</h3><h2>Abstract</h1><p>Prior research generally confirms that dendritic properties have a pronounced effect on synaptic input processing and neuronal activity. However, the potential contribution of dendritic computations to network responses has remained relatively unexplored. Biophysically detailed neuron models are computationally expensive, thus not recommended for large-network simulations. Conversely, simplified yet realistic models require expertise and often a significant amount of effort to build. To address these issues, we developed Dendrify, a free, open-source Python package that facilitates the creation of spiking network models with compartmental neurons in Brian 2. Dendrify, through simple and intuitive commands, automatically generates all the equations and parameters needed to describe reduced neuron models, including a broad range of synaptic and dendritic mechanisms. Such models provide an efficient alternative for studying dendritic phenomena at the network level while achieving a reasonable balance between simulation performance and biological validity. Here we illustrate how Dendrify helps to effortlessly build simple neuron or network models, accurately reproducing a wide variety of experimental observations. Based on established theoretical work, we further discuss practical guidelines on effectively designing reduced neuron models that are utmost faithful to their biological counterparts.</p>
+    </body>
+    </html>
+    

@@ -1,0 +1,47 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>o8t Labs: An automated, machine-learning based approach to personalized brain mapping and functional connectomics. </title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 01:30");</script>
+            /
+            Track 1
+            /
+            Traditional talk
+        </h3>
+        <h1>o8t Labs: An automated, machine-learning based approach to personalized brain mapping and functional connectomics. </h1><h2>Peter Nicholas</h2><h3>Hugh Taylor, Omniscient Neurotechnology; Stephane Doyen, Omniscient Neurotechnology</h3><h2>Abstract</h1><p>With growing concern of a forthcoming reproducibility crisis in how MRI data is analyzed, it is paramount that a gold-standard of statistical practice is realized so that accurate comparisons can be made between studies investigating brain topology and function. Machine-learning models offer an easily accessible solution to generating reproducible and scalable data in the segmentation and statistical analysis of the brain’s complex neural structure. 
+
+“Connectomics” refers to the investigation of how brain networks communicate within and between one other, with the end goal of ascribing function and identifying irregularities in the wiring of healthy and pathological brain states, respectively. 
+
+To combat the challenges presented with the time taken and standardization steps required when processing large-scale data sets, we have developed a new multimodal image processing pipeline: o8t Labs. Labs utilizes machine-learning and cloud computing to offer a standardized and streamlined approach to performing structural and functional connectomic analyses. 
+
+Requiring an anatomical T1, resting-state fMRI and DTI image series, Labs first performs constrained spherical deconvolution (CSD) to generate a structural connectivity of the brains white matter tracts. Through the application of machine learning models, we are then able to re-parcellate regions derived from the HCP Atlas onto realigned resting-state image series, creating an individualized brain atlas for further analyses. Functional connectomic analysis is then performed, correlating BOLD signal change at rest between each parcellation of the loaded subject’s brain. These correlations are compared against a bank of 250 healthy controls to determine typical and atypical functional connectivity.  
+
+Multiple exports are currently available in Labs including processed image series, a structural atlas (delivered in NIFTI), as well as structural and functional connectivity matrices. The intention of these exports is for simplified re-integration into other analytic workflows. 
+</p>
+    </body>
+    </html>
+    

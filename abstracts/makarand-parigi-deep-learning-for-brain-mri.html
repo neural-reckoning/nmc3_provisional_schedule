@@ -1,0 +1,39 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Deep Learning for Brain MRI Reconstruction: Expanding the U-Net</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 21:15");</script>
+            /
+            Track 3
+            /
+            Interactive talk
+        </h3>
+        <h1>Deep Learning for Brain MRI Reconstruction: Expanding the U-Net</h1><h2>Makarand Parigi</h2><h3>Abhinav Saksena, University of Michigan; Yun Jiang, University of Michigan</h3><h2>Abstract</h1><p>Magnetic Resonance Imaging (MRI) has been used to investigate the structure and function of the brain and central nervous system (Kangarlu et al.). However, obtaining MR images of the brain often takes several minutes, which could be prohibitively long for studying neuronal activities in the brain. This process has been sped up by applying conventional reconstruction methods, such as parallel imaging and compressed sensing (Jaspan et al., Golay et al.). However, these methods are limited in accelerating MRI scans. Thus, developing an effective reconstruction method to further accelerate brain MRIs would help neuroscience researchers observe neuronal processes in a noninvasive manner. This could also result in more data that may support computational modeling of brain structure and function. 
+In this study, we investigate machine learning, in particular deep learning in reconstructing MR images. One prominent deep learning model is the U-Net (Ronneberger et al.) which transforms a noisy image into a clearer image, ideally suitable for use by neuroscientists and radiologists. However, most MRI machines today acquire data with multiple coils simultaneously, and the conventional U-Net does not take into account information from multiple coils; it operates once the data from multiple coils have been combined into a single image. This may mean a loss of valuable information for imaging reconstruction. We are experimenting with extending the U-Net to account for the additional information from multiple coils. We train these U-Net variations on the fastMRI dataset, a large corpus with brain MRI data (Zbontar et al.). In this talk, we describe the various models, examine preliminary results, and outline future directions.</p>
+    </body>
+    </html>
+    

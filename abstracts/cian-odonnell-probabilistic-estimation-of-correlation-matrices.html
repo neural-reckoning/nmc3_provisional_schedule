@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Probabilistic estimation of correlation matrices from binary spiking data</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 12:15");</script>
+            /
+            Track 4
+            /
+            Traditional talk
+        </h3>
+        <h1>Probabilistic estimation of correlation matrices from binary spiking data</h1><h2>Cian O’Donnell</h2><h2>Abstract</h1><p>To understand how populations of neurons code information together, we need to measure neural correlations. Existing statistical methods don‘t allow for easy estimation of uncertainty on pairwise correlations or correlation matrices from limited data – often the case with in vivo calcium imaging.  I developed a new method for estimating the posterior distribution over correlation matrices given binary spiking neural population data. I show how to extend this method to large populations of neurons by approximating the joint distribution with a latent gaussian. Uncertainty estimates using this method can allow for hypothesis testing and robust inference on correlation matrices.</p>
+    </body>
+    </html>
+    

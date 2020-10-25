@@ -1,0 +1,41 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Exploring Latent Structures of Cognitive Tasks Using PCA</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-28 13:00");</script>
+            /
+            Track 6
+            /
+            Interactive talk
+        </h3>
+        <h1>Exploring Latent Structures of Cognitive Tasks Using PCA</h1><h2>Nora Bradford (She/her)</h2><h3>Davide Momi, University "G. d'Annunzio" of Chieti ; Nora Bradford, University of California, Irvine; Ladan Shahshahani, University of Western Ontario; Corey Richier, University of Illinois at Urbana-Champaign</h3><h2>Abstract</h1><p>Intro: It is established that aspects of cognition are overlapping in terms of their neural representation. We wanted to explore the latent structure across different cognitive tasks within the human connectome project (HCP) using PCA.
+Methods: We applied PCA to task-evoked functional activity. The analytical pipeline was as follows: Time series for each task were extracted from the dataset. Each task was broken down into their separate sub-conditions (e.g., 0-back and 2-back working memory conditions.) Each condition for each task was then decomposed into a functional connectivity matrix. Finally, PCA was applied to each condition across each task. 
+Results: PCA components were extracted for each of the tasks in the HCP dataset. Initially, we examined how many components would best characterize the variability across tasks. Some tasks required many components to explain 95% of the variance (e.g., gambling, motor, emotion) whereas others required fewer (working memory, social) Across tasks, four components would be able to explain 95% of the variance. 
+Discussion: Our findings reveal that fewer components are needed to explain the variance in complex working memory and social tasks than in seemingly simpler tasks (e.g. motor). This may be due to the added noise of cognitive tasks, leading to a more distributed variance across components. It could also be due to mind-wandering during simpler tasks. In datasets like HCP which incorporate many types of tasks, PCA can be a helpful tool to project the functional connectivity patterns into spaces in which tasks are distinguishable. PCA is also a useful dimensionality reduction tool in fMRI data to reduce the size of the data without losing much of the variance within the dataset.</p>
+    </body>
+    </html>
+    

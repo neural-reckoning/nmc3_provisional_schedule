@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Inference as Control</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-30 21:15");</script>
+            /
+            Track 6
+            /
+            Interactive talk
+        </h3>
+        <h1>Inference as Control</h1><h2>Lokesh Boominathan</h2><h3>Paul Schrater, University of Minnesota; Xaq Pitkow, Baylor College of Medicine;</h3><h2>Abstract</h1><p>Sensory observations about the world are invariably ambiguous. Inference about the world's latent variables is thus an important computation for the brain. However, computational constraints limit the performance of these computations. These constraints include energetic costs for neural activity and noise for every channel. Efficient coding is a prominent theory that describes how limited resources can be used best. In one incarnation, this leads to a theory of predictive coding, where predictions are subtracted from signals, reducing the cost of sending something that is already known. This theory does not, however, account for the costs or noise associated with those predictions. Here we offer a theory that accounts for both feedforward and feedback costs and noise throughout. We formulate this inference problem as message-passing on a graph whereby feedback is viewed as a control signal aiming to maximize how well an inference tracks a target state.</p>
+    </body>
+    </html>
+    

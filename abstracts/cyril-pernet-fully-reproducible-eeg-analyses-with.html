@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Fully reproducible EEG analyses with EEGLAB and LIMO EEG</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-30 10:00");</script>
+            /
+            Track 1
+            /
+            Interactive talk
+        </h3>
+        <h1>Fully reproducible EEG analyses with EEGLAB and LIMO EEG</h1><h2>Cyril Pernet</h2><h3>Cyril Pernet, University of Edinburgh, Ramon Martinez-Cancino, Dung Truong, Scott Makeig & Arnaud Delorme, University of California San Diego</h3><h2>Abstract</h1><p>Reproducibility is a cornerstone of scientific communication without which one cannot build upon each other's work. Because modern human brain imaging relies on many integrated steps with a variety of possible algorithms, it has however become impossible to report every detail of a data processing workflow. In response to this analytical complexity, community recommendations are to share data analysis pipelines (scripts that implement workflows). Here we show that this can easily be done using EEGLAB and tools built around it. BIDS tools allow importing all the necessary information and create a study from EEG-Brain Imaging Data Structure compliant data. From there preprocessing can be carried out in only a few steps using EEGLAB and statistical analyses performed using the LIMO EEG plug-in. Using Wakeman and Henson (Wakeman & Henson, 2015)  face dataset, we illustrate how to prepare data and build different statistical models, a standard factorial design (faces * repetition) and a more modern trial based regression approach for the stimulus repetition effect, all in a few reproducible command lines.</p>
+    </body>
+    </html>
+    

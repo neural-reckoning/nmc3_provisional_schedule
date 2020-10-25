@@ -1,0 +1,41 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>BrainGlobe: a Python ecosystem for computational (neuro)anatomy</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-30 17:00");</script>
+            /
+            Track 3
+            /
+            Traditional talk
+        </h3>
+        <h1>BrainGlobe: a Python ecosystem for computational (neuro)anatomy</h1><h2>Luigi Petrucco</h2><h3>Federico Claudi; Adam L. Tyson; Tiago Branco; Troy W. Margrie; Ruben Portugues</h3><h2>Abstract</h1><p>Neuroscientists routinely perform experiments aimed at recording or manipulating neural activity, uncovering physiological processes underlying brain function or elucidating aspects of brain anatomy. Understanding how the brain generates behaviour ultimately depends on merging the results of these experiments into a unified picture of brain anatomy and function. We present BrainGlobe, a new initiative aimed at developing common Python tools for computational neuroanatomy, and its core package, the BrainGlobe atlas API (BG-AtlasAPI).
+While digital high-resolution 3d atlases have been produced for several model organisms, the effective use of these atlases depends on the availability of an application programming interface (API) that enables researchers to develop software to access and query atlas data. Some atlases come with an API, but these are generally specific for individual atlases, and this hinders the development and adoption of open-source neuroanatomy software. BG-AtlasAPI overcomes this problem by providing a minimal Python interface to download and interact with atlases for the most common model organisms in systems neuroscience. BG-AtlasAPI is a small and extensible package that allows developers to develop software agnostic to the atlas and species, increasing adoption and interoperability of packages in neuroscience. 
+Finally, we showcase the usage of BG-AtlasAPI in other Python projects (for cell detection, atlas registration and visualisation) developed within the BrainGlobe ecosystem, to illustrate how it provides easy interoperability and support for brain atlases from different species.
+</p>
+    </body>
+    </html>
+    

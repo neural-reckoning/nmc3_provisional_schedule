@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Temporal graphs reveal the subset of spikes informative of visual stimulus</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 18:15");</script>
+            /
+            Track 6
+            /
+            Interactive talk
+        </h3>
+        <h1>Temporal graphs reveal the subset of spikes informative of visual stimulus</h1><h2>Maayan Levy</h2><h3>Jeff Kaihao Guo, University of Chicago; Jason N. MacLean, University of Chicago</h3><h2>Abstract</h1><p>Which spikes give rise to a percept is a key question in neuroscience. Yet, spiking activity varies from trial to trial despite conditions being ostensibly identical, making identification of  the information conveying spikes difficult. One approach is to use functional connectivity, i.e. the pairwise statistical dependency between neurons and then identify how these functional connections dynamically manifest, summarized as a temporal graph (TG). We used 2-photon calcium imaging to study populations of pyramidal neurons in mouse primary visual cortex in response to 12 directions of drifting gratings and inferred spikes from resultant fluorescence. We then computed a functional connectivity matrix (FN) for each of the 12 directions as lagged mutual information between each pair of neurons over the full time course of stimulus presentation - i.e. the ‘static’ FN for each direction. Next we intersected the static FN with the spiking activity to build a TG: a tensor summarizing which spikes are an expression of functional connectivity. We find that these TGs are sparse and their density profiles are correlated in trials of the same direction. We further parse TGs according to four edge types, based on similarity between different grating directions. We find that a specific subnetwork, capturing interactions that are strong for one stimulus and weak for similar stimuli, is sparse with strong weights and displays a balance in feedforward and recurrent spiking patterns. Decoding only from spikes that are a manifestation of this subgraph yields better performance, as compared to decoding from raw spiking activity and from other subgraphs that capture fully unique or fully shared edges between directions. Our results demonstrate that despite trial-to-trial variability, the time evolution of spikes in response to visual stimuli follows a predictable trajectory and a specific subset of the spikes are needed to successfully decode information about direction.</p>
+    </body>
+    </html>
+    

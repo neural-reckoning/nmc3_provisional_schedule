@@ -1,0 +1,49 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Seeing through the Mind’s Eye: Reconstruction of the visual stimuli using 3D Generative-Adversarial Modeling</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 01:15");</script>
+            /
+            Track 3
+            /
+            Interactive talk
+        </h3>
+        <h1>Seeing through the Mind’s Eye: Reconstruction of the visual stimuli using 3D Generative-Adversarial Modeling</h1><h2>RISHABH CHAKRABARTY</h2><h3>Kartik Viswanathan, International Institute Of Information Technology, Hyderabad; Avani Gupta, International Institute Of Information Technology, Hyderabad</h3><h2>Abstract</h1><p>A long-standing challenge in systems neuroscience is to understand how the brain processes visual stimuli and its internal representation in the brain. This enhances our understanding of how sensory information is encoded in the brain which in-turn offers insights into how the brain is processing information.
+
+Reconstructing visual stimuli from fMRI signals is a complex problem. Previous neuroimaging studies have been focused on decoding orientation, position, object category, and reconstruction of the 2D image stimuli presented to the subject, however, such approaches fail to decode the spatial, temporal, and other information already encoded in the neuroimaging data.
+
+Unsupervised learning techniques show promise in learning these complex representations between the visual stimuli and neuroimaging data. 
+
+Our self-supervised neural decoding pipeline initially converts the 2-dimensional stimuli to a 3D representation using three-dimensional generative adversarial networks, which is used as an input to train the Encoder(3D-to-fMRI) and Decoder(fMRI-to-3D) architecture using a supervised approach. We then use the pre-trained Encoder-Decoder architecture to perform unsupervised end-to-end training using these 3D reconstructions, and a similar unsupervised Decoder-Encoder training on unlabeled test fMRI data. 
+
+We perform 3D reconstruction of the 2D stimuli not because we believe that it is closer to the internal representation of how spatial information is encoded in the brain but to capture that information by training our Autoencoder using a 3D representation of the stimuli and the corresponding fMRI of the stimulus.
+
+Breakthroughs in the neural decoding are needed for designing algorithms of brain–machine interface
+and prosthetics it also facilitates the understanding of neurological disorders such as epilepsy, etc. Our approach is successfully able to untangle and extract spatial information from brain activity patterns. In the future, we plan on adding high-level perceptual criteria to improve reconstruction accuracy; enabling large-scale semantic classification and add layerwise loss to the architecture.</p>
+    </body>
+    </html>
+    

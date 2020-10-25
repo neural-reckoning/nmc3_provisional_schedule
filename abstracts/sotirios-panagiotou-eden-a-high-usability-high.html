@@ -1,0 +1,44 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>EDEN: A high-usability, high-performance, general-purpose neural simulator</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-30 13:00");</script>
+            /
+            Track 7
+            /
+            Traditional talk
+        </h3>
+        <h1>EDEN: A high-usability, high-performance, general-purpose neural simulator</h1><h2>Sotirios Panagiotou</h2><h3>Harry Sidiropoulos, Erasmus University Medical Center; George Smaragdos, Erasmus University Medical Center; Mario Negrello, Erasmus University Medical Center; Dimitrios Soudris, National Technical University of Athens; Christos Strydis, Erasmus University Medical Center</h3><h2>Abstract</h1><p>In-silico neuroscience is an important tool to define the conceptual models of neural networks, to deeply explore the emerging features of these models, and to guide subsequent in-vitro and in-vivo experiments.
+We present EDEN, a novel neural simulator that can run all types of neural network models in the NeuroML v2.0 specification, and drastically reduces the required simulation time.
+There is no model-specific programming required to run the models.
+EDEN also performs full validation of the NeuroML models in use, and explains the causes of possible errors.
+The simulator setup is integrated with the Python and Docker infrastructure. This way, EDEN can be effortlessly deployed on interactive Python notebooks, for a single person or a whole class.
+Simulations are automatically further sped up with multi-core execution within a single PC, or throughout HPC clusters.
+This way, even larger and more detailed models can be investigated in a practical timeframe.</p>
+    </body>
+    </html>
+    

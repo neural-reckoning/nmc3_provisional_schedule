@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Correcting for Superficial Bias in 7T Gradient Echo fMRI</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 10:15");</script>
+            /
+            Track 6
+            /
+            Traditional talk
+        </h3>
+        <h1>Correcting for Superficial Bias in 7T Gradient Echo fMRI</h1><h2>Pei Huang</h2><h3>Marta Correia, University of Cambridge; Catarina Rua, University of Cambridge; Chris Rodgers, University of Cambridge; Richard Henson, University of Cambridge; Johan Carlin, University of Cambridge</h3><h2>Abstract</h1><p>The arrival of submillimetre ultra high-field fMRI makes it possible to compare activation profiles across cortical layers. However, the Blood Oxygenation Level Dependent (BOLD) signal measured by Gradient-Echo fMRI is biased towards superficial layers of the cortex, which is a serious confound for laminar analysis. Several univariate and multivariate analysis methods have been proposed to correct this bias. We compare these methods using computational simulations and example human 7T fMRI data from Regions-of-Interest (ROIs) during a visual attention paradigm. The simulations show that two methods - the ratio of ROI means across conditions and a novel application of Deming regression - offer the most robust correction for superficial bias. Deming regression has the additional advantage that it does not require that the conditions differ in their mean activation over voxels within an ROI. When applied to the example dataset, these methods suggest that attentional modulation of activation is similar across cortical layers within the ventral visual stream, despite a naïve activation-based analysis producing stronger modulation in superficial layers.</p>
+    </body>
+    </html>
+    

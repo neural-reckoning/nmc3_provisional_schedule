@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Evaluating mechanisms of selective attention using a large-scale spiking visual system model: performance, processing and representational changes</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-28 09:15");</script>
+            /
+            Track 3
+            /
+            Traditional talk
+        </h3>
+        <h1>Evaluating mechanisms of selective attention using a large-scale spiking visual system model: performance, processing and representational changes</h1><h2>Lynn Sörensen</h2><h3>Lynn K. A. Sörensen, University of Amsterdam; Heleen A. Slagter, Vrije Universiteit Amsterdam; Sander M. Bohté, Centrum Wiskunde & Informatica; H. Steven Scholte, University of Amsterdam</h3><h2>Abstract</h1><p>Spatial attention enhances the signal-to-noise ratio of visual information and improves perceptual sensitivity. Yet, the underlying mechanisms of selective attention are still contested: while some theories suggest an enhancement of the signal’s gain, others advocate for a reduction of noise. Comparing these two alternatives with computational models is often complicated by a lack of behaviour (performance, reaction times) or a missing link to neural measures (firing rates, population coding). Furthermore, it often remains unclear whether the proposed mechanisms can implement attentional selection in a model with complex sensory input and noisy processing. Here, we compare different attention mechanisms in a spiking Deep Convolutional Neural Network (sDCNN) performing a visual search task in complex real-world images with spatial cues. With this network, we can directly contrast effects of noise suppression (precision) and two different gain modulation mechanisms on model predictions. Like biological neurons, our sDCNN units have non-linear activation functions, which permits implementation of attentional gain either on a unit's input or on its outgoing connection. By virtue of communicating with spikes, our sDCNNs also face internal noise enabling us to implement a noise-based mechanism, termed precision. Across a variety of measures, such as performance, detection times and firing rates, we show that modulating the unit’s outgoing connection is most effective in selectively enhancing information processing by redistributing activity. For instance, models with gain-based mechanisms become faster at detecting a target object with a valid cue and slower with an invalid cue. In contrast, modulating precision did not produce reliable changes in performance. Leveraging representational similarity analysis, we show that gain mechanisms introduced additional target-related information based on the spatial cue. Our results mirror empirical findings and show that it is possible to adjudicate between attention mechanisms and to estimate their computational efficacy using more biologically realistic models and natural stimuli.</p>
+    </body>
+    </html>
+    

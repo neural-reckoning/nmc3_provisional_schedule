@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Calcium imaging and the curse of negativity</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-30 21:30");</script>
+            /
+            Track 3
+            /
+            Interactive talk
+        </h3>
+        <h1>Calcium imaging and the curse of negativity</h1><h2>Gilles Vanwalleghem (He)</h2><h3>Lena Constantin, Queensland Brain Institute - The University of Queensland; Ethan K Scott, Queensland Brain Institute - The University of Queensland</h3><h2>Abstract</h1><p>The imaging of neuronal activity using calcium indicators has become a staple of modern neuroscience. However, without ground truths, there is a real risk of missing a significant portion of the real responses. Here, we show that a common assumption, the non-negativity of the neuronal responses as detected by calcium indicators, biases all levels of the frequently used analytical methods for these data. From the extraction of meaningful fluorescence changes to spike inference and the analysis of inferred spikes, each step risks missing real responses because of the assumption of non-negativity. We first show that negative deviations from baseline can exist in calcium imaging of neuronal activity. Then, we use simulated data to test three popular algorithms for image analysis, finding that suite2p may be the best suited to large datasets. Spike inference algorithms also showed their limitations in dealing with inhibited neurons, and new approaches may be needed to address this problem. We further suggest avoiding data analysis approaches that may ignore inhibited responses in favor of a first exploratory step to ensure that none are present. Taking these steps will ensure that inhibition, as well as excitation, is detected in calcium imaging datasets</p>
+    </body>
+    </html>
+    

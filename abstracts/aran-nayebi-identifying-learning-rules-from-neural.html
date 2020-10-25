@@ -1,0 +1,47 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Identifying learning rules from neural network observables</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 20:30");</script>
+            /
+            Track 2
+            /
+            Interactive talk
+        </h3>
+        <h1>Identifying learning rules from neural network observables</h1><h2>Aran Nayebi</h2><h3>Sanjana Srivastava, Stanford University; Surya Ganguli, Stanford University; Daniel Yamins, Stanford University</h3><h2>Abstract</h1><p>The brain modifies its synaptic strengths during learning in order to better adapt to its environment.
+However, the underlying plasticity rules that govern learning are unknown.
+Many proposals have been suggested, including Hebbian mechanisms, explicit error backpropagation, and a variety of alternatives.
+It is an open question as to what specific experimental measurements would need to be made to determine whether any given learning rule is operative in a real biological systems.
+In this work, we take a "virtual experimental" approach to this problem.
+Simulating idealized neuroscience experiments with artificial neural networks, we generate a large-scale dataset of learning trajectories of aggregate statistics measured in a variety of neural network architectures, loss functions, learning rule hyperparameters, and parameter initializations.
+We then take a discriminative approach, training linear and simple non-linear classifiers to identify learning rules from features based on these observables.
+We show that different classes of learning rules can be separated solely on the basis of aggregate statistics of the weights, activations, or instantaneous layer-wise activity changes, and that these results generalize to limited access to the trajectory and held-out architectures and learning curricula.
+We identify the statistics of each observable that are most relevant for rule identification, finding that statistics from network activities across training are more robust to unit undersampling and measurement noise than those obtained from the synaptic strengths.
+Our results suggest that activation patterns, available from electrophysiological recordings of post-synaptic activities on the order of several hundred units, frequently measured at wider intervals over the course of learning, may provide a good basis on which to identify learning rules.</p>
+    </body>
+    </html>
+    

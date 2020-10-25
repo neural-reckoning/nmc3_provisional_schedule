@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>A Double-Layer Multi-Resolution Classification Model for Decoding Spatio-Temporal Patterns of Spikes</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 20:00");</script>
+            /
+            Track 7
+            /
+            Traditional talk
+        </h3>
+        <h1>A Double-Layer Multi-Resolution Classification Model for Decoding Spatio-Temporal Patterns of Spikes</h1><h2>Xiwei She</h2><h3>Dong Song; Theodore Berger</h3><h2>Abstract</h1><p>To study how information are encoded in neural signals, we build a double-layer multi-resolution classification model for decoding specific behavior information from single-trial spatio-temporal patterns of spikes. The model can take hippocampal spiking activities as input signals and memory-related variables as output signals. In the first layer, to avoid overfitting caused by small sample size and the very high dimensional input and output signals, L1-regularized b-spline logistic regression classifiers are used to reduce dimensionality and yield sparse model estimation. A wide range of temporal resolutions of neural signals are included by using multiple classifiers with different numbers of b-spline knots. Each classifier serves a base-learner to classify spatio-temporal patterns with a given temporal resolution. A bootstrap aggregating strategy is used to further reduce estimation variances of these classifiers. In the second layer, another L1-regularized logistic classifier takes outputs of first-layer classifiers as inputs to generate the final output prediction. This classifier serves as a meta-learner that combines multiple temporal resolutions to classify the spatio-temporal patterns of spikes. We test the proposed decoding modeling method with both synthetic data and experimental data recorded from rats and human subjects performing memory-dependent behavioral tasks. Results show that this method can effectively avoid overfitting and yield accurate prediction of memory labels. The double-layer multi-resolution classifier consistently outperforms the best single-layer single-resolution classifier by extracting and utilizing multi-resolution spatio-temporal features of spike patterns in classification. The proposed model can be used not only to predict memory contents, but also has the potential to be used to design optimal spatio-temporal patterns for eliciting specific memories in the hippocampus, and thus have important implications to the development of hippocampal memory prostheses.</p>
+    </body>
+    </html>
+    

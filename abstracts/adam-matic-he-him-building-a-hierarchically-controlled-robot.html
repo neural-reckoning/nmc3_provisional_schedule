@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Building a hierarchically controlled robot arm for real world behavior</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-28 13:00");</script>
+            /
+            Track 5
+            /
+            Interactive talk
+        </h3>
+        <h1>Building a hierarchically controlled robot arm for real world behavior</h1><h2>Adam Matic (he, him)</h2><h3>Alex Gomez-Marin</h3><h2>Abstract</h1><p>Motor control research often relies on computational modelling, aiming at plausible and biologically relevant results in simulated environments. In contrast, robotic approaches must work in the real world with delays, nonlinearities and noise - posing a greater challenge on the proposed architectures, and promising greater insight. Commercially available robots with pre-programmed control systems are an appropriate solution to perform certain tasks from the get-go. From a theoretical perspective, however, this can be limiting since alternative control architectures cannot be tested. Here we built a simple robot arm with two shoulder joints, elbow and wrist, from the ground up, 3D printed arm segments, DC motors as actuators; potentiometers, pressure and tilt sensors and a webcam for sensory input. We programmed the control architecture for visual and kinesthetic arm control on a PC and an Arduino-compatible microcontroller. The robot performed a planar reaching task and a tracking task following a continuously moving visual reference, while simultaneously maintaining constant pen pressure and angle of tilt. While modest in speed and precision, the robot arm successfully performed these tasks, showing biologically relevant movement features, such as bell-shaped speed profiles, isochronous rise times, and the emergence of the speed-curvature power law at high speeds. Next, we imposed movement constraints and perturbations such as inclining the writing surface, displacing the visual marker, blocking the wrist, and rotating the visual field. Without any learning algorithms or parameter adjustments, the robot performed successful reaching and tracking. In sum, while maintaining computational simplicity, the proposed architecture is capable of integrating several modalities of sensory information and coordinating multiple degrees of freedom in real-world tasks, demonstrating how some observed biological movement invariances might emerge not from a complex plan, but from the interaction of brain, body and environment</p>
+    </body>
+    </html>
+    

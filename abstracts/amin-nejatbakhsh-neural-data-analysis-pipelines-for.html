@@ -1,0 +1,49 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Neural Data Analysis Pipelines for Extracting Information From C. elegans Microscopy Data</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 13:00");</script>
+            /
+            Track 9
+            /
+            Interactive talk
+        </h3>
+        <h1>Neural Data Analysis Pipelines for Extracting Information From C. elegans Microscopy Data</h1><h2>Amin Nejatbakhsh</h2><h3>Erdem Varol, Columbia University; Eviatar Yemini, Columbia University; Vivek Venkatachalam, Northeastern University; Albert Lin, Harvard University; Aravi Samuel, Harvard University; Oliver Hobert, Columbia University; Liam Paninski, Columbia University</h3><h2>Abstract</h1><p>C. elegans is a well-known model organism that has been widely used in neuroscience research to address variety of question ranging from developmental genetics to circuit-level neural dynamics. However, a significant analysis bottleneck remains the processing and the normalizing of the signal observed in highly variable microscopy data across the population of animals. Moreover, online experimental design is a critical scientific paradigm which necessitates the development of automated and scalable tools for analyzing a stream of data.
+
+Motivated by these applications and recent advances in the field of computer vision and statistics we have developed automated and semi-automated pipelines for extracting information from C. elegans microscopy videos. On Monday, I will be presenting a summary of our progress divided in the following categories:
+
+0) probabilistic inference for constructing a statistical atlas.
+1) point set registration for aligning the atlas to an image.
+2) permutation inference for probabilistic neuron assignments.
+3) optimal transport for probabilistic segmentation and tracking.
+4) matrix factorization for demixing calcium signals from deforming videos.
+
+Categorizing the analysis techniques as a pipeline of atlas building, registration, segmentation and signal extraction is general and can be applied to virtually every single animal model and emerging imaging modality.
+</p>
+    </body>
+    </html>
+    

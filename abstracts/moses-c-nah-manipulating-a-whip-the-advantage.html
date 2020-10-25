@@ -1,0 +1,41 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Manipulating a whip: the advantage of primitive actions</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-28 17:15");</script>
+            /
+            Track 3
+            /
+            Traditional talk
+        </h3>
+        <h1>Manipulating a whip: the advantage of primitive actions</h1><h2>Moses C. Nah</h2><h3>Aleksei Krotov, Northeastern University; Marta Russo, Northeastern University; Hillary Hoyt, Northeastern University; Reza Razavian, Northeastern University; Mahdiar Edraki, Northeastern University; Joshua C. Sohn, MIT; Dagmar Sternad, Northeastern University; Neville Hogan, MIT;</h3><h2>Abstract</h1><p>Humans achieve astonishing dexterity, out-performing contemporary robots despite vastly different wetware (e.g., musculo-skeletal system) and software (e.g., neural information processing). We propose that this is accomplished by encoding movements based on at least three distinct classes of motor primitives --- submovements and oscillations for forward-path control of motion, and mechanical impedances for managing physical interaction. Composing movements in terms of parameterized primitive actions may be an essential simplification required for learning, performance, and retention of complex manipulation skills. To test this hypothesis, we focused on one of the most complex and exotic tools humans can manipulate --- a whip. We tested (in simulation) whether a distant target could be reached with a whip using a (small) number of motor primitives, whose parameters could be learned through optimization.
+Regardless of the target location in 3D space, this approach was able to manage the complexity of an extremely high degree-of-freedom (DOF) system (54-DOF yielding a 108-dimensional state-space representation), and identified the optimal upper-limb movement that achieved the task. Detailed equations of motion describing the complex whip dynamics were not needed for this approach, thereby dramatically simplifying the complexity of the control task. 
+Simulation results were in good qualitative agreement with experimental observations which indicate that human subjects use a small number of primitive motions to reach a target with a whip. These results support our hypothesis that composing control using motor primitives may be a key strategy which humans use to enable their remarkable dexterity.
+</p>
+    </body>
+    </html>
+    

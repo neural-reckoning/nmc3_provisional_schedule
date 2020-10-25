@@ -1,0 +1,42 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Data-driven discovery of dynamical relationships within electroencephalographic spectra in sleep</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 16:30");</script>
+            /
+            Track 8
+            /
+            Traditional talk
+        </h3>
+        <h1>Data-driven discovery of dynamical relationships within electroencephalographic spectra in sleep</h1><h2>Robert Law (he/him)</h2><h3>Shaun Purcell, Harvard Medical School</h3><h2>Abstract</h1><p>Sleep is a decidedly nonstationary and multiplex process, and its dynamics, as measured by electroencephalography, are marked by the coupled evolution of bandlimited activities. Many of these activities are tied to neurological processes involved in regeneration, learning and memory consolidation, and an open question in sleep epidemiology is how best to compactly quantify an individual's sleep dynamics in a data-driven manner, for demographic analysis. 
+
+To address this question, we first apply a “cool-start” nonnegative matrix factorization technique to separate epoch-level spectrograms into nonindependent, nonstationary time and frequency factors. The frequency factors recapitulate classical frequency bands with well-known demographic correlates, but they also admit variability in these bands across individuals. The temporal factors are found suitable for fitting systems of ordinary differential equations, which can compactly describe how the frequency factors evolve and influence one another. 
+
+We first apply this approach to data from the childhood adenotonsillectomy study (n=464), a publicly available sleep dataset. During the sleep onset period, highly significant linear differential interactions are found among individualized sigma, delta, and beta factors, essentially blindly confirming a previous model of those interactions. However, we find little evidence that sleep onset dynamics are trait-like in this sample. To conclude, we discuss several challenges in the method's implementation to sleep data at the epidemiological scale, as well as further potential applications to cross-species homology, sleep microarchitecture, and neural time-series outside sleep. </p>
+    </body>
+    </html>
+    

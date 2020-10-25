@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>A Biophysically Inspired Learning Algorithm for Deep Neural Networks</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-30 08:00");</script>
+            /
+            Track 1
+            /
+            Traditional talk
+        </h3>
+        <h1>A Biophysically Inspired Learning Algorithm for Deep Neural Networks</h1><h2>Arash Ash</h2><h2>Abstract</h1><p>Backpropagation (BP) of global error has been the only way to learn artificial deep neural networks efficiently. However, BP in the traditional form is not biologically plausible since the feedback path requires symmetric weights of feedforward. Inspired by the Hebbian plasticity idea of learning synaptic weights from neuronal activities, we propose a novel learning algorithm called Feedback Propagation (FP) that uses a feedback network learned by the changes in the local activations. We show that this results in a local negative feedback loop that produces credit assignments in the global gradient direction. We trained deep, fully connected, and convolutional models on MNIST and CIFAR image recognition datasets with BP and FP algorithms and compared the performances and the learned representations. The results show that FP achieves similar generalization error as BP on fully connected models. However, the convolutional models did not learn as well using the FP algorithm.</p>
+    </body>
+    </html>
+    

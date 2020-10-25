@@ -1,0 +1,45 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Principles of cortical circuit organization</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-30 22:15");</script>
+            /
+            Track 2
+            /
+            Traditional talk
+        </h3>
+        <h1>Principles of cortical circuit organization</h1><h2>Stefan Mihalas</h2><h3>Hannah Choi, Allen Institute for Brain Science; Julie Harris, Allen Institute for Brain Science; Jennifer Whitesell, Allen Institute for Brain Science; Xiaoxuan Jia, Allen Institute for Brain Science; Josh Siegle, Allen Institute for Brain Science; Shawn Olsen, Allen Institute for Brain Science; Hongkui Zeng, Allen Institute for Brain Science; Christof Koch, Allen Institute for Brain Science;</h3><h2>Abstract</h1><p>In an age of big data, we get inundated with petabytes of information about structure and activity in neural tissues. While large datasets are useful and likely necessary steps towards understanding of the relations between structure, activity and computations in neural tissues, an argument can be made that they are not sufficient. An essential step is to extract a low dimensional description of the data, or principles of its organization. The presentation will focus on one such example, the mesoscopic organization of the cortico-thalamic system in mice. 
+ 
+We have analyzed the Allen Institute Mouse Brain Connectivity Atlas, a large-scale database of connection in the mouse brain based on anterograde anatomical tracers. We have constructed a model characterizing the connection strength between individual voxels.
+ 
+However, the most interesting observations occur when we go beyond characterizing connections based on strength alone. The essential concept is the addition of connection types. Based on layer distribution of axonal termination patterns in the cortex we characterize nine types of cortico-cortical and thalamo-cortical patterns. We have mathematically defined and characterized this organization. These types of connections are not random: they have a statistically significant hierarchical organization. Comparative analysis to functional data shows that this structural organization is well mapped to functional organization. 
+ 
+Cell types and connection types are a ubiquitous observation in biological neural networks, but they are not common in theoretical models of organization of neural circuits, which at large scale use graph theory. I will conclude the talk with an argument for the necessity of introducing cell types in theories of computations, and discuss how this could be achieved (e.g. generalizing concepts from graph theory to multigraph theory).
+</p>
+    </body>
+    </html>
+    

@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>The Gradient Clusteron: A model neuron that learns via dendritic nonlinearities, structural plasticity, and gradient descent</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 10:15");</script>
+            /
+            Track 5
+            /
+            Traditional talk
+        </h3>
+        <h1>The Gradient Clusteron: A model neuron that learns via dendritic nonlinearities, structural plasticity, and gradient descent</h1><h2>Toviah Moldwin</h2><h3>Menachem Kalmenson, Hebrew University of Jerusalem; Idan Segev, Hebrew University of Jerusalem</h3><h2>Abstract</h1><p>Synaptic clustering on neuronal dendrites has been hypothesized to play an important role in implementing pattern recognition. Neighboring synapses on a dendritic branch can interact in a synergistic, cooperative manner via the nonlinear voltage-dependence of NMDA receptors. The single-branch clusteron learning algorithm (Mel 1991) takes advantage of this nonlinearity to solve classification tasks by randomly shuffling the locations of "under-performing" synapses on a model dendrite during learning (“structural plasticity”), eventually resulting in synapses with correlated activity being placed next to each other on the dendrite. We propose an alternative model, the gradient clusteron, or G-clusteron, which uses an analytically-derived gradient descent rule where synapses are "attracted to" or "repelled from" each other in an input- and location- dependent manner. We demonstrate the classification ability of this algorithm by testing it on the MNIST handwritten digit dataset and show that, when using a softmax activation function, the accuracy of the G-clusteron on the All-vs-All MNIST task (86.5%) approaches that of logistic regression (88.9%). In addition to the synaptic location update plasticity rule, we also derive an learning rule for the synaptic weights of the G-clusteron (“functional plasticity”) and show that the G-clusteron with both plasticity rules can learn to solve the XOR problem.</p>
+    </body>
+    </html>
+    

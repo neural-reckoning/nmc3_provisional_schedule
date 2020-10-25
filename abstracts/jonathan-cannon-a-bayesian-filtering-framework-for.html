@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>A Bayesian filtering framework for neural and sensorimotor entrainment</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 16:00");</script>
+            /
+            Track 8
+            /
+            Traditional talk
+        </h3>
+        <h1>A Bayesian filtering framework for neural and sensorimotor entrainment</h1><h2>Jonathan Cannon</h2><h2>Abstract</h1><p>When presented with complex rhythmic auditory stimuli, most humans are able to track underlying temporal structure (e.g., a ``beat'') with overt movement or covertly while automatically and unconsciously adjusting for timing irregularities. We propose that the problem of overt and covert rhythm tracking is most naturally characterized as a problem of point process filtering: continuously estimating a hidden underlying phase based on the precise timing of temporally localized events that provide (incomplete) information about the phase. Here, we provide several mathematical framings of that problem at different levels of detail. We demonstrate that variational Bayesian solutions to this problem (specifically, point-process Kalman-Bucy filters) can be used to infer tempo as well as phase, and that they reproduce multiple characteristics of overt and covert human rhythm tracking including interval-dependent phase correction and the ``filled interval'' illusion. We point out that this approach to rhythm tracking fits nicely into the theory of predictive processing and active inference, and we discuss its plausibility in the human brain.</p>
+    </body>
+    </html>
+    

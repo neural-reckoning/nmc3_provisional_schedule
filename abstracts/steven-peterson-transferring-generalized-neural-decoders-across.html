@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Transferring generalized neural decoders across participants and recording modalities</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-27 16:30");</script>
+            /
+            Track 6
+            /
+            Traditional talk
+        </h3>
+        <h1>Transferring generalized neural decoders across participants and recording modalities</h1><h2>Steven Peterson</h2><h3>Steven M Peterson, University of Washington; Zoe Steine-Hanson, University of Washington; Nathan Davis, University of Washington; Rajesh P N Rao, University of Washington; Bingni W Brunton, University of Washington</h3><h2>Abstract</h1><p>Advances in neural decoding have enabled brain-computer interfaces to perform increasingly complex and clinically-relevant tasks. However, such decoders are often tailored to specific participants, days, and recording sites, limiting their practical long-term usage. Therefore, a fundamental challenge is to develop generalized neural decoders that can robustly train on pooled, multi-participant data and fine-tune to new participants. Here we introduce  HTNet, a decoder architecture that fuses deep learning with neural signal processing insights. Specifically, HTNet augments a pre-existing convolutional neural network decoder with two innovations: (1) a Hilbert transform that computes spectral power at data-driven frequencies and (2) a layer that projects electrode-level data into predefined brain regions. This projection is critical for intracranial electrocorticography (ECoG), where electrode locations are not standardized and vary widely across participants. We trained HTNet to decode arm movements using pooled ECoG data from 11 of 12 participants, testing performance on unseen ECoG or scalp electroencephalography (EEG) participants; these pretrained models were later fine-tuned to each test participant. We show that HTNet significantly outperformed state-of-the-art decoder accuracies by 8.5% when tested on unseen ECoG participants and by 14.5% when tested on unseen participants that used a different recording modality (EEG). We then used transfer learning and fine-tuned these trained models to unseen participants, even when limited training data was available. Importantly, we fine-tuned trained HTNet decoders with as few as 50 events and still achieved decoding performance approaching that of randomly-initialized decoders trained on hundreds of events. Furthermore, we demonstrate that HTNet extracts interpretable, neurally-relevant features. By generalizing to new participants and recording modalities, robustly handling variations in electrode placement, and fine-tuning with minimal data, HTNet can be used across a broader range of neural decoding applications than current state-of-the-art decoders.</p>
+    </body>
+    </html>
+    

@@ -1,0 +1,38 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>The Effects of Partial Connection Symmetry and Antisymmetry on Dynamic Stability, Lyapunov Spectra, and Training of Recurrent Neural Networks</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	}
+    
+        </script>
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-28 17:00");</script>
+            /
+            Track 2
+            /
+            Traditional talk
+        </h3>
+        <h1>The Effects of Partial Connection Symmetry and Antisymmetry on Dynamic Stability, Lyapunov Spectra, and Training of Recurrent Neural Networks</h1><h2>Matthew Ding</h2><h3>Rainer Engelken, Columbia University;</h3><h2>Abstract</h1><p>Recurrent neural networks (RNN) are used to model how the brain achieves characteristics of neural dynamics that are necessary for computation and reliable behavior, such as stability, timescale, and geometry of network activity. Often, RNN models are initialized with random connectivity, but the effects of constraining connectivity with biologically observed synaptic statistics are not well understood. Here we study how partial symmetry and antisymmetry of the network’s weight matrix shapes trainability and stability of dynamics. Networks with partially symmetric weight matrices have reciprocal synapses that are correlated in strength. To assess the stability of the dynamics, we calculate the full Lyapunov spectrum that quantifies the exponential sensitivity to small perturbations along a neural trajectory. Increasing symmetry decreases the number and magnitude of positive Lyapunov exponents, indicating increased dynamic stability. We also observe that more symmetric networks have lower dimensional spontaneous activity as determined by both principal component analysis and Kaplan-Yorke dimension. Consistent with previous work, partially symmetric networks also exhibited dynamics on longer time scales, as determined by the decay rate of the autocorrelation. By contrast, partial antisymmetry resulted in decreased stability, decreased activity dimensionality, and shortened autocorrelation timescales compared to random networks. Furthermore, we train networks with different levels of initial symmetry to autonomously generate simple periodic signals. For different networks, we vary both the symmetry of the initial weight matrix and the level of self-coupling, which causes single units to positively reinforce their own activity. When self-coupling is strong, networks with greater antisymmetry generate target periodic signals at a higher success rate. These results may explain how features of connectivity in biological neural networks affect the stability and shape the geometry of their activity.</p>
+    </body>
+    </html>
+    
