@@ -252,15 +252,15 @@ def write_static_html_schedule(filename='submissions-final.csv'):
                 '''
                 row.append(cell)
         if tnext is None or tnext.hour!=t.hour:
-            rowclass = 'class="lastinsession"'
+            rowclass = 'rowtime lastinsession'
         else:
-            rowclass = ''
+            rowclass = 'rowtime'
         row = '\n'.join(row)
         row = f'''
         <script type="text/JavaScript">
             oldday = NewDay(oldday, "{t.strftime('%Y-%m-%d %H:%M')}");
         </script>
-        <tr {rowclass}>
+        <tr class="{rowclass}" data-start="{t.strftime('%Y-%m-%d %H:%M')}" data-end="{tnext.strftime('%Y-%m-%d %H:%M')}">
             {row}
         </tr>
         '''
@@ -363,6 +363,20 @@ def write_static_html_schedule(filename='submissions-final.csv'):
         }
     };
     setInterval(update_visibility, 60*1000);    
+    function update_row_background() {
+        var now = moment();
+        var elems = document.getElementsByClassName("rowtime");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.backgroundColor = "#ff8888";
+            } else {
+                elems[i].style.backgroundColor = "white";
+            }
+        }
+    }
+    setInterval(update_row_background, 60*1000);    
     '''.replace("COLSPAN", f'{num_tracks+1}')
     html = f'''
     <!doctype html>
@@ -396,6 +410,7 @@ def write_static_html_schedule(filename='submissions-final.csv'):
         </table>
         <script type="text/JavaScript">
             update_visibility();
+            update_row_background();
         </script>
     </body>
     </html>
