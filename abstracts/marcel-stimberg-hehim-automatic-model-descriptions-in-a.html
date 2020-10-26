@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 17:15" data-end="2020-10-30 17:30">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Automatic model descriptions in a neural network simulator</h1><h2>Marcel Stimberg (he/him)</h2><h3>Vigneswaran C, Indian Institute of Technology Madras, Chennai</h3><h2>Abstract</h1><p>Computational neuroscience simulations are often written as scripts that make use of a neural simulator package. The details of a model implemented in such a script might not be obvious to a reader not familiar with the simulator. When a researcher presents such a model in a publication, they will therefore rather describe it with text and equations. Creating such a description, however, is error-prone, since it is up to the researcher to make sure that it accurately presents the simulated model. We therefore propose that it would be very useful if the simulator itself could generate a model description automatically. Here we present a prototype of such a system for the Brian simulator. It is built on the same framework that powers Brian's code generation process and is therefore guaranteed to give results that are consistent with the actual simulation. The new model description framework provides a basic exporter that generates a machine-readable representation which abstracts away all the details of Brian's internal representations and takes care of more subtle issues such as the meaning of referred constants and the order of variable assignments. This exporter is meant to be used as a base for other types of exporters. As a proof of concept, we show an export to the Markdown format, providing a human-readable description of a model. Such a description can be useful to exchange with other researchers that are not familiar with the Brian simulator, as a basis for a model description shared as part of a publication or website, or simply as a means for debugging a model. Finally, we discuss the limitations of such descriptions and the possibility of annotating it with additional semantic information derived from the model.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

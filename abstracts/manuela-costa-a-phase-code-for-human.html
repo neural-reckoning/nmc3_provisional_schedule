@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,32 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 11:15" data-end="2020-10-30 11:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>A phase code for human amygdala-hippocampal theta-gamma interplay determines emotional memory formation</h1><h2>Manuela Costa</h2><h3>Diego Lozano-Soldevilla, Laboratory for Clinical Neuroscience, Center for Biomedical Technology, University Politécnica de Madrid, Madrid, Spain; Antonio Gil-Nagel, Epilepsy Unit, Department of Neurology, Hospital Ruber Internacional, Madrid, Spain; Rafael Toledano, Epilepsy Unit, Department of Neurology, Hospital Ruber Internacional, Madrid, Spain; Carina Oehrn, Department of Neurology, University Hospital of Giessen and Marburg, Baldingerstrasse, 35043 Marburg, Germany, Center for Mind, Brain and Behavior (CMBB), Philipps-University Marburg, Marburg, Germany; Mar Yebra, Laboratory for Clinical Neuroscience, Center for Biomedical Technology, University Politécnica de Madrid, Madrid, Spain; Costantino Mendez-Bertolo, Laboratory for Clinical Neuroscience, Center for Biomedical Technology, University Politécnica de Madrid, Madrid, Spain; Johannes Sarnthein, Neurosurgery Department, University Hospital and University of Zurich, Zurich, Switzerland; Nikolai Axmacher, Department of Neuropsychology, Institute of Cognitive Neuroscience, Faculty of Psychology, Ruhr University Bochum, Universitaetsstrasse, 150, 44801 Bochum, Germany; Stephan Moratti, Department of Experimental Psychology, Complutense University of Madrid, Spain; Bryan A. Strange, Laboratory for Clinical Neuroscience, Center for Biomedical Technology, University Politécnica de Madrid, Madrid, Spain, Department of Neuroimaging, Reina Sofia Centre for Alzheimer's Research, Madrid, Spain.</h3><h2>Abstract</h1><p>Communication between the amygdala and the hippocampus has been proposed to
-support emotional, relative to neutral, memory. However, it is still unknown how these
-two structures interact during successful encoding of unpleasant information. We used
-direct intracranial recordings from 15 patients with medication-resistant epilepsy while
-they encoded (day 1) and later retrieved (after 24 h, day 2) unpleasant and neutral
-complex scenes from the IAPS database. All patients had intracranial depth electrodes
-implanted into the amygdala and 8 patients also in the ipsilateral hippocampus.
-Investigating the oscillatory responses associated with the subsequent memory of
-scenes, we found that successful emotional memory formation produced in the
-amygdala (n=8) a local broadband gamma activity (80-135 Hz) starting at around
-400ms. By contrast, at around 500ms hippocampal (n=8) gamma responses (50-75 Hz)
-were associated with successful encoding of both unpleasant and neutral scenes. We
-further found theta oscillations in the amygdala influencing in a unidirectional way
-hippocampus theta responses to emotional stimuli. Importantly, during successful
-encoding of unpleasant scenes, the hippocampus gamma activity coupled to the
-amygdala theta in a specific manner. We indeed found that the coupling occurred with a
-consistent phase difference of ~1.67 radians during successful and unsuccessful
-encoding of unpleasant scenes. Finally, using amplitude envelope cross-correlation as a
-proxy of synchrony strength between the amygdala and the hippocampus we found
-transient broadband gamma (60-120 Hz) connectivity. The amygdala gamma also leads
-the hippocampus gamma during successful encoding of unpleasant scenes.
-Our results show a unique phase code for negative memory formation in humans and
-demonstrate that the amygdala facilitates memory encoding in the hippocampus within
-a unique time window of ~37ms on which hippocampal gamma amplitude peaks have
-to occur to form successfully emotional memories.</p>
+        <h1>A phase code for human amygdala-hippocampal theta-gamma interplay determines emotional memory formation</h1><h2>Manuela Costa</h2><h3>Diego Lozano-Soldevilla, Laboratory for Clinical Neuroscience, Center for Biomedical Technology, University Politécnica de Madrid, Madrid, Spain; Antonio Gil-Nagel, Epilepsy Unit, Department of Neurology, Hospital Ruber Internacional, Madrid, Spain; Rafael Toledano, Epilepsy Unit, Department of Neurology, Hospital Ruber Internacional, Madrid, Spain; Carina Oehrn, Department of Neurology, University Hospital of Giessen and Marburg, Baldingerstrasse, 35043 Marburg, Germany, Center for Mind, Brain and Behavior (CMBB), Philipps-University Marburg, Marburg, Germany; Mar Yebra, Laboratory for Clinical Neuroscience, Center for Biomedical Technology, University Politécnica de Madrid, Madrid, Spain; Costantino Mendez-Bertolo, Laboratory for Clinical Neuroscience, Center for Biomedical Technology, University Politécnica de Madrid, Madrid, Spain; Johannes Sarnthein, Neurosurgery Department, University Hospital and University of Zurich, Zurich, Switzerland; Nikolai Axmacher, Department of Neuropsychology, Institute of Cognitive Neuroscience, Faculty of Psychology, Ruhr University Bochum, Universitaetsstrasse, 150, 44801 Bochum, Germany; Stephan Moratti, Department of Experimental Psychology, Complutense University of Madrid, Spain; Bryan A. Strange, Laboratory for Clinical Neuroscience, Center for Biomedical Technology, University Politécnica de Madrid, Madrid, Spain, Department of Neuroimaging, Reina Sofia Centre for Alzheimer's Research, Madrid, Spain.</h3><h2>Abstract</h1><p>Communication between the amygdala and the hippocampus has been proposed to<br/>support emotional, relative to neutral, memory. However, it is still unknown how these<br/>two structures interact during successful encoding of unpleasant information. We used<br/>direct intracranial recordings from 15 patients with medication-resistant epilepsy while<br/>they encoded (day 1) and later retrieved (after 24 h, day 2) unpleasant and neutral<br/>complex scenes from the IAPS database. All patients had intracranial depth electrodes<br/>implanted into the amygdala and 8 patients also in the ipsilateral hippocampus.<br/>Investigating the oscillatory responses associated with the subsequent memory of<br/>scenes, we found that successful emotional memory formation produced in the<br/>amygdala (n=8) a local broadband gamma activity (80-135 Hz) starting at around<br/>400ms. By contrast, at around 500ms hippocampal (n=8) gamma responses (50-75 Hz)<br/>were associated with successful encoding of both unpleasant and neutral scenes. We<br/>further found theta oscillations in the amygdala influencing in a unidirectional way<br/>hippocampus theta responses to emotional stimuli. Importantly, during successful<br/>encoding of unpleasant scenes, the hippocampus gamma activity coupled to the<br/>amygdala theta in a specific manner. We indeed found that the coupling occurred with a<br/>consistent phase difference of ~1.67 radians during successful and unsuccessful<br/>encoding of unpleasant scenes. Finally, using amplitude envelope cross-correlation as a<br/>proxy of synchrony strength between the amygdala and the hippocampus we found<br/>transient broadband gamma (60-120 Hz) connectivity. The amygdala gamma also leads<br/>the hippocampus gamma during successful encoding of unpleasant scenes.<br/>Our results show a unique phase code for negative memory formation in humans and<br/>demonstrate that the amygdala facilitates memory encoding in the hippocampus within<br/>a unique time window of ~37ms on which hippocampal gamma amplitude peaks have<br/>to occur to form successfully emotional memories.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

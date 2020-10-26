@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 13:15" data-end="2020-10-27 13:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Neuroscientific investigation of police perception, cognition, and behaviour</h1><h2>Paula Di Nota (she, her, hers)</h2><h3>Judith P. Andersen, University of Toronto</h3><h2>Abstract</h1><p>Police and other law enforcement personnel are tasked with serving and protecting our communities. As a result, officers are routinely exposed to uncertain, unpredictable, and potentially violent encounters. Resulting physiological stress responses have a pervasive influence on all aspects of police work and bear significant consequences on the health and safety of both officers and the public. An understanding of the neurophysiological mechanisms underlying these errors in perception, judgement, and behaviour is lacking in the response to countless examples of excessive use of force by police. Through our investigations of these mechanisms, we have contributed to a growing body of research that supports evidence-based use of force training and practices. In this interactive talk, we will begin by synthesizing the current state-of-the-art on neurophysiological investigations of perception, cognition, and behaviour among police populations. Relevant research topics include: situational awareness (i.e., sensory perception, attention, threat assessment, prediction); memory (i.e., encoding, consolidation, retrieval); decision-making (e.g., shoot/no-shoot); and skilled motor performance. We will also briefly discuss practical challenges to conducting empirical research in applied police settings, and the fine balance between maintaining experimental control and ecological validity.  We invite feedback from attendees in a wide range of disciplines to stimulate an active yet focused discussion. Through this discourse, we hope to identify important gaps in knowledge, future areas of inquiry, and innovative methodological approaches. The insights yielded during this talk and from the research discussed will also highlight the broader impacts of applied neuroscientific police research on health, policy, and society. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

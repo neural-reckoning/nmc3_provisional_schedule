@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 22:30" data-end="2020-10-26 22:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Reward-biased transitive inference task in rhesus macaques.</h1><h2>Allain-Thibeault FERHAT</h2><h3>Allain-Thibeault Ferhat, Dept. of Neuroscience, Columbia University; Greg Jensen, ,Dept. of Neuroscience, Columbia University;Herbert Terrace, ,Dept. of Neuroscience, Columbia University; Vincent P. Ferrera,Dept. of Neuroscience, Columbia University;</h3><h2>Abstract</h1><p>If we know that person A is taller than person B, and B is taller than C, we can infer that A is taller than C. Such deduction is called a transitive inference (TI) and refers to the learning of novel relationships between pairs or groups of items that are implied by pairwise comparisons, whether they be verbal or non-verbal.
-Numerous animal studies have revealed that all vertebrates tested to date display the ability to make transitive inferences. This ability is thought to be fundamental to understanding ordered sets such as social hierarchies.  Consensus has not yet been reached whether TI task performance depends on model-free or model-based learning mechanisms, or a combination of both.  
-In traditional TI paradigms, subjects are presented a single list of ~7 items per session. Here, to test the mechanism behind TI task, we trained monkeys using two ordered lists of five items (images A to E) with reward disparity. Each training trial presented a pair of items and the earlier item (e.g. B from BC) was always the correct response. However, correct responses to List 1 were associated with 2 units of rewards, while List 2 was associated with 5 units of rewards. Once monkeys had learned both training lists (e.g. B1C1), they were tested with between-list adjacent (B1C2) and non-adjacent (B1D2) pairs. On the one hand, we found a powerful bias for items from List 2, consistent with a preference for items that had been paired with larger rewards during training. On the other hand, however, we also found that rewards did not entirely determine preference, with monkeys able to respond above chance overall, once the reward bias had been accounted for. This suggests that both model-based and model-free learning contribute to performance on TI tasks.
-</p>
+        <h1>Reward-biased transitive inference task in rhesus macaques.</h1><h2>Allain-Thibeault FERHAT</h2><h3>Allain-Thibeault Ferhat, Dept. of Neuroscience, Columbia University; Greg Jensen, ,Dept. of Neuroscience, Columbia University;Herbert Terrace, ,Dept. of Neuroscience, Columbia University; Vincent P. Ferrera,Dept. of Neuroscience, Columbia University;</h3><h2>Abstract</h1><p>If we know that person A is taller than person B, and B is taller than C, we can infer that A is taller than C. Such deduction is called a transitive inference (TI) and refers to the learning of novel relationships between pairs or groups of items that are implied by pairwise comparisons, whether they be verbal or non-verbal.<br/>Numerous animal studies have revealed that all vertebrates tested to date display the ability to make transitive inferences. This ability is thought to be fundamental to understanding ordered sets such as social hierarchies.  Consensus has not yet been reached whether TI task performance depends on model-free or model-based learning mechanisms, or a combination of both.  <br/>In traditional TI paradigms, subjects are presented a single list of ~7 items per session. Here, to test the mechanism behind TI task, we trained monkeys using two ordered lists of five items (images A to E) with reward disparity. Each training trial presented a pair of items and the earlier item (e.g. B from BC) was always the correct response. However, correct responses to List 1 were associated with 2 units of rewards, while List 2 was associated with 5 units of rewards. Once monkeys had learned both training lists (e.g. B1C1), they were tested with between-list adjacent (B1C2) and non-adjacent (B1D2) pairs. On the one hand, we found a powerful bias for items from List 2, consistent with a preference for items that had been paired with larger rewards during training. On the other hand, however, we also found that rewards did not entirely determine preference, with monkeys able to respond above chance overall, once the reward bias had been accounted for. This suggests that both model-based and model-free learning contribute to performance on TI tasks.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

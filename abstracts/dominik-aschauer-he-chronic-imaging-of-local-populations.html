@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 18:00" data-end="2020-10-29 18:15">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Chronic imaging of local populations in auditory cortex reveals ongoing recombination of neuronal ensembles representing sensory stimuli</h1><h2>Dominik Aschauer (he)</h2><h3>Bastian Eppler, FIAS Frankfurt; Matthias Kaschube, FIAS Frankfurt; Simon Rumpel, JGU Mainz</h3><h2>Abstract</h1><p>Neuronal ensembles are believed to form essential functional units within neural networks. How structurally and functionally stable are such ensembles? This question is of particular interest in light of evidence that synaptic connections show substantial remodeling on the time scale of days. At the same time, the perception of external stimuli has to be highly reliable, while allowing for flexible integration of novel experiences to form associations to already known stimuli.
-Using chronic imaging of local population activity in mouse auditory cortex, we show that neuronal responses to short sounds typically cluster into a near discrete set of response modes. Moreover, we find that response modes show significant remodeling over several days. We identify a set of elementary operations capturing the dynamics of sensory representations, which involve changes in the set of stimuli driving particular response modes as well as their formation and elimination.
-We demonstrate that stable encoding of external stimuli is maintained in activity patterns of local populations despite ongoing remodeling of sensory representations. Training a decoder based on logistic regression using information on a single time point either from single cell activity or from response mode patterns, respectively, is sufficient to decode stimulus identity over long time scales. Auditory fear conditioning introduces biases in the frequency of specific operations mediating increased associations of sensory stimuli and improved sound encoding. The ongoing recombination of neuronal ensembles provides a mechanism for the integration of novel stimulus information by associative learning paradigms.</p>
+        <h1>Chronic imaging of local populations in auditory cortex reveals ongoing recombination of neuronal ensembles representing sensory stimuli</h1><h2>Dominik Aschauer (he)</h2><h3>Bastian Eppler, FIAS Frankfurt; Matthias Kaschube, FIAS Frankfurt; Simon Rumpel, JGU Mainz</h3><h2>Abstract</h1><p>Neuronal ensembles are believed to form essential functional units within neural networks. How structurally and functionally stable are such ensembles? This question is of particular interest in light of evidence that synaptic connections show substantial remodeling on the time scale of days. At the same time, the perception of external stimuli has to be highly reliable, while allowing for flexible integration of novel experiences to form associations to already known stimuli.<br/>Using chronic imaging of local population activity in mouse auditory cortex, we show that neuronal responses to short sounds typically cluster into a near discrete set of response modes. Moreover, we find that response modes show significant remodeling over several days. We identify a set of elementary operations capturing the dynamics of sensory representations, which involve changes in the set of stimuli driving particular response modes as well as their formation and elimination.<br/>We demonstrate that stable encoding of external stimuli is maintained in activity patterns of local populations despite ongoing remodeling of sensory representations. Training a decoder based on logistic regression using information on a single time point either from single cell activity or from response mode patterns, respectively, is sufficient to decode stimulus identity over long time scales. Auditory fear conditioning introduces biases in the frequency of specific operations mediating increased associations of sensory stimuli and improved sound encoding. The ongoing recombination of neuronal ensembles provides a mechanism for the integration of novel stimulus information by associative learning paradigms.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

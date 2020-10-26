@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,12 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 13:00" data-end="2020-10-30 13:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Dendritic Activity in Area CA3 of the Mouse Hippocampus</h1><h2>Jason Moore</h2><h3>Jason Moore, New York University Langone Medical Center; Maya Hopkins, New York University Langone Medical Center; Shannon Rashid, New York University Langone Medical Center; Jayeeta Basu, New York University Langone Medical Center</h3><h2>Abstract</h1><p>Hippocampal “place cells” are tuned to locations in an environment, much as sensory cortices encode features of their respective modalities. Hippocampal cells also exhibit the phenomenon of remapping, in which a cell codes for different positions in different environments, or different positions in the same environment, when task demands change. Remapping occurs on fast timescales, so typical plasticity mechanisms cannot completely explain this behavior.
-Recent studies implicate dendritic spikes in predicting the formation of stable place fields. However, due to technical and analytical limitations, in vivo studies of hippocampal dendritic activity have largely been confined to basal or proximal apical dendrites. To address these issues, our lab has developed an experimental paradigm in which the basal dendrites, cell bodies, and apical dendrites of pyramidal neurons in area CA3 are imaged in the same focal plane. We imaged calcium activity, reported by GCaMP6f or GCaMP7b, simultaneously in pyramidal cell bodies and dendrites while head-fixed mice ran for water rewards on a treadmill track. 
-To interpret this data, we developed an automated algorithm to identify dendritic and somatic regions of interest (ROIs) from the calcium signal. The algorithm matches manually-labeled datasets and identifies many more dendritic segments than a human expert. The algorithm is easily applied to detecting ROIs from various interneuron populations as well as axonal data, and runs faster than real-time on a standard desktop computer, with very few free parameters to tune.
-When we analyzed the compartment-specific tuning of neurons, we discovered an interesting feature that the dendrites of a neuron may be tuned to completely different locations than their sister dendrites or their parent soma. Furthermore, the internal routing of information, - which dendrites are highly correlated with the soma, - was often changed during remapping. These results suggest that dendrites may enable a neuron to hold multiple pieces of information, and a subset of that information is routed to the soma, perhaps in a context-dependent manner.
-</p>
+        <h1>Dendritic Activity in Area CA3 of the Mouse Hippocampus</h1><h2>Jason Moore</h2><h3>Jason Moore, New York University Langone Medical Center; Maya Hopkins, New York University Langone Medical Center; Shannon Rashid, New York University Langone Medical Center; Jayeeta Basu, New York University Langone Medical Center</h3><h2>Abstract</h1><p>Hippocampal “place cells” are tuned to locations in an environment, much as sensory cortices encode features of their respective modalities. Hippocampal cells also exhibit the phenomenon of remapping, in which a cell codes for different positions in different environments, or different positions in the same environment, when task demands change. Remapping occurs on fast timescales, so typical plasticity mechanisms cannot completely explain this behavior.<br/>Recent studies implicate dendritic spikes in predicting the formation of stable place fields. However, due to technical and analytical limitations, in vivo studies of hippocampal dendritic activity have largely been confined to basal or proximal apical dendrites. To address these issues, our lab has developed an experimental paradigm in which the basal dendrites, cell bodies, and apical dendrites of pyramidal neurons in area CA3 are imaged in the same focal plane. We imaged calcium activity, reported by GCaMP6f or GCaMP7b, simultaneously in pyramidal cell bodies and dendrites while head-fixed mice ran for water rewards on a treadmill track. <br/>To interpret this data, we developed an automated algorithm to identify dendritic and somatic regions of interest (ROIs) from the calcium signal. The algorithm matches manually-labeled datasets and identifies many more dendritic segments than a human expert. The algorithm is easily applied to detecting ROIs from various interneuron populations as well as axonal data, and runs faster than real-time on a standard desktop computer, with very few free parameters to tune.<br/>When we analyzed the compartment-specific tuning of neurons, we discovered an interesting feature that the dendrites of a neuron may be tuned to completely different locations than their sister dendrites or their parent soma. Furthermore, the internal routing of information, - which dendrites are highly correlated with the soma, - was often changed during remapping. These results suggest that dendrites may enable a neuron to hold multiple pieces of information, and a subset of that information is routed to the soma, perhaps in a context-dependent manner.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 22:15" data-end="2020-10-30 22:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Application of Digital Image Analysis Methods for Quantifying Spatiotemporal Neural Dynamics</h1><h2>Afareen Jaleel</h2><h3>Pawel Kudela, Institute for Computational Medicine and Department of Neurosurgery, Johns Hopkins University; William S. Anderson, Institute for Computational Medicine and Department of Neurosurgery, Johns Hopkins University</h3><h2>Abstract</h1><p>Recent developments in the ability to measure neural activity with surface and penetrating microelectrode arrays have allowed for higher-resolution and higher-dimension measurements of neural activity. With the development of this technology also arises the need for analytical methods to enable interpretation of these measurements in the context of underlying neural dynamics and processes. We examine the application of image analysis methods such as histogram correlation and radial profile analysis, for quantifying the spatiotemporal characteristics of neural dynamics in both simulated and recorded data.
-Neural activity can be highly nonlinear and nonstationary, particularly in response to electric stimulation. When analyzing nonstationary data recorded from cortical surface or planar depth electrode arrays, image-analysis methods may be helpful in comparing various spatial and event-related changes in neural activity detected by these electrodes in the plane of a recording array. Since these methods do not depend on time series data, they may have potential application for real-time feedback control of neural activity.
-To demonstrate the application of image-analysis based methods in comparing event-related changes in neural activity we used radial profiles to investigate the state-dependent response to cortical stimulation. We used a data set of 67 paired pre- and post-stimulation cortical states recorded from iECoG signals sampled 100 ms prior, and after cortical stimulation from a patient with epilepsy. State-dependence was defined as the conditional probability that pre-stimulation states were similar given the corresponding post-stimulation states were similar. We adopted a criterion thresholds for profile similarity and found that 27 cortical responses were classified as state dependent. To assess the statistical significance of this result, we performed a permutation test by shuffling the order of pre-stimulation states. Under the null hypothesis (N=1000 permutations of pre-stimulation states) we found less state-dependent responses (with a mean of 13.8 and standard deviation of 3.3 across all permutations). The test gave evidence in favor of prestimulation context affecting cortical responses to stimulation. Thus, we propose that using image analysis methods for analyzing multielectrode data has the potential to reveal new patterns in cortical activity.</p>
+        <h1>Application of Digital Image Analysis Methods for Quantifying Spatiotemporal Neural Dynamics</h1><h2>Afareen Jaleel</h2><h3>Pawel Kudela, Institute for Computational Medicine and Department of Neurosurgery, Johns Hopkins University; William S. Anderson, Institute for Computational Medicine and Department of Neurosurgery, Johns Hopkins University</h3><h2>Abstract</h1><p>Recent developments in the ability to measure neural activity with surface and penetrating microelectrode arrays have allowed for higher-resolution and higher-dimension measurements of neural activity. With the development of this technology also arises the need for analytical methods to enable interpretation of these measurements in the context of underlying neural dynamics and processes. We examine the application of image analysis methods such as histogram correlation and radial profile analysis, for quantifying the spatiotemporal characteristics of neural dynamics in both simulated and recorded data.<br/>Neural activity can be highly nonlinear and nonstationary, particularly in response to electric stimulation. When analyzing nonstationary data recorded from cortical surface or planar depth electrode arrays, image-analysis methods may be helpful in comparing various spatial and event-related changes in neural activity detected by these electrodes in the plane of a recording array. Since these methods do not depend on time series data, they may have potential application for real-time feedback control of neural activity.<br/>To demonstrate the application of image-analysis based methods in comparing event-related changes in neural activity we used radial profiles to investigate the state-dependent response to cortical stimulation. We used a data set of 67 paired pre- and post-stimulation cortical states recorded from iECoG signals sampled 100 ms prior, and after cortical stimulation from a patient with epilepsy. State-dependence was defined as the conditional probability that pre-stimulation states were similar given the corresponding post-stimulation states were similar. We adopted a criterion thresholds for profile similarity and found that 27 cortical responses were classified as state dependent. To assess the statistical significance of this result, we performed a permutation test by shuffling the order of pre-stimulation states. Under the null hypothesis (N=1000 permutations of pre-stimulation states) we found less state-dependent responses (with a mean of 13.8 and standard deviation of 3.3 across all permutations). The test gave evidence in favor of prestimulation context affecting cortical responses to stimulation. Thus, we propose that using image analysis methods for analyzing multielectrode data has the potential to reveal new patterns in cortical activity.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

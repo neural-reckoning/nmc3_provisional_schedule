@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 13:00" data-end="2020-10-28 13:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Dissecting Transient Burst Events</h1><h2>Catharina Zich</h2><h3>Andrew J Quinn, University of Oxford; Lydia C Mardell, UCL; Nick S Ward, UCL; Sven Besmann, UCL</h3><h2>Abstract</h1><p>Neural activity recorded from the scalp [magneto-/electroencephalogram (M/EEG)], cortical surface [electrocorticogram (EcoG)], or inside the brain [local field potential (LFP)] is traditionally analysed by averaging tens to hundreds of trials. The trial-wise average of spectrograms commonly shows periods of sustained high or low spectral power. The underlying single trial activity may manifest as oscillations (i.e., sustained rhythmic fluctuations of synchronous spiking activity) or burst-like events. Burst-like events are intermittent, transient periods of synchronous spiking activity. 
-Events have a temporal, spectral, and spatial domain. However, most work so far has focussed on temporal event characteristics. Events are thereby compressed to a singular dimension, by reducing the spatial and spectral domains of their underlying signals. Domain reduction can have several un- wanted consequences. First, different domain reduction methods likely result in differences in event characteristics. Second, domain reduction can obscure interactions (e.g. temporal-spatial interaction also known as traveling wave) between domains, which may lead to ambiguous inferences and conclusions drawn from these analyses.
-Considering all three domains will yield a more accurate description of individual event characteristics and their interactions. This is likely to underpin identification of more precise fingerprints of mechanisms underlying differences in population activity measures, such as spectral power. In turn, this can guide development of rational and mechanistically grounded treatments that target neurological and psychiatric conditions.</p>
+        <h1>Dissecting Transient Burst Events</h1><h2>Catharina Zich</h2><h3>Andrew J Quinn, University of Oxford; Lydia C Mardell, UCL; Nick S Ward, UCL; Sven Besmann, UCL</h3><h2>Abstract</h1><p>Neural activity recorded from the scalp [magneto-/electroencephalogram (M/EEG)], cortical surface [electrocorticogram (EcoG)], or inside the brain [local field potential (LFP)] is traditionally analysed by averaging tens to hundreds of trials. The trial-wise average of spectrograms commonly shows periods of sustained high or low spectral power. The underlying single trial activity may manifest as oscillations (i.e., sustained rhythmic fluctuations of synchronous spiking activity) or burst-like events. Burst-like events are intermittent, transient periods of synchronous spiking activity. <br/>Events have a temporal, spectral, and spatial domain. However, most work so far has focussed on temporal event characteristics. Events are thereby compressed to a singular dimension, by reducing the spatial and spectral domains of their underlying signals. Domain reduction can have several un- wanted consequences. First, different domain reduction methods likely result in differences in event characteristics. Second, domain reduction can obscure interactions (e.g. temporal-spatial interaction also known as traveling wave) between domains, which may lead to ambiguous inferences and conclusions drawn from these analyses.<br/>Considering all three domains will yield a more accurate description of individual event characteristics and their interactions. This is likely to underpin identification of more precise fingerprints of mechanisms underlying differences in population activity measures, such as spectral power. In turn, this can guide development of rational and mechanistically grounded treatments that target neurological and psychiatric conditions.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

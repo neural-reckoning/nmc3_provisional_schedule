@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 18:00" data-end="2020-10-27 18:15">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Remembrance of things practiced: Fast and slow learning in cortical and subcortical pathways</h1><h2>James Murray</h2><h3>James M Murray, University of Oregon; G Sean Escola, Columbia University</h3><h2>Abstract</h1><p>The learning of motor skills unfolds over multiple timescales, with rapid initial gains in performance followed by a longer period in which the behavior becomes more refined, habitual, and automatized. While recent lesion and inactivation experiments have provided hints about how various brain areas might contribute to such learning, their precise roles and the neural mechanisms underlying them are not well understood. In this work, we propose neural- and circuit-level mechanisms by which motor cortex, thalamus, and striatum support motor learning. In this model, the combination of fast cortical learning and slow subcortical learning gives rise to a covert learning process through which control of behavior is gradually transferred from cortical to subcortical circuits, while protecting learned behaviors that are practiced repeatedly against overwriting by future learning. Together, these results point to a new computational role for thalamus in motor learning and, more broadly, provide a framework for understanding the neural basis of habit formation and the automatization of behavior through practice.
-</p>
+        <h1>Remembrance of things practiced: Fast and slow learning in cortical and subcortical pathways</h1><h2>James Murray</h2><h3>James M Murray, University of Oregon; G Sean Escola, Columbia University</h3><h2>Abstract</h1><p>The learning of motor skills unfolds over multiple timescales, with rapid initial gains in performance followed by a longer period in which the behavior becomes more refined, habitual, and automatized. While recent lesion and inactivation experiments have provided hints about how various brain areas might contribute to such learning, their precise roles and the neural mechanisms underlying them are not well understood. In this work, we propose neural- and circuit-level mechanisms by which motor cortex, thalamus, and striatum support motor learning. In this model, the combination of fast cortical learning and slow subcortical learning gives rise to a covert learning process through which control of behavior is gradually transferred from cortical to subcortical circuits, while protecting learned behaviors that are practiced repeatedly against overwriting by future learning. Together, these results point to a new computational role for thalamus in motor learning and, more broadly, provide a framework for understanding the neural basis of habit formation and the automatization of behavior through practice.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

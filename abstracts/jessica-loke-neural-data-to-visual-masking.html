@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 13:00" data-end="2020-10-28 13:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Neural data to visual masking in humans shows that deeper convolutional neural networks capture recurrent processes</h1><h2>Jessica Loke</h2><h3>Jessica Loke, University of Amsterdam; Noor Seijdel, University of Amsterdam; Lukas Snoek, University of Amsterdam; Ron van de Klundert, University of Amsterdam; Matthew van der Meer, University of Amsterdam; Eva Quispel, University of Amsterdam; Natalie Cappaert, University of Amsterdam; H. Steven Scholte, University of Amsterdam.</h3><h2>Abstract</h1><p>Recent studies have argued for a need to incorporate recurrent processing in the architecture of feedforward models (van Bergen and Kriegeskorte 2020; Kietzmann et al. 2019). Recurrent processing is a crucial feature in human visual processing that supports perceptual grouping (Roelfsema 2006), figure-ground segmentation (Supèr et al. 2001) and recognition under challenging conditions  (Tang and Kreiman 2017; Spoerer et al. 2017; Rajaei et al. 2019). All of this suggests that current feedforward models are limited compared to their recurrence cousins. In this paper, we show how existing feedforward models exhibit operations similar to recurrent processing in the brain. Sixty-two human subjects and a family of ResNet models completed an object recognition task. The models varied in depth - ResNet-6, 10, 18, 34 - with their names indicating the number of layers. We found that the deeper networks (i.e. ResNet-34) performed more similarly to humans under normal circumstances; whereas, shallower networks perform more similarly to humans when recurrent processing is interfered with visual masking. By examining the human subjects’ electroencephalography (EEG) activity and activations in artificial networks, we observed two important findings. One, early differentiation in EEG signals is largely explained by image background and not object category. Image background, image complexity and object category interact: identical objects embedded in more complex backgrounds take longer to reach categorical perception. Two, ResNet models differ in how well they can explain neural data when recurrent processing is unhindered: deeper networks explain more variance as compared to shallower networks. But when recurrent processing is interfered, all networks explain the same amount of variance. Crucially, the difference in explained variance between unmasked and masked data only emerges at ~186ms - a latency beyond feedforward processes. This shows that networks of different depths differ in their abilities to model recurrent processing, showing that deeper networks model capture recurrent processing in humans. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

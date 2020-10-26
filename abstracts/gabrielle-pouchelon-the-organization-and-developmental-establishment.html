@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 17:15" data-end="2020-10-29 17:30">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The organization and developmental establishment of cortical interneuron presynaptic circuits</h1><h2>Gabrielle Pouchelon</h2><h3>Gabrielle Pouchelon, Harvard Medical School, Department of Neurobiology, Broad Institute, Stanley Center for Psychiatric Research; Yannick Bollmann, Aix Marseille University, INSERM, INMED, Turing Center for Living Systems; Elaine Fisher, Harvard Medical School, Department of Neurobiology, Broad Institute, Stanley Center for Psychiatric Research; Chimuanya K Agba, Harvard Medical School, Department of Neurobiology, Broad Institute, Stanley Center for Psychiatric Research; Qing Xu, Center for Genomics & Systems Biology, New York University; Kimberly D Ritola, Janelia Research Campus, Howard Hughes Medical Institute; Andrea Mirow, Harvard Medical School, Department of Neurobiology, Broad Institute, Stanley Center for Psychiatric Research; Seyhun Kim, Harvard Medical School, Department of Neurobiology, Broad Institute, Stanley Center for Psychiatric Research; Rosa Cossart, Aix Marseille University, INSERM, INMED, Turing Center for Living Systems; Gord Fishell, Harvard Medical School, Department of Neurobiology, Broad Institute, Stanley Center for Psychiatric Research.</h3><h2>Abstract</h1><p>Sensory and cognitive functions are processed in discrete cortical areas and depend upon the integration of long range cortical and subcortical inputs. PV and SST inhibitory interneurons (cINs) gate these inputs and failure to do so properly is implicated in many neurodevelopmental disorders. The logic by which these interneuron populations are integrated into cortical circuits and how these vary across sensory versus associative cortical areas is unknown. To answer this question, we began by surveying the breadth of afferents impinging upon PV and SST cINs within distinct cortical areas.  In contrast to the characterized thalamic and cortical canonical circuits, we found that the afferents to PV and SST cINs receive similar projections within areal location. However, the identity of the thalamic and cortical neuron is variable according to the cell-types they project to. During development, cell-type specific circuits are specialized via areal-specific progression, regression and transitory connectivity. Remarkably the organization of thalamocortical afferents to SST and PV cINs reach their mature specificity through distinct mechanisms. While thalamocortical afferents to PV IN are regulated by sensory experience, projections to SST IN developed through postsynaptic mGluR1 receptor activation. Altogether, these data provide a comprehensive map of cIN afferents within different functional cortical areas and reveal the region-specific logic by which PV and SST cIN circuits are established.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

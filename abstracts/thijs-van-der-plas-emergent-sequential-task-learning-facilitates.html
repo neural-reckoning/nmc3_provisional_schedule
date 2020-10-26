@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 12:00" data-end="2020-10-30 12:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Emergent Sequential Task Learning Facilitates Convergence in Recurrent Neural Networks</h1><h2>Thijs van der Plas</h2><h3>Sanjay Manohar, University of Oxford; Tim Vogels, IST Vienna;</h3><h2>Abstract</h1><p>Neuronal networks can learn to maintain stimulus information in order to solve working memory tasks. Here, tasks are defined by their loss function that is optimised to solve the task. Loss functions can vary in difficulty, and various machine learning strategies have been developed to catalyse learning, such as drop-out, adaptive learning rates and various gradient descent methods. But these are all technical improvements of the involved algorithms, and do not inform us of how animal learning might be improved. Instead, we have identified a different, non-trivial strategy to improve learning, by adding a second, easier task to the loss function. Our original task requires a recurrent neural network to report the trial type at the end of each trial, by accumulating information throughout the trial. This is a difficult task to learn, and networks often fail to converge. This changes when an additional component is added to the loss function that requires networks to make short-term predictions throughout the trial, thus informing them of the trial structure. Networks emerge to learn to solve the second task first, thereby changing the functional profile of their neurons, after which they also learn to minimise the first component of the loss function. This unsupervised, sequential learning behaviour provides a new perspective on task optimisation. It shows that networks can decompose a loss function and learn its parts in an optimal sequence. This principle could potentially be applied to other difficult tasks, arguing that they may be solved by using additional, easier tasks, serving as a warm start to the network.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

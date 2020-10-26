@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 12:00" data-end="2020-10-30 12:15">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Characterization and analysis of visual processing in humans using fMRI data and machine learning techniques</h1><h2>Vittor Pereira</h2><h3>Giulia Zanon de Castro, Universidade Federal de Minas Gerais (grid.8430.f); Frederico Gadelha Guimarães, Universidade Federal de Minas Gerais (grid.8430.f); Anthony Randal McIntosh, Rotman Research Institute - Baycrest Centre - University of Toronto (grid.17063.33)</h3><h2>Abstract</h1><p>Recent studies suggest that shape and surface characteristics of objects appear to be encoded in the ventral visual cortex. With this idea, this work aims to get insights into the human visual system from the analysis of the public experimental database VIM-1. The dataset consists of displaying images to subjects, with neuronal activity being measured using fMRI. In order to find clusters inherent to the responses to visual stimuli, we use the k-means algorithm. We could (i) find groups of voxels that have similar brain activity, also cohesive in anatomy; (ii) obtain groups of images that provide similar brain activations. Anatomical group locations are related to the locations of the main visual information processing pathways in the brain, the ventral and dorsal pathways. Finally, using the Mann-Whitney U test, we found a statistically significant difference between the density of the image edges and the level of neuronal activity in groups of images with opposite activations. Additionally, from the F test (ANOVA), we found a correlation between the edge density and the activation level in a cluster, which comprises most of the V1 area.
-</p>
+        <h1>Characterization and analysis of visual processing in humans using fMRI data and machine learning techniques</h1><h2>Vittor Pereira</h2><h3>Giulia Zanon de Castro, Universidade Federal de Minas Gerais (grid.8430.f); Frederico Gadelha Guimarães, Universidade Federal de Minas Gerais (grid.8430.f); Anthony Randal McIntosh, Rotman Research Institute - Baycrest Centre - University of Toronto (grid.17063.33)</h3><h2>Abstract</h1><p>Recent studies suggest that shape and surface characteristics of objects appear to be encoded in the ventral visual cortex. With this idea, this work aims to get insights into the human visual system from the analysis of the public experimental database VIM-1. The dataset consists of displaying images to subjects, with neuronal activity being measured using fMRI. In order to find clusters inherent to the responses to visual stimuli, we use the k-means algorithm. We could (i) find groups of voxels that have similar brain activity, also cohesive in anatomy; (ii) obtain groups of images that provide similar brain activations. Anatomical group locations are related to the locations of the main visual information processing pathways in the brain, the ventral and dorsal pathways. Finally, using the Mann-Whitney U test, we found a statistically significant difference between the density of the image edges and the level of neuronal activity in groups of images with opposite activations. Additionally, from the F test (ANOVA), we found a correlation between the edge density and the activation level in a cluster, which comprises most of the V1 area.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 13:00" data-end="2020-10-28 13:15">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Developmental differences in white matter tracts between and within the dorsal and ventral streams</h1><h2>Sophia Vinci-Booher</h2><h3>Vinci-Booher, S., Indiana University; Bullock, D., Indiana University;  Caron, B., Indiana University; James, K.H., Indiana University; Pestilli, F. , Indiana University, University of Texas</h3><h2>Abstract</h1><p>A relatively unexplored group of white matter tracts that connect cortical regions associated with the ventral and dorsal visual streams have recently been described and made available for scientific investigation. We utilized diffusion MRI and reproducible, cloud-computing methods to characterize the development of these vertical white matter tracts in a cross-sectional sample of 24 children (5-8 years old) and 12 adults (18-22 years old). We then compared the development of these posterior vertical tracts to the development of horizontal tracts within the ventral and dorsal visual streams. Horizontal tracts within the ventral stream had FA that was more adult-like than horizontal tracts in the dorsal cortex, consistent with prior work. The development of the posterior vertical tracts was more similar to the development of the horizontal tracts in the ventral visual stream than tracts in the dorsal cortex, with higher FA values found in adults than in children. In one tract, the pArc, FA was predicted by performance on a perceptual matching task in the child sample. Our results suggest that posterior vertical tracts develop later than ventral stream tracts, but earlier than tracts in the dorsal cortex, and that the development of posterior vertical tracts may be related to the influence of perceptual processing on dorsally-mediated action in childhood.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 9
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 12:00" data-end="2020-10-29 12:15">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Resting State fMRI Connectivity in Schizophrenia, Bipolar Disorder, and Healthy Controls</h1><h2>Daniel Brown</h2><h3>Daniel Brown, University of Oslo, Haakon Engen, NORMENT</h3><h2>Abstract</h1><p>Working Abstract:
-
-Ongoing thought patterns, emerging from a collection of dynamically-connected neural systems, represent rich data that may contain valuable biomarkers for healthy vs. abnormal human cognition.  In the distinction between neurotypical and abnormal brain function, connectivity analyses of resting-state fMRI data (rsfMRI) provide non-invasive biobehavioral estimations of functional connectonomics, which can then be aggregated for comparisons across demographic and diagnostic variables.  The development and maturation of these computational connectivity analyses is promising for translational neuroscience, as a diagnostic tool to predict outcomes and optimize treatment selection, as well as for basic research, to advance the understanding of both healthy brain function and the evolving conceptualization of some mental disorders as heterogeneous “circuitopathies”, with distinct subtypes differentiated by individual circuits of disfunction.
-In our current research, we investigate models of resting-state connectivity in fMRI data of schizophrenia, bipolar disorder, and healthy controls (SZ, BP, HC; respectively), using Dynamic Graphical Models (DGMs).  These multilinear models allow the estimation of directed connectivity, such that parent-child node connections are reported.  Our data has been previously collected as part of research at the Norwegian Centre for Mental Disorders Research (NORMENT).  At this stage in the research, we are using a DGM to investigate group differences between the SZ, BP, and HC groups.</p>
+        <h1>Resting State fMRI Connectivity in Schizophrenia, Bipolar Disorder, and Healthy Controls</h1><h2>Daniel Brown</h2><h3>Daniel Brown, University of Oslo, Haakon Engen, NORMENT</h3><h2>Abstract</h1><p>Working Abstract:<br/><br/>Ongoing thought patterns, emerging from a collection of dynamically-connected neural systems, represent rich data that may contain valuable biomarkers for healthy vs. abnormal human cognition.  In the distinction between neurotypical and abnormal brain function, connectivity analyses of resting-state fMRI data (rsfMRI) provide non-invasive biobehavioral estimations of functional connectonomics, which can then be aggregated for comparisons across demographic and diagnostic variables.  The development and maturation of these computational connectivity analyses is promising for translational neuroscience, as a diagnostic tool to predict outcomes and optimize treatment selection, as well as for basic research, to advance the understanding of both healthy brain function and the evolving conceptualization of some mental disorders as heterogeneous “circuitopathies”, with distinct subtypes differentiated by individual circuits of disfunction.<br/>In our current research, we investigate models of resting-state connectivity in fMRI data of schizophrenia, bipolar disorder, and healthy controls (SZ, BP, HC; respectively), using Dynamic Graphical Models (DGMs).  These multilinear models allow the estimation of directed connectivity, such that parent-child node connections are reported.  Our data has been previously collected as part of research at the Norwegian Centre for Mental Disorders Research (NORMENT).  At this stage in the research, we are using a DGM to investigate group differences between the SZ, BP, and HC groups.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

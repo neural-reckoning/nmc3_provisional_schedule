@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 09:15" data-end="2020-10-29 09:30">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>This is built to last:  Delta and Theta changes in resting-state EEG activity after regulating emotions</h1><h2>Gaia Lapomarda</h2><h3>Stefania Valer, University of Trento; Remo Job, University of Trento; Alessandro Grecucci, University of Trento</h3><h2>Abstract</h1><p>Over the past years, EEG has been used to characterize cortical responses associated with emotion regulation. One limitation of the previous experiments is that they focused on task-related activity, without exploring the possibility that regulating emotions can leave a trace in the brain, by affecting its oscillatory activity at rest. The relevance of this point is to understand whether the effect of regulation lasts and alters brain activity, or it vanishes soon after the application. 
-33 volunteers took part in the study. Five minutes of electrical brain activity at rest were recorded before and after 1) one session in which participants perceived and regulated (through distancing) their emotions (Regulation session, ReS) and 2) another session in which they only perceived emotions (Attend session, AtS). The order of the two sessions was randomized. We used 160 visual stimuli, both neutral and negative, taken from the International Affective Picture System to elicit emotions. Subjective ratings of valence and arousal of stimuli were also recorded using the Self-Assessment Manikin procedure, as a manipulation check of effective regulation.
-Behavioral results showed the efficacy of the regulation strategy, with significant differences in the arousal and valence ratings, respectively reduced and increased in the ReS compared to the AtS. Cluster-based permutation analysis on EEG data at rest revealed a significant increase in delta and theta activity after ReS compared to the AtS. These findings suggest that regulating emotions affects baseline activity of the brain. Specifically, distancing produces increased activity in delta and theta frequencies after the regulation session. In line with previous findings, we argue that an increase in these frequencies may be considered as a signature of emotion regulation processes.</p>
+        <h1>This is built to last:  Delta and Theta changes in resting-state EEG activity after regulating emotions</h1><h2>Gaia Lapomarda</h2><h3>Stefania Valer, University of Trento; Remo Job, University of Trento; Alessandro Grecucci, University of Trento</h3><h2>Abstract</h1><p>Over the past years, EEG has been used to characterize cortical responses associated with emotion regulation. One limitation of the previous experiments is that they focused on task-related activity, without exploring the possibility that regulating emotions can leave a trace in the brain, by affecting its oscillatory activity at rest. The relevance of this point is to understand whether the effect of regulation lasts and alters brain activity, or it vanishes soon after the application. <br/>33 volunteers took part in the study. Five minutes of electrical brain activity at rest were recorded before and after 1) one session in which participants perceived and regulated (through distancing) their emotions (Regulation session, ReS) and 2) another session in which they only perceived emotions (Attend session, AtS). The order of the two sessions was randomized. We used 160 visual stimuli, both neutral and negative, taken from the International Affective Picture System to elicit emotions. Subjective ratings of valence and arousal of stimuli were also recorded using the Self-Assessment Manikin procedure, as a manipulation check of effective regulation.<br/>Behavioral results showed the efficacy of the regulation strategy, with significant differences in the arousal and valence ratings, respectively reduced and increased in the ReS compared to the AtS. Cluster-based permutation analysis on EEG data at rest revealed a significant increase in delta and theta activity after ReS compared to the AtS. These findings suggest that regulating emotions affects baseline activity of the brain. Specifically, distancing produces increased activity in delta and theta frequencies after the regulation session. In line with previous findings, we argue that an increase in these frequencies may be considered as a signature of emotion regulation processes.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

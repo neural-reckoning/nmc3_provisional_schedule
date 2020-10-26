@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 10:00" data-end="2020-10-28 10:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Recognition of Harmonic Sound Sequences Investigated By Behavioral And Electrophysiological Studies</h1><h2>Filiz Tezcan Semerci</h2><h3>Funda Yildirim</h3><h2>Abstract</h1><p>Consonance rating when listening to the two consecutively or simultaneously presented sounds is associated with the ratio of their fundamental frequencies. The simpler ratio is perceived as more consonant. Most of the previous studies investigated the neural mechanism of the harmony perception of simultaneously presented complex tones and emphasized the role of auditory system in subcortical level. However, there is still little known about harmony perception of sequentially presented pure tones and its relation to the short-term memory. Earlier studies which investigated the role of harmonic intervals on recognition performance mostly compared tonal and atonal melodies in Western music with both musicians and nonmusicians, and the results were contradictory (Dewar et al., 1977; Krumhansl, 1979; Schulze et al., 2011;  Schulze et al., 2012). In those studies, melodies that were compared had different notes and contours. In this study, two melodies that consist of the same 10 tones were generated. Melodies had the same contour but differed order of tones, forming different harmonic relations between consecutive tones. Non-musician participants were asked to choose which melody (harmonic or inharmonic) was more consonant. The results showed that even though the ratings for in/harmonic melodies were not significantly different, it was easier for them to notice the same amount of frequency change in one note of the harmonic melody. An EEG experiment was conducted to test the working memory load hypothesis. The sustained anterior negativity (SAN) was compared as a measure of working memory load but amplitude of SAN did not reveal a significant difference. However, nonmatching stimulus elicited a P3b signal with higher amplitude for the harmonic condition. This result suggests that a higher level expectation occurs for harmonic condition since all the other parameters that affect P3b signal were well controlled in the experiment. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

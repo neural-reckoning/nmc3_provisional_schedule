@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 6
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 22:15" data-end="2020-10-27 22:30">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>NEURAL FRAGILITY OF INTRACRANIAL EEG NETWORKS: TOWARDS AN EEG FINGERPRINT FOR THE SEIZURE ONSET ZONE</h1><h2>Adam Li</h2><h3>Zachary Fitzgerald; Iahn Cajigas; Damian Brusko; Jonathan Jagid; Angel Claudio; Andres Kanner; Jennifer Hopp; Stephanie Chen; Jennifer Haagensen; Emily Johnson; William Anderson; Nathan Crone; Sara Inati; Kareem Zaghloul; Juan Bulacio; Jorge Gonzalez-Martinez; Sridevi V. Sarma</h3><h2>Abstract</h1><p>Over 15 million epilepsy patients worldwide do not respond to drugs. Successful surgical treatment requires complete removal, or disconnection of the seizure onset zone (SOZ), brain region(s) where seizures originate. Unfortunately, surgical success rates vary between 30%-70% because no clinically validated biological marker of the SOZ exists. We develop and retrospectively validate a new EEG marker -neural fragility. We validate this new marker in a retrospective analysis of 91 patients by using neural fragility of the annotated SOZ as a metric to predict surgical outcomes. Fragility predicts 43/47 surgical failures with an overall prediction accuracy of 76%, compared to the accuracy of clinicians being 48% (successful outcomes). In failed outcomes, we identify fragile regions that were untreated. When compared to 20 EEG features proposed as SOZ markers, fragility outperformed in predictive power and interpretability suggesting neural fragility as an EEG fingerprint of the SOZ.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

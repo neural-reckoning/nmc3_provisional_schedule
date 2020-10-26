@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -30,24 +51,16 @@
             /
             Track 1
             /
-            Special Event
+            Keynote Event
+            <div class="visible_at_time" data-start="2020-10-28 19:00" data-end="2020-10-28 20:00">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>SciComm: Panel discussion with neuroscientists in science communication</h1><h2>Abstract</h1><p>Today more than ever we see how critical it is for scientists to communicate clearly with the general public and policymakers. As neuroscience and neurotechnology advances in ways that have increasing impact outside the lab, it is especially important that this community is engaged in science communication either as a vocation or in parallel with their own research. To end a 2-part event, we will host a panel discussion of neuroscientists working in various aspects of science communication. Topics will include panelists experiences in various aspects of science communication, finding opportunities to engage in SciComm, and learning best practices. The panel session will include substantial time for Q&A from the audience, so come prepared with questions!
-
-Moderator:
-Chris Rozell (Georgia Institute of Technology)
-
-Panelists:
-
-- Alie Caldwell,  Senior Science Writer at the University of Chicago Medicine, and co-creator, writer, and host of youtube channel Neuro Transmissions  (www.alieastrocyte.com)
-
-- Grace Lindsay, Postdoctoral Research Fellow at University College London, co-host of the podcast Unsupervised Thinking, and author of upcoming book Models of the Mind (https://neurdiness.wordpress.com/about-the-neurd/)
-
-- Mark Humphries, Professor of Computational Neuroscience at University of Nottingham, and author at The Spike (https://medium.com/@drmdhumphries)
-
-- Tim Requarth, Lecturer in Science & Writing at New York University and freelance science journalist (www.timrequarth.com)
-
-- Theanne Griffith, Assistant Professor of Biology at University of California, Davis, and author of the STEM-themed children's chapter book series "The Magnificent Makers" (https://www.theannegriffith.com)</p>
+        <h1>SciComm: Panel discussion with neuroscientists in science communication</h1><h2>Abstract</h1><p>Today more than ever we see how critical it is for scientists to communicate clearly with the general public and policymakers. As neuroscience and neurotechnology advances in ways that have increasing impact outside the lab, it is especially important that this community is engaged in science communication either as a vocation or in parallel with their own research. To end a 2-part event, we will host a panel discussion of neuroscientists working in various aspects of science communication. Topics will include panelists experiences in various aspects of science communication, finding opportunities to engage in SciComm, and learning best practices. The panel session will include substantial time for Q&A from the audience, so come prepared with questions!<br/><br/>Moderator:<br/>Chris Rozell (Georgia Institute of Technology)<br/><br/>Panelists:<br/><br/>- Alie Caldwell,  Senior Science Writer at the University of Chicago Medicine, and co-creator, writer, and host of youtube channel Neuro Transmissions  (www.alieastrocyte.com)<br/><br/>- Grace Lindsay, Postdoctoral Research Fellow at University College London, co-host of the podcast Unsupervised Thinking, and author of upcoming book Models of the Mind (https://neurdiness.wordpress.com/about-the-neurd/)<br/><br/>- Mark Humphries, Professor of Computational Neuroscience at University of Nottingham, and author at The Spike (https://medium.com/@drmdhumphries)<br/><br/>- Tim Requarth, Lecturer in Science & Writing at New York University and freelance science journalist (www.timrequarth.com)<br/><br/>- Theanne Griffith, Assistant Professor of Biology at University of California, Davis, and author of the STEM-themed children's chapter book series "The Magnificent Makers" (https://www.theannegriffith.com)</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

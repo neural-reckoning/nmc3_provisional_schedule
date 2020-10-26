@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 12:15" data-end="2020-10-30 12:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Equilibrium Propagation for Complete Directed Neural Networks</h1><h2>Matilde Tristany Farinha</h2><h3>Matilde Tristany Farinha, INESC-ID Dept. of Mathematics, IST, University of Lisbon, Portugal; Sérgio Pequito, Dept. of Industrial and Systems Engineering, RPI, Troy (NY), USA; Pedro A. Santos, INESC-ID  Dept. of Mathematics, IST, University of Lisbon, Portugal; Mário A. T. Figueiredo, Instituto de Telecomunicações, IST, University of Lisbon, Portugal;</h3><h2>Abstract</h1><p>Artificial neural networks, one of the most successful approaches to supervised learning, were originally inspired by their biological counterparts. However, the most successful learning algorithm for artificial neural networks, backpropagation, is considered biologically implausible. We contribute to the topic of biologically plausible neuronal learning by building upon and extending the equilibrium propagation learning framework. Specifically, we introduce: a new neuronal dynamics and learning rule for arbitrary network architectures; a sparsity-inducing method able to prune irrelevant connections; a dynamical-systems characterization of the models, using Lyapunov theory.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 13:00" data-end="2020-10-29 13:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>What is the nature of representation in the tool-selective areas in the parietal cortex? Effects of category, shape, and spatial frequency</h1><h2>Chenxi He</h2><h3>Olivia S. Cheung, New York University Abu Dhabi</h3><h2>Abstract</h1><p>When we perceive an object (e.g., a hammer), much information about the object is processed (e.g., its shape, kind, or function). To what extent such information is processed in the category-selective regions? We have previously shown that tool-selective regions in the occipitotemporal cortex primarily contain categorical information about tools, compared with visual information (e.g., shape or spatial frequency, He et al., 2020). Here we examined the extent these information may be represented in other tool-selective regions, particularly in the parietal cortex. Using fMRI, tool-selective regions in left superior and inferior parietal lobules (SPL/IPL) were defined in a separate localizer with images of animals and tools with naturally variable image statistics. We then tested the nature of representations in these regions with images of animals and tools that were either round or elongated, and either in low or high spatial frequencies (LSF/HSF). Importantly, the images of the two categories shared comparable gist statistics, minimizing low- or mid-level visual differences across the two categories. Using representational similarity analysis (RSA), a model of tool category (tools were correlated with each other and not correlated with animals, and animals were not correlated with each other) and a model of HSF were most correlated with the neural patterns in SPL, whereas an interaction model of elongation and HSF was most correlated to the neural patterns in IPL. Functional connectivity analysis further suggested that the tool representation in SPL might be related to the stronger connectivity between tool-selective left medial fusiform gyrus and SPL, compared with IPL, and that the elongation representation in IPL might be related to the stronger connectivity between tool-selective left premotor region and IPL, compared with SPL. Together, these results revealed how different aspects of information are represented in various regions in the tool-selective network to support recognition and potential action planning. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

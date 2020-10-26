@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 17:00" data-end="2020-10-29 17:15">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Cell-Autonomous and Non-Autonomous Mechanisms Controlling Projection Neuron Migration</h1><h2>Andi Hansen</h2><h2>Abstract</h1><p>Concerted  radial  migration  of  newly  born  cortical  projection  neurons,  from  their  birthplace  to  their  final target  lamina,  is  a  key  step  in  the  assembly  of  the  cerebral  cortex.  The  cellular  and  molecular  mechanisms regulating  the  specific  sequential  steps  of  radial  neuronal  migration  in  vivo  are  however  still  unclear.  Recent evidence  suggests  that  distinct  signaling  cues  act  cell-autonomously  but  differentially  at  particular  steps during  the  overall  migration  process.  Functional  MADM  (Mosaic  Analysis  with  Double  Markers)  analyses in  comparison  to  global  knockout  also  indicate  a  significant  degree  of  non-cell-autonomous  and/or community  effects  in  the  control  of  cortical  neuron  migration.  Non-cell-autonomous  effects  may differentially  affect  cortical  neuron  migration  in  distinct  compartments  and  thus  regulate  critical  steps  in the  migration  process.  It  is  therefore  not  only  essential  to  determine  the  nature  of  the  interplay  of  cellautonomous  and  non-cell-autonomous  mechanisms  but  also  how  they  control  cortical  neuronal  migration. Here  we  established  a  MADM-based  experimental  strategy  for  the  analysis  of  cell-autonomous  versus  nonautonomous  gene  function  and/or  community  effects.  We  pursued  subtractive  phenotypic  analysis  of genetic  mosaics  (wild-type/heterozygote  background)  with  conditional  and/or  global  knockout  (mutant background),  both  coupled  with  sparse  fluorescent  MADM-labeling  of  homozygous  mutant  neurons,  to trace  the  sequential  steps  of  migration  in  4D.  Using  these  experimental  paradigms  we  define  so  far  unknown cell-autonomous  functions  of  candidate  signaling  pathways  intersecting  with  non-cell-autonomous  effects to  coordinate radial neuron migration.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 01:30" data-end="2020-10-28 01:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Neural correlates of computational complexity in a problem-solving task</h1><h2>Pablo Franco (he/him)</h2><h3>Peter Bossaerts, University of Melbourne; Carsten Murawski, University of Melbourne</h3><h2>Abstract</h1><p>Previous studies have characterised a cognitive control network that is modulated by cognitive load. However, these studies have mainly focused on perceptual tasks in which cognitive load can be characterised by the level of conflict or noise in the signal. It remains an open question how cognitive load of computational complex problems affects the cognitive control network. In these problems, cognitive load is arguably driven by a set of features related to the number of computation steps, computational time and memory used. Computational complexity theory has been suggested to provide a general theoretical framework that lends itself to characterising computational requirements of problem-solving. Previous work has shown that complexity affects human performance and time-on-task when solving problems; however, the neural underpinnings of this effect have not been examined. Here we study the effect of computational complexity on neural processes, and in particular, on the cognitive control network. We performed an ultra-high field fMRI study in which participants underwent scanning while solving instances of the knapsack problem, a canonical computational problem strongly associated with models of decision-making. Our behavioural results replicate previous findings on the effect of complexity on human performance. We also find that computational complexity correlates with activation in areas implicated in cognitive control, namely anterior insula (AI) and dorsal anterior cingulate cortex (dACC). Moreover, we find that activity in the angular gyrus (aG), a brain region implicated in numerical cognition, is also modulated by complexity. Overall, our results complement previous findings that use perceptual and probabilistic tasks to study cognitive control. Importantly, we find that computational complexity can be used to quantify cognitive load in problems that are fundamentally different to the ones explored up until now. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 11:30" data-end="2020-10-30 11:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Experience replay supports non-local learning</h1><h2>Yunzhe Liu</h2><h3>Marcelo Matter, Princeton University; Tim Behrens, University of Oxford; Nathaniel Daw, Princeton University; Ray Dolan, University College London</h3><h2>Abstract</h1><p>To make effective decisions we need to consider the relationship between actions and outcomes. However, there are often substantial gaps between them in both space and time. The biological mechanism capable of spanning those gaps remains unknown. One promising, albeit hypothetical, mechanism involves neural replay of non-local experience. Using a novel task, that segregates direct from indirect learning, combined with magnetoencephalography (MEG), we probed the role of neural replay in non-local learning in humans. Following reward receipt, we found significant backward replay of non-local experience, with a 160 msec state-to-state time lag, and this replay facilitated learning of action values. This backward replay, combined with behavioural evidence of non-local learning, was more pronounced in experiences that were of greater benefit for future behavior, as predicted by theories of prioritization. These findings establish rationally targeted non-local replay as a neural mechanism for solving complex credit assignment problems during learning.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

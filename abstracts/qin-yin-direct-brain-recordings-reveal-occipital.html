@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 9
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 21:30" data-end="2020-10-26 21:45">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Direct brain recordings reveal occipital cortex involvement in memory development</h1><h2>Qin Yin</h2><h3>Elizabeth L. Johnson, Wayne State University, University of California, Berkeley; Lingfei Tang, Wayne State University; Kurtis I. Auguste, University of California, San Francisco, Children’s Hospital and Research Center, Oakland; Robert T. Knight, University of California, Berkeley; Eishi Asano, Children’s Hospital of Michigan, Wayne State University; Noa Ofen, Wayne State University</h3><h2>Abstract</h1><p>Processing of low-level visual information shows robust developmental gains through childhood and adolescence. However, it is unknown whether low-level visual processing in the occipital cortex supports age-related gains in memory for complex visual stimuli. Here, we examined occipital alpha activity during visual scene encoding in 24 children and adolescents, aged 6.2–20.5 years, who performed a subsequent memory task while undergoing electrocorticographic recording. Scenes were classified as high- or low-complexity by the number of unique object categories depicted. We found that recognition of high-complexity, but not low-complexity, scenes increased with age. Age was associated with decreased alpha power and increased instantaneous alpha frequency during the encoding of subsequently recognized high- compared to low-complexity scenes. Critically, decreased alpha power predicted improved recognition of high-complexity scenes in adolescents. These findings demonstrate how the functional maturation of the occipital cortex supports the development of memory for complex visual scenes.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

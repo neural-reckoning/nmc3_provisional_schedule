@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 09:30" data-end="2020-10-28 09:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Too salty? Your amygdala-thalamus gain network may need to loosen up a bit.</h1><h2>Maria Veldhuizen (they)</h2><h3>Michael C. Farruggia, Department of Psychiatry, Yale School of Medicine, New Haven, Connecticut, US; Xiao Gao, Faculty of Psychology, Southwest University, Chongqing, China; Yuko Nakamura, The UTokyo Center for Integrative Science of Human Behavior, Tokyo, Japan; Barry G. Green, The John B. Pierce Laboratory, New Haven, Connecticut, US; Dana M. Small, Department of Psychiatry, Yale School of Medicine, New Haven, Connecticut , US</h3><h2>Abstract</h1><p>Peripheral sources of individual variation in taste intensity perception have been well described. The existence of a central source has been proposed but remains unexplored. Here we used functional magnetic resonance imaging in healthy human participants (20 women, 8 men) to evaluate the hypothesis that the amygdala exerts an inhibitory influence that affects the “gain” of the gustatory system during tasting. Consistent with the existence of a central gain mechanism (CGM), we found that central amygdala response was correlated with mean intensity ratings across multiple tastants. In addition, psychophysiological and dynamic causal modeling analyses revealed that the connection strength between inhibitory outputs from amygdala to medial dorsal and ventral posterior medial thalamus predicted individual differences in responsiveness to taste stimulation. These results imply that inhibitory inputs from the amygdala to the thalamus act as a CGM that influences taste intensity perception.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

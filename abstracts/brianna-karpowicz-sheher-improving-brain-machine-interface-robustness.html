@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 16:30" data-end="2020-10-27 16:45">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Improving brain-machine interface robustness through deep learning-based manifold alignment</h1><h2>Brianna Karpowicz (she/her)</h2><h3>Lahiru Wimalasena, Emory University & Georgia Tech; Mohammad Reza Keshtkaran, Emory University & Georgia Tech; Yahia Ali, Emory University & Georgia Tech; Andrew Sedler, Georgia Tech; Ali Farschian, Northwestern University; Josie Walner, Northwestern University; Xuan Ma, Northwestern University; Ben Semel, Northwestern University; Kevin Bodkin, Northwestern University; Lee Miller, Northwestern University; Chethan Pandarinath, Emory University & Georgia Tech </h3><h2>Abstract</h1><p>Intracortical brain-computer interfaces (iBCIs) can restore voluntary movements to people with paralysis by translating brain activity directly into the motion of an external device. A major barrier to the long-term usage of iBCIs is the inability of the algorithms, or “decoders”, that do this translation to adapt to changes in the recorded neurons over time. These changes lead to degradation in decoding accuracy and necessitate periodic supervised decoder recalibration. An emerging approach to maintain decoder robustness consists in harnessing the stable relationship that exists between behavior and the latent manifold structure that underlies the activity of populations of neurons. One recent proof of concept (Degenhart et al., 2020) used an approach based on linear manifold discovery (Factor Analysis; FA). It achieved stable closed-loop BCI control over five days without recalibration. However, nonlinear manifold discovery methods produce estimates of manifold structure that are more informative about movement intention on a moment-by-moment basis. Thus, we aimed to develop a platform for nonlinear manifold alignment decoding (NoMAD) to achieve higher performing and stable BCIs.
-
-NoMAD incorporates latent factor analysis via dynamical systems (LFADS), a deep learning approach that uncovers manifold structure by modeling the shared dynamics underlying population activity. NoMAD combines LFADS with unsupervised distribution alignment (Farshchian et al., 2019; Dyer et al., 2017) to produce consistent manifold estimates in the face of changing recorded neurons. We tested NoMAD in an offline analysis of motor cortical activity from a monkey performing an isometric wrist force task throughout 21 sessions spanning more than three months. NoMAD allowed stable, high performance decoding of the monkey’s force over all sessions without supervised recalibration. NoMAD’s force-decoding performance typically ranged from 0.85-0.90 R2, with all sessions exceeding 0.75. In comparison, FA-based stabilization achieved a median of only 0.45 R2, with significant performance fluctuations between sessions. Thus by combining accurate, nonlinear manifold discovery with the stability conferred by manifold alignment, NoMAD enables higher-performing and stable BCIs with greater suitability for real-world application.</p>
+        <h1>Improving brain-machine interface robustness through deep learning-based manifold alignment</h1><h2>Brianna Karpowicz (she/her)</h2><h3>Lahiru Wimalasena, Emory University & Georgia Tech; Mohammad Reza Keshtkaran, Emory University & Georgia Tech; Yahia Ali, Emory University & Georgia Tech; Andrew Sedler, Georgia Tech; Ali Farschian, Northwestern University; Josie Walner, Northwestern University; Xuan Ma, Northwestern University; Ben Semel, Northwestern University; Kevin Bodkin, Northwestern University; Lee Miller, Northwestern University; Chethan Pandarinath, Emory University & Georgia Tech </h3><h2>Abstract</h1><p>Intracortical brain-computer interfaces (iBCIs) can restore voluntary movements to people with paralysis by translating brain activity directly into the motion of an external device. A major barrier to the long-term usage of iBCIs is the inability of the algorithms, or “decoders”, that do this translation to adapt to changes in the recorded neurons over time. These changes lead to degradation in decoding accuracy and necessitate periodic supervised decoder recalibration. An emerging approach to maintain decoder robustness consists in harnessing the stable relationship that exists between behavior and the latent manifold structure that underlies the activity of populations of neurons. One recent proof of concept (Degenhart et al., 2020) used an approach based on linear manifold discovery (Factor Analysis; FA). It achieved stable closed-loop BCI control over five days without recalibration. However, nonlinear manifold discovery methods produce estimates of manifold structure that are more informative about movement intention on a moment-by-moment basis. Thus, we aimed to develop a platform for nonlinear manifold alignment decoding (NoMAD) to achieve higher performing and stable BCIs.<br/><br/>NoMAD incorporates latent factor analysis via dynamical systems (LFADS), a deep learning approach that uncovers manifold structure by modeling the shared dynamics underlying population activity. NoMAD combines LFADS with unsupervised distribution alignment (Farshchian et al., 2019; Dyer et al., 2017) to produce consistent manifold estimates in the face of changing recorded neurons. We tested NoMAD in an offline analysis of motor cortical activity from a monkey performing an isometric wrist force task throughout 21 sessions spanning more than three months. NoMAD allowed stable, high performance decoding of the monkey’s force over all sessions without supervised recalibration. NoMAD’s force-decoding performance typically ranged from 0.85-0.90 R2, with all sessions exceeding 0.75. In comparison, FA-based stabilization achieved a median of only 0.45 R2, with significant performance fluctuations between sessions. Thus by combining accurate, nonlinear manifold discovery with the stability conferred by manifold alignment, NoMAD enables higher-performing and stable BCIs with greater suitability for real-world application.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

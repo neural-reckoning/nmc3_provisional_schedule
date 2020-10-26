@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,15 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 10:00" data-end="2020-10-28 10:15">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Movement vigor in Rats</h1><h2>Thomas Morvan</h2><h3>Stefania Sarnio, INMED/IRPHE; Oceane Dauzere-Peres; Christophe Eloy, IRPHE, David Robbe, INMED</h3><h2>Abstract</h1><p>Choice between two actions (e.g. reaching for different rewards) can be used to assess internal motivation in animals as they will select the choice that has the higher subjective utility. Vigor of movement is a finer indicator that reflects continuous subjective utility.
-The utility of a distant reward is dependent on its subjective reward, the amount of effort needed to reach it (movement cost) and temporal discounting (cost of time). High utility rewards make it worthwhile to expend more energy in order to reach it sooner, leading to an increase in movement vigor. 
-The goal of this project is to understand how rats balance reward, movement and temporal cost to maximize their reward rate.
-We have developed an automated foraging task in which water-restricted rats have to run in a 120 x 15 cm enclosed corridor to get rewards (water). Water dispensers are located on each end of the apparatus and a drop of water is delivered each time the rat goes to the other side of the apparatus, forcing the rat to run back and forth to get subsequent rewards.
-We are carefully manipulating the quantity of the reward (size of the water drops that they can get) and the cost (distance they have to run in order to get it), and are looking at the rat’s vigor of movement (speed as they run across the apparatus). 
-We show that rats elicit behaviors that are in line with an optimal control of effort expenditure and reward gain ratio: e.g., if we increase the quantity of reward on one side of the apparatus, they run faster towards the side where the reward is bigger. 
-We also started developing a reinforcement learning based mathematical model in which artificial rats are performing the same task, and elicit similar behavioral results.
-</p>
+        <h1>Movement vigor in Rats</h1><h2>Thomas Morvan</h2><h3>Stefania Sarnio, INMED/IRPHE; Oceane Dauzere-Peres; Christophe Eloy, IRPHE, David Robbe, INMED</h3><h2>Abstract</h1><p>Choice between two actions (e.g. reaching for different rewards) can be used to assess internal motivation in animals as they will select the choice that has the higher subjective utility. Vigor of movement is a finer indicator that reflects continuous subjective utility.<br/>The utility of a distant reward is dependent on its subjective reward, the amount of effort needed to reach it (movement cost) and temporal discounting (cost of time). High utility rewards make it worthwhile to expend more energy in order to reach it sooner, leading to an increase in movement vigor. <br/>The goal of this project is to understand how rats balance reward, movement and temporal cost to maximize their reward rate.<br/>We have developed an automated foraging task in which water-restricted rats have to run in a 120 x 15 cm enclosed corridor to get rewards (water). Water dispensers are located on each end of the apparatus and a drop of water is delivered each time the rat goes to the other side of the apparatus, forcing the rat to run back and forth to get subsequent rewards.<br/>We are carefully manipulating the quantity of the reward (size of the water drops that they can get) and the cost (distance they have to run in order to get it), and are looking at the rat’s vigor of movement (speed as they run across the apparatus). <br/>We show that rats elicit behaviors that are in line with an optimal control of effort expenditure and reward gain ratio: e.g., if we increase the quantity of reward on one side of the apparatus, they run faster towards the side where the reward is bigger. <br/>We also started developing a reinforcement learning based mathematical model in which artificial rats are performing the same task, and elicit similar behavioral results.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

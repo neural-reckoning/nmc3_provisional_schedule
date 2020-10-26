@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,20 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 03:30" data-end="2020-10-29 03:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Local sleep in the waking brain impairs attention: A pharmacological study</h1><h2>Elaine Rose Pinggal (she/her)</h2><h3>Paul M. Dockree, Trinity College; Jessica J. Barnes, The University of Queensland; Natasha Matthews, The University of Queensland; Angela J. Dean, The University of Queensland;  Rafael Abe, Monash University; L. Sanjay Nandam, The University of Queensland; Simon P. Kelly, University College Dublin; Redmond G. O’Connell, Monash University; Mark A. Bellgrove, Monash University; Thomas Andrillon, Monash University</h3><h2>Abstract</h1><p>Local sleep (LS) describes dissociative states in which parts of a globally awake brain show
-sleep-like activity. LS has been associated with deficits in sustained attention (SA) but the
-causal involvement of LS in attentional lapses remain unclear. This study aimed at addressing
-this knowledge gap by directly manipulating LS and SA through pharmacological means. In a
-double-blind, randomised-control trial, 32 participants received methylphenidate,
-atomoxetine, citalopram or placebo during four separate experimental sessions. During each
-session, electroencephalography measured LS whilst participants completed a visual SA task.
-Methylphenidate, which increases wake-promoting noradrenaline and dopamine, decreased
-LS and improved performance (lower reaction time (RT), and less misses). Atomoxetine,
-which increases noradrenaline, decreased LS but increased RT. Conversely, citalopram,
-which increases sleep-promoting serotonin, increased LS and RT. Mediation analysis
-confirmed the causal relationship of LS on SA. These results suggest that LS could represent
-a mechanism for the effect of fatigue on attention.</p>
+        <h1>Local sleep in the waking brain impairs attention: A pharmacological study</h1><h2>Elaine Rose Pinggal (she/her)</h2><h3>Paul M. Dockree, Trinity College; Jessica J. Barnes, The University of Queensland; Natasha Matthews, The University of Queensland; Angela J. Dean, The University of Queensland;  Rafael Abe, Monash University; L. Sanjay Nandam, The University of Queensland; Simon P. Kelly, University College Dublin; Redmond G. O’Connell, Monash University; Mark A. Bellgrove, Monash University; Thomas Andrillon, Monash University</h3><h2>Abstract</h1><p>Local sleep (LS) describes dissociative states in which parts of a globally awake brain show<br/>sleep-like activity. LS has been associated with deficits in sustained attention (SA) but the<br/>causal involvement of LS in attentional lapses remain unclear. This study aimed at addressing<br/>this knowledge gap by directly manipulating LS and SA through pharmacological means. In a<br/>double-blind, randomised-control trial, 32 participants received methylphenidate,<br/>atomoxetine, citalopram or placebo during four separate experimental sessions. During each<br/>session, electroencephalography measured LS whilst participants completed a visual SA task.<br/>Methylphenidate, which increases wake-promoting noradrenaline and dopamine, decreased<br/>LS and improved performance (lower reaction time (RT), and less misses). Atomoxetine,<br/>which increases noradrenaline, decreased LS but increased RT. Conversely, citalopram,<br/>which increases sleep-promoting serotonin, increased LS and RT. Mediation analysis<br/>confirmed the causal relationship of LS on SA. These results suggest that LS could represent<br/>a mechanism for the effect of fatigue on attention.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,14 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 12:00" data-end="2020-10-28 12:15">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Evaluation of Anti-Parkinson’s activity of Herbomineral (Abhrak bhasma) on Rotenone induced Parkinson’s disease in Drosophila melanogaster.</h1><h2>Arun  Shankar</h2><h3>Arun Shankar Nair; Dr. Nirmala R. Rege; Dr. Snehalata Gajbhiye; Dr, Dinesh Uchil</h3><h2>Abstract</h1><p>Background and rationale: The study was designed to validate the claims in Ayurveda regarding the efficacy of Ayurvedic drugs in neurodegenerative disorders. It was decided to conduct an efficacy study of a herbomineral drug (Abhrak bhasma) on Parkinson’s disease induced chemically in Drosophila melanogaster (fly). Parkinson’s disease has symptom descriptions in Ayurveda and modern medicine. The latter offers only the symptomatic therapy by replacing dopamine, the neurotransmitter involved, but does not slow down or reverse the loss of dopaminergic neurons.
-Methods: Rotenone, in a final concentration of 125 μM, was induced for inducing Parkinson’s disease in Drosophila melanogaster. Table concentration of bhasma samples were selected on the basis of viability assays carried out in our lab. The group serving as negative control will not have the study drugs in the cornmeal medium and the flies from positive control will be fed with L-dopa dissolved in the medium in the concentration of 1 mM. The flies in the bottle will be maintained for a period of 7 days at 25OC. On the 8th day, they will be subjected to climbing assay. The brain tissue of Drosophila melanogaster will be dissected and be subjected to biochemical estimations- Malondialdehyde, Glutathione, Protein estimation and Dopamine estimation.
-Results: Climbing assays showed a significant reduction in the climbing/ motor ability between the contrel and disease control groups. There was a significant improvement in the climbing ability of flies fed with l-dopa and study drugs. Inflammatory markers and Dopamine levels were improved in the group fed with the drug. 
-Conclusion:  Herbomineral (Abhrak bhasma) were found to be effective in reducing the rotenone induced dopaminergic loss of neurons.
-Ethics statement: NA.
-Acknowledgement:I would like to acknowledge SAIF dept., IIT Mumbai and our lab members for their support.
-</p>
+        <h1>Evaluation of Anti-Parkinson’s activity of Herbomineral (Abhrak bhasma) on Rotenone induced Parkinson’s disease in Drosophila melanogaster.</h1><h2>Arun  Shankar</h2><h3>Arun Shankar Nair; Dr. Nirmala R. Rege; Dr. Snehalata Gajbhiye; Dr, Dinesh Uchil</h3><h2>Abstract</h1><p>Background and rationale: The study was designed to validate the claims in Ayurveda regarding the efficacy of Ayurvedic drugs in neurodegenerative disorders. It was decided to conduct an efficacy study of a herbomineral drug (Abhrak bhasma) on Parkinson’s disease induced chemically in Drosophila melanogaster (fly). Parkinson’s disease has symptom descriptions in Ayurveda and modern medicine. The latter offers only the symptomatic therapy by replacing dopamine, the neurotransmitter involved, but does not slow down or reverse the loss of dopaminergic neurons.<br/>Methods: Rotenone, in a final concentration of 125 μM, was induced for inducing Parkinson’s disease in Drosophila melanogaster. Table concentration of bhasma samples were selected on the basis of viability assays carried out in our lab. The group serving as negative control will not have the study drugs in the cornmeal medium and the flies from positive control will be fed with L-dopa dissolved in the medium in the concentration of 1 mM. The flies in the bottle will be maintained for a period of 7 days at 25OC. On the 8th day, they will be subjected to climbing assay. The brain tissue of Drosophila melanogaster will be dissected and be subjected to biochemical estimations- Malondialdehyde, Glutathione, Protein estimation and Dopamine estimation.<br/>Results: Climbing assays showed a significant reduction in the climbing/ motor ability between the contrel and disease control groups. There was a significant improvement in the climbing ability of flies fed with l-dopa and study drugs. Inflammatory markers and Dopamine levels were improved in the group fed with the drug. <br/>Conclusion:  Herbomineral (Abhrak bhasma) were found to be effective in reducing the rotenone induced dopaminergic loss of neurons.<br/>Ethics statement: NA.<br/>Acknowledgement:I would like to acknowledge SAIF dept., IIT Mumbai and our lab members for their support.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

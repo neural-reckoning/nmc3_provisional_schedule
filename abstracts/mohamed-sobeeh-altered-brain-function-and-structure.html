@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,14 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 11:00" data-end="2020-10-30 11:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Altered brain function and structure in people with carpal tunnel syndrome: systematic review and meta-analysis of structural and functional magnetic resonance imaging</h1><h2>Mohamed Sobeeh</h2><h3>Amira Benmelouka, Faculty of Medicine, University of Algiers, Algeria;Global Medical Research Initiative (GMRI); Eslam Metwally, Al-azhar Faculty of Medicine, Cairo, Egypt;Global Medical Research Initiative (GMRI); Mohammed Jawad, Faculty of Medicine, Alexandria University, Alexandria, Egypt;Global Medical Research Initiative (GMRI); Ahmed Mohammed, Faculty of Medicine, Alexandria University, Alexandria, Egypt;Global Medical Research Initiative (GMRI); Sara Nasr, Faculty of Medicine, Alexandria University;Global Medical Research Initiative (GMRI); Ghidaa El-helw, Faculty of Medicine, Beni Suef University, Egypt;Global Medical Research Initiative (GMRI); Mohamed Doheim, Faculty of Medicine, Alexandria University, Alexandria, Egypt;Global Medical Research Initiative (GMRI).</h3><h2>Abstract</h1><p>Study Design: Systematic review and meta-analysis.
-Objective: The aim of this systematic review/meta-analysis was to appraise and summarize the literature about magnetic resonance imaging (MRI) and functional magnetic resonance imaging (fMRI) outcomes in people with carpal tunnel syndrome (CTS) to identify the altered brain structure and function compared to healthy controls (HC).
-Background: CTS represents the most common nerve entrapment neuropathy in the arm associated with an altered nociceptive system peripherally and centrally. 
-Methods: Two reviewers screened studies for eligibility by title and abstract then by reading the full text. This systematic review/meta-analysis used PRISMA guidelines to report the outcomes. Five databases were searched for relevant literature (Embase, Web of Science, Scopus, PubMed, and Cochrane). Studies comparing  MRI and fMRI findings in people with chronic CTS (present for at least 3 months) and HC through the following  parameters: 1) Interdigit cortical representation distance, 2) cluster size of digit representation on somatosensory cortex. Newcastle-Ottawa quality assessment scale was used for risk of bias assessment. When possible, the results from different studies were pooled and meta-analysis was done using standardized mean difference (SMD) as effect size measures based on random effect model. 
-Results: There was a significant reduction of interdigit cortical separation distance of index-middle and index-little fingers in the CTS (SMD=-0.878, 95%CI (-1.27, -0.48), P-value=0.00) and  (SMD=-0.84, 95%CI (-1.26, -0.42), P-value=0.00) respectively. Moreover, middle-little fingers interdigit separation showed no significant difference. 
-Conclusion: In CTS, cluster size of index, middle and little fingers representation in the primary somatosensory cortex showed significant blurring as evident by increased their cluster size as well as reduction of interdigit cortical separation distance between both index-middle and index-little fingers. Altered cortical morphology and function proved the central mechanisms might be involved in CTS providing a base for future treatment strategies.   
-</p>
+        <h1>Altered brain function and structure in people with carpal tunnel syndrome: systematic review and meta-analysis of structural and functional magnetic resonance imaging</h1><h2>Mohamed Sobeeh</h2><h3>Amira Benmelouka, Faculty of Medicine, University of Algiers, Algeria;Global Medical Research Initiative (GMRI); Eslam Metwally, Al-azhar Faculty of Medicine, Cairo, Egypt;Global Medical Research Initiative (GMRI); Mohammed Jawad, Faculty of Medicine, Alexandria University, Alexandria, Egypt;Global Medical Research Initiative (GMRI); Ahmed Mohammed, Faculty of Medicine, Alexandria University, Alexandria, Egypt;Global Medical Research Initiative (GMRI); Sara Nasr, Faculty of Medicine, Alexandria University;Global Medical Research Initiative (GMRI); Ghidaa El-helw, Faculty of Medicine, Beni Suef University, Egypt;Global Medical Research Initiative (GMRI); Mohamed Doheim, Faculty of Medicine, Alexandria University, Alexandria, Egypt;Global Medical Research Initiative (GMRI).</h3><h2>Abstract</h1><p>Study Design: Systematic review and meta-analysis.<br/>Objective: The aim of this systematic review/meta-analysis was to appraise and summarize the literature about magnetic resonance imaging (MRI) and functional magnetic resonance imaging (fMRI) outcomes in people with carpal tunnel syndrome (CTS) to identify the altered brain structure and function compared to healthy controls (HC).<br/>Background: CTS represents the most common nerve entrapment neuropathy in the arm associated with an altered nociceptive system peripherally and centrally. <br/>Methods: Two reviewers screened studies for eligibility by title and abstract then by reading the full text. This systematic review/meta-analysis used PRISMA guidelines to report the outcomes. Five databases were searched for relevant literature (Embase, Web of Science, Scopus, PubMed, and Cochrane). Studies comparing  MRI and fMRI findings in people with chronic CTS (present for at least 3 months) and HC through the following  parameters: 1) Interdigit cortical representation distance, 2) cluster size of digit representation on somatosensory cortex. Newcastle-Ottawa quality assessment scale was used for risk of bias assessment. When possible, the results from different studies were pooled and meta-analysis was done using standardized mean difference (SMD) as effect size measures based on random effect model. <br/>Results: There was a significant reduction of interdigit cortical separation distance of index-middle and index-little fingers in the CTS (SMD=-0.878, 95%CI (-1.27, -0.48), P-value=0.00) and  (SMD=-0.84, 95%CI (-1.26, -0.42), P-value=0.00) respectively. Moreover, middle-little fingers interdigit separation showed no significant difference. <br/>Conclusion: In CTS, cluster size of index, middle and little fingers representation in the primary somatosensory cortex showed significant blurring as evident by increased their cluster size as well as reduction of interdigit cortical separation distance between both index-middle and index-little fingers. Altered cortical morphology and function proved the central mechanisms might be involved in CTS providing a base for future treatment strategies.   <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

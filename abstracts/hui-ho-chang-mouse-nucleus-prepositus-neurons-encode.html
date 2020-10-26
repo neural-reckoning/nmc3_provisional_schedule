@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-26 18:15" data-end="2020-10-26 18:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Mouse nucleus prepositus neurons encode eye movement during passive and active head movement</h1><h2>Hui Ho Chang</h2><h3>Aamna Lawrence, Johns Hopkins University; Kathleen Cullen, Johns Hopkins University</h3><h2>Abstract</h1><p>The vestibular system plays a crucial role in our everyday life as it ensures gaze and postural stabilization and the sense of self-motion by detecting the head motion in space. Previous work done in rodents (i.e. mice and rats) has led to the view that the nucleus prepositus hypoglossi (NPH) and the supragenual nucleus (SGN) in brainstem relay vestibular information from the vestibular system to head direction (HD) network. However, the NPH has also been long-known to comprise the oculomotor integrator which plays an essential role in eye movement control by holding the eye at an eccentric position in orbit after the saccade. Further, a study in non-human primates (Dale & Cullen, 2013), established that neurons in the NPH predominantly encode eye-related rather than head-related movement signals during both passively-generated and voluntary head movements. To date, however, it remains unknown whether neurons in the NPH of rodents encode eye-related and/or head-related movement signals. 
-
-We hypothesized that NPH neurons in mouse, as in primate, preferentially encode eye-related signals during passive-generated and voluntary movement. Accordingly, we recorded the activity of NPH neurons with both with tungsten electrodes and/or 960 recording-site Neuropixel probes. Eye movement was simultaneously recorded with an AMR magnetic field sensor during behavioral protocols (Beraneck & Cullen 2007;Medrea & Cullen, 2013) designed to dissociate eye and head movement sensitivities (i.e.,  vestibular-ocular reflex (VOR), optokinetic reflex (OKR) and changes in static eye position). Our preliminary single unit recording indicated that neurons in the NPH of mice primarily output eye-related information during both passive and active head movement. Further, eye movement responses were nonlinear; modulation gain decreased with increasing eye velocity. Overall, our preliminary results suggest NPH neurons in mice mainly function to stabilize gaze, consistent with the non-human primate model. 
-</p>
+        <h1>Mouse nucleus prepositus neurons encode eye movement during passive and active head movement</h1><h2>Hui Ho Chang</h2><h3>Aamna Lawrence, Johns Hopkins University; Kathleen Cullen, Johns Hopkins University</h3><h2>Abstract</h1><p>The vestibular system plays a crucial role in our everyday life as it ensures gaze and postural stabilization and the sense of self-motion by detecting the head motion in space. Previous work done in rodents (i.e. mice and rats) has led to the view that the nucleus prepositus hypoglossi (NPH) and the supragenual nucleus (SGN) in brainstem relay vestibular information from the vestibular system to head direction (HD) network. However, the NPH has also been long-known to comprise the oculomotor integrator which plays an essential role in eye movement control by holding the eye at an eccentric position in orbit after the saccade. Further, a study in non-human primates (Dale & Cullen, 2013), established that neurons in the NPH predominantly encode eye-related rather than head-related movement signals during both passively-generated and voluntary head movements. To date, however, it remains unknown whether neurons in the NPH of rodents encode eye-related and/or head-related movement signals. <br/><br/>We hypothesized that NPH neurons in mouse, as in primate, preferentially encode eye-related signals during passive-generated and voluntary movement. Accordingly, we recorded the activity of NPH neurons with both with tungsten electrodes and/or 960 recording-site Neuropixel probes. Eye movement was simultaneously recorded with an AMR magnetic field sensor during behavioral protocols (Beraneck & Cullen 2007;Medrea & Cullen, 2013) designed to dissociate eye and head movement sensitivities (i.e.,  vestibular-ocular reflex (VOR), optokinetic reflex (OKR) and changes in static eye position). Our preliminary single unit recording indicated that neurons in the NPH of mice primarily output eye-related information during both passive and active head movement. Further, eye movement responses were nonlinear; modulation gain decreased with increasing eye velocity. Overall, our preliminary results suggest NPH neurons in mice mainly function to stabilize gaze, consistent with the non-human primate model. <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

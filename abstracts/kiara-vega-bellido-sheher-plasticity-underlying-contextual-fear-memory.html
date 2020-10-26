@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 01:30" data-end="2020-10-29 01:45">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Plasticity Underlying Contextual Fear Memory in the Schaffer Collateral Synapse </h1><h2>Kiara Vega Bellido (she/her)</h2><h3>Kiara S Vega Bellido, Baylor College of Medicine </h3><h2>Abstract</h1><p>The hippocampus (HPC) is a key structure for the formation and storage of episodic memory. It is reasoned that place cells in subregions CA3 and CA1 of the hippocampus, which exhibit robust location-specific firing, likely encode the contextual aspect of an episodic memory. Contextual Fear Memory (CFM) in rodents is a hippocampal-dependent example of episodic memory where a specific context is associated with an aversive experience. CA1 place cells receive spatial information from CA3 through Schaffer Collateral (SC) synapses5 and encode the context associated with CFM; in the case of the Inhibitory-Avoidance task on a linear track, this context is identified as the shock zone (SZ). We propose the synapses feeding into the place cells encoding the SZ are thus recruited to the CFM engram6 and participate in the different stages of CFM: acquisition, retrieval, and sleep-mediated consolidation. We hypothesize this recruitment of CA1 place cells to the memory engram occurs through long-term potentiation of SZ-encoding synapses. In vivo evidence of the synapse-specific modifications which recruit CA1 place cells to the CFM engram and mediate their activity during the different stages of CFM is fundamental to the neurophysiological understanding of episodic memory. This study aims to provide such evidence by measuring synaptic efficacy by concurrently stimulating Schaffer collaterals and recording responses in CA1 during CFM acquisition, retrieval, and sleep-mediated consolidation, and identify the plasticity recruiting CA1 place cells to the CFM engram through this key synaptic pathway. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

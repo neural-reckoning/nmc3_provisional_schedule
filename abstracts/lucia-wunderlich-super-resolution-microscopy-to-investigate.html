@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 3
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 10:30" data-end="2020-10-28 10:45">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Super-resolution microscopy to investigate receptor-ribosome coupling as a mechanism to regulate local translation</h1><h2>Lucia Wunderlich</h2><h3>Lucia CS Wunderlich, Max Koppers, Julie Qiaojin Lin, Christine E Holt, Clemens F Kaminski</h3><h2>Abstract</h1><p>Cell surface receptors regulate a variety of essential cellular processes, including mRNA translation, to enable the response to extracellular cues required for cellular survival. In addition to the long-known signalling pathways based on post-translational modifications of downstream targets and subsequent transcriptional activation, a different mechanism linking extracellular stimuli and translation has recently been discovered in neurons. This involves the release of ribosomes tethered to cell surface receptors upon axonal guidance cue stimulation, enabling local protein synthesis (LPS). This phenomenon allows rapid and local remodelling of the axonal proteome distant from the cell body, which is essential for axonal survival and neuronal circuit formation. 
-We use super-resolution microscopy to further investigate the mechanism of guidance cue-induced uncoupling of ribosomes from the guidance cue receptor deleted in colorectal cancer (DCC) during axonal development. Expansion microscopy and proximity-based methods are applied to the model system Xenopus laevis retinal ganglion cells (RGCs) to perform colocalization studies of receptors and different components of the translation machinery such as ribosomal proteins (RPs) and ribosome binding proteins (RBPs). Our results show a significant reduction of colocalizing ribosomes with DCC upon stimulation with the guidance cue Netrin-1, the ligand for DCC. Additionally, colocalization studies of different guidance cue receptors and RBPs confirmed a specific association of DCC with hnRNPa2b1. Together, these findings support a model of receptor specific association of ribosomes and RBPs, which enables selective mRNA translation.
-</p>
+        <h1>Super-resolution microscopy to investigate receptor-ribosome coupling as a mechanism to regulate local translation</h1><h2>Lucia Wunderlich</h2><h3>Lucia CS Wunderlich, Max Koppers, Julie Qiaojin Lin, Christine E Holt, Clemens F Kaminski</h3><h2>Abstract</h1><p>Cell surface receptors regulate a variety of essential cellular processes, including mRNA translation, to enable the response to extracellular cues required for cellular survival. In addition to the long-known signalling pathways based on post-translational modifications of downstream targets and subsequent transcriptional activation, a different mechanism linking extracellular stimuli and translation has recently been discovered in neurons. This involves the release of ribosomes tethered to cell surface receptors upon axonal guidance cue stimulation, enabling local protein synthesis (LPS). This phenomenon allows rapid and local remodelling of the axonal proteome distant from the cell body, which is essential for axonal survival and neuronal circuit formation. <br/>We use super-resolution microscopy to further investigate the mechanism of guidance cue-induced uncoupling of ribosomes from the guidance cue receptor deleted in colorectal cancer (DCC) during axonal development. Expansion microscopy and proximity-based methods are applied to the model system Xenopus laevis retinal ganglion cells (RGCs) to perform colocalization studies of receptors and different components of the translation machinery such as ribosomal proteins (RPs) and ribosome binding proteins (RBPs). Our results show a significant reduction of colocalizing ribosomes with DCC upon stimulation with the guidance cue Netrin-1, the ligand for DCC. Additionally, colocalization studies of different guidance cue receptors and RBPs confirmed a specific association of DCC with hnRNPa2b1. Together, these findings support a model of receptor specific association of ribosomes and RBPs, which enables selective mRNA translation.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

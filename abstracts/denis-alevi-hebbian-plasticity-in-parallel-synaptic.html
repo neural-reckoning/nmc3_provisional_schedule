@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,12 +52,15 @@
             Track 8
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 17:30" data-end="2020-10-28 17:45">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Hebbian plasticity in parallel synaptic pathways: A circuit mechanism for systems memory consolidation</h1><h2>Denis Alevi</h2><h3>Michiel Remme, Humboldt-Universität zu Berlin; Urs Bergmann, Humboldt-Universität zu Berlin; Susanne Schreiber, Humboldt-Universität zu Berlin; Henning Sprekeler, Technische Universität; Richard Kempter, Humboldt-Universität zu Berlin</h3><h2>Abstract</h1><p>Systems memory consolidation can transfer declarative memories which initially depend on the hippocampal formation into long-term memory traces in neocortical networks. This consolidation process is thought to involve the replay of recently acquired memories, but the cellular and network mechanisms that mediate the memory transfer are poorly understood. Here, we suggest that systems memory consolidation could arise from Hebbian plasticity in networks with parallel synaptic pathways — two ubiquitous features of neural circuits in the brain.
-We explore this hypothesis in a computational model and show that it is in quantitative agreement with lesion studies in rodents and that the mechanism can be hierarchically iterated to yield power-law forgetting as observed in psychophysical studies in humans.
-Further, we show that the proposed mechanism can lead to the forgetting of episodic details in memories and the extraction of semantic generalizations, whereby neural replay enhances the speed of consolidation and can even be necessary for the extraction of semantic memories.
-Finally, we hypothesize that the hierarchical iteration of the mechanism may provide a mechanistic basis for the spatial and temporal gradients of episodic and semantic memories observed in lesion studies, which suggest that episodic content decreases and semantic content increase with distance from the hippocampus.
-The predicted circuit mechanism bridges spatial scales from single cells to cortical areas and time scales from milliseconds to years.</p>
+        <h1>Hebbian plasticity in parallel synaptic pathways: A circuit mechanism for systems memory consolidation</h1><h2>Denis Alevi</h2><h3>Michiel Remme, Humboldt-Universität zu Berlin; Urs Bergmann, Humboldt-Universität zu Berlin; Susanne Schreiber, Humboldt-Universität zu Berlin; Henning Sprekeler, Technische Universität; Richard Kempter, Humboldt-Universität zu Berlin</h3><h2>Abstract</h1><p>Systems memory consolidation can transfer declarative memories which initially depend on the hippocampal formation into long-term memory traces in neocortical networks. This consolidation process is thought to involve the replay of recently acquired memories, but the cellular and network mechanisms that mediate the memory transfer are poorly understood. Here, we suggest that systems memory consolidation could arise from Hebbian plasticity in networks with parallel synaptic pathways — two ubiquitous features of neural circuits in the brain.<br/>We explore this hypothesis in a computational model and show that it is in quantitative agreement with lesion studies in rodents and that the mechanism can be hierarchically iterated to yield power-law forgetting as observed in psychophysical studies in humans.<br/>Further, we show that the proposed mechanism can lead to the forgetting of episodic details in memories and the extraction of semantic generalizations, whereby neural replay enhances the speed of consolidation and can even be necessary for the extraction of semantic memories.<br/>Finally, we hypothesize that the hierarchical iteration of the mechanism may provide a mechanistic basis for the spatial and temporal gradients of episodic and semantic memories observed in lesion studies, which suggest that episodic content decreases and semantic content increase with distance from the hippocampus.<br/>The predicted circuit mechanism bridges spatial scales from single cells to cortical areas and time scales from milliseconds to years.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

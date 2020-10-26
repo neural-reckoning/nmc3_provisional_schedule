@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 7
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 21:00" data-end="2020-10-27 21:15">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Hippocampal Modulation of the Stress Response</h1><h2>Victoria Turner </h2><h3>Mazen Kheirbek, UCSF</h3><h2>Abstract</h1><p>An essential adaptive function of the nervous system is to organize appropriate physiological and behavioral responses in the face of stressful situations. However, this process can become dysregulated in psychiatric disease. Characterizing the neural circuits that modify the adaptive stress response is essential to understand how the brain regulates responses to stressful stimuli and how that regulation can go awry. 
-Here we use optogenetics, DREADDs, and in vivo calcium imaging to investigate whether the hippocampus modulates hypothalamic CRH stress responses. Our results suggest how the ventral hippocampus (vHPC) exerts top-down control over the paraventricular nucleus of the hypothalamus (PVN) to regulate responses to a stressful foot shock stimulus.</p>
+        <h1>Hippocampal Modulation of the Stress Response</h1><h2>Victoria Turner </h2><h3>Mazen Kheirbek, UCSF</h3><h2>Abstract</h1><p>An essential adaptive function of the nervous system is to organize appropriate physiological and behavioral responses in the face of stressful situations. However, this process can become dysregulated in psychiatric disease. Characterizing the neural circuits that modify the adaptive stress response is essential to understand how the brain regulates responses to stressful stimuli and how that regulation can go awry. <br/>Here we use optogenetics, DREADDs, and in vivo calcium imaging to investigate whether the hippocampus modulates hypothalamic CRH stress responses. Our results suggest how the ventral hippocampus (vHPC) exerts top-down control over the paraventricular nucleus of the hypothalamus (PVN) to regulate responses to a stressful foot shock stimulus.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

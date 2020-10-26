@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 11:15" data-end="2020-10-30 11:30">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Linking single neurons to collective dynamics in the mouse brain during a perceptual decision-making task</h1><h2>Morteza Moazami</h2><h3>Elaheh Imani, ; Alireza Hashemi,;</h3><h2>Abstract</h1><p>Across the cortical hierarchy, single neurons are characterized by differences in the extent to which they can sustain their firing rate over time (i.e. their "intrinsic timescale"). Previous studies have demonstrated that neurons in a given brain region mostly exhibit either short or long intrinsic timescales. In this study, we sought to identify populations of neurons that accumulate information over different timescales in the mouse brain, and to characterize their functions in the context of a visual discrimination task. Thus, we separately examined the neural population dynamics of neurons with long or short intrinsic timescales across different brain regions.  More specifically, we looked at the decoding performance of these neural populations, aligned to different task variables (stimulus onset, movement and choice probability). Taken together, our population level findings support the hypothesis that long intrinsic timescale neurons encode abstract variables related to decision formation.  Furthermore, we evaluated the time constants of individual neurons at different epochs during the task, and found that many neurons exhibited multiple timescales in their response. These timescales were consistently longer after the animal formed its decision (e.g. during wheel movement), and the longest timescales were observed in frontal regions and in the thalamus. Finally, we also found a significant correlation between the functions primarily subserved by individual neurons, and their intrinsic timescales. In summary, our findings support the idea that long intrinsic timescale neurons, which appear at different levels of the cortical hierarchy, are primarily involved in computing the time integral of sensory signals.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 13:15" data-end="2020-10-27 13:30">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Cognitive switches and prefrontal gating of flexible sensory processing</h1><h2>Abhishek Banerjee</h2><h3>Abhishek Banerjee, Newcastle University; Giuseppe Parente, University of Zurich; Jasper Teutsch, Newcastle University; Christopher Lewis, University of Zurich; Fritjof Helmchen, University of Zurich</h3><h2>Abstract</h1><p>Adaptive behaviour crucially depends on flexible decision-making, which in mammals relies on frontal cortex, specifically the orbitofrontal cortex (OFC). How OFC encodes decision variables and instructs sensory areas to guide adaptive behaviour are key open questions. Here we developed a reversal learning task for head-fixed mice, monitored the activity of lateral OFC neurons using two-photon calcium imaging, and investigated how OFC dynamically interacts with primary somatosensory cortex (S1). Mice learned to discriminate go/no-go tactile stimuli and adapt their behaviour upon reversal of stimulus–reward contingency (‘rule-switch’). Imaging individual neurons longitudinally across all behavioural phases revealed a distinct engagement of S1 and lateral OFC: whereas S1 neural activity reflected initial task learning, lateral OFC neurons saliently and transiently responded to the rule-switch. Lateral OFC to S1 projections feed this activity as value-prediction error back to S1. This top-down signal updated sensory representations in S1 by functionally remapping responses in a small outcome-selective neuronal subpopulation that was also sensitive to reward history. Functional remapping crucially depended on top-down feedback as chemogenetic silencing of lateral OFC neurons disrupted reversal learning as well as plasticity of S1 neurons. The dynamic interaction of lateral OFC with sensory cortex thus implements history-dependent, prediction error-based computations and plasticity essential for flexible decision-making.   </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

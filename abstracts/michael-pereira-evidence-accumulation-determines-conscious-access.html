@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 13:30" data-end="2020-10-28 13:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Evidence accumulation determines conscious access</h1><h2>Michael Pereira</h2><h3>Michael Pereira;Pierre Megevand;Mi Xue Tan;Wenwen Chang;Shuo Wang;Ali Rezai;Margitta Seeck;Marco Corniola;Shahan Momjian;Fosco Bernasconi;Olaf Blanke;Nathan Faivre</h3><h2>Abstract</h1><p>A fundamental scientific question concerns the neuronal basis of perceptual consciousness, which can encompass both perceptual experience and reflexive monitoring associated with a sensory event. Although recent human studies identified individual neurons reflecting stimulus visibility, their functional role for perceptual consciousness remains unknown. Here, we provide neuronal and computational evidence indicating that perceptual and reflexive consciousness are governed by an all-or-none process involving accumulation of perceptual evidence. We recorded single-neuron activity in a participant with a microelectrode implant in the posterior parietal cortex, considered a substrate for evidence accumulation, while he detected vibrotactile stimuli around detection threshold and provided confidence estimates. We found that detected stimuli elicited firing rate patterns resembling evidence accumulation during decision-making, irrespective of response effectors. Similar neurons encoded the intensity of task-irrelevant stimuli, suggesting their role for consciousness per se, irrespective of report. We generalized these findings in healthy volunteers using electroencephalography and reproduced their behavioral and neural responses with a computational model of evidence accumulation. This model considered stimulus detection if accumulated evidence reached a bound, and confidence as the distance between maximal evidence (over time) and that bound. Apart from reproducing neural responses, detection rates and confidence ratings distributions, our model also reproduced higher variance for confidence in hits vs. misses and metacognitive sensitivity between participants. Applying this mechanism to our neuronal data, we were able to decode single-trial confidence ratings both for detected and undetected stimuli. Our results show that the specific gradual changes in neuronal dynamics during evidence accumulation govern perceptual consciousness and reflexive monitoring in humans. Furthermore, the model we propose offers a plausible mechanism for confidence in the absence of conscious detection. 
-</p>
+        <h1>Evidence accumulation determines conscious access</h1><h2>Michael Pereira</h2><h3>Michael Pereira;Pierre Megevand;Mi Xue Tan;Wenwen Chang;Shuo Wang;Ali Rezai;Margitta Seeck;Marco Corniola;Shahan Momjian;Fosco Bernasconi;Olaf Blanke;Nathan Faivre</h3><h2>Abstract</h1><p>A fundamental scientific question concerns the neuronal basis of perceptual consciousness, which can encompass both perceptual experience and reflexive monitoring associated with a sensory event. Although recent human studies identified individual neurons reflecting stimulus visibility, their functional role for perceptual consciousness remains unknown. Here, we provide neuronal and computational evidence indicating that perceptual and reflexive consciousness are governed by an all-or-none process involving accumulation of perceptual evidence. We recorded single-neuron activity in a participant with a microelectrode implant in the posterior parietal cortex, considered a substrate for evidence accumulation, while he detected vibrotactile stimuli around detection threshold and provided confidence estimates. We found that detected stimuli elicited firing rate patterns resembling evidence accumulation during decision-making, irrespective of response effectors. Similar neurons encoded the intensity of task-irrelevant stimuli, suggesting their role for consciousness per se, irrespective of report. We generalized these findings in healthy volunteers using electroencephalography and reproduced their behavioral and neural responses with a computational model of evidence accumulation. This model considered stimulus detection if accumulated evidence reached a bound, and confidence as the distance between maximal evidence (over time) and that bound. Apart from reproducing neural responses, detection rates and confidence ratings distributions, our model also reproduced higher variance for confidence in hits vs. misses and metacognitive sensitivity between participants. Applying this mechanism to our neuronal data, we were able to decode single-trial confidence ratings both for detected and undetected stimuli. Our results show that the specific gradual changes in neuronal dynamics during evidence accumulation govern perceptual consciousness and reflexive monitoring in humans. Furthermore, the model we propose offers a plausible mechanism for confidence in the absence of conscious detection. <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

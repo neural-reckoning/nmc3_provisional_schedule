@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 5
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 21:15" data-end="2020-10-27 21:30">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>When are open- and closed-loop control necessary for causal inference in neural circuits?</h1><h2>Adam Willats (he/him)</h2><h3>Adam Willats, Georgia Institute of Technology & Emory University; Matthew O'Shaughnessy, Georgia Institute of Technology; Kyle Johnsen, Georgia Institute of Technology & Emory University; Christopher Rozell, Georgia Institute of Technology</h3><h2>Abstract</h1><p>Many hypotheses about neural circuits are best stated in terms of causal relationships: “Activity in this region causes an observed change in that downstream region.” Furthermore, the development of effective therapeutic interventions requires knowledge of the causal relationship between potential therapies, markers of disease states, and patient outcomes. However, in experiments where interventions such as lesioning are unavailable, a key ambiguity remains as to whether activity is correlated across two populations because of a structural feedforward connection, or instead arises through recurrent connections or unseen, confounding common inputs. Closed-loop approaches appear to be a promising solution because they can hold regions constant, decoupling them from confounding feedback pathways while maintaining naturalistic activity levels.
-However, despite the increasing interest in closed-loop control from the systems neuroscience community, it is still poorly understood in which settings these approaches are necessary, and how best to design interventions. What is needed is a characterization of how and when closed-loop control improves identification in representative simulations of neural circuits. 
-In this work we (1) summarize and integrate the existing understanding of network identification across several fields: systems neuroscience, control theory, and causal inference; (2) present a simplified approach for predicting whether two circuit hypotheses may be distinguished from data collected with passive, open-loop or closed-loop experiments; and (3) use a small network simulation of integrate and fire neurons to illustrate how network properties, including synaptic strength and internal time constants, impact how well the underlying causal structure of a circuit can be reconstructed.
-	While this work examines a simple set of circuits, we hope that it facilitates a broader discussion around how to design interventions, and how to understand the limits of causal identification across a broad range of neural systems.</p>
+        <h1>When are open- and closed-loop control necessary for causal inference in neural circuits?</h1><h2>Adam Willats (he/him)</h2><h3>Adam Willats, Georgia Institute of Technology & Emory University; Matthew O'Shaughnessy, Georgia Institute of Technology; Kyle Johnsen, Georgia Institute of Technology & Emory University; Christopher Rozell, Georgia Institute of Technology</h3><h2>Abstract</h1><p>Many hypotheses about neural circuits are best stated in terms of causal relationships: “Activity in this region causes an observed change in that downstream region.” Furthermore, the development of effective therapeutic interventions requires knowledge of the causal relationship between potential therapies, markers of disease states, and patient outcomes. However, in experiments where interventions such as lesioning are unavailable, a key ambiguity remains as to whether activity is correlated across two populations because of a structural feedforward connection, or instead arises through recurrent connections or unseen, confounding common inputs. Closed-loop approaches appear to be a promising solution because they can hold regions constant, decoupling them from confounding feedback pathways while maintaining naturalistic activity levels.<br/>However, despite the increasing interest in closed-loop control from the systems neuroscience community, it is still poorly understood in which settings these approaches are necessary, and how best to design interventions. What is needed is a characterization of how and when closed-loop control improves identification in representative simulations of neural circuits. <br/>In this work we (1) summarize and integrate the existing understanding of network identification across several fields: systems neuroscience, control theory, and causal inference; (2) present a simplified approach for predicting whether two circuit hypotheses may be distinguished from data collected with passive, open-loop or closed-loop experiments; and (3) use a small network simulation of integrate and fire neurons to illustrate how network properties, including synaptic strength and internal time constants, impact how well the underlying causal structure of a circuit can be reconstructed.<br/>	While this work examines a simple set of circuits, we hope that it facilitates a broader discussion around how to design interventions, and how to understand the limits of causal identification across a broad range of neural systems.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

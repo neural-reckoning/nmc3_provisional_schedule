@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 09:00" data-end="2020-10-28 09:15">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>EEG signals during relative depth judgments: Effect of image display techniques </h1><h2>Mehrdad Naderi</h2><h3>Tatjana Pladere, University of Latvia; Gunta Krumina, University of Latvia</h3><h2>Abstract</h1><p>Different three-dimensional visualization technologies are developed to provide users with a high-quality experience. To identify the effect of new image display technique on user cognitive demands, one should assess depth perception and underlying neurophysiological processing of digital information. Whilst many fundamentally different three-dimensional image display techniques exist, the previous research has mainly focused on comparative assessment of brain activity in subjects viewing three-dimensional images and two-dimensional images leaving a gap in understanding the user cognitive demands associated with novel displays.  
-In this study, we aimed to identify and compare the effects of image display techniques on the relative depth judgements. The third dimension of image was generated in two ways – stereoscopic technique and volumetric technique. The visual stimulus contained four constant angular size circles, one of which was demonstrated closer to the subject. The subject’s task was to identify the closest circle. Electroencephalography was employed to record the brain activity during the visual task. 
-As a result, the relative depth judgments were fast and accurate for both image display techniques. The analysis of event related potentials showed a significant difference in late processing, but not in early processing. Specifically, the parietal lobe was more activated at 250-400 ms after the onset of three-dimensional visual stimulus comparing the stereoscopic visualization with volumetric visualization. Moreover, differences in the parietal lobe reflected in the event-related desynchronization of upper alpha oscillations. The considerably higher activity in the continuous waves of beta frequencies was observed in half of the participants. Based on the obtained results, we suggest that the depth perception and visual task completion might require a higher neural activity for the stereoscopic image viewing than for the volumetric image viewing.
-</p>
+        <h1>EEG signals during relative depth judgments: Effect of image display techniques </h1><h2>Mehrdad Naderi</h2><h3>Tatjana Pladere, University of Latvia; Gunta Krumina, University of Latvia</h3><h2>Abstract</h1><p>Different three-dimensional visualization technologies are developed to provide users with a high-quality experience. To identify the effect of new image display technique on user cognitive demands, one should assess depth perception and underlying neurophysiological processing of digital information. Whilst many fundamentally different three-dimensional image display techniques exist, the previous research has mainly focused on comparative assessment of brain activity in subjects viewing three-dimensional images and two-dimensional images leaving a gap in understanding the user cognitive demands associated with novel displays.  <br/>In this study, we aimed to identify and compare the effects of image display techniques on the relative depth judgements. The third dimension of image was generated in two ways – stereoscopic technique and volumetric technique. The visual stimulus contained four constant angular size circles, one of which was demonstrated closer to the subject. The subject’s task was to identify the closest circle. Electroencephalography was employed to record the brain activity during the visual task. <br/>As a result, the relative depth judgments were fast and accurate for both image display techniques. The analysis of event related potentials showed a significant difference in late processing, but not in early processing. Specifically, the parietal lobe was more activated at 250-400 ms after the onset of three-dimensional visual stimulus comparing the stereoscopic visualization with volumetric visualization. Moreover, differences in the parietal lobe reflected in the event-related desynchronization of upper alpha oscillations. The considerably higher activity in the continuous waves of beta frequencies was observed in half of the participants. Based on the obtained results, we suggest that the depth perception and visual task completion might require a higher neural activity for the stereoscopic image viewing than for the volumetric image viewing.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

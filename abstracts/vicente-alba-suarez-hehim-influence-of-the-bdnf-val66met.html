@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 18:15" data-end="2020-10-29 18:30">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Influence of the BDNF Val66Met Polymorphism on Modulation of Functional Brain Networks</h1><h2>Vicente Alba Suarez (he/him)</h2><h3>Vicente Alba Suarez, York University; Katherine M. Newman, York University; Caitlin Mullin, York University; Georg R. Zoidl, York University, Mark Halko, Harvard Medical School; Gary R. Turner, York University; & W. Dale Stevens, York University </h3><h2>Abstract</h1><p>Human brain-derived neurotrophic factor (BDNF) is an important protein responsible for the development and maintenance of neurons. Polymorphisms (i.e., genetic variations) of the BDNF protein have been implicated in overall reduction of functional connectivity (FC) within and between large-scale functional brain networks. Specifically, the well studied Val66Met BDNF polymorphism has been shown to impact connectivity of the default mode network (DMN), a group of brain regions critically involved in internally focused cognition. Furthermore, this polymorphism of BDNF protein has been shown to influence the effectiveness of non-invasive brain stimulation (NIBS) techniques, such as repetitive transcranial magnetic stimulation (rTMS). This presents a potential problem in using NIBS to modulate FC of brain networks in experimental and clinical settings (e.g., treatment of depression). We used resting-state functional magnetic resonance imaging (fMRI) in combination with intermittent and continuous theta burst rTMS in young adults to evaluate the influence of the Val66Met polymorphism of BDNF on baseline FC of large-scale intrinsic functional networks, and the ability to modulate within and between-network FC using NIBS. The rTMS target stimulation site selected was the left inferior parietal lobule (IPL), a core node of the DMN, and was identified individually for a Val homozygote and a Met homozygote through functional task fMRI data. Resting-state fMRI data were collected before and after administering rTMS to the IPL. Results showed a reduction in baseline FC for a Met homozygote compared to a Val homozygote, both within the DMN and between the DMN and other large-scale brain networks. Furthermore, we found the ability to modulate within and between-network FC through rTMS was improved for a Val homozygote compared to a Met homozygote. These findings suggest that differences at the cellular level can influence differences in large-scale brain networks that impact the efficacy of rTMS methods according to individuals’ genotype.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

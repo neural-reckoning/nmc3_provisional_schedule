@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,12 +52,15 @@
             Track 6
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 10:30" data-end="2020-10-27 10:45">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>EEG fingerprinting as a mean to bridging together the worlds of fMRI- and EEG-based neurofeedback</h1><h2>Marco Simões</h2><h3>Rodolfo Abreu; Paulo-Carvalho; Miguel Castelo-Branco</h3><h2>Abstract</h1><p>EEG-based neurofeedback has been used for many years, with waxing and waning enthusiasm, because of the inherent difficulties in identifying its neurobiological underpinnings. Conversely, the field of fMRI-based neurofeedback is still at its infancy, and despite its many methodological issues, the localization power in the brain of fMRI has led to convincing results by targeting specific neuronal regions and networks. However, the economical and logistical constraints of NF interventions using fMRI hinder its widespread application.
-
-A recent approach which attempts to bridge the two worlds of fMRI- and EEG-based neurofeedback is based on the identification of EEG fingerprints of localized brain activity as measured by concurrently acquired fMRI data.  This approach aims at transferring fMRI-based neurofeedback interventions to EEG setups, a strategy with the potential for high impact due to the low cost and portability of the latter, thus facilitating the dissemination of neurofeedback interventions in health and disease. 
-
-Here we present our recent advances on this approach for deriving an accurate EEG fingerprint of the fMRI signal from the facial expression processing network. We show that by exploring EEG features from the non-linear domain convolved with a set of hemodynamic response functions peaking at different latencies, our method substantially improves the approximation accuracy achieved by state-of-the-art solutions. Moreover, we discuss the issue of inter- and intra-subject variability inherent to these two neuroimaging modalities and its implications to the generalization of these approaches.</p>
+        <h1>EEG fingerprinting as a mean to bridging together the worlds of fMRI- and EEG-based neurofeedback</h1><h2>Marco Simões</h2><h3>Rodolfo Abreu; Paulo-Carvalho; Miguel Castelo-Branco</h3><h2>Abstract</h1><p>EEG-based neurofeedback has been used for many years, with waxing and waning enthusiasm, because of the inherent difficulties in identifying its neurobiological underpinnings. Conversely, the field of fMRI-based neurofeedback is still at its infancy, and despite its many methodological issues, the localization power in the brain of fMRI has led to convincing results by targeting specific neuronal regions and networks. However, the economical and logistical constraints of NF interventions using fMRI hinder its widespread application.<br/><br/>A recent approach which attempts to bridge the two worlds of fMRI- and EEG-based neurofeedback is based on the identification of EEG fingerprints of localized brain activity as measured by concurrently acquired fMRI data.  This approach aims at transferring fMRI-based neurofeedback interventions to EEG setups, a strategy with the potential for high impact due to the low cost and portability of the latter, thus facilitating the dissemination of neurofeedback interventions in health and disease. <br/><br/>Here we present our recent advances on this approach for deriving an accurate EEG fingerprint of the fMRI signal from the facial expression processing network. We show that by exploring EEG features from the non-linear domain convolved with a set of hemodynamic response functions peaking at different latencies, our method substantially improves the approximation accuracy achieved by state-of-the-art solutions. Moreover, we discuss the issue of inter- and intra-subject variability inherent to these two neuroimaging modalities and its implications to the generalization of these approaches.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

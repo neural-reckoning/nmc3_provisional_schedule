@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,19 +52,15 @@
             Track 2
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 10:15" data-end="2020-10-27 10:30">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>The Boolean dendrite: Intrinsic computation of wide range of Boolean func- tions by dendritic branches</h1><h2>Sotirios Papadopoulos</h2><h3>Athanasia Papoutsi, Institute of Molecular Biology and Biotechnology, FORTH, Heraklion, Greece; Albert Gidon,  Institute for Biology, Humboldt-Universität zu Berlin, Berlin, Germany; Matthew E. Larkum,  Institute for Biology, Humboldt-Universität zu Berlin, Berlin, Germany & NeuroCure Cluster, Charité – Universitätsmedizin, Berlin, Berlin, Germany; Panayiota Poirazi, Institute of Molecular Biology and Biotechnology, FORTH, Heraklion, Greece</h3><h2>Abstract</h1><p>Recent studies investigating the physiology of the human neurons have provided un-
-expected findings regarding the modus operandi of single neurons [1-3]. One of these
-studies found calcium mediated dendritic action potentials (dCaAPs) in layer 2/3 pyra-
-midal neurons [2]. Here, we further explore the computational properties of the
-dCaAPs, using a machine learning approach. Specifically, we used a non-monotonic
-activation function derived from the properties of the dCaAPs as measured in the ex-
-periments; dCaAP’s amplitude was zero for subthreshold inputs, maximum (1) at
-threshold and decayed exponentially with further increasing the input strength (Fig-
-ure). In this study, we show how a single dendritic branch implements all the Boolean
-functions, including the non-linearly separable XOR and XNOR. We identify the combi-
-nations of biologically inspired inputs that solve each of these Boolean functions. This
-work provides insights into the range of computations a dendrite can perform.</p>
+        <h1>The Boolean dendrite: Intrinsic computation of wide range of Boolean func- tions by dendritic branches</h1><h2>Sotirios Papadopoulos</h2><h3>Athanasia Papoutsi, Institute of Molecular Biology and Biotechnology, FORTH, Heraklion, Greece; Albert Gidon,  Institute for Biology, Humboldt-Universität zu Berlin, Berlin, Germany; Matthew E. Larkum,  Institute for Biology, Humboldt-Universität zu Berlin, Berlin, Germany & NeuroCure Cluster, Charité – Universitätsmedizin, Berlin, Berlin, Germany; Panayiota Poirazi, Institute of Molecular Biology and Biotechnology, FORTH, Heraklion, Greece</h3><h2>Abstract</h1><p>Recent studies investigating the physiology of the human neurons have provided un-<br/>expected findings regarding the modus operandi of single neurons [1-3]. One of these<br/>studies found calcium mediated dendritic action potentials (dCaAPs) in layer 2/3 pyra-<br/>midal neurons [2]. Here, we further explore the computational properties of the<br/>dCaAPs, using a machine learning approach. Specifically, we used a non-monotonic<br/>activation function derived from the properties of the dCaAPs as measured in the ex-<br/>periments; dCaAP’s amplitude was zero for subthreshold inputs, maximum (1) at<br/>threshold and decayed exponentially with further increasing the input strength (Fig-<br/>ure). In this study, we show how a single dendritic branch implements all the Boolean<br/>functions, including the non-linearly separable XOR and XNOR. We identify the combi-<br/>nations of biologically inspired inputs that solve each of these Boolean functions. This<br/>work provides insights into the range of computations a dendrite can perform.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

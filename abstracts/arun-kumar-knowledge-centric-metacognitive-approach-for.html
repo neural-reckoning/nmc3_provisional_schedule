@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 18:15" data-end="2020-10-30 18:30">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Knowledge-centric metacognitive approach for solving tasks</h1><h2>Arun Kumar</h2><h3>Paul Schrater, schrater@umn.edu, University of Minnesota Twin Cities;</h3><h2>Abstract</h1><p>People exhibit general intelligence behaviors in solving a variety of tasks flexibly by reusing and applying high level knowledge acquired over a period of time. But artificial agents lack generalist behaviors. We argue that general intelligence in artificial agents requires a knowledge-centric meta-cognitive approach. Meta-reasoning about next actions and possible next states is more than resource allocation and memory look-up, it allows people to direct their learning and interactions with world objects in a reusable way. Core to our proposed approach is the ability of finding natural decompositions in environments to understand and exploit structured knowledge representations. Our proposal is based on three main principles for solving complex tasks flexibly - natural decomposition and abstractions, interactions and composition of interactions. World environments are composed of entities and categorized by the types of those entities, in essence, they are knowledge graphs of underlying objects and their relationships. To solve tasks, the meta-cognitive process of the agent formulates a graph traversal path of which entities it needs to interact with locally and then solve tasks by composition of these interactions along the traversal path. Therefore, integrating these principles provides us levers and connect points to induce flexibility into the agents’ behaviors. The proposed meta-cognitive approach captures the essence of generalist behaviors and has promise to act as an enabler for artificial general intelligence with implications across domains.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

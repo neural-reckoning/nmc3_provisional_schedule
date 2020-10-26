@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,13 +52,15 @@
             Track 3
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 16:30" data-end="2020-10-29 16:45">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Closed-Loop Acoustic Neurostimulation during Sleep: Targeting theta waves</h1><h2>João  Patriota</h2><h3>João Patriota ; Elsa Juan; Illia Korjoukov; Umberto Olcese; Lucia Talamini</h3><h2>Abstract</h1><p>Recently there has been an increasing interest in the potential applications of closed loop neuro-stimulation. Most studies are focused on targeting slow waves during NREM sleep, to improve memory consolidation. REM sleep plays a crucial role in emotional processing, which is essential for mental health. Theta is a hallmark of REM sleep, therefore detecting and manipulating theta waves could pave the way towards targeted interventions in clinical and sub-clinical populations. We present the first results on the development of an algorithm able to detect and target precise phases of theta (4-8 Hz), which could be used to further address how targeting can play a role on memory reactivation and memory consolidation.
-Data of nine participants that underwent a night of polysomnography and EEG recordings in the lab. Ten minutes of recorded REM epochs from each subject were used to run the closed-loop acoustic stimulation (CLAS) system, targeting the 0-degree phase of theta.
-   Targeting procedure involves an oscillatory phase prediction algorithm, based on non-linear sine fitting on the most recent data segment of unfiltered EEG signal. The criteria for stimulus release are: 1) The fitted sine is in a frequency range of interest, 2) The fitting error is below a given threshold & 3) The prediction is within a delimited future time window. The algorithm is implemented within EventIDE software (Okazolab). This method has been applied to the slow oscillation frequency range.
-   Across all participants we achieved a mean target phase of 10.85 degrees (3.58 median), standard deviation of 56.74 degrees and made, on average, 163.78 predictions for each separate REM epoch. 
-
-   These results on offline simulations suggest that it is possible to target specific phases of theta oscillations in a closed loop setup. This brings possibilities of a different tool for non-invasive intervention on processes that happen during sleep. </p>
+        <h1>Closed-Loop Acoustic Neurostimulation during Sleep: Targeting theta waves</h1><h2>João  Patriota</h2><h3>João Patriota ; Elsa Juan; Illia Korjoukov; Umberto Olcese; Lucia Talamini</h3><h2>Abstract</h1><p>Recently there has been an increasing interest in the potential applications of closed loop neuro-stimulation. Most studies are focused on targeting slow waves during NREM sleep, to improve memory consolidation. REM sleep plays a crucial role in emotional processing, which is essential for mental health. Theta is a hallmark of REM sleep, therefore detecting and manipulating theta waves could pave the way towards targeted interventions in clinical and sub-clinical populations. We present the first results on the development of an algorithm able to detect and target precise phases of theta (4-8 Hz), which could be used to further address how targeting can play a role on memory reactivation and memory consolidation.<br/>Data of nine participants that underwent a night of polysomnography and EEG recordings in the lab. Ten minutes of recorded REM epochs from each subject were used to run the closed-loop acoustic stimulation (CLAS) system, targeting the 0-degree phase of theta.<br/>   Targeting procedure involves an oscillatory phase prediction algorithm, based on non-linear sine fitting on the most recent data segment of unfiltered EEG signal. The criteria for stimulus release are: 1) The fitted sine is in a frequency range of interest, 2) The fitting error is below a given threshold & 3) The prediction is within a delimited future time window. The algorithm is implemented within EventIDE software (Okazolab). This method has been applied to the slow oscillation frequency range.<br/>   Across all participants we achieved a mean target phase of 10.85 degrees (3.58 median), standard deviation of 56.74 degrees and made, on average, 163.78 predictions for each separate REM epoch. <br/><br/>   These results on offline simulations suggest that it is possible to target specific phases of theta oscillations in a closed loop setup. This brings possibilities of a different tool for non-invasive intervention on processes that happen during sleep. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

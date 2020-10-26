@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,12 +52,15 @@
             Track 2
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 17:30" data-end="2020-10-29 17:45">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Amplified representation of sound termination in the auditory cortex and its behavioral relevance</h1><h2>Magdalena Solyga</h2><h3>Tania Rinaldi Barkat, Brain & Sound Lab, Department of Biomedicine, Basel University, 4056 Basel, Switzerland</h3><h2>Abstract</h1><p>Offset responses in auditory processing appear after a sound terminates. In the peripheral auditory system, neuronal circuits within the cochlear and superior paraolivary nuclei play a central role in generating offset responses. In the central auditory system, a recent study showed that neurons in the anterior auditory field (AAF) have significantly stronger responses to sound termination than those in the primary auditory cortex. The mechanisms that generate and drive offset responses within AAF as well as their behavioural relevance remain unknown.
-To understand the role of AAF offset responses in sound perception, we asked whether detecting the end of a sound would be influenced by them. Using optogenetics, we showed that preventing AAF offset responses decreases the mouse performance to detect sound termination. 
-Next, we combined electrophysiological recordings in auditory cortex and thalamus of awake mice with antidromic stimulation to better understand how cortical offset responses occur. We found that more than 80% of AAF inputs come from onset-offset responsive thalamic cells, indicating that a big portion of information on sound termination in AAF is inherited from the preceding nuclei. However, our results also demonstrate that cortical offset responses are amplified in comparison to the thalamic ones. 
-Overall, our results reveal the importance of cortical offset responses in coding and perceiving sound termination. They might play a crucial role for advanced processing such as detecting changes within temporally discontinuous sounds.
-</p>
+        <h1>Amplified representation of sound termination in the auditory cortex and its behavioral relevance</h1><h2>Magdalena Solyga</h2><h3>Tania Rinaldi Barkat, Brain & Sound Lab, Department of Biomedicine, Basel University, 4056 Basel, Switzerland</h3><h2>Abstract</h1><p>Offset responses in auditory processing appear after a sound terminates. In the peripheral auditory system, neuronal circuits within the cochlear and superior paraolivary nuclei play a central role in generating offset responses. In the central auditory system, a recent study showed that neurons in the anterior auditory field (AAF) have significantly stronger responses to sound termination than those in the primary auditory cortex. The mechanisms that generate and drive offset responses within AAF as well as their behavioural relevance remain unknown.<br/>To understand the role of AAF offset responses in sound perception, we asked whether detecting the end of a sound would be influenced by them. Using optogenetics, we showed that preventing AAF offset responses decreases the mouse performance to detect sound termination. <br/>Next, we combined electrophysiological recordings in auditory cortex and thalamus of awake mice with antidromic stimulation to better understand how cortical offset responses occur. We found that more than 80% of AAF inputs come from onset-offset responsive thalamic cells, indicating that a big portion of information on sound termination in AAF is inherited from the preceding nuclei. However, our results also demonstrate that cortical offset responses are amplified in comparison to the thalamic ones. <br/>Overall, our results reveal the importance of cortical offset responses in coding and perceiving sound termination. They might play a crucial role for advanced processing such as detecting changes within temporally discontinuous sounds.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

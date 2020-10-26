@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 10:15" data-end="2020-10-28 10:30">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The Dorsal Striatum Energizes Motor Routines</h1><h2>Mostafa Safaie</h2><h3>Jurado-Parras; Sarno; Louis; Karoutchi; Berret; Robbe</h3><h2>Abstract</h1><p>The dorsal striatum (dS) has been implicated in both storing procedural memories and controlling movement kinematics. Since procedural memories are expressed through movements, the exact nature of the dS function has proven difficult to delineate. To alleviate this confound, we challenged rats in a series of complementary locomotion-based tasks. Surprisingly, dS lesions did not impair the ability to remember the procedure for successful completion of motor routines. However, the speed and initiation of the reward-oriented running phase of the routines were irreversibly altered by the dS lesion. Further behavioral analyses, combined with optimal control modeling indicated that these kinematic alterations were best explained by an increased sensitivity to the expended energy in the routines. Our work provides evidence for a fundamental role of the dS in modulating the kinematics of reward-oriented actions in order to optimize the energetic cost of moving.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

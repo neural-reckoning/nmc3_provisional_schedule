@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 8
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 18:30" data-end="2020-10-30 18:45">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Microstimulation and optogenetics: A combined stimulation strategy</h1><h2>Hector Baez</h2><h2>Abstract</h1><p>It has been well studied that intracortical microstimulation is sufficient to drive action potential generation in cortical neurons of awake behaving animals. However, in certain sensory regions of the brain, microstimulation is difficult to implement due to the overlap of functional regions covered by the spreading electrical current. In the primary somatosensory cortex for example, neurons representing features of tactile perception such as motion or texture are intermixed in functional circuits at the cellular level. Therefore, microstimulation of these regions can lead to the activation of multiple feature-encoding neurons simultaneously, which limits the ability of microstimulation to drive functional haptic perception. In contrast to ICMS, optogenetics is a technique capable of driving units with single-cell precision for both activation (channelrhodopsin) and inactivation (halorhodopsin). Optogenetics however requires direct exposure to light and therefore is limited in spatial depth and reach. The goal of this project is to reduce the ambiguity of artificial sensations by implementing a combined strategy of microstimulation and optogenetics to selectively silence cells activated by microstimulation using a biologically constrained model. A biologically constrained computational model was constructed in MATLab to analyze the population responses to electrical and optogenetic stimuli. The individual current and luminous intensity contributions are summated and included in a Poisson spiking model to determine neural activation. To test our predictions, we first analyzed how a single optoelectrode affects the neural sets within the population. This analysis was expanded to include the interaction of multiple optoelectrodes within the subspace to achieve a desired stimulation pattern. A particle swarm optimization algorithm was utilized to locate optimal stimulus combinations resulting in the best SNR for motion representation.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

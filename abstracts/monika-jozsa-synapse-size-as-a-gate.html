@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,14 +52,15 @@
             Track 8
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 16:30" data-end="2020-10-29 16:45">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Synapse size as a gate between stable and switch-like behaviour</h1><h2>Monika Jozsa</h2><h3>Tihol Ivanov Donchev, University of Cambridge; Rodolphe Sepulchre, University of Cambridge;  Timothy O'Leary, University of Cambridge</h3><h2>Abstract</h1><p>Synapses comprise a small cellular compartment known as the postsynaptic density, which is the site of a number of extensively characterised biochemical processes involved in neuronal communication, learning and memory storage. Many biomolecular systems operate in the small system size regime, where the number of interacting molecules is in the tens or hundreds. In this regime, the inherent randomness of chemical reactions has an overall larger effect which raises the question of how synapses can signal reliably and store information over extended periods.
-
-An important consequence of randomness in biochemical systems is that in the small system size regime, they can have multiple modes even if they only have a single mode in the large system size regime, that is, in the mass-action (deterministic) limit. This raises the possibility that compartmentalization can be exploited by biological systems to realise switch-like computations.
-
-We illustrate this on a well-known test system, the toggle switch. The toggle switch is a continuous-time birth-death process describing the volume of two chemical species that mutually inhibit each other. This process possesses a single stable equilibrium in the mass action limit and exhibits bimodality for small system sizes. We explore a new heuristic approach to predicting the emergence of multimodality in nonlinear biochemical reactions in the small system size regime. In generic examples we show that there is a critical system size that separates unimodal and multi-modal behaviour that can be estimated by using linear noise approximation.
-
-By considering the system size as a time-dependent control variable, our results support that system size may drive biochemical systems between stable uni-modal and switch-like multi-modal behaviour. Crucially, synapses are observed to increase in volume when potentiated, raising the possibility that system size may be exploited by synapses to achieve reliable switches despite the randomness in the underlying biochemical components.</p>
+        <h1>Synapse size as a gate between stable and switch-like behaviour</h1><h2>Monika Jozsa</h2><h3>Tihol Ivanov Donchev, University of Cambridge; Rodolphe Sepulchre, University of Cambridge;  Timothy O'Leary, University of Cambridge</h3><h2>Abstract</h1><p>Synapses comprise a small cellular compartment known as the postsynaptic density, which is the site of a number of extensively characterised biochemical processes involved in neuronal communication, learning and memory storage. Many biomolecular systems operate in the small system size regime, where the number of interacting molecules is in the tens or hundreds. In this regime, the inherent randomness of chemical reactions has an overall larger effect which raises the question of how synapses can signal reliably and store information over extended periods.<br/><br/>An important consequence of randomness in biochemical systems is that in the small system size regime, they can have multiple modes even if they only have a single mode in the large system size regime, that is, in the mass-action (deterministic) limit. This raises the possibility that compartmentalization can be exploited by biological systems to realise switch-like computations.<br/><br/>We illustrate this on a well-known test system, the toggle switch. The toggle switch is a continuous-time birth-death process describing the volume of two chemical species that mutually inhibit each other. This process possesses a single stable equilibrium in the mass action limit and exhibits bimodality for small system sizes. We explore a new heuristic approach to predicting the emergence of multimodality in nonlinear biochemical reactions in the small system size regime. In generic examples we show that there is a critical system size that separates unimodal and multi-modal behaviour that can be estimated by using linear noise approximation.<br/><br/>By considering the system size as a time-dependent control variable, our results support that system size may drive biochemical systems between stable uni-modal and switch-like multi-modal behaviour. Crucially, synapses are observed to increase in volume when potentiated, raising the possibility that system size may be exploited by synapses to achieve reliable switches despite the randomness in the underlying biochemical components.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

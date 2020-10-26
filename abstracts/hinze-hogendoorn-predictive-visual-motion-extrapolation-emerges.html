@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 09:00" data-end="2020-10-28 09:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Predictive visual motion extrapolation emerges spontaneously and without supervision from a layered neural network with spike-timing-dependent plasticity</h1><h2>Hinze Hogendoorn</h2><h3>Anthony N Burkitt, University of Melbourne</h3><h2>Abstract</h1><p>The fact that the transmission and processing of visual information in the brain takes time presents a problem for the accurate real-time localisation of a moving object. One way this problem might be solved is extrapolation: using an object’s past trajectory to predict its location in the present moment. Here, we investigate how a simulated in silico layered neural network might implement such extrapolation mechanisms, and how the necessary neural circuits might develop. We allowed an unsupervised hierarchical network of velocity-tuned neurons to learn its connectivity through spike-timing dependent plasticity. We show that the temporal contingencies between the different neural populations that are activated by an object as it moves causes the receptive fields of higher-level neurons to shift in the direction opposite to their preferred direction of motion. The result is that neural populations spontaneously start to represent moving objects as being further along their trajectory than where they were physically detected. Due to the inherent delays of neural transmission, this effectively compensates for (part of) those delays by bringing the represented position of a moving object closer to its instantaneous position in the world. Finally, we show that this model accurately predicts the pattern of perceptual mislocalisation that arises when human observers are required to localise a moving object relative to a flashed static object (the flash-lag effect). </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 18:00" data-end="2020-10-29 18:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Contrast between biological and artificial neural network </h1><h2>krishna katyal he/him</h2><h3>bradly alicea, orthogonal lab,usa</h3><h2>Abstract</h1><p>This talk will be about the differences between ANNs and BNNs. Artificial Neural Network (ANN) is a computing system whose fundamental composition is analogous to biological neural networks. Where a node acts as soma, input acts as dendrites, weights or Interconnections acts as the synapse and the output acts as axon.Despite ANNs being a manifestation of the BNNs there exist a lot of differences.
-The primary difference between ANNs and BNNs is different topologies: Instead of a network with asynchronous computing nodes, the ANNs compute one by one. Recurrent feedbacks are simulated in Long short-term memory (LSTM) networks and Recurrent neural networks but general neural networks compute the state & weights of a layer of the neural network then use the result to compute the next layer while in backpropagation the weights are improvised.  Layers aren’t connected to non-neighbouring layers .IN BNNs the neurons can fire asynchronously parallelly, having dense neurons hubs and a large amount of lesser connected ones, partially following the power law (for the large values of k, the fraction P(k) of nodes in the network having k connections to other nodes as P(k) ~ k -z  where z generally lies from 2 to 3, although may lie outside these bounds ). Due to their topology the BNNs are better at fault and ambiguity tolerant as there is no central part, they can heal and are self-regenerated to some extent.The size of ANNs and BNNs also vary,there are 10 11 neurons in the brain whereas computational considerations limited ANNs nowadays to 10 5 neurons. As far as the energy consumption is concerned the human brain has nearly 20 watts of power consumption whereas a GPU (graphics processing unit) used for training artificial neural networks consumes somewhere from 150 to 250 watts, Human brain is highly efficient in comparison to the GPUs.Different between the ANNs and BNNs are (but not limited to) topologies,fault tolerance,size and energy consumption prominent differences between the BNNs and ANNs</p>
+        <h1>Contrast between biological and artificial neural network </h1><h2>krishna katyal he/him</h2><h3>bradly alicea, orthogonal lab,usa</h3><h2>Abstract</h1><p>This talk will be about the differences between ANNs and BNNs. Artificial Neural Network (ANN) is a computing system whose fundamental composition is analogous to biological neural networks. Where a node acts as soma, input acts as dendrites, weights or Interconnections acts as the synapse and the output acts as axon.Despite ANNs being a manifestation of the BNNs there exist a lot of differences.<br/>The primary difference between ANNs and BNNs is different topologies: Instead of a network with asynchronous computing nodes, the ANNs compute one by one. Recurrent feedbacks are simulated in Long short-term memory (LSTM) networks and Recurrent neural networks but general neural networks compute the state & weights of a layer of the neural network then use the result to compute the next layer while in backpropagation the weights are improvised.  Layers aren’t connected to non-neighbouring layers .IN BNNs the neurons can fire asynchronously parallelly, having dense neurons hubs and a large amount of lesser connected ones, partially following the power law (for the large values of k, the fraction P(k) of nodes in the network having k connections to other nodes as P(k) ~ k -z  where z generally lies from 2 to 3, although may lie outside these bounds ). Due to their topology the BNNs are better at fault and ambiguity tolerant as there is no central part, they can heal and are self-regenerated to some extent.The size of ANNs and BNNs also vary,there are 10 11 neurons in the brain whereas computational considerations limited ANNs nowadays to 10 5 neurons. As far as the energy consumption is concerned the human brain has nearly 20 watts of power consumption whereas a GPU (graphics processing unit) used for training artificial neural networks consumes somewhere from 150 to 250 watts, Human brain is highly efficient in comparison to the GPUs.Different between the ANNs and BNNs are (but not limited to) topologies,fault tolerance,size and energy consumption prominent differences between the BNNs and ANNs</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

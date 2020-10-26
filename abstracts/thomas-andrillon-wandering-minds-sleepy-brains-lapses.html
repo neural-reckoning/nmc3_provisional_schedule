@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 03:00" data-end="2020-10-29 03:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Wandering minds, sleepy brains: lapses of attention and local sleep in wakefulness.</h1><h2>Thomas Andrillon</h2><h3>Angus Burns, Monash University; Teigane MacKay, Monash University; Jennifer Windt, Monash University; Naotsugu Tsuchiya, Monash University</h3><h2>Abstract</h1><p>Attentional lapses are ubiquitous and can negatively impact performance. They correlate with mind wandering, or thoughts that are unrelated to ongoing tasks and environmental demands. In other cases, the stream of consciousness itself comes to a halt and the mind goes blank. What happens in the brain that leads to these mental states? To understand the neural mechanisms underlying attentional lapses, we cross-analyzed the behavior, subjective experience and neural activity of healthy participants performing a task. Random interruptions prompted participants to indicate whether they were task-focused, mind-wandering or mind-blanking. High-density electroencephalography revealed the occurrence of spatially and temporally localized sleep-like patterns of neural activity. This “local sleep” accompanied behavioral markers of lapses and preceded reports of mind wandering and mind blanking. Furthermore, the location of local sleep distinguished sluggish versus impulsive behaviors, mind wandering versus mind blanking. Despite contrasting cognitive profiles, attentional lapses could share a common physiological origin: the appearance of local islets of sleep within the awake brain.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

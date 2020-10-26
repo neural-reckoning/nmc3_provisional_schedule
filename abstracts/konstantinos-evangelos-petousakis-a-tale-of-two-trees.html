@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-26 16:30" data-end="2020-10-26 16:45">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>A Tale of Two Trees: Modeling Apical and Basal Tree Contribution to L2/3 V1 Pyramidal Cell Orientation Selectivity</h1><h2>Konstantinos-Evangelos Petousakis</h2><h3>Konstantinos-Evangelos Petousakis, IMBB, FORTH and Department of Biology, University of Crete; Jiyoung Park, Department of Neuroscience, Baylor College of Medicine; Athanasia Papoutsi, IMBB, FORTH; Stelios Smirnakis, Department of Neuroscience, Baylor College of Medicine and Department of Neurology, Brigham and Women’s H. and JP VA H., Harvard Medical School; Panayiota Poirazi, IMBB, FORTH</h3><h2>Abstract</h1><p>Pyramidal neurons, a mainstay of cortical regions, receive a plethora of inputs from various areas onto morphologically distinct apical and basal trees. Both trees differentially contribute to the somatic response, thus defining distinct anatomical and possibly functional sub-units. To assess the latter, we modeled the complex response pattern of the L2/3 V1 pyramidal neuron to spatially tuned synaptic input. Our goal was to elucidate the contribution of each tree to the response pattern of the neuron. Towards this goal, we created a morphologically detailed computational model of a single cell, validated against electrophysiological data. We investigated the role of dendritic integration at the basal and apical trees, and its contribution in shaping cell responses. Results indicate that somatic action potentials are generated only when input coincides bilaterally, as unilateral stimuli are generally unable to evoke spiking activity at the soma. In addition, given equal synaptic drive, the responses of the neuron appear to be initiated by the apical tree, as its dendritic spiking activity temporally precedes somatic activity. Finally, basal tree activity, in the form of either depolarization or dendritic spiking, is essential for producing somatic activity, despite the fact that most somatic spikes are apically-driven. This model provides evidence for synergistic computations taking place in the basal and apical trees of the neuron, and emphasizes the role of predictive and attentional feedback input.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

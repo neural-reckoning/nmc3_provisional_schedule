@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 01:00" data-end="2020-10-29 01:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Decoding Neural Activity into Language</h1><h2>伟 黄</h2><h3>Wei Huang, MOE Key Lab for Neuroinformation, University of Electronic Science and Technology of China, Chengdu, 610054, PR China; Hongmei Yan, MOE Key Lab for Neuroinformation, University of Electronic Science and Technology of China, Chengdu, 610054, PR China; Kaiwen Cheng, MOE Key Lab for Neuroinformation, University of Electronic Science and Technology of China, Chengdu, 610054, PR China; Chong Wang, MOE Key Lab for Neuroinformation, University of Electronic Science and Technology of China, Chengdu, 610054, PR China; Jiyi Li, MOE Key Lab for Neuroinformation, University of Electronic Science and Technology of China, Chengdu, 610054, PR China; Zhentao Zuo, State Key Laboratory of Brain and Cognitive Science, Beijing MR Center for Brain Research, Institute of Biophysics, Chinese Academy of Sciences, Beijing 100101, China; Chen Li, Department of Medical Information Engineering, Sichuan University, Chengdu 610065, China; Huafu Chen, MOE Key Lab for Neuroinformation, University of Electronic Science and Technology of China, Chengdu, 610054, PR China;</h3><h2>Abstract</h1><p>Transforming neural activities into language is revolutionary for interpreting the formation of language from visual perception. If the neural signal of visual activities is regarded as a special kind of human biological language, it is quite feasible that we can apply the machine translation architecture in Artificial Intelligence (AI) to decode those neural signals. Therefore, a progressive transfer language decoding model was proposed to decode visual fMRI signals into phrases or sentences when natural images were being processed. The results of a similarity analysis showed that human natural language was successfully derived from visual neural activities. Additionally, by comparing the decoding effectivity of different visual areas in space, we found that higher visual areas usually had better performance. At the same time, we found that the contribution curve of visual response patterns in language decoding rose first and then gradually decreased at successively different time points. Our findings proved that the neural representations elicited in the visual cortex when visual scene tasks were being performed already contained semantic information that could be utilized to generate the human natural language. Our study will help in the application of language-based brain-machine interfaces, such as assisting aphasiacs in normal communication with others.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

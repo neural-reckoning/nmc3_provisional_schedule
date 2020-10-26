@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,15 +52,15 @@
             Track 0
             /
             Special Event
+            <div class="visible_at_time" data-start="2020-10-28 18:00" data-end="2020-10-28 19:00">
+                <a href='https://www.youtube.com/watch?v=YWYsHlZ2Utk'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=YWYsHlZ2Utk'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>SciComm: Discussion with CNN's Tom Foreman on effective science communication</h1><h2>Abstract</h1><p>Today more than ever we see how critical it is for scientists to communicate clearly with the general public and policymakers. As neuroscience and neurotechnology advances in ways that have increasing impact outside the lab, it is especially important that this community is engaged in science communication either as a vocation or in parallel with their own research. To start a 2-part event, we will host a discussion with CNN broadcast journalist Tom Foreman about effective science communication. The discussion will include time for Q&A from the audience, so come prepared with questions!
-
-Moderator:
-Chris Rozell (Georgia Institute of Technology)
-
-Tom Foreman biosketch:
-Tom Foreman is an Emmy award-winning journalist whose experience spans more than three decades, and touches virtually every major news story in that time period. Foreman joined CNN in 2004 and is based in the network's Washington, D.C. bureau, where he covers a wide-range of topics for the network and reports for programs across the spectrum. Foreman has pioneered much of CNN's work in new media, by playing a key role in the development of an immersive, 3-D Virtual Studio which has taken viewers into space to study satellites, travels onto distant battlefields to promote better understanding of dangerous conflicts and takes a deep dive analysis on the 2016 election cycle. He leads the network's fact checking initiative and in 2013 Foreman and the fact checking team were awarded the Walter Cronkite/Brooks Jackson Award. Prior to working at CNN, Tom was the senior anchor for National Geographic and managing editor for Inside Base Camp, for which he won his second Emmy Award as best interviewer. 
-</p>
+        <h1>SciComm: Discussion with CNN's Tom Foreman on effective science communication</h1><h2>Abstract</h1><p>Today more than ever we see how critical it is for scientists to communicate clearly with the general public and policymakers. As neuroscience and neurotechnology advances in ways that have increasing impact outside the lab, it is especially important that this community is engaged in science communication either as a vocation or in parallel with their own research. To start a 2-part event, we will host a discussion with CNN broadcast journalist Tom Foreman about effective science communication. The discussion will include time for Q&A from the audience, so come prepared with questions!<br/><br/>Moderator:<br/>Chris Rozell (Georgia Institute of Technology)<br/><br/>Tom Foreman biosketch:<br/>Tom Foreman is an Emmy award-winning journalist whose experience spans more than three decades, and touches virtually every major news story in that time period. Foreman joined CNN in 2004 and is based in the network's Washington, D.C. bureau, where he covers a wide-range of topics for the network and reports for programs across the spectrum. Foreman has pioneered much of CNN's work in new media, by playing a key role in the development of an immersive, 3-D Virtual Studio which has taken viewers into space to study satellites, travels onto distant battlefields to promote better understanding of dangerous conflicts and takes a deep dive analysis on the 2016 election cycle. He leads the network's fact checking initiative and in 2013 Foreman and the fact checking team were awarded the Walter Cronkite/Brooks Jackson Award. Prior to working at CNN, Tom was the senior anchor for National Geographic and managing editor for Inside Base Camp, for which he won his second Emmy Award as best interviewer. <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

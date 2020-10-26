@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 17:15" data-end="2020-10-29 17:30">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>How representations adapt: the role of structure in model-based planning </h1><h2>Leonie Glitz (she/her)</h2><h3>Garrett, N.*; Jüchems, K.; Summerfield, C.;</h3><h2>Abstract</h1><p>Updating a model of the world that is used for planning faces a trade-off between computational efficiency (generalisation across different contexts) on the one hand and context-specific encoding on the other. Humans are exceptionally good at navigating this trade-off, though the neural implementation of this balance remains elusive. We developed a two-stage sequential learning task which allowed us to probe human state transition probability learning across two sets of contexts. One set (dependent blocks) involved two contexts with identical transition probabilities whereas the other set (independent blocks) consisted of two contexts with uncorrelated transition probabilities. We find that participants collapse across contexts in the dependent but not the independent set of contexts, using information from both contexts to inform choices when adaptive, which is confirmed by our computational modelling.  Comparing the neural (fMRI) encoding of model-derived state transition functions and updating between the two contexts in each set allowed us to investigate where in the brain this selective combination or separation of representations is implemented.  Using representational similarity analysis, we find that the pattern of neural activity associated with using and updating transition functions is more similar between contexts in dependent than in independent blocks in parts of the hippocampal formation (including parts of amygdala and entorhinal cortex). This suggests that, in line with recent theoretical proposals, the hippocampus and surrounding structures may be the parts of the brain that allow for an adaptive degree of generalisation and separation of environmental information, enabling us to both plan and learn from experience. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

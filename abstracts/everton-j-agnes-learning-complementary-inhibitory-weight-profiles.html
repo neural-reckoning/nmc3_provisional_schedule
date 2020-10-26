@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 10:30" data-end="2020-10-27 10:45">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Learning complementary inhibitory weight profiles to allow flexible switching</h1><h2>Everton J Agnes</h2><h3>Andrea I Luppi, Department of Clinical Neurosciences, University of Cambridge; Tim P Vogels, Institute of Science and Technology Austria</h3><h2>Abstract</h1><p>Multiple types of inhibitory interneurons are found in cortical areas, with stereotypical connectivity motifs that may follow specific plasticity rules. Yet, the combined effect of this diversity on postsynaptic dynamics has been largely unexplored. In this talk, I will present a simple circuit model with a single postsynaptic model neuron receiving tuned excitatory connections alongside inhibition from two plastic populations. In this circuit, synapses from each inhibitory population change according to distinct plasticity rules. I'll present results with different combinations of three rules: Hebbian, anti-Hebbian and homeostatic scaling. Depending on the inhibitory plasticity rule, synapses become unspecific (flat), anti-correlated to, or correlated with excitatory synapses. Crucially, the neuron's receptive field, i.e., its response to presynaptic stimuli, depends on the modulatory state of inhibition. When both inhibitory populations are active, inhibition balances excitation, resulting in uncorrelated postsynaptic responses regardless of the inhibitory tuning profiles, with only transient responses weakly revealing preferred inputs. Modulating the activity of a given inhibitory population produces strong correlations to either preferred or non-preferred inputs, in line with recent experimental findings that show dramatic context-dependent changes of neurons' receptive fields. These results confirm that a neuron's receptive field doesn't follow directly from the weight profiles of its presynaptic afferents, and illustrate how plasticity rules in various cell types can interact to shape cortical circuit motifs and their dynamics.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

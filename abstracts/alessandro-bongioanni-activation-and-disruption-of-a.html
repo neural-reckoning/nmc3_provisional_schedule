@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 6
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 17:15" data-end="2020-10-28 17:30">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Activation and disruption of a neural mechanism  for novel choice in monkeys</h1><h2>Alessandro Bongioanni</h2><h3>Davide Folloni, University of Oxford; Lennart Verhagen, University of Oxford; Jérôme Sallet, University of Oxford; Miriam Klein-Flügge, University of Oxford; Matthew Rushworth, University of Oxford</h3><h2>Abstract</h1><p>The neural mechanisms mediating the ability to make value-guided decisions have received substantial attention in both humans and animal models. Experiments in animals typically involve long training periods. By contrast, real-world decisions often need to be made spontaneously between novel options. It is therefore possible that neural mechanisms targeted in animal studies differ from those required for novel decisions typically revealed in human imaging studies. Here we show that primate medial frontal cortex (MFC) has a causal role in novel inferential choices when options have not previously been experienced. Macaques spontaneously inferred values of new options via similarities with component parts of previously encountered options. Functional magnetic resonance imaging (fMRI) suggested this ability was mediated by MFC, an area rarely investigated in monkeys; MFC activity reflected a different process of comparison for novel versus familiar options. A second fMRI experiment found that multidimensional option representations in MFC employed a grid-cell-like coding scheme, well known in the context of spatial navigation, to integrate dimensions in this non-physical space when making novel choices. By contrast, orbitofrontal cortex held specific object-based value representations. In a third experiment, minimally invasive ultrasonic disruption of MFC, but not adjacent tissue, altered estimation of novel choice values. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

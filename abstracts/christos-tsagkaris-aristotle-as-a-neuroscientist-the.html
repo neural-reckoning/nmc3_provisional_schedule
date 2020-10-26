@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 12:15" data-end="2020-10-28 12:30">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Aristotle as a neuroscientist: The power of habit and the science of the science of metron</h1><h2>Christos Tsagkaris</h2><h2>Abstract</h1><p>Both Aristotle and contemporary neuroscientists have investigated habit as an incremental component of memory. Many of Aristotle’s conclusions contradict with existing evidence. However, some of his observations may unlock current stalemates with regard to memory. The purpose of this work is to compare Aristotle’s observations with contemporary neuroscience in terms of habit and discuss their potential connection. While habit has been regarded for year as a non – semantic memory process, Aristotle has emphasized on the conscious and semantic dimension of repetition. Current evidence highlights the rational background of habit in line with Aristotle’s conclusions. The modern terms of  up- and down regulation and withdrawal can be compared with the Aristotelian concepts of thymos and ethismos</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

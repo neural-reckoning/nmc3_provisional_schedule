@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 8
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 10:30" data-end="2020-10-27 10:45">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Rediscovering the Pathways in Schizophrenia in Essence of Neurotransmitters and Antipsychotics</h1><h2>Videsha  Bansal </h2><h3>Indranath Chatterjee </h3><h2>Abstract</h1><p>Schizophrenia is among the most widely recognized mental disorders. As per WHO and DSM-V, it is a severe chronic mental disorder characterized by aggravations in thought, recognition, and behavior. Different reports present its causes,symptoms, medications, particularly its pathways and neurotransmitters' involvement. Studying several papers, we can see that the most tedious step is to examine all the pathways, and their adjusted or changed pathways in the wake of consuming the endorsed medications. Changes in the neurotransmitters' synapse with or without the administration ofdrugs are still under observation. The interconnections of various pathways like dopamine, serotonin, and GABA is in the measure. In this study, we aim to present a novel perspective by identifying some new pathways, which are changed due to various chemicals on neurotransmitters. We have studied multiple articles from all the directions, and in this paper, we reveal the potential causes and symptoms of the disorder, the role of neurotransmitters, and various brain pathways. The pathways of synapses like dopamine, serotonin, and GABA across multiplebrain locales before and after consuming medications are also discussed.Additionally, we have examined similar brain areas for healthy human subjectsand discovered some strong confirmations that the areas such as prefrontal cortex, limbic hippocampus, and ventral tegmental zone are the brain's most affected regions schizophrenia.We hypothesize that there may be unfamiliar pathways in these areas, as other than dopamine, there are similar synapses like serotonin and GABA, present in these areas. Along thisway,this understanding of schizophrenia may mark a novel path for some further investigations of such unfamiliar pathways.
-Keywords: Schizophrenia, Neurotransmitters, Pathways, Mental Disorder, Neurochemistry</p>
+        <h1>Rediscovering the Pathways in Schizophrenia in Essence of Neurotransmitters and Antipsychotics</h1><h2>Videsha  Bansal </h2><h3>Indranath Chatterjee </h3><h2>Abstract</h1><p>Schizophrenia is among the most widely recognized mental disorders. As per WHO and DSM-V, it is a severe chronic mental disorder characterized by aggravations in thought, recognition, and behavior. Different reports present its causes,symptoms, medications, particularly its pathways and neurotransmitters' involvement. Studying several papers, we can see that the most tedious step is to examine all the pathways, and their adjusted or changed pathways in the wake of consuming the endorsed medications. Changes in the neurotransmitters' synapse with or without the administration ofdrugs are still under observation. The interconnections of various pathways like dopamine, serotonin, and GABA is in the measure. In this study, we aim to present a novel perspective by identifying some new pathways, which are changed due to various chemicals on neurotransmitters. We have studied multiple articles from all the directions, and in this paper, we reveal the potential causes and symptoms of the disorder, the role of neurotransmitters, and various brain pathways. The pathways of synapses like dopamine, serotonin, and GABA across multiplebrain locales before and after consuming medications are also discussed.Additionally, we have examined similar brain areas for healthy human subjectsand discovered some strong confirmations that the areas such as prefrontal cortex, limbic hippocampus, and ventral tegmental zone are the brain's most affected regions schizophrenia.We hypothesize that there may be unfamiliar pathways in these areas, as other than dopamine, there are similar synapses like serotonin and GABA, present in these areas. Along thisway,this understanding of schizophrenia may mark a novel path for some further investigations of such unfamiliar pathways.<br/>Keywords: Schizophrenia, Neurotransmitters, Pathways, Mental Disorder, Neurochemistry</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

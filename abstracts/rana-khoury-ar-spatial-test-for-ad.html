@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 10:30" data-end="2020-10-28 10:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>AR spatial test for AD diagnosis</h1><h2>Rana Khoury</h2><h3>Sandy Rihana, USEK</h3><h2>Abstract</h1><p>Alzheimer’s disease (AD) has been around for more than a hundred years, and so far, there is still no cure. However, the disease can be slowed down significantly if detected in its early stages. The problem is that it can only be detected through expensive means like MRI and PET scanning. Therefore, there is an increasing need to find new methods for the diagnosis of Alzheimer’s in its presymptomatic phase. This presents some challenges because the disease is thought to start way before clinical symptoms emerge. We therefore propose a new generation of realistic cognitive tests that can target early cognitive deficits of dementia much better than conventional tests used in the clinic. In particular, we propose to use Augmented Reality (AR) which can open the door for much more flexibility in designing and monitoring these tasks remotely.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

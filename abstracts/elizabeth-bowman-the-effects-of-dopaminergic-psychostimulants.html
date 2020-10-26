@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,15 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 22:30" data-end="2020-10-28 22:45">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>The effects of dopaminergic psychostimulants on complex problem solving </h1><h2>Elizabeth Bowman</h2><h3>David Coghill, University of Melbourne; Carsten Murawski, University of Melbourne; Peter Bossaerts, University of Melbourne</h3><h2>Abstract</h1><p>The role of dopaminergic systems in decision-making has been of increasing research interest in recent years. Medications that target these pathways are often used in disorders of attention, and are now also often diverted to non-medical, off-label, and illicit uses in the hope that they will enhance cognition and focus in healthy people. However, research to date reveals a mixed picture of efficacy in this aspect.
-
-We completed a repeated-measures, double-blinded, placebo-controlled single dose trial (PECO: ACTRN12617001544369, U1111-1204-3404) to examine the actions of three indirect dopamine agonists on complex problem-solving performance of healthy adults. Forty participants received 15 mg dextroamphetamine, 30 mg methylphenidate, 200 mg modafinil, or placebo, counterbalanced across 4 testing sessions. In each session, participants completed 16 trials of the Knapsack Task (eight unique instances presented twice each). The Knapsack Task is a NP-hard combinatorial optimisation task, requiring the participant to explore different combinations of items to discover an optimal (maximal) value solution under a specified weight and time constraint.
-
-Mixed-effects modelling of the knapsack decision sequence data revealed that participants took longer to submit solutions in the active drug conditions yet were less likely to find the optimal solution. Participants who performed below-average with placebo explored more solutions while in the active drug conditions, and above-average participants explored less. Closer inspection revealed that the drugs decreased productivity significantly and economically; productivity is the increase in value of the knapsack per item move per unit time. Initial choices, a good predictor of eventual performance in a trial, became more random under active drug conditions. 
-
-These findings suggest that dopaminergic stimulant medications may increase healthy adults’ motivation to spend more time and explore more combinations in pursuit of the solution to a computationally complex problem. However, this often results in decreased performance because exploration becomes more random.
-</p>
+        <h1>The effects of dopaminergic psychostimulants on complex problem solving </h1><h2>Elizabeth Bowman</h2><h3>David Coghill, University of Melbourne; Carsten Murawski, University of Melbourne; Peter Bossaerts, University of Melbourne</h3><h2>Abstract</h1><p>The role of dopaminergic systems in decision-making has been of increasing research interest in recent years. Medications that target these pathways are often used in disorders of attention, and are now also often diverted to non-medical, off-label, and illicit uses in the hope that they will enhance cognition and focus in healthy people. However, research to date reveals a mixed picture of efficacy in this aspect.<br/><br/>We completed a repeated-measures, double-blinded, placebo-controlled single dose trial (PECO: ACTRN12617001544369, U1111-1204-3404) to examine the actions of three indirect dopamine agonists on complex problem-solving performance of healthy adults. Forty participants received 15 mg dextroamphetamine, 30 mg methylphenidate, 200 mg modafinil, or placebo, counterbalanced across 4 testing sessions. In each session, participants completed 16 trials of the Knapsack Task (eight unique instances presented twice each). The Knapsack Task is a NP-hard combinatorial optimisation task, requiring the participant to explore different combinations of items to discover an optimal (maximal) value solution under a specified weight and time constraint.<br/><br/>Mixed-effects modelling of the knapsack decision sequence data revealed that participants took longer to submit solutions in the active drug conditions yet were less likely to find the optimal solution. Participants who performed below-average with placebo explored more solutions while in the active drug conditions, and above-average participants explored less. Closer inspection revealed that the drugs decreased productivity significantly and economically; productivity is the increase in value of the knapsack per item move per unit time. Initial choices, a good predictor of eventual performance in a trial, became more random under active drug conditions. <br/><br/>These findings suggest that dopaminergic stimulant medications may increase healthy adults’ motivation to spend more time and explore more combinations in pursuit of the solution to a computationally complex problem. However, this often results in decreased performance because exploration becomes more random.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

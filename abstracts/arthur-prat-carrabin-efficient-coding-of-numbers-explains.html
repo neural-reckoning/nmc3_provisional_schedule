@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 21:30" data-end="2020-10-30 21:45">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Efficient coding of numbers explains decision bias and noise</h1><h2>Arthur Prat-Carrabin</h2><h3>Michael Woodford, Columbia University</h3><h2>Abstract</h1><p>Multi-attribute decisions require the encoding of several pieces of information, followed by their aggregation. A simple example is averaging. When asked to compare averages of numbers, human subjects have been reported to differentially weight different numbers, even though these should be equally relevant to a correct decision. This selective weighting has been interpreted as resulting from a biased encoding of the numbers, that optimally compensates for the presence of internal noise arising later in the decision process (Spitzer et al., 2017). A natural alternative assumption is that numbers are encoded with noise, then optimally decoded from the noisy representations. Under the hypothesis of efficient coding, the degree of encoding noise should vary in an optimal way across the stimulus space, and should depend on the statistics of the numbers.
-We investigate these predictions through a task in which subjects are asked to compare the averages of two series of numbers, each sampled from the same prior distribution, whose shape we manipulate across blocks of trials. We find that our subjects seem to encode the numbers with a bias, but also with a degree of noise that varies with the size of the number. In particular, numbers that are unlikely under the prior are encoded with greater noise. We further show that a maximum-likelihood decoding model captures subjects’ behavior, and indicates that the encoding is efficiently adapted to the prior, resulting in higher expected rewards in the task.
-Furthermore, our model predicts a relation between the bias and the variability of estimates, thus providing a statistically-founded, parsimonious derivation of the “law of human perception” (Wei and Stocker, 2017). Our results both shed new experimental light on human processing of numerical information, and increase our theoretical understanding of an encoding-decoding paradigm in which efficient coding is combined with inference from noisy internal representations, resulting in biases and variability at the behavioral level.</p>
+        <h1>Efficient coding of numbers explains decision bias and noise</h1><h2>Arthur Prat-Carrabin</h2><h3>Michael Woodford, Columbia University</h3><h2>Abstract</h1><p>Multi-attribute decisions require the encoding of several pieces of information, followed by their aggregation. A simple example is averaging. When asked to compare averages of numbers, human subjects have been reported to differentially weight different numbers, even though these should be equally relevant to a correct decision. This selective weighting has been interpreted as resulting from a biased encoding of the numbers, that optimally compensates for the presence of internal noise arising later in the decision process (Spitzer et al., 2017). A natural alternative assumption is that numbers are encoded with noise, then optimally decoded from the noisy representations. Under the hypothesis of efficient coding, the degree of encoding noise should vary in an optimal way across the stimulus space, and should depend on the statistics of the numbers.<br/>We investigate these predictions through a task in which subjects are asked to compare the averages of two series of numbers, each sampled from the same prior distribution, whose shape we manipulate across blocks of trials. We find that our subjects seem to encode the numbers with a bias, but also with a degree of noise that varies with the size of the number. In particular, numbers that are unlikely under the prior are encoded with greater noise. We further show that a maximum-likelihood decoding model captures subjects’ behavior, and indicates that the encoding is efficiently adapted to the prior, resulting in higher expected rewards in the task.<br/>Furthermore, our model predicts a relation between the bias and the variability of estimates, thus providing a statistically-founded, parsimonious derivation of the “law of human perception” (Wei and Stocker, 2017). Our results both shed new experimental light on human processing of numerical information, and increase our theoretical understanding of an encoding-decoding paradigm in which efficient coding is combined with inference from noisy internal representations, resulting in biases and variability at the behavioral level.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

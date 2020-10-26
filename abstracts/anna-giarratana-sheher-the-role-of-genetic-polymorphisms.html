@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,13 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 10:30" data-end="2020-10-29 10:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>The Role of Genetic Polymorphisms in a Mouse Model of Traumatic Brain Injury and Personalized Treatment Approaches</h1><h2>Anna Giarratana (she/her)</h2><h3>Shavonne Teng, Sahithi Reddi, Cynthia Zheng, Smita Thakker-Varia, Janet Alder; Rutgers University</h3><h2>Abstract</h1><p>Traumatic Brain Injury (TBI) is a serious and potentially life threatening problem. Clinicians have long noticed that certain patients recover better after TBI and we seek to identify genetic differences underlying these differences. This knowledge can be used to explore personalized approaches to treatment.
-
-We investigated cellular and behavioral outcomes in genetically engineered mice with the BDNF Val66Met and ApoE4 polymorphism following repeated, mild TBI (rmTBI). We have found that injured Val66Met and ApoE4 carriers have a larger injury volume as assessed by MRI relative to injured Val66Val and ApoE3 carriers. We have shown that injured Val66Met carriers have increased levels of neurodegeneration, apoptosis, p-tau, activated microglia, and gliosis in the cortex and/or hippocampus at 1 and/or 21 days post injury (DPI) and that injured ApoE4 carriers have increased levels of neurodegeneration, apoptosis, activated microglia, and p-tau in the cortex and/or hippocampus at 1 and/or 21 DPI. We have also found that injured Val66Val mice have significantly more total BDNF at 21 DPI in the cortex, while ApoE3 injured mice have more total BDNF at 1 and 21 DPI in both the cortex and the hippocampus. 
-
-Therefore, we have concluded that Val66Met and ApoE4 are risk factors for poor outcomes after rmTBI. For personalized treatments, in the Val66Met injured mice we used an AAV-BDNF virus to overexpress wildtype BDNF, while in the ApoE4 injured mice we used Bryostatin-1, a PKCε activator that has previously been shown to increase BDNF levels. AAV-BDNF treatment in Val66Met injured mice reduces astrogliosis and activated microglia at 21 DPI and increases learning and memory. Bryostatin-1 treatment in the ApoE4 injured mice reduces neurodegeneration and activated microglia at 1 DPI and improves recovery in learning and memory. This study highlights the role that personalized therapeutics may be able to play in recovery for susceptible individuals.
-</p>
+        <h1>The Role of Genetic Polymorphisms in a Mouse Model of Traumatic Brain Injury and Personalized Treatment Approaches</h1><h2>Anna Giarratana (she/her)</h2><h3>Shavonne Teng, Sahithi Reddi, Cynthia Zheng, Smita Thakker-Varia, Janet Alder; Rutgers University</h3><h2>Abstract</h1><p>Traumatic Brain Injury (TBI) is a serious and potentially life threatening problem. Clinicians have long noticed that certain patients recover better after TBI and we seek to identify genetic differences underlying these differences. This knowledge can be used to explore personalized approaches to treatment.<br/><br/>We investigated cellular and behavioral outcomes in genetically engineered mice with the BDNF Val66Met and ApoE4 polymorphism following repeated, mild TBI (rmTBI). We have found that injured Val66Met and ApoE4 carriers have a larger injury volume as assessed by MRI relative to injured Val66Val and ApoE3 carriers. We have shown that injured Val66Met carriers have increased levels of neurodegeneration, apoptosis, p-tau, activated microglia, and gliosis in the cortex and/or hippocampus at 1 and/or 21 days post injury (DPI) and that injured ApoE4 carriers have increased levels of neurodegeneration, apoptosis, activated microglia, and p-tau in the cortex and/or hippocampus at 1 and/or 21 DPI. We have also found that injured Val66Val mice have significantly more total BDNF at 21 DPI in the cortex, while ApoE3 injured mice have more total BDNF at 1 and 21 DPI in both the cortex and the hippocampus. <br/><br/>Therefore, we have concluded that Val66Met and ApoE4 are risk factors for poor outcomes after rmTBI. For personalized treatments, in the Val66Met injured mice we used an AAV-BDNF virus to overexpress wildtype BDNF, while in the ApoE4 injured mice we used Bryostatin-1, a PKCε activator that has previously been shown to increase BDNF levels. AAV-BDNF treatment in Val66Met injured mice reduces astrogliosis and activated microglia at 21 DPI and increases learning and memory. Bryostatin-1 treatment in the ApoE4 injured mice reduces neurodegeneration and activated microglia at 1 DPI and improves recovery in learning and memory. This study highlights the role that personalized therapeutics may be able to play in recovery for susceptible individuals.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

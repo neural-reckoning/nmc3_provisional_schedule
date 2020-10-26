@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 01:15" data-end="2020-10-30 01:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Hierarchical stochastic block modeling in the Drosophila connectome</h1><h2>Tingshan Liu</h2><h3>Tingshan Liu, Johns Hopkins University; Benjamin D. Pedigo, Johns Hopkins University; Thomas L. Athey, Johns Hopkins University; Joshua T. Vogelstein, Johns Hopkins University</h3><h2>Abstract</h1><p>A connectome describes functional interactions or structural connections between regions of interest in the brain. The Drosophila connectome has been studied extensively in the literature and modeled as a complex network to understand the relationship between brain functionality and animal behavior. Similar to human connectomes, Drosophila connectomes also exhibit modular structure despite their relatively small sizes where cluster-like regions in the brain can be further divided into subclusters based on functional or structural similarity. Built upon an automatic Gaussian mixture modeling technique, we introduce a hierarchical stochastic blockmodel clustering algorithm which recursively clusters a network to obtain sub-clusters that can be approximated as stochastic blockmodels. We demonstrate the hierarchical structure of the mushroom body of Drosophila connectomes revealed by the proposed algorithm.
-</p>
+        <h1>Hierarchical stochastic block modeling in the Drosophila connectome</h1><h2>Tingshan Liu</h2><h3>Tingshan Liu, Johns Hopkins University; Benjamin D. Pedigo, Johns Hopkins University; Thomas L. Athey, Johns Hopkins University; Joshua T. Vogelstein, Johns Hopkins University</h3><h2>Abstract</h1><p>A connectome describes functional interactions or structural connections between regions of interest in the brain. The Drosophila connectome has been studied extensively in the literature and modeled as a complex network to understand the relationship between brain functionality and animal behavior. Similar to human connectomes, Drosophila connectomes also exhibit modular structure despite their relatively small sizes where cluster-like regions in the brain can be further divided into subclusters based on functional or structural similarity. Built upon an automatic Gaussian mixture modeling technique, we introduce a hierarchical stochastic blockmodel clustering algorithm which recursively clusters a network to obtain sub-clusters that can be approximated as stochastic blockmodels. We demonstrate the hierarchical structure of the mushroom body of Drosophila connectomes revealed by the proposed algorithm.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

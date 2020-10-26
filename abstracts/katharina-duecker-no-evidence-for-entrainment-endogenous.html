@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 18:30" data-end="2020-10-29 18:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>No evidence for entrainment: endogenous gamma oscillations and rhythmic flicker responses coexist in visual cortex</h1><h2>Katharina Duecker</h2><h3>Tjerk P Gutteling, Centre for Human Brain Health, School of Psychology, University of Birmingham; Christoph S Herrmann, Experimental Psychology Lab, Department of Psychology, European Medical School, Cluster of Excellence “Hearing for All”, Carl von Ossietzky University, Oldenburg, Germany; Ole Jensen, Centre for Human Brain Health, School of Psychology, University of Birmingham</h3><h2>Abstract</h1><p>Oscillatory brain activity in response to rhythmically presented stimuli is widely utilised in neurocognitive research to investigate visual perception. It has been suggested that endogenous neuronal oscillations can synchronise to rhythmic stimulation, a phenomenon widely termed entrainment.
- Motivated by the plethora of studies showing the involvement of neuronal gamma oscillations (~30-100 Hz) in cognition, we aimed to study to what extent photic stimulation at frequencies >50 Hz drives ongoing gamma oscillations in the human brain. To this end, we systematically investigated oscillatory responses to a rhythmic flicker in absence and presence of endogenous gamma oscillations using magnetoencephalography (MEG). Utilising a high-frequency projector, we superimposed the photic stimulation, with frequencies ranging from 52 to 90 Hz, onto an invisible circular patch and moving grating stimuli known to reliably induce gamma oscillations, respectively. Power and phase-locking were found to decrease approximately linearly with increasing flicker frequency; with no amplification at individually preferred frequencies, suggesting that the visual system did not resonate within the stimulation range. Unexpectedly, this was also the case when gamma oscillations were induced. Moreover, the rhythmic stimulation did not appear to modulate the frequency or phase of the gamma oscillations. Rather, the results indicate a co-existence of both responses, with the sources of the flicker response and the gamma oscillations peaking at significantly different locations in visual cortex. As there was no modulation of endogenous oscillations by visual stimulation, our findings challenge the notion that the phenomenon of neuronal entrainment generalises to gamma oscillations.</p>
+        <h1>No evidence for entrainment: endogenous gamma oscillations and rhythmic flicker responses coexist in visual cortex</h1><h2>Katharina Duecker</h2><h3>Tjerk P Gutteling, Centre for Human Brain Health, School of Psychology, University of Birmingham; Christoph S Herrmann, Experimental Psychology Lab, Department of Psychology, European Medical School, Cluster of Excellence “Hearing for All”, Carl von Ossietzky University, Oldenburg, Germany; Ole Jensen, Centre for Human Brain Health, School of Psychology, University of Birmingham</h3><h2>Abstract</h1><p>Oscillatory brain activity in response to rhythmically presented stimuli is widely utilised in neurocognitive research to investigate visual perception. It has been suggested that endogenous neuronal oscillations can synchronise to rhythmic stimulation, a phenomenon widely termed entrainment.<br/> Motivated by the plethora of studies showing the involvement of neuronal gamma oscillations (~30-100 Hz) in cognition, we aimed to study to what extent photic stimulation at frequencies >50 Hz drives ongoing gamma oscillations in the human brain. To this end, we systematically investigated oscillatory responses to a rhythmic flicker in absence and presence of endogenous gamma oscillations using magnetoencephalography (MEG). Utilising a high-frequency projector, we superimposed the photic stimulation, with frequencies ranging from 52 to 90 Hz, onto an invisible circular patch and moving grating stimuli known to reliably induce gamma oscillations, respectively. Power and phase-locking were found to decrease approximately linearly with increasing flicker frequency; with no amplification at individually preferred frequencies, suggesting that the visual system did not resonate within the stimulation range. Unexpectedly, this was also the case when gamma oscillations were induced. Moreover, the rhythmic stimulation did not appear to modulate the frequency or phase of the gamma oscillations. Rather, the results indicate a co-existence of both responses, with the sources of the flicker response and the gamma oscillations peaking at significantly different locations in visual cortex. As there was no modulation of endogenous oscillations by visual stimulation, our findings challenge the notion that the phenomenon of neuronal entrainment generalises to gamma oscillations.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

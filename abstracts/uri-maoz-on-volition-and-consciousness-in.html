@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 06:15" data-end="2020-10-28 06:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>On volition and consciousness in deliberate and arbitrary decisions</h1><h2>Uri Maoz</h2><h2>Abstract</h1><p>The results of the Libet experiment have been interpreted as suggesting that the neural correlates of upcoming actions (and in particular the readiness potential) precede participants’ reported conscious awareness of the onset of their decision to move. Some have taken these results to mean that decisions are typically carried out unconsciously or even that consciousness plays no causal role in the formation of decisions. This, if true, may challenge some basic tenants of the notion that humans have free will and with it some key pillars of human social order—like moral and even criminal responsibility. 
-
-However, these dramatic consequences depend on the neural correlates of upcoming decisions being decodable on the fly—online and in real time. We demonstrate such an ability from intracranial recordings in humans. Further, that interpretation rests on the idea that these early, supposedly pre-conscious neural correlates of action reflect decisions rather than mere stochastic biases. But our reanalysis of single-unit recordings in monkeys challenges that interpretation. Further, the free-will debate centers more on deliberate decisions (e.g., which career path to pursue) than on arbitrary ones (e.g., which hand to raise for no reason or purpose). Deliberate decisions are, speculatively at least, more related to consciousness than arbitrary ones. So, we compared arbitrary and deliberate decisions with nearly identical perceptual inputs and motor outputs, on the same subjects, using a novel donation paradigm. We found the expected readiness potential for arbitrary decisions but not for deliberate ones, challenging the generalizability of the Libet results from arbitrary to deliberate decisions. Our results therefore pave the way for a role for consciousness in decisions, especially those that matter, as the neuroscience of volition moves beyond Libet.</p>
+        <h1>On volition and consciousness in deliberate and arbitrary decisions</h1><h2>Uri Maoz</h2><h2>Abstract</h1><p>The results of the Libet experiment have been interpreted as suggesting that the neural correlates of upcoming actions (and in particular the readiness potential) precede participants’ reported conscious awareness of the onset of their decision to move. Some have taken these results to mean that decisions are typically carried out unconsciously or even that consciousness plays no causal role in the formation of decisions. This, if true, may challenge some basic tenants of the notion that humans have free will and with it some key pillars of human social order—like moral and even criminal responsibility. <br/><br/>However, these dramatic consequences depend on the neural correlates of upcoming decisions being decodable on the fly—online and in real time. We demonstrate such an ability from intracranial recordings in humans. Further, that interpretation rests on the idea that these early, supposedly pre-conscious neural correlates of action reflect decisions rather than mere stochastic biases. But our reanalysis of single-unit recordings in monkeys challenges that interpretation. Further, the free-will debate centers more on deliberate decisions (e.g., which career path to pursue) than on arbitrary ones (e.g., which hand to raise for no reason or purpose). Deliberate decisions are, speculatively at least, more related to consciousness than arbitrary ones. So, we compared arbitrary and deliberate decisions with nearly identical perceptual inputs and motor outputs, on the same subjects, using a novel donation paradigm. We found the expected readiness potential for arbitrary decisions but not for deliberate ones, challenging the generalizability of the Libet results from arbitrary to deliberate decisions. Our results therefore pave the way for a role for consciousness in decisions, especially those that matter, as the neuroscience of volition moves beyond Libet.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

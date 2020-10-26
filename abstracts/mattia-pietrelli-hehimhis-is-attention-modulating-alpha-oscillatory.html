@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 17:15" data-end="2020-10-30 17:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Is attention modulating alpha oscillatory activity focally for task-related locations or globally also to task-irrelevant locations?</h1><h2>Mattia Pietrelli (he/him/his)</h2><h3>Pietrelli, M., University of Wisconsin-Madison, Madison; Samaha, J., University of California, Santa Cruz; Postle, BR., University of Wisconsin-Madison, Madison</h3><h2>Abstract</h1><p>Research on endogenous attention suggests that spatial and temporal expectations influence the processing of visual stimuli in part by hijacking ongoing alpha-band oscillatory activity in brain areas involved in visual perception. However, it is not known if this top-down modulation of alpha is selective for the circuits that represent the focus of spatial attention, or if it is also deployed for the active control of processing at non-target locations. To answer this question, we manipulated spatial and temporal predictability during a Posner-style visual discrimination task, in which, within a block, stimuli could only appear in two of the four cardinal locations (i.e., only left-right target locations during some blocks, only top-bottom targets during others). This allowed us to distinguish “ignored” locations (i.e., not cued on a particular trial) from “irrelevant” ones (never cued during a particular block). We used inverted encoding modelling to generate topographic filters to isolate the alpha oscillatory activity associated with each of the four target locations. Behavioral results showed an influence of spatial expectations on both discrimination performance and eye-movement patterns, with hints of a weaker influence of temporal expectations. In addition to the standard pattern of “alpha desynchronization” at the locus of attention, the EEG results revealed no difference in the effects of spatial or temporal expectations on the alpha-band dynamics associated with ignored versus irrelevant locations. These results do not find evidence that alpha-band dynamics are differently controlled for ignored versus irrelevant locations, but instead suggest that they reflect a more global phenomenon that covers all representations of visual space outside the focus of attention.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

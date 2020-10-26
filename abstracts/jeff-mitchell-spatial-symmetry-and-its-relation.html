@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,12 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 18:15" data-end="2020-10-27 18:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Spatial Symmetry and its Relation to Grammatical Structures</h1><h2>Jeff Mitchell</h2><h3>Jeffrey S. Bowers, University of Bristol</h3><h2>Abstract</h1><p>Although there has been substantial debate over the merits of neural versus symbolic models of cognition, both approaches face a similar fundamental challenge. In each case, the set of functions available to the modeller includes every computable function, and so the fundamental question of which subset of these functions is cognitively relevant still needs to be answered, whichever toolkit is chosen. Within the symbolic approach, the Chomsky hierarchy provides an important example of possible constraints on the computational power of a formal grammar, in relation to human linguistic behaviour. In contrast, the most important constraint employed within the field of deep learning, has been the translational symmetry of image processing as implemented in convolutional networks. 
-
-Superficially at least, these appear to be two quite divergent means of limiting the space of functions, relating to the structure of space versus the syntax of natural languages. However, it is nonetheless possible to draw a connection between them. In particular, we show that imposing a convolutional structure on the memory cells of a recurrent network produces a stack like data structure, suitable for handling Context Free Grammars, the most common formalism applied to natural languages. Such an architecture reuses the symmetry under spatial translations employed within image processing applications as a method to obtain the uniformity across memory registers that is required for the same symbol to be represented at multiple locations. 
-
-Thus, despite their differences, neural and symbolic researchers have found their attention drawn to spaces of functions that share a common ingredient, in terms of translation invariance across a set of equivalent positions. More abstractly, we argue that symmetry has an important role to play in delimiting sets of interesting functions, that goes beyond just spatial translations and convolution.</p>
+        <h1>Spatial Symmetry and its Relation to Grammatical Structures</h1><h2>Jeff Mitchell</h2><h3>Jeffrey S. Bowers, University of Bristol</h3><h2>Abstract</h1><p>Although there has been substantial debate over the merits of neural versus symbolic models of cognition, both approaches face a similar fundamental challenge. In each case, the set of functions available to the modeller includes every computable function, and so the fundamental question of which subset of these functions is cognitively relevant still needs to be answered, whichever toolkit is chosen. Within the symbolic approach, the Chomsky hierarchy provides an important example of possible constraints on the computational power of a formal grammar, in relation to human linguistic behaviour. In contrast, the most important constraint employed within the field of deep learning, has been the translational symmetry of image processing as implemented in convolutional networks. <br/><br/>Superficially at least, these appear to be two quite divergent means of limiting the space of functions, relating to the structure of space versus the syntax of natural languages. However, it is nonetheless possible to draw a connection between them. In particular, we show that imposing a convolutional structure on the memory cells of a recurrent network produces a stack like data structure, suitable for handling Context Free Grammars, the most common formalism applied to natural languages. Such an architecture reuses the symmetry under spatial translations employed within image processing applications as a method to obtain the uniformity across memory registers that is required for the same symbol to be represented at multiple locations. <br/><br/>Thus, despite their differences, neural and symbolic researchers have found their attention drawn to spaces of functions that share a common ingredient, in terms of translation invariance across a set of equivalent positions. More abstractly, we argue that symmetry has an important role to play in delimiting sets of interesting functions, that goes beyond just spatial translations and convolution.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,19 +52,15 @@
             Track 5
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 18:00" data-end="2020-10-30 18:15">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Role of interneurons in populations’ neural coding and network properties in auditory cortex</h1><h2>Melanie Tobin (she/her)</h2><h3>M. Tobin, UPenn; K Wood, UPenn; J Stiso, UPenn; D Bassett, UPenn; M N Geffen UPenn;</h3><h2>Abstract</h1><p>Cortical neuronal networks are comprised of multiple types of excitatory and inhibitory neurons, which
-perform specific computations. In the auditory cortex (AC), excitatory neurons receive the sound input and
-transmit the processed signal to other areas, whereas the inhibitory neurons dynamically help shape the
-response of the excitatory neurons. In the last decade, we have learned specific functions of distinct
-inhibitory neurons, yet how different interneuron subpopulations affect network dynamics remains
-unexplored. To establish the role of different interneuron subpopulations within the cortical network, we
-stimulated specific interneuron subpopulations, while imaging the network responses to sounds in the AC.
-We monitored the activity of populations of hundreds of neurons using two-photon calcium imaging and
-simultaneously increased the activity of a subpopulation of interneurons using optogenetic stimulation. We
-focused on VIP and SOM inhibitory neurons, which have previously been found to shape cortical responses
-in a context-dependent fashion (Natan et al, 2015; Pi et al, 2013). Response of neurons activated by sound
-were enhanced when VIPs were activated but reduced upon activation of SOMs. Using Non-Negative Matrix Factorization, we identify subgraphs of neurons with increased connectivity when the activity of VIP or SOM interneurons is increased and describe their network properties. Our results suggest that the differential role of inhibitory neuron types on cortical activity extends from affecting not just single neuron responses, but also cortical function at the network level.</p>
+        <h1>Role of interneurons in populations’ neural coding and network properties in auditory cortex</h1><h2>Melanie Tobin (she/her)</h2><h3>M. Tobin, UPenn; K Wood, UPenn; J Stiso, UPenn; D Bassett, UPenn; M N Geffen UPenn;</h3><h2>Abstract</h1><p>Cortical neuronal networks are comprised of multiple types of excitatory and inhibitory neurons, which<br/>perform specific computations. In the auditory cortex (AC), excitatory neurons receive the sound input and<br/>transmit the processed signal to other areas, whereas the inhibitory neurons dynamically help shape the<br/>response of the excitatory neurons. In the last decade, we have learned specific functions of distinct<br/>inhibitory neurons, yet how different interneuron subpopulations affect network dynamics remains<br/>unexplored. To establish the role of different interneuron subpopulations within the cortical network, we<br/>stimulated specific interneuron subpopulations, while imaging the network responses to sounds in the AC.<br/>We monitored the activity of populations of hundreds of neurons using two-photon calcium imaging and<br/>simultaneously increased the activity of a subpopulation of interneurons using optogenetic stimulation. We<br/>focused on VIP and SOM inhibitory neurons, which have previously been found to shape cortical responses<br/>in a context-dependent fashion (Natan et al, 2015; Pi et al, 2013). Response of neurons activated by sound<br/>were enhanced when VIPs were activated but reduced upon activation of SOMs. Using Non-Negative Matrix Factorization, we identify subgraphs of neurons with increased connectivity when the activity of VIP or SOM interneurons is increased and describe their network properties. Our results suggest that the differential role of inhibitory neuron types on cortical activity extends from affecting not just single neuron responses, but also cortical function at the network level.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

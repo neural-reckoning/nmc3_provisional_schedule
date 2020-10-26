@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,15 +52,15 @@
             Track 9
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 18:15" data-end="2020-10-27 18:30">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Cellular mechanisms of consciousness and dreaming</h1><h2>Jaan Aru</h2><h3>Mototaka Suzuki, Humboldt University Berlin; Francesca Siclari, Centre Hospitalier Universitaire Vaudois Lausanne; William Phillips, University of Stirling; Johan F. Storm, University of Oslo; Matthew Larkum, Humboldt University Berlin</h3><h2>Abstract</h1><p>Recent breakthroughs in neurobiology indicate that the time is ripe to understand how cellular-level mechanisms are related to conscious experience. We  propose that consciousness depends on the integration between two different parts of the cortical pyramidal neuron. In conscious states, these parts are coupled, thus enabling complex signal propagation and sustained dynamics within the thalamocortical system.  When these parts of the pyramidal cell are functionally torn apart, such signal propagation is prohibited and consciousness breaks down. Hence, differences in global dynamics of large scale networks between conscious and unconscious states are controlled by local gates within pyramidal cells.
-
-We further suggest that the hallmark of conscious processing is the flexible integration of bottom-up and top-down data streams enabled through dendritic integration on a cellular level. This cellular integration mechanism provides the foundation for Dendritic Information Theory (DIT). DIT offers a natural explanation for why conscious experience is modulated by context and prior knowledge.
-
-We then explain how this mechanism can shed light on the neural mechanisms dreaming. We posit that during dreams neurons are in a state where they are driven top-down by the generative model. High acetylcholine and low noradrenaline put the pyramidal cells in a specific mode, where they are driven internally and activated through their apical dendrites. This could also be the neural mechanism for imagery and hallucinations.
-
-Taken together, we propose a theory of how top-down and bottom-up information streams are combined on the cellular level. We think that besides illuminating the neural basis of consciousness and dreaming these ideas are relevant for figuring out the neural implementation of predictive processing and for developing novel AI algorithms.
-</p>
+        <h1>Cellular mechanisms of consciousness and dreaming</h1><h2>Jaan Aru</h2><h3>Mototaka Suzuki, Humboldt University Berlin; Francesca Siclari, Centre Hospitalier Universitaire Vaudois Lausanne; William Phillips, University of Stirling; Johan F. Storm, University of Oslo; Matthew Larkum, Humboldt University Berlin</h3><h2>Abstract</h1><p>Recent breakthroughs in neurobiology indicate that the time is ripe to understand how cellular-level mechanisms are related to conscious experience. We  propose that consciousness depends on the integration between two different parts of the cortical pyramidal neuron. In conscious states, these parts are coupled, thus enabling complex signal propagation and sustained dynamics within the thalamocortical system.  When these parts of the pyramidal cell are functionally torn apart, such signal propagation is prohibited and consciousness breaks down. Hence, differences in global dynamics of large scale networks between conscious and unconscious states are controlled by local gates within pyramidal cells.<br/><br/>We further suggest that the hallmark of conscious processing is the flexible integration of bottom-up and top-down data streams enabled through dendritic integration on a cellular level. This cellular integration mechanism provides the foundation for Dendritic Information Theory (DIT). DIT offers a natural explanation for why conscious experience is modulated by context and prior knowledge.<br/><br/>We then explain how this mechanism can shed light on the neural mechanisms dreaming. We posit that during dreams neurons are in a state where they are driven top-down by the generative model. High acetylcholine and low noradrenaline put the pyramidal cells in a specific mode, where they are driven internally and activated through their apical dendrites. This could also be the neural mechanism for imagery and hallucinations.<br/><br/>Taken together, we propose a theory of how top-down and bottom-up information streams are combined on the cellular level. We think that besides illuminating the neural basis of consciousness and dreaming these ideas are relevant for figuring out the neural implementation of predictive processing and for developing novel AI algorithms.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

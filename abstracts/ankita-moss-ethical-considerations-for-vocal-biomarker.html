@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,15 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 22:15" data-end="2020-10-30 22:30">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Ethical considerations for vocal biomarker research</h1><h2>Ankita Moss</h2><h3>Jim Schwoebel </h3><h2>Abstract</h1><p>Over 30 million Americans – roughly 8% of the U.S. population - are affected by psychiatric and neurological diseases (PaNDs). Despite this high prevalence, few cost-effective tools exist to objectively diagnose PaNDs early. As a result, PaNDs are usually treated only after advanced symptoms appear, leading to high costs and poor patient outcomes. There is thus a strong need to create low-cost and highly accurate biomarkers to streamline early-stage PaNDs diagnosis.
-
-Perhaps the most promising area for early diagnosis of PaNDs is through vocal biomarkers. There are multiple benefits to this approach including: 1) the cost to acquire and process voice data is low (~$0.03/sample); 2) the tools to collect voice data are widely accessible (68% of US population owns a smartphone); and 3) voice-based machine learning models are highly accurate at detecting symptoms of PaNDs up to five years earlier relative to the standard of care (e.g. in Alzheimer’s disease).
-
-Despite great promise, the potential rapid growth of the voice space raises a host of early neuroethical concerns.  As the voice tech space grows, individuals may become subject to algorithmic bias. Algorithmic bias has manifested in the facial recognition space, for example, due to the lack of diversity in datasets. The shortcomings of these datasets result in a spectrum of unwanted bias - from not unlocking your own phone to being falsely arrested as a wanted criminal. 
-
-The voice space can prevent algorithmic bias early on by monitoring the data collected and use of technology. Rather than collecting as much data as possible to train initial predictive algorithms, the voice space must ensure that the data is representative of diverse populations in order to mitigate harmful biases. 
-</p>
+        <h1>Ethical considerations for vocal biomarker research</h1><h2>Ankita Moss</h2><h3>Jim Schwoebel </h3><h2>Abstract</h1><p>Over 30 million Americans – roughly 8% of the U.S. population - are affected by psychiatric and neurological diseases (PaNDs). Despite this high prevalence, few cost-effective tools exist to objectively diagnose PaNDs early. As a result, PaNDs are usually treated only after advanced symptoms appear, leading to high costs and poor patient outcomes. There is thus a strong need to create low-cost and highly accurate biomarkers to streamline early-stage PaNDs diagnosis.<br/><br/>Perhaps the most promising area for early diagnosis of PaNDs is through vocal biomarkers. There are multiple benefits to this approach including: 1) the cost to acquire and process voice data is low (~$0.03/sample); 2) the tools to collect voice data are widely accessible (68% of US population owns a smartphone); and 3) voice-based machine learning models are highly accurate at detecting symptoms of PaNDs up to five years earlier relative to the standard of care (e.g. in Alzheimer’s disease).<br/><br/>Despite great promise, the potential rapid growth of the voice space raises a host of early neuroethical concerns.  As the voice tech space grows, individuals may become subject to algorithmic bias. Algorithmic bias has manifested in the facial recognition space, for example, due to the lack of diversity in datasets. The shortcomings of these datasets result in a spectrum of unwanted bias - from not unlocking your own phone to being falsely arrested as a wanted criminal. <br/><br/>The voice space can prevent algorithmic bias early on by monitoring the data collected and use of technology. Rather than collecting as much data as possible to train initial predictive algorithms, the voice space must ensure that the data is representative of diverse populations in order to mitigate harmful biases. <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

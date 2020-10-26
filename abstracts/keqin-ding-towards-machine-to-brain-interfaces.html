@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 22:00" data-end="2020-10-28 22:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Towards Machine to Brain Interfaces: Sensory Stimulation Enhances Sensorimotor Dynamic Functional Connectivity in Upper Limb Amputees</h1><h2>Keqin Ding</h2><h3>Keqin Ding, Johns Hopkins School of Medicine; Andrei Dragomir, National University of Singapore; Rohit Bose, University of Pittsburgh; Luke E. Osborn, Johns Hopkins University Applied Physics Laboratory; Manuel S. Seet, National University of Singapore; Anastasios Bezerianos, National University of Singapore; Nitish V. Thakor, Johns Hopkins School of Medicine</h3><h2>Abstract</h1><p>Recent development of sensory stimulation techniques demonstrates the ability to elicit touch-like phantom sensations in upper limb amputees. The cortical processing of this phantom sensation and the corresponding influences on sensorimotor functional connectivity have not been studied. We show the temporal dynamics of brain functional connectivity with and without sensory stimulation. Electroencephalogram (EEG) was recorded from 2 amputee participants and 3 able-bodied participants while they were performing hand movements with and without transcutaneous nerve stimulation. We applied dynamic functional connectivity (dFC) analysis, by modeling cortical signals as a series of functional networks along the temporal dimension. Results show that sensory stimulation enhances the speed of information transfer and number of connection paths between brain systems such as primary somatosensory (S1), primary motor, and higher order processing regions, all of which are involved in sensorimotor processing. The increased number in connection paths between S1 and motor systems is the most significant during the first 750 ms of the entire stimulation period. This is the first work to reveal dynamic communication between somatosensory, motor, and higher order processing regions in the cortex of amputees in response to sensory stimulation. This work provides insights into how multiple sensory modalities contribute to the motor cortex to generate motor actions. Topics for future research include investigating the functional connections from motor or multisensory processing systems to the somatosensory system in similar tasks, exploring the modular changes of large scale brain networks, and mapping the long term brain changes in amputee participants from immediate loss of sensory input to restoration through sensory feedback.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

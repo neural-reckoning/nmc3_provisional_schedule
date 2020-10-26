@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 13:15" data-end="2020-10-28 13:30">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Language processing across childhood and adolescence: an fNIRS study</h1><h2>Efstratia Papoutselou (she/her)</h2><h3>Papoutselou E. NIHR Nottingham Biomedical Research Centre, Hearing Sciences, Division of Clinical Neuroscience, School of Medicine, University of Nottingham; Wiggins I.M., NIHR Nottingham Biomedical Research Centre, Hearing Sciences, Division of Clinical Neuroscience, School of Medicine, University of Nottingham; Hartley D.E.H., NIHR Nottingham Biomedical Research Centre, Hearing Sciences, Division of Clinical Neuroscience, School of Medicine, University of Nottingham, Nottingham University Hospitals National Health Service Trust.</h3><h2>Abstract</h1><p>Functional and structural neuroimaging have shown that language networks mature during normal development. However, a detailed timeframe of these developmental changes in language processing is still lacking. Therefore, in typically developing school-aged children we investigated receptive and expressive language processing using functional near-infrared spectroscopy (fNIRS). Specifically, 30 healthy native English speakers (12 children, age range: 6 to 10 years old and 18 adolescents, age range: 11 to 16 years old) were recruited.  Neural activity was measured bilaterally over frontal and temporal areas using fNIRS while participants completed computer-administered language tasks. Adolescents showed increased activity over left temporal regions compared to left frontal regions, independent of task performance, which was not observed in younger children. Overall, these findings suggest that language processing within the left hemisphere continues to develop into adolescence, perhaps reflecting an automation in language skills that is yet to mature in younger children. Further longitudinal studies with larger sample sizes are needed to confirm this conclusion.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

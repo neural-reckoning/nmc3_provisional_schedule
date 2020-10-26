@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 13:15" data-end="2020-10-29 13:30">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Can we strategically reallocate memory resources?</h1><h2>Yin-ting Lin</h2><h3>Daryl Fougnie, New York University Abu Dhabi</h3><h2>Abstract</h1><p>We can selectively prioritize information during perception. In working memory, information can be similarly prioritized by a retro-cue. This is thought to occur due to reallocation of resources to prioritized items. Here we tested this by employing a working memory task with unequal item rewards to create uneven distribution of resources. Retro-cues then indicated which of three items could be dropped from memory. If reallocation occurs, then we should observe a larger benefit in memory when a high reward item versus a low reward item becomes irrelevant, since high reward items tie up more resources. We found that participants use both reward value and cue information to perform the task. There is better performance for items with higher reward values, F(2,90) = 10.85, p < .001, and for valid versus neutral cues, F(1,45) = 16.38, p < .001. However, our results show that removing a well-encoded item does not benefit performance more, t(45) = 0.05, p = .959 (JZS Bayes Factor = 6.245683). These findings challenge the dominant view that retro-cue benefits reflect reallocation of memory resources from removed items. Our results are more consistent with a benefit to cued items (such as retrieval protection or a general strengthening) that is independent of the memory strength of the de-prioritized item. 
-
-</p>
+        <h1>Can we strategically reallocate memory resources?</h1><h2>Yin-ting Lin</h2><h3>Daryl Fougnie, New York University Abu Dhabi</h3><h2>Abstract</h1><p>We can selectively prioritize information during perception. In working memory, information can be similarly prioritized by a retro-cue. This is thought to occur due to reallocation of resources to prioritized items. Here we tested this by employing a working memory task with unequal item rewards to create uneven distribution of resources. Retro-cues then indicated which of three items could be dropped from memory. If reallocation occurs, then we should observe a larger benefit in memory when a high reward item versus a low reward item becomes irrelevant, since high reward items tie up more resources. We found that participants use both reward value and cue information to perform the task. There is better performance for items with higher reward values, F(2,90) = 10.85, p < .001, and for valid versus neutral cues, F(1,45) = 16.38, p < .001. However, our results show that removing a well-encoded item does not benefit performance more, t(45) = 0.05, p = .959 (JZS Bayes Factor = 6.245683). These findings challenge the dominant view that retro-cue benefits reflect reallocation of memory resources from removed items. Our results are more consistent with a benefit to cued items (such as retrieval protection or a general strengthening) that is independent of the memory strength of the de-prioritized item. <br/><br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

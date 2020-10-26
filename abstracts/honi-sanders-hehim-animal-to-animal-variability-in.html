@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,12 +52,15 @@
             Track 9
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 16:30" data-end="2020-10-27 16:45">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Animal-to-Animal Variability in Hippocampal Remapping</h1><h2>Honi Sanders (he/him)</h2><h3>Parsa Nilchian, Florida International University and MIT Summer Research Program; Samuel Gershman, Department of Psychology and Center for Brain Science -- Harvard University; Matthew Wilson, Picower Institute and Department of Brain and Cognitive Sciences -- Massachusetts Institute of Technology; Honi Sanders, Center for Brains Minds and Machines and Department of Brain and Cognitive Sciences-- Massachusetts Institute of Technology</h3><h2>Abstract</h1><p>Hippocampal place cells form a unique map for each environment, a phenomenon known as hippocampal remapping.  What qualifies as a sufficiently different environment to give rise to a new hippocampal map is unclear, and different studies provide superficially conflicting results.  In particular, many experiments have observed unexplained variability in remapping behavior between different animals.
-Recent work has organized disparate phenomena associated with remapping by framing the context identification problem that the hippocampus is ostensibly solving as a hidden state inference problem. Lack of access to objective hidden state labels lead to an inherent ambiguity in identifying which experiences deserve unique maps.  Animal variability can potentially be a result of different animals having characteristically different parameter settings in resolving this ambiguity.
-We reanalyze a published data set collected from rats foraging in 11 different rooms, including a variety of types of repetitions of those rooms.  We find that variability between these animals in remapping behavior is highly structured: different animals have characteristically different remapping behaviors across different types of repetitions of these rooms.  For example, remapping between repetitions of an environment when the animal is not removed from a room correlate with remapping between repetitions of an environment much later in the day.  We also find heterogeneity in remapping behavior across the place cell population within an animal. Overall, we find evidence that different animals have consistently different remapping responses to the same experiences, emphasizing the subjective nature of hippocampal remapping.
-
-</p>
+        <h1>Animal-to-Animal Variability in Hippocampal Remapping</h1><h2>Honi Sanders (he/him)</h2><h3>Parsa Nilchian, Florida International University and MIT Summer Research Program; Samuel Gershman, Department of Psychology and Center for Brain Science -- Harvard University; Matthew Wilson, Picower Institute and Department of Brain and Cognitive Sciences -- Massachusetts Institute of Technology; Honi Sanders, Center for Brains Minds and Machines and Department of Brain and Cognitive Sciences-- Massachusetts Institute of Technology</h3><h2>Abstract</h1><p>Hippocampal place cells form a unique map for each environment, a phenomenon known as hippocampal remapping.  What qualifies as a sufficiently different environment to give rise to a new hippocampal map is unclear, and different studies provide superficially conflicting results.  In particular, many experiments have observed unexplained variability in remapping behavior between different animals.<br/>Recent work has organized disparate phenomena associated with remapping by framing the context identification problem that the hippocampus is ostensibly solving as a hidden state inference problem. Lack of access to objective hidden state labels lead to an inherent ambiguity in identifying which experiences deserve unique maps.  Animal variability can potentially be a result of different animals having characteristically different parameter settings in resolving this ambiguity.<br/>We reanalyze a published data set collected from rats foraging in 11 different rooms, including a variety of types of repetitions of those rooms.  We find that variability between these animals in remapping behavior is highly structured: different animals have characteristically different remapping behaviors across different types of repetitions of these rooms.  For example, remapping between repetitions of an environment when the animal is not removed from a room correlate with remapping between repetitions of an environment much later in the day.  We also find heterogeneity in remapping behavior across the place cell population within an animal. Overall, we find evidence that different animals have consistently different remapping responses to the same experiences, emphasizing the subjective nature of hippocampal remapping.<br/><br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

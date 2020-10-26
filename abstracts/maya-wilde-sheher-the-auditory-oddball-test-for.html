@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 01:30" data-end="2020-10-28 01:45">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The auditory oddball test for larval zebrafish</h1><h2>Maya Wilde (she/her)</h2><h3>Rebecca Poulsen, Queensland Brain Institute; Ethan Scott, Queensland Brain Institute</h3><h2>Abstract</h1><p>The auditory oddball test is used clinically to evoke a phenomenon in EEG recordings known as mismatch negativity (MMN), in which the response to an unexpected sound (oddball) is greater than the response to an expected sound. This test is useful for investigating differences in auditory processing in developmental disorders such as autism spectrum disorder (ASD). The larval zebrafish is uniquely useful for non-invasive in vivo imaging of the whole brain at the cellular level. It therefore presents an opportunity to investigate MMN responses at the single-cell level. We used selective plane illumination microscopy to record fluorescent responses to auditory oddball stimulus trains in the brains of zebrafish larvae expressing GCamP6. Preliminary tests reveal certain populations of neurons do show elevated responses to oddball stimuli, and that pure tones are more effective for producing this effect than bands of white noise. Future tests will compare oddball responses between wildtype larvae and those carrying mutations associated with ASD.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 10:15" data-end="2020-10-29 10:30">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Overcompensation of lens-accommodation in case of Convergence Insufficiency- A theoretical Model  </h1><h2>Akshara Vaithiswari Gopiswaminathan </h2><h3>Ashwin Badrinath Pothiadia Irungovel, SUNY College of Optometry ; Bradly Alicea, Orthogonal Research and Education Laboratory</h3><h2>Abstract</h1><p>In this submission, I will present the theoretical computational model of a Non- Strabismic Binocular Vision Anomaly- an Adaptive Accommodation excess in case of Convergence Insufficiency (CI). Normally when a person perceives a target, ciliary and extraocular muscles are managed by the oculomotor nerve to clear the blur. The blur and disparity are corrected by altering the accommodation and vergence, respectively. 
-CI is characterized by an inability to maintain binocularity while working at distances closer to the body, experienced usually as intermittent double-vision when focusing at a target. People with CI often complain of the inability to concentrate while doing near work and complain of headaches, double- vision, and strain - caused due to the fatigue of the extraocular and ciliary muscles. The neural feedback system of accommodation and vergence are co-dependent, in that they are connected via a closed-loop pathway. Physiologically, this is evident in the form of an ”Accommodation Triad” which consists of Accommodation, Convergence, and Pupil constriction. The accommodation triad describes an exceptional adaptation acquired as neural feedback in some subjects (despite fatigue) as an excess of accommodation to compensate for CI. I will present the neural mechanism and the theoretical computational model of this adaptive process.  </p>
+        <h1>Overcompensation of lens-accommodation in case of Convergence Insufficiency- A theoretical Model  </h1><h2>Akshara Vaithiswari Gopiswaminathan </h2><h3>Ashwin Badrinath Pothiadia Irungovel, SUNY College of Optometry ; Bradly Alicea, Orthogonal Research and Education Laboratory</h3><h2>Abstract</h1><p>In this submission, I will present the theoretical computational model of a Non- Strabismic Binocular Vision Anomaly- an Adaptive Accommodation excess in case of Convergence Insufficiency (CI). Normally when a person perceives a target, ciliary and extraocular muscles are managed by the oculomotor nerve to clear the blur. The blur and disparity are corrected by altering the accommodation and vergence, respectively. <br/>CI is characterized by an inability to maintain binocularity while working at distances closer to the body, experienced usually as intermittent double-vision when focusing at a target. People with CI often complain of the inability to concentrate while doing near work and complain of headaches, double- vision, and strain - caused due to the fatigue of the extraocular and ciliary muscles. The neural feedback system of accommodation and vergence are co-dependent, in that they are connected via a closed-loop pathway. Physiologically, this is evident in the form of an ”Accommodation Triad” which consists of Accommodation, Convergence, and Pupil constriction. The accommodation triad describes an exceptional adaptation acquired as neural feedback in some subjects (despite fatigue) as an excess of accommodation to compensate for CI. I will present the neural mechanism and the theoretical computational model of this adaptive process.  </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,13 +52,15 @@
             Track 9
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 17:00" data-end="2020-10-30 17:15">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Efficacy of pyruvate and tempol treatment in traumatic brain injury rat model</h1><h2>Alexandra Latyshkova (she, her)</h2><h3>Anton Malkov, Institute of Theoretical and Experimental Biophysics</h3><h2>Abstract</h1><p>Efficacy of pyruvate and tempol treatment in traumatic brain injury rat model
-
-Patients with traumatic brain injury are at risk of developing hyperexcitability. Our study is aimed at exploring new ways to mitigate the effects of the brain damage. The results show that pyruvate and tempol application can alleviate the symptoms in rat models.
-To evaluate the influence of the treatment we measured local field potential in the CA1 region of the hippocampus in rats exposed to brain injury and performed a set of behavioural tests.
-Pyruvate and tempol administered orally during the first days after the injury are shown to significantly reduce neurological malfunctions and slightly lessen sensory-motor impairment. Tempol also improves exploratory behaviour and lowers the level of anxiety in rats with injury.
-</p>
+        <h1>Efficacy of pyruvate and tempol treatment in traumatic brain injury rat model</h1><h2>Alexandra Latyshkova (she, her)</h2><h3>Anton Malkov, Institute of Theoretical and Experimental Biophysics</h3><h2>Abstract</h1><p>Efficacy of pyruvate and tempol treatment in traumatic brain injury rat model<br/><br/>Patients with traumatic brain injury are at risk of developing hyperexcitability. Our study is aimed at exploring new ways to mitigate the effects of the brain damage. The results show that pyruvate and tempol application can alleviate the symptoms in rat models.<br/>To evaluate the influence of the treatment we measured local field potential in the CA1 region of the hippocampus in rats exposed to brain injury and performed a set of behavioural tests.<br/>Pyruvate and tempol administered orally during the first days after the injury are shown to significantly reduce neurological malfunctions and slightly lessen sensory-motor impairment. Tempol also improves exploratory behaviour and lowers the level of anxiety in rats with injury.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 18:30" data-end="2020-10-27 18:45">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Effects of procrastination on task shifting and prospective memory</h1><h2>Illia Kuznietsov</h2><h3>Zhuravlova Olena, Zhuravlov Oleksandr, Kachynska Tetiana, Abramchuk Olha</h3><h2>Abstract</h1><p>Current studies of procrastination are focusing mainly on psychological aspects, while neurobiological side of this phenomenon remains poorly understood. So far, procrastination does not mean forgetting the tasks, but rather completing less important tasks first while postponing and keeping more important in mind, we hypothesize, that mechanisms of shifting between tasks and mechanisms of prospective memory will be more active in procrastinators in comparison with non-procrastinators. Based on this assumption we conducted an event-related potentials (ERP) study on subjects with different level of procrastination. Subjects were divided into 2 groups with high (8 subjects) and low (7 subjects) level of procrastination based on Pure procrastination scale test. ERPs were recorded during three experimental conditions: under the load of perceptual prospective memory, under the load of conceptual prospective memory and under task-shift paradigm. Responses and corresponding reaction time were recorded as well. Here we present the results of response analysis. No significant differences between studied groups were obtained for perceptual prospective memory task. During conceptual prospective memory task, the number of correct answers was significantly higher in procrastinators, than in non-procrastinators. Giving wrong answers, non-procrastinators had significantly higher reaction time, than procrastinators did. For task shift activity, reaction time was higher in procrastinators in shift condition. We suppose, that observed results show higher level of activation of conceptual prospective memory mechanisms in procrastinators, which should be reflected in the features of recorded ERPs.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

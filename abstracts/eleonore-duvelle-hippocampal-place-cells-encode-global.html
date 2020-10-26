@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 08:30" data-end="2020-10-28 08:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Hippocampal place cells encode global location but not changes in environmental connectivity in a 4-room navigation task</h1><h2>Eleonore Duvelle</h2><h3>Roddy M Grieves, UCL London; Anyi Liu, UCL London; Selim Jedidi-Ayoub, UCL London; Joanna Holeniewska, UCL London; Adam Harris, University of Oxford; Nils Nyberg, UCL London; Francesco Donnarumma, Institute of Cognitive Sciences and Technologies Rome; Julie M. Lefort, UCL London; Kate J. Jeffery, UCL London; Christopher Summerfield, University of Oxford; Giovanni Pezzulo, Institute of Cognitive Sciences and Technologies Rome; Hugo J. Spiers, UCL London</h3><h2>Abstract</h1><p>Flexible navigation relies on a cognitive map of space, thought to be implemented by hippocampal place cells. In connected environments, optimal navigation requires keeping track of one’s location and of the available connections between subspaces. We examined whether the dorsal CA1 place cells of rats encode environmental connectivity in four geometrically-identical boxes arranged in a square. Rats moved between boxes by pushing saloon-type doors that could be locked in one or both directions. While rats demonstrated knowledge of environmental connectivity, their place cells did not respond to connectivity changes, nor did they represent doorways differently from other locations. Importantly, place cells represented location globally despite the repetitive geometry. These results suggest that CA1 place cells underlie a spatial map that does not explicitly include connectivity.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

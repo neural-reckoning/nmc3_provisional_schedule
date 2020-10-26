@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,13 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 13:15" data-end="2020-10-30 13:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>The role of Kv2 and Nav1.6 in Adaptive Firing in Place Fields within the CA1 region of the Hippocampus: A Computational and Experimental Approach</h1><h2>Carol Upchurch</h2><h3>Crescent Combe, Department of Neuroscience, Christopher Knowlton, Department of Cell Biology and Anatomy, Sonia Gasparini, Department of Neuroscience, Carmen Canavier, Department of Cell Biology and Anatomy</h3><h2>Abstract</h1><p>Objective: The hippocampus is an area of the brain important in learning and spatial navigation. Within the hippocampal CA1 region, some pyramidal cells function as place cells, firing preferentially when an animal is in an area of its environment, its place field. As an animal enters its place field, the sensory input creates a bump in excitatory synaptic input, that decreases as an animal leaves the place field. We simulate this as a triangular current ramp applied to the soma or proximal dendrites (~200 μm from the soma). In a familiar place field, CA1 pyramidal cells fire more on the up ramp than down ramp, even though the ramp is symmetric.  This phenomenon, adaptation, is more pronounced in the dendrites. Spike height also significantly decreases in the dendrites. Slow inactivation of the voltage gated sodium channel increases with distance from the soma along the apical dendrite. Our objective is to model this inactivation as a possible mechanism behind adaptation and decrease in spike height in the dendrites.
-
-Methods: We inserted a five state Markov model of Nav1.6 into an existing multicompartmental model implemented in NEURON. We calibrated this model to fit the time, voltage and spatial dependencies of slow inactivation according to the literature and data from our experimental collaborators. We later updated this model with the addition of the voltage gated potassium channel Kv2.
-
-Results: After inserting the Markov model into the existing multicompartmental model, our simulation results included doublets that were inconsistent with our experimental results, until the addition of Kv2. In line with this prediction, blocking Kv2 produced doublets in our experimental ramps. With the addition of Kv2 and the Nav1.6 Markov model, the model successfully simulates adaptive firing, which is more pronounced in the dendrites, and decreased spike height in the dendrites.
-</p>
+        <h1>The role of Kv2 and Nav1.6 in Adaptive Firing in Place Fields within the CA1 region of the Hippocampus: A Computational and Experimental Approach</h1><h2>Carol Upchurch</h2><h3>Crescent Combe, Department of Neuroscience, Christopher Knowlton, Department of Cell Biology and Anatomy, Sonia Gasparini, Department of Neuroscience, Carmen Canavier, Department of Cell Biology and Anatomy</h3><h2>Abstract</h1><p>Objective: The hippocampus is an area of the brain important in learning and spatial navigation. Within the hippocampal CA1 region, some pyramidal cells function as place cells, firing preferentially when an animal is in an area of its environment, its place field. As an animal enters its place field, the sensory input creates a bump in excitatory synaptic input, that decreases as an animal leaves the place field. We simulate this as a triangular current ramp applied to the soma or proximal dendrites (~200 μm from the soma). In a familiar place field, CA1 pyramidal cells fire more on the up ramp than down ramp, even though the ramp is symmetric.  This phenomenon, adaptation, is more pronounced in the dendrites. Spike height also significantly decreases in the dendrites. Slow inactivation of the voltage gated sodium channel increases with distance from the soma along the apical dendrite. Our objective is to model this inactivation as a possible mechanism behind adaptation and decrease in spike height in the dendrites.<br/><br/>Methods: We inserted a five state Markov model of Nav1.6 into an existing multicompartmental model implemented in NEURON. We calibrated this model to fit the time, voltage and spatial dependencies of slow inactivation according to the literature and data from our experimental collaborators. We later updated this model with the addition of the voltage gated potassium channel Kv2.<br/><br/>Results: After inserting the Markov model into the existing multicompartmental model, our simulation results included doublets that were inconsistent with our experimental results, until the addition of Kv2. In line with this prediction, blocking Kv2 produced doublets in our experimental ramps. With the addition of Kv2 and the Nav1.6 Markov model, the model successfully simulates adaptive firing, which is more pronounced in the dendrites, and decreased spike height in the dendrites.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,14 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 12:00" data-end="2020-10-27 12:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Development of Interactive Visualizations for Neuroscience Education</h1><h2>Ida Eden (Ms.)</h2><h3>Xaq Pitkow</h3><h2>Abstract</h1><p>        We present preliminary development of interactive visualization games for education, focusing on mathematical concepts in neuroscience. 
-        In teaching neuroscience, some beginning students have difficulties in understanding some mathematical objects, such as multivariate Gaussians, where interactive visualizations could empower them with the intuition to overcome the learning obstacle in a simplified way. Such demonstrations might also help communication of neuroscience ideas to the public. 
-        For maximal flexibility and to facilitate future open source development work, we would like to mix different frameworks, ranging from embedded GIFs to Python widgets to 3D Unity games. Thus we propose to present visualizations as webpages with components hosted by game servers. So far we have provided interactive visualizations in Godot 2D & 3D engine that uses a python-alike programming language, as well as the Unity3D engine in C#. Then, for further context, we link the interactive visualization games’ web window into Jupyter notebooks, and add video and/or scientific Markdown for explanations of the content. Consequently, people can choose and embed specific visualizations into their Jupyter notebooks and PowerPoint slides.
-	We have developed the prototype versions of two Gaussian widgets (2D and 3D), a head-orientation activity altering neuron visualization, and a linear dynamics state evolution visualization. We also developed intuitive on-screen gestures to interact with the mathematical content, which could be used on multi-touch devices including laptops, tablets, and mobile screens.
-        In conclusion, we develop neuroscience interactive visualization games to help students turn abstract mathematical concepts into pictures, connect them to model parameters and the outputs of dynamic interactive models, and help them build intuition and understanding.
-
-</p>
+        <h1>Development of Interactive Visualizations for Neuroscience Education</h1><h2>Ida Eden (Ms.)</h2><h3>Xaq Pitkow</h3><h2>Abstract</h1><p>        We present preliminary development of interactive visualization games for education, focusing on mathematical concepts in neuroscience. <br/>        In teaching neuroscience, some beginning students have difficulties in understanding some mathematical objects, such as multivariate Gaussians, where interactive visualizations could empower them with the intuition to overcome the learning obstacle in a simplified way. Such demonstrations might also help communication of neuroscience ideas to the public. <br/>        For maximal flexibility and to facilitate future open source development work, we would like to mix different frameworks, ranging from embedded GIFs to Python widgets to 3D Unity games. Thus we propose to present visualizations as webpages with components hosted by game servers. So far we have provided interactive visualizations in Godot 2D & 3D engine that uses a python-alike programming language, as well as the Unity3D engine in C#. Then, for further context, we link the interactive visualization games’ web window into Jupyter notebooks, and add video and/or scientific Markdown for explanations of the content. Consequently, people can choose and embed specific visualizations into their Jupyter notebooks and PowerPoint slides.<br/>	We have developed the prototype versions of two Gaussian widgets (2D and 3D), a head-orientation activity altering neuron visualization, and a linear dynamics state evolution visualization. We also developed intuitive on-screen gestures to interact with the mathematical content, which could be used on multi-touch devices including laptops, tablets, and mobile screens.<br/>        In conclusion, we develop neuroscience interactive visualization games to help students turn abstract mathematical concepts into pictures, connect them to model parameters and the outputs of dynamic interactive models, and help them build intuition and understanding.<br/><br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

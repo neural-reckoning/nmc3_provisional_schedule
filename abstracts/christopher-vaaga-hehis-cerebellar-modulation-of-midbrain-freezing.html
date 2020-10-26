@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 21:00" data-end="2020-10-27 21:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Cerebellar modulation of midbrain freezing-related circuitry </h1><h2>Christopher Vaaga (He/His)</h2><h3>Spencer T Brown, Northwestern University; Indira M Raman, Northwestern University</h3><h2>Abstract</h1><p>Innate defensive behaviors promote survival by allowing animals to detect and respond to threats within their environment, such as predators. Although innate, these defensive behaviors show a remarkable amount of flexibility and are subject to robust habituation, suggesting that the circuitry underlying defensive behaviors is subject to modulatory control. Using a combination of viral tracing and slice electrophysiology, we show that the cerebellum may provide one source of afferent modulatory influence within the periaqueductal gray by preferentially synapsing onto local dopaminergic neurons within the vlPAG. In turn, vlPAG dopamine neurons altered the relative strength of synaptically evoked inhibition and excitation onto transgenically identified freezing premotor neurons in the vlPAG. More specifically, activation of postsynaptic D2 receptors increased the strength of inhibition and decreased the strength of excitation. Such modulation is predicted to increase spike threshold and alter the gain of the input-output relationship, thereby changing the integrative properties of freezing premotor neurons. Together, these results suggest that locally released dopamine within the vlPAG modulates synaptic integration in freezing related neurons, which is controlled, at least in part, by input from the cerebellum. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

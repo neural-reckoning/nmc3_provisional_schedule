@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 21:00" data-end="2020-10-26 21:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Science fiction and folk knowledge of the brain: insights for science communicators</h1><h2>Kathryn O'Nell</h2><h2>Abstract</h1><p>In science communication, one of the biggest challenges for scientists steeped in the vocabulary and assumptions of their field can be understanding exactly where expert and non-expert understandings of a particular topic differ. Luckily for neuroscientists, we have a particularly strong and underutilized tool in our belt for better understanding folk conceptions of the mind and brain: science fiction. Since the second century (and probably before) humans have been using speculative fiction to explore biological aspects of human identity. In this talk, I’ll review what classic and contemporary speculative fiction can tell us about the issues in neuroscientific research that loom largest in the public consciousness, like whether the brain is a computer, what aspects of human cognition are required for general artificial intelligence, how personal identity is preserved in an ever-changing biological system, and to what degree genetic factors control social outcomes. Then I’ll discuss how neuroscientists can use the conceptions of brain and mind that science fiction create and reveal as a starting point for communicating their research to non-expert audiences.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

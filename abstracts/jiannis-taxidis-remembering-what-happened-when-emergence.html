@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 17:00" data-end="2020-10-30 17:15">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Remembering what happened when: Emergence and stability of context-specific hippocampal sequences encoding odors and time</h1><h2>Jiannis Taxidis</h2><h3>Jiannis Taxidis, UCLA; Peyman Golshani, UCLA</h3><h2>Abstract</h1><p>How does the brain keep track of events we need to remember as well as the intervals between them? A recent model of hippocampal function posits that hippocampal networks generate spiking sequences to encode important sensory stimuli (external world) and place or time between them (internal representations) forming memory maps of spatiotemporally related experiences. But does it use one or multiple encoding strategies to combine external and internal representations? Do sensory and time representations share the same stability adaptability or learning-dynamics? Using two-photon calcium imaging in vivo in CA1 of head-fixed mice, we tracked the activity of thousands of cells across days, while mice learned and performed an olfactory delayed non-match-to-sample task requiring working memory. We observed ‘odor-cells’, encoding specific olfactory stimuli, followed by ‘time-cells’ encoding delay timepoints after a specific odor. Despite forming continuous spiking sequences, the two neuronal groups exhibited strikingly different properties. Odor-cells retained stable fields when the delay or odor presentation was extended as well as across days, whereas time fields were highly unstable and readily remapped in both cases. During learning, the number of odor-cells remained fixed while time-cells increased as performance improved. This increase was learning-related since it did not occur in naïve mice passively exposed to the same task trials. Finally, cells did not spike randomly before they acquired their field or after they lost it. A cell’s activity progressively converged to its field and then diverged from it over days. Odor-cells acquired a stable field earlier and for longer than time-cells. Therefore, the hippocampus can generate and sustain both stable representations of external cues as well as flexible temporal-codes with distinct learning-dynamics. This crucial combination of stability and flexibility allows hippocampal circuits to link fixed elements of the external world despite their changing temporal relationships, to construct memory-maps of related experiences.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 13:15" data-end="2020-10-28 13:30">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>A Frame-Based Approach to Submovement Decomposition </h1><h2>Laura Schwendeman (she/her)</h2><h3>James Hermus, Department of Mechanical Engineering, Massachusetts Institute of Technology, Cambridge, Massachusetts; Neville Hogan, Department of Mechanical Engineering and Department of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, Massachusetts</h3><h2>Abstract</h1><p>Mounting evidence from human motor control suggests that discrete submovements underlie continuous human actions. This has motivated the development of algorithms to “extract” submovements from human experimental data. Fast decomposition algorithms, e.g. based on zero-crossings of progressively higher derivatives, result in spurious decompositions. Other algorithms, such as a scattershot algorithm (using stochastic Monte-Carlo methods) make fewer assumptions, but are not computationally efficient enough to handle the long data records common in continuous human actions (> 10 s). This work developed a modified stochastic algorithm to decompose long data profiles into discrete submovements. The modified algorithm broke long data profiles into uniform frames which were then decomposed using the scattershot algorithm and recombined.  To validate the frame-based algorithm, it was compared to the scattershot algorithm when long, synthetic data records were decomposed. We found that the frame-based approach achieved comparable performance to the scattershot algorithm while decreasing the run time to an approximately linear dependence on data length, compared to an exponential dependence for the scattershot algorithm. This new frame-based algorithm will make the decomposition of long data records with many submovements feasible in future human motor control experiments. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

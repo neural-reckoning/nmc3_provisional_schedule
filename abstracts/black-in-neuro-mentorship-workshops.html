@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,15 +52,15 @@
             Track 0
             /
             Special Event
+            <div class="visible_at_time" data-start="2020-10-29 17:00" data-end="2020-10-29 18:00">
+                <a href='https://www.youtube.com/watch?v=YWYsHlZ2Utk'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=YWYsHlZ2Utk'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Black In Neuro Mentorship Workshops: Getting the most out of your mentor-mentee relationship  (Session 2: Faculty workshop)</h1><h2>Abstract</h1><p>Having Culturally Sensitive Mentoring Conversations
-
-Although high quality mentoring is an important predictor of persistence for scholars pursuing STEMM careers and can influence the confidence of historically underrepresented trainees' ability to thrive, mentors typically do not receive significant training on how to optimize their mentoring relationships. In this interactive workshop for mentors, we will engage in group discussions around a case study addressing cultural diversity and inclusion and will encourage mentors to share how they might approach the case study and share how they have worked to build trust. Furthermore, stories from student mentees from historically underrepresented backgrounds will be shared to learn from their perspectives. These materials and framework have been developed by NRMN (National Research Mentoring Network) and CIMER (Center for the Improvement of Mentored Experiences in Research), and some of their work will be summarized.
-
-Leaders:
-- Steve Lee, PhD
-
-- Joseph Brown, PhD</p>
+        <h1>Black In Neuro Mentorship Workshops: Getting the most out of your mentor-mentee relationship  (Session 2: Faculty workshop)</h1><h2>Abstract</h1><p>Having Culturally Sensitive Mentoring Conversations<br/><br/>Although high quality mentoring is an important predictor of persistence for scholars pursuing STEMM careers and can influence the confidence of historically underrepresented trainees' ability to thrive, mentors typically do not receive significant training on how to optimize their mentoring relationships. In this interactive workshop for mentors, we will engage in group discussions around a case study addressing cultural diversity and inclusion and will encourage mentors to share how they might approach the case study and share how they have worked to build trust. Furthermore, stories from student mentees from historically underrepresented backgrounds will be shared to learn from their perspectives. These materials and framework have been developed by NRMN (National Research Mentoring Network) and CIMER (Center for the Improvement of Mentored Experiences in Research), and some of their work will be summarized.<br/><br/>Leaders:<br/>- Steve Lee, PhD<br/><br/>- Joseph Brown, PhD</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

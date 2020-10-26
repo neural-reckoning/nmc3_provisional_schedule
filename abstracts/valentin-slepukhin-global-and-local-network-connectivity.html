@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 9
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 17:15" data-end="2020-10-28 17:30">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Global and local network connectivity structures control rhythmogenesis in the preBötzinger complex</h1><h2>Valentin Slepukhin</h2><h3>Sufyan Ashhad, 2.	Systems Neurobiology Laboratory, Department of Neurobiology, David Geffen School of Medicine, UCLA, Los Angeles, California, 90095, USA; Mihai A Bibireata, Physics and Astronomy, UCLA, Los Angeles, California, 90095, USA;  Taylor Womack, Physics and Astronomy, UCLA, Los Angeles, California, 90095, USA; Jack L Feldman, 2.	Systems Neurobiology Laboratory, Department of Neurobiology, David Geffen School of Medicine, UCLA, Los Angeles, California, 90095, USA; Alex J Levine, Physics and Astronomy, UCLA, Los Angeles, California, 90095, USA. Department of Chemistry and Biochemistry, UCLA, Los Angeles, California, 90095, USA.	Department of Biomathematics, UCLA, Los Angeles, California, 90095, USA;</h3><h2>Abstract</h1><p>The preBötzinger complex generates periodic bursts of neuronal spiking setting the inspiratory rhythm in mammals. We model this complex as a network of leaky integrate-and-fire neurons. Using parameters from the experimentally determined range for both neuronal and network properties, we observe the dynamics of burst initiation, obtaining results that are also consistent with the experiment. Specifically, we examine the probability of burst initiation in response to the controlled stimulation of various numbers of neurons, as is measured by the experiment. Comparing the results of the simulation for different networks, we see that Erdős-Rényi fits experimental data significantly better than other physiologically relevant networks, such as a small-world network or the network with local coupling. Finally, we determine, using a combination of graph theory and machine learning, the structures of the network that lead to a global synchronization. 
-To recover the stable oscillation pattern observed in vivo we use dendritic calcium adaptation, that mediates the resistance of the membrane. The oscillation phase appears to be robust, being stable under killing a large fraction of neurons, which is consistent with the experiment. This model, averaged with time is qualitatively equivalent to the firing-rate based model that was studied before. Outside of the steady oscillations phase, neurons in this model demonstrate separation on constantly high firing and low firing states explicitly breaking the mean-field approach to the problem. This separation occurs even for the all-to-all coupled network, thus providing an example of spontaneous symmetry breaking. For sparser networks, the clustering is influenced by k-cores of the underlying network and is exactly controlled by them in a particular limit of the model. We also analyze this separation using a combination of graph theory and machine learning identifying the properties of the network that determine whether it produces rhythm or experience phase separation. 
- 
-</p>
+        <h1>Global and local network connectivity structures control rhythmogenesis in the preBötzinger complex</h1><h2>Valentin Slepukhin</h2><h3>Sufyan Ashhad, 2.	Systems Neurobiology Laboratory, Department of Neurobiology, David Geffen School of Medicine, UCLA, Los Angeles, California, 90095, USA; Mihai A Bibireata, Physics and Astronomy, UCLA, Los Angeles, California, 90095, USA;  Taylor Womack, Physics and Astronomy, UCLA, Los Angeles, California, 90095, USA; Jack L Feldman, 2.	Systems Neurobiology Laboratory, Department of Neurobiology, David Geffen School of Medicine, UCLA, Los Angeles, California, 90095, USA; Alex J Levine, Physics and Astronomy, UCLA, Los Angeles, California, 90095, USA. Department of Chemistry and Biochemistry, UCLA, Los Angeles, California, 90095, USA.	Department of Biomathematics, UCLA, Los Angeles, California, 90095, USA;</h3><h2>Abstract</h1><p>The preBötzinger complex generates periodic bursts of neuronal spiking setting the inspiratory rhythm in mammals. We model this complex as a network of leaky integrate-and-fire neurons. Using parameters from the experimentally determined range for both neuronal and network properties, we observe the dynamics of burst initiation, obtaining results that are also consistent with the experiment. Specifically, we examine the probability of burst initiation in response to the controlled stimulation of various numbers of neurons, as is measured by the experiment. Comparing the results of the simulation for different networks, we see that Erdős-Rényi fits experimental data significantly better than other physiologically relevant networks, such as a small-world network or the network with local coupling. Finally, we determine, using a combination of graph theory and machine learning, the structures of the network that lead to a global synchronization. <br/>To recover the stable oscillation pattern observed in vivo we use dendritic calcium adaptation, that mediates the resistance of the membrane. The oscillation phase appears to be robust, being stable under killing a large fraction of neurons, which is consistent with the experiment. This model, averaged with time is qualitatively equivalent to the firing-rate based model that was studied before. Outside of the steady oscillations phase, neurons in this model demonstrate separation on constantly high firing and low firing states explicitly breaking the mean-field approach to the problem. This separation occurs even for the all-to-all coupled network, thus providing an example of spontaneous symmetry breaking. For sparser networks, the clustering is influenced by k-cores of the underlying network and is exactly controlled by them in a particular limit of the model. We also analyze this separation using a combination of graph theory and machine learning identifying the properties of the network that determine whether it produces rhythm or experience phase separation. <br/> <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

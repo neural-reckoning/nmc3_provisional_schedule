@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 13:30" data-end="2020-10-27 13:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>A Neuroethics Framework for Global Brain Projects and Neurotechnology</h1><h2>Sinem Serap (she/her/hers)</h2><h2>Abstract</h1><p>During the last two decades, with the development of technology, the small steps in brain science turned into the giant leap for mankind. Millions of bytes of data generated all over the world to break the brain’s code, to understand inner workings of brain function and hope to find treatments to cognitive diseases. Seven brain initiatives launched around the globe, but no single initiative was able to tackle those challenges. In December 2017, seven initiatives came together and formed International Brain Initiative to combine their effort and accelerate the progress of neurotechnological findings.
-Implementing data sharing and standardization mechanism was one of the intents of the initiatives. Human body is known as the biggest data platform but human brain homes to most valuable data. All human behaviour could be understood under the illuminated light of this neurodata. Merging of brain initiatives also brings the question of who will capture this neurodata and how to maintain medical ethics.
-Neuroethics could be classified under the umbrella of bioethics but it should also be diverse from the point that our minds are the true representatives of who we are. In this poster I will discuss the neuroethical standards that are proposed by brain initiatives so far and discuss the challenges in neuroethics from the window of neurotechnology and brain-computer interfaces. I aim to recommend some new insights for ethical principles for the effective protection of human subjects.
-</p>
+        <h1>A Neuroethics Framework for Global Brain Projects and Neurotechnology</h1><h2>Sinem Serap (she/her/hers)</h2><h2>Abstract</h1><p>During the last two decades, with the development of technology, the small steps in brain science turned into the giant leap for mankind. Millions of bytes of data generated all over the world to break the brain’s code, to understand inner workings of brain function and hope to find treatments to cognitive diseases. Seven brain initiatives launched around the globe, but no single initiative was able to tackle those challenges. In December 2017, seven initiatives came together and formed International Brain Initiative to combine their effort and accelerate the progress of neurotechnological findings.<br/>Implementing data sharing and standardization mechanism was one of the intents of the initiatives. Human body is known as the biggest data platform but human brain homes to most valuable data. All human behaviour could be understood under the illuminated light of this neurodata. Merging of brain initiatives also brings the question of who will capture this neurodata and how to maintain medical ethics.<br/>Neuroethics could be classified under the umbrella of bioethics but it should also be diverse from the point that our minds are the true representatives of who we are. In this poster I will discuss the neuroethical standards that are proposed by brain initiatives so far and discuss the challenges in neuroethics from the window of neurotechnology and brain-computer interfaces. I aim to recommend some new insights for ethical principles for the effective protection of human subjects.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

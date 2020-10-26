@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 9
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 18:30" data-end="2020-10-27 18:45">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Aging affects attentional span and perception in the periphery</h1><h2>Julie Ouerfelli-Éthier</h2><h3>Noémie Redureau, University of Montreal; Laure Pisella, ImpAct, INSERM UM1028, CNRS UMR 5292, University Claude Bernard Lyon 1; Aarlenne Z. Khan, University of Montreal</h3><h2>Abstract</h1><p>Aging has been associated with decline in perceptual and cognitive function, but the findings remain inconclusive. Here we tested how attentional window, i.e. how widely we can distribute our attention around a certain fixation location when searching for an item among distractors, changes with aging. Specifically, we investigated whether aging resulted in a decrease in attentional window during easy or parallel visual search (global processing). We also tested whether performance in visual search was related to perceptual visual function with a contrast detection task and two motion tasks (local and global motion perception) at two different eccentricities (5° and 10° eccentricity). We measured the size of the attentional window using different sized gaze-contingent visible windows in 12 younger adults and 11 older adults during a pop-out visual search task. Older adults showed a significantly smaller attentional window (M = 19.4°, SD = 3.3°) compared to younger adults (M = 23.2°, SD = 2.3°). They also had significantly higher contrast detection thresholds (M older = 9.3%, SD older = 5.1%; M younger = 4.5%, SD younger = 2.8%) and required longer durations to estimate global motion (M older = 442.8 ms, SD older = 214.2 ms; M younger = 181.4 ms, SD younger = 75.3 ms). In contrast, we found no difference in local motion perception thresholds between groups. Taken together, our results suggest interactions between attentional and perceptual deficits may explain impaired visual function in older adults.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

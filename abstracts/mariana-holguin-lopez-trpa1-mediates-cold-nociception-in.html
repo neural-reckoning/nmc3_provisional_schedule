@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 22:00" data-end="2020-10-29 22:15">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>TRPA1 mediates cold nociception in Drosophila melanogaster larvae</h1><h2>Mariana Holguin-Lopez</h2><h3>J.M. Lechter, Georgia State University; N. J. Himmel, Georgia State University;  A. Sakurai, Georgia State University; D. N. Cox, Georgia State University.</h3><h2>Abstract</h1><p>Nociception is the process by which an organism detects potentially harmful stimuli, driving behavioral responses that minimize incipient damage and promote organismal survival. Nociception relies on specialized channel receptors to detect these stimuli. Thermal nociception is responsible for the detection of noxious thermal stimuli at either extreme. Transient receptor potential (TRP) channels play a crucial role in thermal nociception. However, there is little knowledge regarding how they mechanistically function in the regulation of noxious cold detection. TRPA1 is a polymodal channel that is conserved among vertebrates and invertebrates. Human TRPA1 has been implicated in mediating cold nociception, though its functional role in this process remains poorly understood. In Drosophila larvae, TRPA1 has been identified in polymodal nociceptive neurons in which it mediates chemical, high heat, and mechanical nociception. Recent neurogenomic analyses have identified TRPA1 expression in cold nociceptive sensory neurons (Class III; CIII), which suggests the possibility that this channel is also involved in the mediation of noxious cold detection. We have employed neurogenetic and behavioral techniques to dissect the role of TRPA1 in this process.
-Whole animal TRPA1 mutants displayed a decrease in the characteristic contractile behavior in response to noxious cold temperatures; this was also observed in CIII-specific TRPA1 knockdown larvae. The requirement for TRPA1 was observed to be isoform specific. Optogenetic and behavioral analyses attested that TRPA1 is required for stimulus transduction rather than for action potential propagation. These findings provide insights into the underlying mechanism of cold detection while also raising questions regarding the polymodality and evolutionary role of TRPA1 channels. A better understanding of how the nociceptive phenomenon works could provide information that will aid in the development of better treatments for neuropathies, such as allodynia and hyperalgesia. </p>
+        <h1>TRPA1 mediates cold nociception in Drosophila melanogaster larvae</h1><h2>Mariana Holguin-Lopez</h2><h3>J.M. Lechter, Georgia State University; N. J. Himmel, Georgia State University;  A. Sakurai, Georgia State University; D. N. Cox, Georgia State University.</h3><h2>Abstract</h1><p>Nociception is the process by which an organism detects potentially harmful stimuli, driving behavioral responses that minimize incipient damage and promote organismal survival. Nociception relies on specialized channel receptors to detect these stimuli. Thermal nociception is responsible for the detection of noxious thermal stimuli at either extreme. Transient receptor potential (TRP) channels play a crucial role in thermal nociception. However, there is little knowledge regarding how they mechanistically function in the regulation of noxious cold detection. TRPA1 is a polymodal channel that is conserved among vertebrates and invertebrates. Human TRPA1 has been implicated in mediating cold nociception, though its functional role in this process remains poorly understood. In Drosophila larvae, TRPA1 has been identified in polymodal nociceptive neurons in which it mediates chemical, high heat, and mechanical nociception. Recent neurogenomic analyses have identified TRPA1 expression in cold nociceptive sensory neurons (Class III; CIII), which suggests the possibility that this channel is also involved in the mediation of noxious cold detection. We have employed neurogenetic and behavioral techniques to dissect the role of TRPA1 in this process.<br/>Whole animal TRPA1 mutants displayed a decrease in the characteristic contractile behavior in response to noxious cold temperatures; this was also observed in CIII-specific TRPA1 knockdown larvae. The requirement for TRPA1 was observed to be isoform specific. Optogenetic and behavioral analyses attested that TRPA1 is required for stimulus transduction rather than for action potential propagation. These findings provide insights into the underlying mechanism of cold detection while also raising questions regarding the polymodality and evolutionary role of TRPA1 channels. A better understanding of how the nociceptive phenomenon works could provide information that will aid in the development of better treatments for neuropathies, such as allodynia and hyperalgesia. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

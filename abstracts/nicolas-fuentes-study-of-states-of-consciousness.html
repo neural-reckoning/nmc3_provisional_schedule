@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 12:30" data-end="2020-10-28 12:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Study of states of consciousness under the effects of anesthetics through the use of information quantifiers</h1><h2>Nicolás Fuentes</h2><h3>Nicolás Fuentes, Facultad de Ciencias Exactas, Físicas y Naturales. Universidad Nacional de Córdoba;Alexis García,Facultad de Ciencias Exactas, Físicas y Naturales (Universidad Nacional de Córdoba);Diego Mateos,Consejo Nacional de Investigaciones Científicas y Técnicas de Argentina (CONICET),Facultad de Ciencia y Tecnología. Universidad Autónoma de Entre Ríos (UADER),Instituto de Matemática aplicada del Litoral (IMAL-CONICET-UNC);Ana Carolina Maldonado,Centro de Investigación y Estudios de Matemática (CIEM-CONICET). FAMAF.Universidad Nacional de Córdoba</h3><h2>Abstract</h1><p>In the surgical practice it is of critical importance to know the state of consciousness that the patient has. Generally, this work is done by anaesthesiologists using visual inspection. To deal with this problem for some time, indices have been developed that allow to quantify the patient’s state of consciousness. However, these measures often have a great computational cost or needed expensive equipment. This generates the demand to develop new indexes, based on fast algorithms and open source. In this work we analyse electrocorticogram monkeys records under different anaesthesia using information quantifiers. The results showed that the use of these measures allows to detect the different states of consciousness of the monkeys. In addition, it could be seen that the effect of anaesthesia on brain dynamics varies depending on the anaesthetic used. These results show that these metrics could be used as indices of consciousness in patients under anesthesia.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 8
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 17:00" data-end="2020-10-28 17:15">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Perceptual and semantic boundaries create events in auditory streams</h1><h2>Omri Raccah</h2><h3>Keith Doelling, Institut de l'Audition, Institut Pasteur, Paris, France; Lila Davachi, Department of Psychology, Columbia University, New York, NY, USA; David Poeppel, Department of Psychology, New York University, New York, NY, USA</h3><h2>Abstract</h1><p>While our perceptual experience unfolds seemingly continuously over time, episodic memory preserves distinct events for storage and recollection. Therefore, a critical question is how the brain segments information into structured event representations. Previous work shows that contextual stability (in stimulus properties and goal-state) serves to temporally bind individual items into composite events; however, this has primarily been studied using visual and spatial memory paradigms. The current study adapts these paradigms in order to test the role of both perceptual and semantic contexts for event segmentation of auditory streams. Our results replicate the findings in other sensory modalities – finding greater within-event temporal memory for items within perceptually bounded events. Furthermore, we show that naturally adopted mnemonic strategies during encoding selectively drive temporal memory. Finally, our analyses reveal that semantic boundaries strongly drive temporal binding effects as a function of semantic similarity within-events and across-event categorical transitions. These findings provide evidence that contextual stability may drive temporal binding in a modality independent manner and supports a role for non-sensory mechanisms in event segmentation. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-26 16:15" data-end="2020-10-26 16:30">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Fast-spiking interneurons support the development of symmetrical head-direction tuning curves</h1><h2>Pierre Orhan</h2><h3>Adrien Peyrache, Adrian Duszkiewicz</h3><h2>Abstract</h1><p>The postsubiculum (PoSub) is the cortical relay of the head-direction (HD) signal, projecting to the superficial layers of the medial entorhinal cortex, transferring HD inputs from the thalamus. Recent evidence from our laboratory suggests a topographical arrangement of the HD signal within the PoSub, as evidenced by symmetrical tuning of fast-spiking (FS) inhibitory neurons. Specifically, FS cells show a 1-, 2- or 3-fold symmetries in their tuning to HD. The origin of this arrangement is unknown. It could reflect topographical arrangement of local (<200 um) excitatory HD cells. Alternatively, it could result from a transformation of thalamic inputs directly by the inhibitory networks. To address this question, we have investigated the problem from a computational perspective. Here, we developed mechanistic, optimised, and random models to capture the emergence of the fast-spiking interneuron tuning curves based on thalamocortical and inter-inhibitory cell connectivity. 
-In a model of structured symmetric inputs to FS cells, constraining tuning curves variance to HD forces the density of each symmetry within the FS cell population to reflect exactly its contribution to input decoding. Conversely, the objective of recreating the inputs leads to a biologically plausible plasticity rule, assuming that (i) FS cells operate in a linear regime and (ii) connections between FS cells are plastic. Although the model accounts for tuning curve and fold distribution, the learning rule did not constraint the latter. Accordingly, a network with random connections that are optimized on the firing modulation of the FS cell tuning curves (range, mean and average but not symmetries) recapitulates the experimental data. Learning of a precise structure of thalamocortical connections seems therefore not necessary. We conclude that FS-FS connections and linear integration of thalamic inputs by FS cells are sufficient prerequisites for the emergence of spatially-symmetric responses in the brain’s navigation system. 
-</p>
+        <h1>Fast-spiking interneurons support the development of symmetrical head-direction tuning curves</h1><h2>Pierre Orhan</h2><h3>Adrien Peyrache, Adrian Duszkiewicz</h3><h2>Abstract</h1><p>The postsubiculum (PoSub) is the cortical relay of the head-direction (HD) signal, projecting to the superficial layers of the medial entorhinal cortex, transferring HD inputs from the thalamus. Recent evidence from our laboratory suggests a topographical arrangement of the HD signal within the PoSub, as evidenced by symmetrical tuning of fast-spiking (FS) inhibitory neurons. Specifically, FS cells show a 1-, 2- or 3-fold symmetries in their tuning to HD. The origin of this arrangement is unknown. It could reflect topographical arrangement of local (<200 um) excitatory HD cells. Alternatively, it could result from a transformation of thalamic inputs directly by the inhibitory networks. To address this question, we have investigated the problem from a computational perspective. Here, we developed mechanistic, optimised, and random models to capture the emergence of the fast-spiking interneuron tuning curves based on thalamocortical and inter-inhibitory cell connectivity. <br/>In a model of structured symmetric inputs to FS cells, constraining tuning curves variance to HD forces the density of each symmetry within the FS cell population to reflect exactly its contribution to input decoding. Conversely, the objective of recreating the inputs leads to a biologically plausible plasticity rule, assuming that (i) FS cells operate in a linear regime and (ii) connections between FS cells are plastic. Although the model accounts for tuning curve and fold distribution, the learning rule did not constraint the latter. Accordingly, a network with random connections that are optimized on the firing modulation of the FS cell tuning curves (range, mean and average but not symmetries) recapitulates the experimental data. Learning of a precise structure of thalamocortical connections seems therefore not necessary. We conclude that FS-FS connections and linear integration of thalamic inputs by FS cells are sufficient prerequisites for the emergence of spatially-symmetric responses in the brain’s navigation system. <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

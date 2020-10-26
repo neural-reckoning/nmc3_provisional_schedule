@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,12 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 16:15" data-end="2020-10-29 16:30">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Neural measures of subsequent memory reflect endogenous variability in cognitive function</h1><h2>Christoph Weidemann</h2><h3>Christoph T. Weidemann, Swansea University & Columbia University; Michael J. Kahana, University of Pennsylvania</h3><h2>Abstract</h1><p>Human cognition exhibits a striking degree of variability: Sometimes we rapidly forge new associations whereas at other times new information simply does not stick. Correlations between neural activity during encoding and subsequent retrieval performance have implicated such "subsequent memory effects" (SMEs) as important for understanding the neural basis of memory formation. Uncontrolled variability in external factors that also predict memory performance, however, confounds the interpretation of these effects. By controlling
-for a comprehensive set of external variables, we investigated the extent to which neural correlates of successful memory encoding
-reflect variability in endogenous brain states. We show that external variables that reliably predict memory performance have relatively
-small effects on electroencephalographic (EEG) correlates of successful memory encoding. Instead, the brain activity that is
-diagnostic of successful encoding primarily reflects fluctuations in endogenous neural activity. These findings link neural activity during learning to endogenous states that drive variability in human cognition.</p>
+        <h1>Neural measures of subsequent memory reflect endogenous variability in cognitive function</h1><h2>Christoph Weidemann</h2><h3>Christoph T. Weidemann, Swansea University & Columbia University; Michael J. Kahana, University of Pennsylvania</h3><h2>Abstract</h1><p>Human cognition exhibits a striking degree of variability: Sometimes we rapidly forge new associations whereas at other times new information simply does not stick. Correlations between neural activity during encoding and subsequent retrieval performance have implicated such "subsequent memory effects" (SMEs) as important for understanding the neural basis of memory formation. Uncontrolled variability in external factors that also predict memory performance, however, confounds the interpretation of these effects. By controlling<br/>for a comprehensive set of external variables, we investigated the extent to which neural correlates of successful memory encoding<br/>reflect variability in endogenous brain states. We show that external variables that reliably predict memory performance have relatively<br/>small effects on electroencephalographic (EEG) correlates of successful memory encoding. Instead, the brain activity that is<br/>diagnostic of successful encoding primarily reflects fluctuations in endogenous neural activity. These findings link neural activity during learning to endogenous states that drive variability in human cognition.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

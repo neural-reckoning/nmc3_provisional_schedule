@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 18:00" data-end="2020-10-29 18:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Instantaneous Modulation of Gamma Rhythm by  the difference of Time Constants of Inhibitory/Excitatory synapses</h1><h2>Nosratullah Mohammadi</h2><h3>Nosratullah Mohammadi, Alireza Valizadeh</h3><h2>Abstract</h1><p>The human brain and all other mammal brains have a distinguished gamma activity during tasks that underlie higher cognitive functions such as awareness, learning, memory, and decision making. Although numerous studies tried to clarify a mechanistic explanation of generation and modulation of brain rhythms, yet many aspects are not still well-known. In this computational study, we simulated a network of excitatory and inhibitory neurons which generates rhythmic activities in a range of slow oscillations (1-20 Hz) as well as a faster oscillation in the range (30-100 Hz). We verified a noticeable correlation between synaptic decay time constant and amplitude-frequency correlation in cycle-by-cycle population activity. Our results showed that the greater the difference of time decay of inhibitory synapses compared to that of excitatory synapses, the stronger the amplitude-frequency correlation of population activity. We also observed a change in the correlation sign of the phase of slower oscillation with the amplitude of faster oscillation depending on the difference between the decay time of excitatory synapses compared to inhibitory synapses. These results indicate that the difference between the decay time of excitatory and inhibitory synapses plays an important role in tuning of oscillatory activity of the cortical circuits.
-</p>
+        <h1>Instantaneous Modulation of Gamma Rhythm by  the difference of Time Constants of Inhibitory/Excitatory synapses</h1><h2>Nosratullah Mohammadi</h2><h3>Nosratullah Mohammadi, Alireza Valizadeh</h3><h2>Abstract</h1><p>The human brain and all other mammal brains have a distinguished gamma activity during tasks that underlie higher cognitive functions such as awareness, learning, memory, and decision making. Although numerous studies tried to clarify a mechanistic explanation of generation and modulation of brain rhythms, yet many aspects are not still well-known. In this computational study, we simulated a network of excitatory and inhibitory neurons which generates rhythmic activities in a range of slow oscillations (1-20 Hz) as well as a faster oscillation in the range (30-100 Hz). We verified a noticeable correlation between synaptic decay time constant and amplitude-frequency correlation in cycle-by-cycle population activity. Our results showed that the greater the difference of time decay of inhibitory synapses compared to that of excitatory synapses, the stronger the amplitude-frequency correlation of population activity. We also observed a change in the correlation sign of the phase of slower oscillation with the amplitude of faster oscillation depending on the difference between the decay time of excitatory synapses compared to inhibitory synapses. These results indicate that the difference between the decay time of excitatory and inhibitory synapses plays an important role in tuning of oscillatory activity of the cortical circuits.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

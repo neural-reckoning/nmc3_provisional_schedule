@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,26 +52,15 @@
             Track 0
             /
             Special Event
+            <div class="visible_at_time" data-start="2020-10-28 21:00" data-end="2020-10-28 23:00">
+                <a href='https://www.youtube.com/watch?v=YWYsHlZ2Utk'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=YWYsHlZ2Utk'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>First-Gen In Neuro: Stories of Science From First-Generation Scholars</h1><h2>Abstract</h1><p>Science is a winding road of obstacles, struggles, and detours. However, the vast majority of the science we see is presented in its most pristine form. We see the published paper, the perfectly curated powerpoint, the tenure announcement, the notice of award. Rarely do we hear about the journey. In this event, a series of incredibly successful first-generation scholars will tell their personal stories in science. These brief talks will focus on how they became scientists, how they navigated the unfamiliar territory of academia, and the barriers they faced along the way. This will be followed by a panel discussion and Q&A session. These stories will uplift early-career scientists and amplify a community of scholars struggling through a system that is not structured for their success.
-
-Organizers:
-- Daniel L. Gonzales, PhD (HHMI Hanna Gray Fellow, Purdue University_
-
-- Caroline Palavicino-Maggio, PhD (Postdoctoral Researcher, Harvard Medical School)
-
-Panelists:
-- Steve Ramirez, Assistant Professor, Boston University (http://theramirezgroup.org/team/steve-ramirez)	
-
-- David Jentsch, Empire Innovation Professor of Psychology, Binghamton State University	(https://sites.google.com/binghamton.edu/jentsch-laboratory)
-
-- Michael Burton, Assistant Professor, UT Dallas (https://labs.utdallas.edu/niblab/)	
-
-- Robert Carrillo, Assistant Professor, University of Chicago (https://www.carrillolab.com/)
-
-- Ellen Lumpkin, Professor, University of California, Berkeley	(https://vcresearch.berkeley.edu/faculty/ellen-lumpkin)	
-
-- Diana Bautista, Professor, University of California, Berkeley (https://bautistalab.weebly.com/)</p>
+        <h1>First-Gen In Neuro: Stories of Science From First-Generation Scholars</h1><h2>Abstract</h1><p>Science is a winding road of obstacles, struggles, and detours. However, the vast majority of the science we see is presented in its most pristine form. We see the published paper, the perfectly curated powerpoint, the tenure announcement, the notice of award. Rarely do we hear about the journey. In this event, a series of incredibly successful first-generation scholars will tell their personal stories in science. These brief talks will focus on how they became scientists, how they navigated the unfamiliar territory of academia, and the barriers they faced along the way. This will be followed by a panel discussion and Q&A session. These stories will uplift early-career scientists and amplify a community of scholars struggling through a system that is not structured for their success.<br/><br/>Organizers:<br/>- Daniel L. Gonzales, PhD (HHMI Hanna Gray Fellow, Purdue University_<br/><br/>- Caroline Palavicino-Maggio, PhD (Postdoctoral Researcher, Harvard Medical School)<br/><br/>Panelists:<br/>- Steve Ramirez, Assistant Professor, Boston University (http://theramirezgroup.org/team/steve-ramirez)	<br/><br/>- David Jentsch, Empire Innovation Professor of Psychology, Binghamton State University	(https://sites.google.com/binghamton.edu/jentsch-laboratory)<br/><br/>- Michael Burton, Assistant Professor, UT Dallas (https://labs.utdallas.edu/niblab/)	<br/><br/>- Robert Carrillo, Assistant Professor, University of Chicago (https://www.carrillolab.com/)<br/><br/>- Ellen Lumpkin, Professor, University of California, Berkeley	(https://vcresearch.berkeley.edu/faculty/ellen-lumpkin)	<br/><br/>- Diana Bautista, Professor, University of California, Berkeley (https://bautistalab.weebly.com/)</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

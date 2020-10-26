@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-26 21:15" data-end="2020-10-26 21:30">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Surprise signals in Frontal Eye Field</h1><h2>Michael Shteyn (he/him)</h2><h3>Carl R. Olson, Carnegie Mellon University</h3><h2>Abstract</h1><p>In classic learning theory, surprise is quantified by unsigned prediction error, which determines how much attention is captured by a particular event. Unlike signed reward prediction error, an unsigned prediction error increases with the improbability of an outcome, regardless of its valence. Neurons in the frontal eye field (FEF) are sensitive to reward amount and are involved in the allocation of attention but it is unknown how they respond to surprising outcomes. To address this, we trained  monkeys in a Pavlovian paradigm requiring them to view two images in a probablistic sequence followed by delivery of a reward.  The leading image, depending on its identity, predicted with high probability (p = 0.83) delivery of either a large or a small reward at the end of the trial. The trailing image indicated with certainty that the ensuing reward would be either large or small. The information conveyed by the trailing image usually confirmed, but occasionally violated, the prediction conveyed by the leading image. The key question of the study is whether a given trailing image would elicit differential activity depending on whether it confirmed or violated the expectation created by the leading image. We found that the strength of the response to the trailing image was indeed influenced by surprise. Neurons responded more strongly to a trailing image predicting large reward when the probability of large reward was low than when it was high. Similarly, neurons responded more strongly to a trailing image predicting small reward when the probability of small reward was low than when it was high. Further, we demonstrate that these results depend on presenting the cues in rather than opposite the response field. The results are consistent with the interpretation that cues signaling surprising outcomes capture spatial attention and, in so doing, recruit excitation of FEF neurons.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

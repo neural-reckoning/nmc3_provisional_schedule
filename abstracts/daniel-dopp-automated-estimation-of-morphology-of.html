@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 01:15" data-end="2020-10-29 01:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Automated estimation of morphology of a neocortical neuron using in vivo LFP data</h1><h2>Daniel Dopp</h2><h3>Ziao Chen; Drew B. Headley; Satish S. Nair</h3><h2>Abstract</h1><p>New technologies are beginning to provide neurophysiological data at increasing levels of precision and at multiple scales including at single neuron and network levels. In parallel, advances in machine learning-based algorithms and architectures have spurred the development of several automated neural parameter estimation schemes. As an example, statistical inference can be combined with machine learning schemes to provide principled approaches that can integrate multiple data sources to handle variability, quantify uncertainty and incorporate prior knowledge. A specific instance of such a hybrid scheme is sequential neural posterior estimation, which combines the advantages of statistical and mechanistic modeling (SNPE; Goncalves et al., 2020)
-
-We use the approximate Bayesian computation inference algorithm SNPE to infer the morphological parameters of a single neuron from multi-electrode in vivo extracellular voltage recordings. In this inverse modeling scheme, we designed a generic biophysical single neuron model with stylized morphology that had adjustable parameters for the dimensions of the soma, basal and apical dendrites, and their locations and orientations relative to the multi-electrode probe. The model includes simplified biophysics and had a module to estimate extracellular potential at desired locations. We used the SNPE algorithm with the single cell model to infer the posterior distribution of the morphological parameters, given the in vivo extracellular spike waveform of a putative rodent neocortical cell near the electrode as the observed data. Such an approach provides estimation of the morphology that best matches the spatiotemporal profile of the extracellular action potential recorded on a multisite silicon probe (Neuropixel). The next step will involve inference of the parameters related to the biophysics of the neuron, and may need to be performed iteratively with the inference of morphology parameters. Our long-term goal is to develop a publicly accessible toolbox that automates the process of inferring neuronal morphology and parameters from in vivo extracellular voltages.
-</p>
+        <h1>Automated estimation of morphology of a neocortical neuron using in vivo LFP data</h1><h2>Daniel Dopp</h2><h3>Ziao Chen; Drew B. Headley; Satish S. Nair</h3><h2>Abstract</h1><p>New technologies are beginning to provide neurophysiological data at increasing levels of precision and at multiple scales including at single neuron and network levels. In parallel, advances in machine learning-based algorithms and architectures have spurred the development of several automated neural parameter estimation schemes. As an example, statistical inference can be combined with machine learning schemes to provide principled approaches that can integrate multiple data sources to handle variability, quantify uncertainty and incorporate prior knowledge. A specific instance of such a hybrid scheme is sequential neural posterior estimation, which combines the advantages of statistical and mechanistic modeling (SNPE; Goncalves et al., 2020)<br/><br/>We use the approximate Bayesian computation inference algorithm SNPE to infer the morphological parameters of a single neuron from multi-electrode in vivo extracellular voltage recordings. In this inverse modeling scheme, we designed a generic biophysical single neuron model with stylized morphology that had adjustable parameters for the dimensions of the soma, basal and apical dendrites, and their locations and orientations relative to the multi-electrode probe. The model includes simplified biophysics and had a module to estimate extracellular potential at desired locations. We used the SNPE algorithm with the single cell model to infer the posterior distribution of the morphological parameters, given the in vivo extracellular spike waveform of a putative rodent neocortical cell near the electrode as the observed data. Such an approach provides estimation of the morphology that best matches the spatiotemporal profile of the extracellular action potential recorded on a multisite silicon probe (Neuropixel). The next step will involve inference of the parameters related to the biophysics of the neuron, and may need to be performed iteratively with the inference of morphology parameters. Our long-term goal is to develop a publicly accessible toolbox that automates the process of inferring neuronal morphology and parameters from in vivo extracellular voltages.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

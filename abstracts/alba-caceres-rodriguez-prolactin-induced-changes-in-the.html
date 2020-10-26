@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,24 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-26 18:30" data-end="2020-10-26 18:45">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1> Prolactin-induced changes in the primary auditory cortex plasticity</h1><h2>Alba Cáceres Rodríguez</h2><h3>Julio Esparza, Instituto Cajal; Eduardo Martin, Instituto Cajal</h3><h2>Abstract</h1><p>During pregnancy and lactation there are multiple adaptive changes in the mother’s brain that
-are essential for the survival of the progeny. Clinical and experimental evidences indicate that
-prolactin (PRL), present during lactation, can contribute to the development of these adaptive
-modifications. While the importance of the endocrine system on the activity of neuronal
-network in critical stages of life is well stablished, the role of PRL on the remodeling of the
-auditory cortex (AC) in response to sound stimuli emitted by the pups during lactation is still
-unknown. Therefore, the aim of this project is to study the modifications on neural activity of
-the AC in a model of hyperprolactinemia. To reach this objective, we used electrophysiological
-techniques with chronic electrode implants in the primary auditory cortex (A1) in order to record
-auditory evoked potentials (AEPs). The recordings were conducted in awake animals treated
-with domperidone (as the model of hyperprolactinemia) and in control animals treated with a
-vehicle. For the auditory stimuli we used recordings of pup’s vocalizations during lactation
-(wriggling calls), as well as trials of pure tones at different frequencies. Our data suggest that an
-increase in serum levels of PRL modifies the AEPs registered in A1. Specifically, there is a loss of
-the fundamental frequencies within 0.1-20 Hz band of the AEPs following stimulations with
-pups’ vocalizations. This result suggests that PRL induces changes in mother’s auditory pathway
-that may be relevant to the survival of the offspring.</p>
+        <h1> Prolactin-induced changes in the primary auditory cortex plasticity</h1><h2>Alba Cáceres Rodríguez</h2><h3>Julio Esparza, Instituto Cajal; Eduardo Martin, Instituto Cajal</h3><h2>Abstract</h1><p>During pregnancy and lactation there are multiple adaptive changes in the mother’s brain that<br/>are essential for the survival of the progeny. Clinical and experimental evidences indicate that<br/>prolactin (PRL), present during lactation, can contribute to the development of these adaptive<br/>modifications. While the importance of the endocrine system on the activity of neuronal<br/>network in critical stages of life is well stablished, the role of PRL on the remodeling of the<br/>auditory cortex (AC) in response to sound stimuli emitted by the pups during lactation is still<br/>unknown. Therefore, the aim of this project is to study the modifications on neural activity of<br/>the AC in a model of hyperprolactinemia. To reach this objective, we used electrophysiological<br/>techniques with chronic electrode implants in the primary auditory cortex (A1) in order to record<br/>auditory evoked potentials (AEPs). The recordings were conducted in awake animals treated<br/>with domperidone (as the model of hyperprolactinemia) and in control animals treated with a<br/>vehicle. For the auditory stimuli we used recordings of pup’s vocalizations during lactation<br/>(wriggling calls), as well as trials of pure tones at different frequencies. Our data suggest that an<br/>increase in serum levels of PRL modifies the AEPs registered in A1. Specifically, there is a loss of<br/>the fundamental frequencies within 0.1-20 Hz band of the AEPs following stimulations with<br/>pups’ vocalizations. This result suggests that PRL induces changes in mother’s auditory pathway<br/>that may be relevant to the survival of the offspring.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 9
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 16:00" data-end="2020-10-26 16:15">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Peripheral cardiovascular hypersensitivity and blunted ventromedial prefrontal cortex reactivity in generalized anxiety disorder</h1><h2>Adam Teed he/him/his</h2><h3>Maria Puhl, Laureate Institute for Brain Research, Tulsa, Oklahoma; Rachel C. Lapidus, Laureate Institute for Brain Research, Tulsa, Oklahoma, Department of Psychology, University of Tulsa, Tulsa, Oklahoma; Valerie Upshaw, Laureate Institute for Brain Research, Tulsa, Oklahoma; Rayus T. Kuplicki, Laureate Institute for Brain Research, Tulsa, Oklahoma; Jerzy Bodurka, Laureate Institute for Brain Research, Stephenson School for Biomedical Engineering, University of Oklahoma, Norman, Oklahoma; Justin S. Feinstein, Laureate Institute for Brain Research, Tulsa, Oklahoma, Oxley College of Health Sciences, University of Tulsa, Tulsa, Oklahoma; Wesley K. Thompson, University of California San Diego, San Diego, California; Martin P. Paulus, Laureate Institute for Brain Research, Tulsa, Oklahoma, Oxley College of Health Sciences, University of Tulsa, Tulsa, Oklahoma; Sahib S. Khalsa, Laureate Institute for Brain Research, Tulsa, Oklahoma, Oxley College of Health Sciences, University of Tulsa, Tulsa, Oklahoma</h3><h2>Abstract</h1><p>Generalized anxiety disorder (GAD) is characterized by apprehensive expectation of aversive bodily states, yet the link between GAD and autonomic arousal is unclear. We investigated potential cardiorespiratory interoceptive dysfunction in GAD using peripheral adrenergic stimulation with the adrenaline analog isoproterenol (0.5, 2 mcg) and saline during BOLD fMRI. Infusions were randomized and double-blinded. GAD (n=29) and HC (n=29) females, matched for age and BMI, rated cardiorespiratory sensation intensity throughout infusions using a dial. Chronotropic dose 25 estimates, an indirect measure of beta-adrenergic receptor sensitivity, showed that GADs exhibited greater heart rate (HR) responses to isoproterenol than HCs (p=0.04, Cohen’s d=0.55). Linear mixed-effects (LME) models for HR revealed this effect to be driven by the 0.5 mcg dose (p=0.002). Sensation ratings were also amplified at this dose (p<0.01). GADs retrospectively reported heightened anxiety across doses (p≤0.005), and heightened heartbeat (p<0.001) and breathing (p≤0.001) intensity at 0.5 mcg. GADs showed significantly attenuated neural responses in the ventromedial prefrontal cortex (vmPFC) at 0.5 mcg relative to HCs (p<0.05 corrected). We corroborated these results in separate region-of-interest time-series analyses using multivariate Functional Principal Components Analysis (mFPCA), which characterizes the major modes of variation around smoothed mean trajectories. LMEs on coefficients obtained from the mFPCA showed time-course differences for GADs during the 0.5 mcg dose for HR (p=0.02), dial ratings (p=0.01), and BOLD responses from salience and default mode network regions, including the vmPFC (p=0.01). In summary, adrenergic stimulation in GAD females revealed evidence of autonomic hypersensitivity, which was accompanied by heightened cardiorespiratory interoception, anxiety, and attenuated neural responses in the vmPFC, a region important for self-referential processing and visceromotor control. Our results provide strong evidence that, in females, 1) GAD constitutes deficits in appraisal and regulation of sympathetic arousal, and 2) both autonomic and central nervous systems contribute to interoceptive pathophysiology in GAD.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

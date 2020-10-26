@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 12:15" data-end="2020-10-28 12:30">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The dynamics of body category and emotion processing in high-level visual, prefrontal and parietal cortex. </h1><h2>Giuseppe Marrazzo</h2><h3>Maarten J. Vaessen, Maastricth University; Beatrice de Gelder, Maastricth University, University College London;</h3><h2>Abstract</h1><p>Recent studies provided an increasingly detailed understanding of how visual objects like faces or bodies are categorized. What is less clear is how attributes like the emotional expression are represented, whether the coding of the expression is influenced by the task and influences the category representation. Using functional magnetic resonance imaging (fMRI) and multivariate methods, we measured BOLD responses while participants viewed whole body expressions and performed an explicit (emotion) and implicit (shape) recognition task. Our results show that the type of task can be decoded in extrastriate body area (EBA), ventrolateral prefrontal cortex (VLPFC) and inferior parietal lobule (IPL) with higher activity for the explicit task condition in the first two areas and no evidence of emotion specificity processes in any of them. During the task of explicit recognition of the body expression, category representation would be strengthened while action related information would be suppressed. These results provide evidence that body representations in high level visual cortex and frontoparietal cortex are task sensitive and differentially contribute to expression representation based on their different anatomical connectivity. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

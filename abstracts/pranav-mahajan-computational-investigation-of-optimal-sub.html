@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 13:00" data-end="2020-10-29 13:15">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Computational investigation of optimal sub-goal settings under myopic planning horizons</h1><h2>Pranav Mahajan</h2><h3>Pranav Mahajan, BITS Pilani University - K. K. Birla Goa Campus</h3><h2>Abstract</h1><p>Humans have been known to break down their final goals into smaller sub-goals which involve planning upto a limited number of steps ahead in time. This is mainly driven due to inability to precisely plan much later into the future and thus a study of optimal sub-goal settings under myopic planning horizons is of interest to us. We computationally study the behaviour of three different myopic planning agents in the game of Tower of Hanoi, which has a long history of being used in neuropsychological studies. Our motivation for using the Tower of Hanoi puzzle for our simulations, is that it captures the conditional dependence in tasks and its effect in overall planning, which we observe very often in daily planning, for example, the progress in other tasks are dependent on partial completion of few tasks termed as “blockers”. The three myopic planning agents used in our study are as follows: (1) Agent A plans “h” steps ahead, and then chooses the plan for which the state after “h” steps is most similar to the final goal. (2) Agent B first sets the subgoal to move the largest misplaced disk to its target location and then plans “h” steps ahead to try to find a way to accomplish that subgoal. It then repeats its cycle of goal-setting, planning, and plan execution until all disks are in their target locations. (3) Agent C is identical to Agent B except that it sets its subgoal by resolving to move a randomly selected disk to its target location. We discuss the convergence of these agents on varying planning horizons “h” on two different final goals: (a) a tower in a random location, (b) another randomly chosen configuration. Our results show that Agent B outperforms other agents in both the final goals and is conjectured to achieve the final goal with a sufficiently long planning horizon h>2(n-1), where n is the number of disks. This directly translates to our understanding that taking the “blocker” task to completion, upon which other tasks are conditionally dependent, is an optimal goal setting in a myopic planning horizon. Currently, the agents assume complete knowledge of all the possible states after “h” steps via the discrete Sierpinski Gasket. In future works, we can decay this model predictive power with the  planning horizon “h” and validating this work with data from a randomized controlled trial with human participants.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

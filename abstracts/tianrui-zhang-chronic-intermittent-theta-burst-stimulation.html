@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 8
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 22:30" data-end="2020-10-27 22:45">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Chronic intermittent theta burst stimulation (iTBS) effects on adult hippocampal neurogenesis in males and females </h1><h2>Tianrui Zhang</h2><h3>Tian Rui Zhang; Baran Askari; Aydan Kesici; Evelyn Guilherme; Fidel Vila-Rodriguez; Jason Snyder</h3><h2>Abstract</h1><p>Intermittent theta burst stimulation (iTBS) is a promising form of non-invasive stimulation therapy for a variety of psychiatric illnesses. Currently iTBS is administered similarly across males and females, but it is not known whether iTBS’s mechanism of action is affected by patient sex. As hippocampal neurogenesis plays a critical role in stress adaptation and antidepressant course of action, we examined adult hippocampal neurogenesis in male and female mice following a chronic iTBS protocol similar to those used in the clinics. Although chronic iTBS does not exert dramatic effects on neurogenesis, we found that there is a trend for greater population of immature neurons after iTBS in males, but not females. Females do not respond to iTBS with respect to any hippocampal neurogenesis related measures. There is no effect on iTBS on survival of neurons born one week before stimulation for either sex. We also examined the morphology of new-born neurons and found that iTBS produced a trend for slight decrease in spines in stimulated animals compared to sham stimulated animals. New neurons generated in either sex have a normal morphology, similar to non-stimulated control animals, with the exception of females overall have lower total dendritic length compared to males. Otherwise, all comparisons between male and female new-born neurons are consistent with each other, indicating that baseline neurogenesis levels and new-born neuron morphological features are comparable between sexes. Our findings suggest that iTBS’s primary target on neuroplasticity may not be adult hippocampal neurogenesis, however there may be physiological differences of new-born neurons that are influenced by iTBS that remains to be further explored. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

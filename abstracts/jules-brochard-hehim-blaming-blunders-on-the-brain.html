@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 8
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 18:15" data-end="2020-10-29 18:30">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Blaming blunders on the brain: can indifferent choices be driven by range adaptation or synaptic plasticity?</h1><h2>Jules BROCHARD  (he/him)</h2><h3>Jean Daunizeau, Institut du Cerveau et de la Moelle Épinière</h3><h2>Abstract</h1><p>Computational  investigations  of  learning  and  decision  making suggestthat systematic  deviations  to adaptive  behavior  may  be  the  incidental  outcome  of biological  constraints imposed  on  neural informationprocessing.   In   particular,   recent   studies   indicate   that   range   adaptation,   i.e.,the mechanism by which neurons dynamically tune their output firing properties to match the changing statistics of their inputs, may drive plastic changes in the brain’s decision system that induce systematic deviations  to  rationality.  Here,  we  ask  whether  behaviorally-relevant  neural  information  processing may  be  distorted  by  other incidental, hard-wired,biological  constraints,  in  particular:  Hebbian plasticity. One of our main contributionsis to propose a simple computational method for identifying (and comparing) the neural signature of such biological mechanisms or constraints. Using ANNs (i.e., artificial neural network models) and RSA (i.e.,representational similarity analysis), we compare the neural  signatures  of  two  types  of  hard-wired  biological  mechanisms/constraints:  namely,  range adaptation  and Hebbian  plasticity.  We  apply  the  approach totwo  different open fMRI  datasets acquired  when  people  make  decisions  under  risk.  In  both  cases,  we  show  that  although peoples' apparentindifferent choicesarewell explainedby  biologically-constrained  ANNs,  choice  data  alone does  not  discriminate  between  range  adaptation  and  Hebbian  plasticity.  However,  RSA shows  that neural  activity  patterns in  bilateral Striatum  and Amygdala are  more  compatible  withHebbian plasticity.  Finally,  the  strength  of  evidence forHebbian  plasticity  in  these  structures  predicts  inter-individual differences in choice inconsistency.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

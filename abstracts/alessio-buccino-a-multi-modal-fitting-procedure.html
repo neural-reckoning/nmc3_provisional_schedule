@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,16 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 13:30" data-end="2020-10-30 13:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>A multi-modal fitting procedure to construct biophysically detailed multicompartment neuronal models</h1><h2>Alessio Buccino</h2><h3>Alessio Paolo Buccino, ETH Zurich; Tanguy Damart, Blue Brain Project, EPFL; Darshan Mandge, Blue Brain Project, EPFL;  Werner Van Geit, Blue Brain Project, EPFL; Henry Markram, Blue Brain Project, EPFL; Andreas Hierlemann, ETH Zurich; </h3><h2>Abstract</h1><p>In computational neuroscience, multicompartment models are among the biophysically most realistic representations of single neurons. 
-Constructing such models usually involves the use of the patch-clamp technique to record somatic voltage signals under different experimental conditions. The experimental data are then used to fit the many parameters of the model. While patching of the soma is the gold-standard approach to build multicompartment models, several studies have also evidenced a richness of dynamics in dendritic and axonal sections. Recording from the soma alone makes it hard to observe and correctly parameterize the activity of non-somatic compartments. 
- 
-In order to provide a richer set of data as input to multicompartment models, we investigate here the combination of somatic patch-clamp recordings with recordings of high-density microelectrode arrays (HD-MEAs). HD-MEAs enable to observe extracellular potentials and neural activity at subcellular resolution. We hypothesize that HD-MEAs may provide a valid alternative to conducting multiple simultaneous patch recordings.
- 
-To test this hypothesis, we built ground-truth samples from an available L5b cell model (Hay 2011), which was developed with multiple patch recordings (one somatic patch and two patches on the apical dendrites), and which is capable of reproducing properties of active dendrites. To do so, we extended the BluePyOpt software to use LFPy to simulate intra- and extracellular signals. We extracted features from both, simulated somatic voltage traces and extracellular action potentials. The extracted features were used to find an optimal set of parameters using a genetic algorithm approach.
- 
-In this in-silico study, we show that using a combination of patch-clamp and extracellular features allows for finding a much better fit of the dendritic parameters than the use of somatic features alone. This multimodal fitting strategy potentially yields a set of better constrained and more accurate multicompartment models.
-</p>
+        <h1>A multi-modal fitting procedure to construct biophysically detailed multicompartment neuronal models</h1><h2>Alessio Buccino</h2><h3>Alessio Paolo Buccino, ETH Zurich; Tanguy Damart, Blue Brain Project, EPFL; Darshan Mandge, Blue Brain Project, EPFL;  Werner Van Geit, Blue Brain Project, EPFL; Henry Markram, Blue Brain Project, EPFL; Andreas Hierlemann, ETH Zurich; </h3><h2>Abstract</h1><p>In computational neuroscience, multicompartment models are among the biophysically most realistic representations of single neurons. <br/>Constructing such models usually involves the use of the patch-clamp technique to record somatic voltage signals under different experimental conditions. The experimental data are then used to fit the many parameters of the model. While patching of the soma is the gold-standard approach to build multicompartment models, several studies have also evidenced a richness of dynamics in dendritic and axonal sections. Recording from the soma alone makes it hard to observe and correctly parameterize the activity of non-somatic compartments. <br/> <br/>In order to provide a richer set of data as input to multicompartment models, we investigate here the combination of somatic patch-clamp recordings with recordings of high-density microelectrode arrays (HD-MEAs). HD-MEAs enable to observe extracellular potentials and neural activity at subcellular resolution. We hypothesize that HD-MEAs may provide a valid alternative to conducting multiple simultaneous patch recordings.<br/> <br/>To test this hypothesis, we built ground-truth samples from an available L5b cell model (Hay 2011), which was developed with multiple patch recordings (one somatic patch and two patches on the apical dendrites), and which is capable of reproducing properties of active dendrites. To do so, we extended the BluePyOpt software to use LFPy to simulate intra- and extracellular signals. We extracted features from both, simulated somatic voltage traces and extracellular action potentials. The extracted features were used to find an optimal set of parameters using a genetic algorithm approach.<br/> <br/>In this in-silico study, we show that using a combination of patch-clamp and extracellular features allows for finding a much better fit of the dendritic parameters than the use of somatic features alone. This multimodal fitting strategy potentially yields a set of better constrained and more accurate multicompartment models.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

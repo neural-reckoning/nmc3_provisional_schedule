@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,16 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 17:00" data-end="2020-10-30 17:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Sensitivity versus criterion mechanisms underlying the attentional blink</h1><h2>Swagata Halder</h2><h3>Dr.Sridharan Devarajan, Indian Institute of Science, Bangalore</h3><h2>Abstract</h1><p>Attention enables us to select behaviorally relevant, stimuli for enhanced sensory processing and decision-making. We investigate neural mechanisms of the “attentional blink”: the impaired ability to select the second (T2) of two targets, when it occurs within close temporal proximity (200-500 ms) of the first (T1). 
-
-Does attentional blink affect the selection of T2 for enhanced sensory processing (sensitivity, d’), for decision-making (criterion, c) or both? Specifically, does it affect d’ and c associated with detecting T2, with discriminating its features, or both? We addressed all of these questions using a single, novel psychophysical task with concomitant EEG (electroencephalography) recordings in 23 human participants. 
-
-Two target stimuli (Gabor gratings) embedded in a stream of plaid distractors appeared in a 10-Hz rapid serial visual presentation (RSVP) paradigm. On each trial, subjects discriminated the orientation of a T1 stimulus (cardinal/diagonal) with a 2-AFC (two-alternative forced-choice) response. They also indicated the presence, as well as the orientation of a T2 stimulus with a 3-AFC response (clockwise/counterclockwise of vertical, or absent). We developed a novel, multidimensional signal detection model to analyze subjects’ multialternative behavioral choices; the model quantified d’ and c for both detection and discrimination of T2 stimuli. 
-
-Significant reductions in both detection and discrimination d’ parameters were observed during the blink. On the other hand, the blink produced virtually no effect on either detection or discrimination criteria. Event-related potentials, including the visual P2 over occipital electrodes and P3b over parietal electrodes modulated in amplitude in a manner that closely resembled detection d’ changes. 
-
-Our study introduces a novel task and framework to investigate behavioral and neural mechanisms underlying the attentional blink, and suggests that selection deficits associated with attentional blink may reflect d’ rather than criterion mechanisms.</p>
+        <h1>Sensitivity versus criterion mechanisms underlying the attentional blink</h1><h2>Swagata Halder</h2><h3>Dr.Sridharan Devarajan, Indian Institute of Science, Bangalore</h3><h2>Abstract</h1><p>Attention enables us to select behaviorally relevant, stimuli for enhanced sensory processing and decision-making. We investigate neural mechanisms of the “attentional blink”: the impaired ability to select the second (T2) of two targets, when it occurs within close temporal proximity (200-500 ms) of the first (T1). <br/><br/>Does attentional blink affect the selection of T2 for enhanced sensory processing (sensitivity, d’), for decision-making (criterion, c) or both? Specifically, does it affect d’ and c associated with detecting T2, with discriminating its features, or both? We addressed all of these questions using a single, novel psychophysical task with concomitant EEG (electroencephalography) recordings in 23 human participants. <br/><br/>Two target stimuli (Gabor gratings) embedded in a stream of plaid distractors appeared in a 10-Hz rapid serial visual presentation (RSVP) paradigm. On each trial, subjects discriminated the orientation of a T1 stimulus (cardinal/diagonal) with a 2-AFC (two-alternative forced-choice) response. They also indicated the presence, as well as the orientation of a T2 stimulus with a 3-AFC response (clockwise/counterclockwise of vertical, or absent). We developed a novel, multidimensional signal detection model to analyze subjects’ multialternative behavioral choices; the model quantified d’ and c for both detection and discrimination of T2 stimuli. <br/><br/>Significant reductions in both detection and discrimination d’ parameters were observed during the blink. On the other hand, the blink produced virtually no effect on either detection or discrimination criteria. Event-related potentials, including the visual P2 over occipital electrodes and P3b over parietal electrodes modulated in amplitude in a manner that closely resembled detection d’ changes. <br/><br/>Our study introduces a novel task and framework to investigate behavioral and neural mechanisms underlying the attentional blink, and suggests that selection deficits associated with attentional blink may reflect d’ rather than criterion mechanisms.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

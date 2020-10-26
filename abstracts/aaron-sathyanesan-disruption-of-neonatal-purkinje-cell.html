@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 17:30" data-end="2020-10-29 17:45">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Disruption of neonatal Purkinje cell function underlies injury-related learning deficits</h1><h2>Aaron Sathyanesan</h2><h3>Aaron Sathyanesan, Children's National Research Institute, Washington DC; Panagiotis Kratimenos, Children's National Research Institute, Washington DC; Vittorio Gallo, Children's National Research Institute, Washington DC</h3><h2>Abstract</h1><p>It is hypothesized that perinatal cerebellar injury leads to long-term functional deficits due to circuit dysmaturation. Using a novel integration of GCaMP6f fiber photometry with automated measurement of cerebellar behavior using the ErasmusLadder, we causally link cerebellar injury to altered Purkinje cell responses during maladaptive behavior. Inhibition of Purkinje cells is sufficient to phenocopy the effects of perinatal cerebellar injury. Our results uncover a direct link between perinatal cerebellar injury and activity-dependent maturation of cerebellar cortex.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

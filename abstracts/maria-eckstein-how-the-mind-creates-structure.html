@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 17:00" data-end="2020-10-29 17:15">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>How the Mind Creates Structure: Hierarchical Learning of Complex Action Sequences</h1><h2>Maria Eckstein</h2><h3>Anne CE Collins</h3><h2>Abstract</h1><p>Humans have the astonishing ability to learn from small amounts of data in reward-sparse environments, and to efficiently create multi-step goal-directed action plans. How humans aquire the representations that support this ability has fascinated researchers in psychology and artiﬁcial intelligence for decades. We investigate the contributions of two mechanisms: curiosity, the intrinsic motivation to explore the effects actions have on the environment; and hierarchical structure, the representation of goals and actions across multiple levels of abstraction.
-To test this hypothesis, we asked 60 undergraduate participants (49 females) to participate in a task in which they operated a star-making machine using their computer keyboard, with the goal of collecting as many stars as possible. 
-Participants needed to learn four 4-key sequences that led to 4 different stars. Each 4-key sequence was made up of two successive 2-key sequences. The 2-key sequences were one of four possible shared across stars, and their successful execution was signaled visually (triggering curiosity), but not rewarded. We asked whether participants learned and employed this underlying structure to obtain stars. Indeed, response time (RT) patterns revealed a strong segmentation of participants’ 4-key sequences into two 2-key sequences, with markedly speeded RTs on actions 2 and 4 of the sequence, compared to actions 1 and 3. This suggests that participants learned the 2-key sequences and used them as a basis to explore 4-key sequences. The strength of RT segmentation was related to performance, such that high levels of segmentation—suggesting exploration in the space of 2-key sequences—was related to faster learning. After learning, participants underwent an unsignaled transfer block, in which either 2-key sequences were modified by exchanging component keys (low-level transfer), or 4-key sequences were modified by exchanging component 2-key sequences (high-level transfer). Participants showed faster relearning after high-level than low-level transfer, suggesting that high-level policies were more malleable and low-level policies were more automated. 
-This research sheds light on the cognitive processes involved in representation learning for decision making. Faced with the natural world’s combinatorial explosion of possibilities, humans might bootstrap learning by shifting the level of exploration from basic actions to compound action sequences, which are themselves learned through curiosity.</p>
+        <h1>How the Mind Creates Structure: Hierarchical Learning of Complex Action Sequences</h1><h2>Maria Eckstein</h2><h3>Anne CE Collins</h3><h2>Abstract</h1><p>Humans have the astonishing ability to learn from small amounts of data in reward-sparse environments, and to efficiently create multi-step goal-directed action plans. How humans aquire the representations that support this ability has fascinated researchers in psychology and artiﬁcial intelligence for decades. We investigate the contributions of two mechanisms: curiosity, the intrinsic motivation to explore the effects actions have on the environment; and hierarchical structure, the representation of goals and actions across multiple levels of abstraction.<br/>To test this hypothesis, we asked 60 undergraduate participants (49 females) to participate in a task in which they operated a star-making machine using their computer keyboard, with the goal of collecting as many stars as possible. <br/>Participants needed to learn four 4-key sequences that led to 4 different stars. Each 4-key sequence was made up of two successive 2-key sequences. The 2-key sequences were one of four possible shared across stars, and their successful execution was signaled visually (triggering curiosity), but not rewarded. We asked whether participants learned and employed this underlying structure to obtain stars. Indeed, response time (RT) patterns revealed a strong segmentation of participants’ 4-key sequences into two 2-key sequences, with markedly speeded RTs on actions 2 and 4 of the sequence, compared to actions 1 and 3. This suggests that participants learned the 2-key sequences and used them as a basis to explore 4-key sequences. The strength of RT segmentation was related to performance, such that high levels of segmentation—suggesting exploration in the space of 2-key sequences—was related to faster learning. After learning, participants underwent an unsignaled transfer block, in which either 2-key sequences were modified by exchanging component keys (low-level transfer), or 4-key sequences were modified by exchanging component 2-key sequences (high-level transfer). Participants showed faster relearning after high-level than low-level transfer, suggesting that high-level policies were more malleable and low-level policies were more automated. <br/>This research sheds light on the cognitive processes involved in representation learning for decision making. Faced with the natural world’s combinatorial explosion of possibilities, humans might bootstrap learning by shifting the level of exploration from basic actions to compound action sequences, which are themselves learned through curiosity.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 16:30" data-end="2020-10-26 16:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Propagation and modulation of information in visual pathway</h1><h2>Chengcheng Huang (she)</h2><h3>Alexandre Pouget, University of Geneva; Brent Doiron, University of Chicago </h3><h2>Abstract</h1><p>How neuronal variability impacts sensory coding is a central question in systems neuroscience, often with complex and model dependent answers.  Many studies explore population models with a parametric structure for response tuning and variability, preventing an analysis of how synaptic circuitry establish neural codes. We study stimulus coding in networks of spiking neuron models with spatially ordered excitatory and inhibitory connectivity.  The wiring structure is capable of producing rich population-wide shared neuronal variability that agrees with many features of recorded cortical activity. While both the spatial scales of feedforward and recurrent projections strongly affect noise correlations, only recurrent projections, and in particular inhibitory projections, can introduce correlations that limit the stimulus information available to a decoder. Using a spatial neural field model we relate the recurrent circuit conditions for information limiting noise correlations to how recurrent excitation and inhibition can form spatio-temporal patterns of population-wide activity. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 01:30" data-end="2020-10-27 01:45">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Online assessments of Word-Predictability: a feasible alternative to in-lab research </h1><h2>Lena Peroni (She/Her)</h2><h3>Bruno Bianchi,  Laboratorio de Inteligencia Artificial Aplicada, Instituto de Ciencias de la Computación, FCEyN, UBA - CONICET; Diego E Shalom, Departamento de Física, FCEyN, UBA; Juan E Kamienkowski ,Laboratorio de Inteligencia Artificial Aplicada, Instituto de Ciencias de la Computación, FCEyN, UBA - CONICET,Departamento de Física, FCEyN, UBA</h3><h2>Abstract</h1><p>Recently, the use of web platforms for massive experiments has been rapidly growing. Online experiments allow to increase the number of participants to partake in the experiment, improving the quality of some measures. Also, using social media platforms one is able to reach people from several demographics making these results more diverse, and thus more representative. In order to understand how internal processes of the mind and external stimuli play together in the generation of action, reading may serve as an ideal paradigm since it requires language, reasoning and memory processes, to orchestrate the task. When we read printed text, we are continuously predicting upcoming words to integrate information and decide when and where we are going to move our eyes. The Predictability of each word can be estimated with a Cloze-Task Experiment. In it subjects have to read an incomplete text and guess the missing words given the preceding context. We studied whether online Cloze-Tasks could replicate in-lab ones, or even improve them as the sample size could be increased. In three experiments involving different corpora and online and in-lab setups, we observed that the online Cloze-Task replicates the results from the in-lab one and that the results were consistent between independent online experiments. Also, we showed that word-Predictability is highly dependent on large contexts, i.e. if the sentence is embedded in a story or not. Thus, online Cloze-Task could ease the collection for larger samples, generating robust and more precise measures.Recently, the use of web platforms for massive experiments has been rapidly growing. Online experiments allow to increase the number of participants to partake in the experiment, improving the quality of some measures. Also, using social media platforms one is able to reach people from several demographics making these results more diverse, and thus more representative. In order to understand how internal processes of the mind and external stimuli play together in the generation of action, reading may serve as an ideal paradigm since it requires language, reasoning and memory processes, to orchestrate the task. When we read printed text, we are continuously predicting upcoming words to integrate information and decide when and where we are going to move our eyes. The Predictability of each word can be estimated with a Cloze-Task Experiment. In it subjects have to read an incomplete text and guess the missing words given the preceding context. We studied whether online Cloze-Tasks could replicate in-lab ones, or even improve them as the sample size could be increased. In three experiments involving different corpora and online and in-lab setups, we observed that the online Cloze-Task replicates the results from the in-lab one and that the results were consistent between independent online experiments. Also, we showed that word-Predictability is highly dependent on large contexts, i.e. if the sentence is embedded in a story or not. Thus, online Cloze-Task could ease the collection for larger samples, generating robust and more precise measures.
-</p>
+        <h1>Online assessments of Word-Predictability: a feasible alternative to in-lab research </h1><h2>Lena Peroni (She/Her)</h2><h3>Bruno Bianchi,  Laboratorio de Inteligencia Artificial Aplicada, Instituto de Ciencias de la Computación, FCEyN, UBA - CONICET; Diego E Shalom, Departamento de Física, FCEyN, UBA; Juan E Kamienkowski ,Laboratorio de Inteligencia Artificial Aplicada, Instituto de Ciencias de la Computación, FCEyN, UBA - CONICET,Departamento de Física, FCEyN, UBA</h3><h2>Abstract</h1><p>Recently, the use of web platforms for massive experiments has been rapidly growing. Online experiments allow to increase the number of participants to partake in the experiment, improving the quality of some measures. Also, using social media platforms one is able to reach people from several demographics making these results more diverse, and thus more representative. In order to understand how internal processes of the mind and external stimuli play together in the generation of action, reading may serve as an ideal paradigm since it requires language, reasoning and memory processes, to orchestrate the task. When we read printed text, we are continuously predicting upcoming words to integrate information and decide when and where we are going to move our eyes. The Predictability of each word can be estimated with a Cloze-Task Experiment. In it subjects have to read an incomplete text and guess the missing words given the preceding context. We studied whether online Cloze-Tasks could replicate in-lab ones, or even improve them as the sample size could be increased. In three experiments involving different corpora and online and in-lab setups, we observed that the online Cloze-Task replicates the results from the in-lab one and that the results were consistent between independent online experiments. Also, we showed that word-Predictability is highly dependent on large contexts, i.e. if the sentence is embedded in a story or not. Thus, online Cloze-Task could ease the collection for larger samples, generating robust and more precise measures.Recently, the use of web platforms for massive experiments has been rapidly growing. Online experiments allow to increase the number of participants to partake in the experiment, improving the quality of some measures. Also, using social media platforms one is able to reach people from several demographics making these results more diverse, and thus more representative. In order to understand how internal processes of the mind and external stimuli play together in the generation of action, reading may serve as an ideal paradigm since it requires language, reasoning and memory processes, to orchestrate the task. When we read printed text, we are continuously predicting upcoming words to integrate information and decide when and where we are going to move our eyes. The Predictability of each word can be estimated with a Cloze-Task Experiment. In it subjects have to read an incomplete text and guess the missing words given the preceding context. We studied whether online Cloze-Tasks could replicate in-lab ones, or even improve them as the sample size could be increased. In three experiments involving different corpora and online and in-lab setups, we observed that the online Cloze-Task replicates the results from the in-lab one and that the results were consistent between independent online experiments. Also, we showed that word-Predictability is highly dependent on large contexts, i.e. if the sentence is embedded in a story or not. Thus, online Cloze-Task could ease the collection for larger samples, generating robust and more precise measures.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

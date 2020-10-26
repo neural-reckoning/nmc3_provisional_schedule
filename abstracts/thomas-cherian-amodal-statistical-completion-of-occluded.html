@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 16:00" data-end="2020-10-27 16:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Amodal statistical completion of occluded objects </h1><h2>Thomas Cherian</h2><h3>SP Arun, Indian Institute of Science</h3><h2>Abstract</h1><p>It is well known that the visual system amodally completes occluded edges in a display. But real-world objects have more complex edges and yet, we have no trouble recognizing them even when they are occluded. Does our visual system extrapolate more complex types of information based on the statistics of the visible portion of an object? To answer this question, we performed a series of visual search experiments. We created occluded displays in which a shape was occluded in its top-left corner, and two alternative shapes whose contours were identical in the unoccluded portion but differed in the occluded portion such that one appeared to be the more likely object behind the occluder, and the other more unlikely. We then asked whether perceptual dissimilarities measured using visual search in the occluded conditions were correlated with the perceptual dissimilarities of the likely pairs or unlikely pairs. Across different sets of shapes organized on candidate features for perceptual completion (here: ‘numerosity’ of protrusions,  ‘curvature’ between straight edges etc.), we observed that occluded dissimilarities were more correlated with the likely shape dissimilarities (r = 0.90, p < 0.0005 for ‘numerosity’ set and r = 0.89, p < 0.0005 for ‘curvature’ set’) compared to unlikely shape dissimilarities (r = 0.68, p < 0.0005 for ‘numerosity’ set and r = 0.80, p < 0.0005 for ‘curvature’ set’). Taken together, our results show that amodal completion is far more complex than is believed, in that it can not only extrapolate simple edges but use statistical properties to complete occluded portions of objects. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

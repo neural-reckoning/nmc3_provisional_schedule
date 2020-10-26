@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 5
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 22:15" data-end="2020-10-30 22:30">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Human Structural Connectomes are Heritable</h1><h2>Jaewon Chung</h2><h3>Jaewon Chung, Johns Hopkins University; Jayanta Dey, Johns Hopkins University; Gregory Kiar, McGill University; Carey E. Priebe, Johns Hopkins University; Joshua T. Vogelstein, Johns Hopkins University;</h3><h2>Abstract</h1><p>Nature versus nurture: who wins? Assessment of heritability of different cognitive, behavioral traits and brain features is a key to this age-old debate. Heritability characterizes the proportion of variation in a given trait within a population that is not explained by the environmental or stochastic events. Recent studies have investigated heritability of complex brain features, including brain shape and connectivity of different brain regions (connectomes). We introduce a dissimilarity metric between a pair of connectomes that is based on statistical network models to assess heritability of human connectomes. Using the Human Connectome Project (HCP) data, we computed the dissimilarity in all pairs of monozygotic, dizygotic, siblings, and unrelated individuals. We show that the distributions of dissimilarity among the four groups are significantly different and are stochastic ordered, from smallest to greatest dissimilarity: monozygotic, dizygotic, siblings and unrelated pairs. Thus, we confirm that structurally-derived estimates of human connectomes are heritable.
-</p>
+        <h1>Human Structural Connectomes are Heritable</h1><h2>Jaewon Chung</h2><h3>Jaewon Chung, Johns Hopkins University; Jayanta Dey, Johns Hopkins University; Gregory Kiar, McGill University; Carey E. Priebe, Johns Hopkins University; Joshua T. Vogelstein, Johns Hopkins University;</h3><h2>Abstract</h1><p>Nature versus nurture: who wins? Assessment of heritability of different cognitive, behavioral traits and brain features is a key to this age-old debate. Heritability characterizes the proportion of variation in a given trait within a population that is not explained by the environmental or stochastic events. Recent studies have investigated heritability of complex brain features, including brain shape and connectivity of different brain regions (connectomes). We introduce a dissimilarity metric between a pair of connectomes that is based on statistical network models to assess heritability of human connectomes. Using the Human Connectome Project (HCP) data, we computed the dissimilarity in all pairs of monozygotic, dizygotic, siblings, and unrelated individuals. We show that the distributions of dissimilarity among the four groups are significantly different and are stochastic ordered, from smallest to greatest dissimilarity: monozygotic, dizygotic, siblings and unrelated pairs. Thus, we confirm that structurally-derived estimates of human connectomes are heritable.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

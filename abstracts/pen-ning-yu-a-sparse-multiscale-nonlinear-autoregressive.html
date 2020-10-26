@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,12 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 20:15" data-end="2020-10-29 20:30">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>A Sparse Multiscale Nonlinear Autoregressive Model for Seizure Prediction</h1><h2>Pen-Ning Yu</h2><h3>Dong Song, University of Southern California</h3><h2>Abstract</h1><p>Objectives: Accurate seizure prediction is highly desirable for medical interventions such as responsive electrical stimulation.  We aim to develop a classification model that can predict seizures by identifying preictal states, i.e., the precursor of a seizure, based on multi-channel intracranial EEG (iEEG) signals.
-Approach: A two-level sparse multiscale classification model is developed to classify interictal and preictal states from iEEG data.  In the first level, short time-scale linear dynamical features are extracted as autoregressive (AR) model coefficients; Long time-scale linear and nonlinear dynamical features are extracted as Laguerre-Volterra autoregressive (LVAR) model coefficients; Root-mean-square error (RMSE) of model prediction is used as a feature representing model unpredictability.  In the second level, all features are fed into a sparse classifier to discriminate the iEEG data between interictal and preictal states.
-Main results: The two-level model can accurately classify seizure states using iEEG data recorded from ten canine and human subjects.  Adding long time-scale and nonlinear features significantly improves model performance compared with the conventional AR modeling approach.  There is a high degree of variability in the types of features contributing to seizure prediction across different subjects.  
-Significance: This study suggests that seizure generation may involve distinct linear/nonlinear dynamical processes caused by different underlying neurobiological mechanisms.  It is necessary to build patient-specific classification models with a wide range of dynamical features.
-</p>
+        <h1>A Sparse Multiscale Nonlinear Autoregressive Model for Seizure Prediction</h1><h2>Pen-Ning Yu</h2><h3>Dong Song, University of Southern California</h3><h2>Abstract</h1><p>Objectives: Accurate seizure prediction is highly desirable for medical interventions such as responsive electrical stimulation.  We aim to develop a classification model that can predict seizures by identifying preictal states, i.e., the precursor of a seizure, based on multi-channel intracranial EEG (iEEG) signals.<br/>Approach: A two-level sparse multiscale classification model is developed to classify interictal and preictal states from iEEG data.  In the first level, short time-scale linear dynamical features are extracted as autoregressive (AR) model coefficients; Long time-scale linear and nonlinear dynamical features are extracted as Laguerre-Volterra autoregressive (LVAR) model coefficients; Root-mean-square error (RMSE) of model prediction is used as a feature representing model unpredictability.  In the second level, all features are fed into a sparse classifier to discriminate the iEEG data between interictal and preictal states.<br/>Main results: The two-level model can accurately classify seizure states using iEEG data recorded from ten canine and human subjects.  Adding long time-scale and nonlinear features significantly improves model performance compared with the conventional AR modeling approach.  There is a high degree of variability in the types of features contributing to seizure prediction across different subjects.  <br/>Significance: This study suggests that seizure generation may involve distinct linear/nonlinear dynamical processes caused by different underlying neurobiological mechanisms.  It is necessary to build patient-specific classification models with a wide range of dynamical features.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

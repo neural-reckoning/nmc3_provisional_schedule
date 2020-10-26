@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,21 +52,15 @@
             Track 0
             /
             Special Event
+            <div class="visible_at_time" data-start="2020-10-27 17:00" data-end="2020-10-27 18:00">
+                <a href='https://www.youtube.com/watch?v=YWYsHlZ2Utk'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=YWYsHlZ2Utk'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Black In Neuro: Neuroracism Panel Discussion</h1><h2>Abstract</h1><p>Black In Neuro will lead a panel discussion as the first installment of a 2-part event on neuroracism.
-
-The NeuroRacism panel will center discussions on how we in academia collect, use and interpret data about Black people. Panelists will highlight ongoing biases and anti-Black racism that is currently embedded in the practices of neuro-related research. We will explore what it means to think about data critically, from a social justice oriented lens, and to question the current status quo.
-
-Participants are encouraged to revisit Black in Neuro’s NeuroRacism panel from this summer to gain further context and perspectives. https://www.youtube.com/watch?v=inYtc5apSuk&t=1458s
-
-Moderator: De-Shaine Murray
-
-Panelist: 
-- Kafui Dzirasa, PhD
-
-- Abeba Birhane, PhD Candidate
-
-- Shalini Kantayya</p>
+        <h1>Black In Neuro: Neuroracism Panel Discussion</h1><h2>Abstract</h1><p>Black In Neuro will lead a panel discussion as the first installment of a 2-part event on neuroracism.<br/><br/>The NeuroRacism panel will center discussions on how we in academia collect, use and interpret data about Black people. Panelists will highlight ongoing biases and anti-Black racism that is currently embedded in the practices of neuro-related research. We will explore what it means to think about data critically, from a social justice oriented lens, and to question the current status quo.<br/><br/>Participants are encouraged to revisit Black in Neuro’s NeuroRacism panel from this summer to gain further context and perspectives. https://www.youtube.com/watch?v=inYtc5apSuk&t=1458s<br/><br/>Moderator: De-Shaine Murray<br/><br/>Panelist: <br/>- Kafui Dzirasa, PhD<br/><br/>- Abeba Birhane, PhD Candidate<br/><br/>- Shalini Kantayya</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

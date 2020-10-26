@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 8
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 16:00" data-end="2020-10-27 16:15">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>A Bayesian filtering framework for neural and sensorimotor entrainment</h1><h2>Jonathan Cannon</h2><h2>Abstract</h1><p>When presented with complex rhythmic auditory stimuli, most humans are able to track underlying temporal structure (e.g., a ``beat'') with overt movement or covertly while automatically and unconsciously adjusting for timing irregularities. We propose that the problem of overt and covert rhythm tracking is most naturally characterized as a problem of point process filtering: continuously estimating a hidden underlying phase based on the precise timing of temporally localized events that provide (incomplete) information about the phase. Here, we provide several mathematical framings of that problem at different levels of detail. We demonstrate that variational Bayesian solutions to this problem (specifically, point-process Kalman-Bucy filters) can be used to infer tempo as well as phase, and that they reproduce multiple characteristics of overt and covert human rhythm tracking including interval-dependent phase correction and the ``filled interval'' illusion. We point out that this approach to rhythm tracking fits nicely into the theory of predictive processing and active inference, and we discuss its plausibility in the human brain.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 22:00" data-end="2020-10-26 22:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Dopaminergic activation of prefrontal astrocytes requires both dopamine and adrenergic receptors</h1><h2>Silvia Pittolo</h2><h3>Sae Yokoyama, Department of Biochemistry & Biophysics, University of California, San Francisco; Michael Reitman, Department of Biochemistry & Biophysics, University of California, San Francisco; Kira Poskanzer, Department of Biochemistry & Biophysics, University of California, San Francisco & Kavli Institute for Fundamental Neuroscience</h3><h2>Abstract</h1><p>Cortical dopamine is crucial in many facets of behavior, including acute stress, depression and schizophrenia. Dopamine research has almost exclusively focused on neuronal signaling. However, astrocytes—which are organized in networks that tile the brain and express G protein-coupled receptors (GPCRs) for most neurotransmitters—are also well positioned to listen to and respond to dopamine signals. Here, we investigated the astrocytic response to dopamine in the prefrontal cortex (PFC), the main cortical recipient of dopaminergic inputs. First, using transgenic reporter lines, we found that prefrontal astrocytes in rodent PFC express both dopamine D1 and D2 receptors. Next, we expressed fluorescent reporters for GPCR second messengers in mouse prefrontal cortical slices. While inactivating neurons to isolate astrocyte-specific responses, we found that activation of dopamine receptors in astrocytes does not engage the canonical cyclic AMP signaling pathway downstream of dopamine receptors. In contrast, dopamine mobilized astrocytic calcium in both astrocyte somata and processes. To test which receptors mediate this calcium response, we used bath application of pharmacology, as well as one-photon uncaging of dopamine. These experiments revealed that dopamine recruits prefrontal astrocytes within seconds, and that antagonizing dopamine receptors only partially dampened the response of prefrontal astrocytes to dopamine, whereas the response was fully prevented by blocking adrenergic receptors. Lastly, we implanted GRIN lenses to image calcium dynamics in PFC astrocytes in vivo for the first time, and find that they exhibit different properties relative to locomotion than astrocytes in primary sensory cortices. Our finding that fast dopamine activation of prefrontal astrocytes requires both dopamine and adrenergic receptors is potentially relevant in the treatment of disorders such as schizophrenia and depression, where manipulation of more than one monoaminergic system is more beneficial than monotherapy. Together, our results suggest that astrocytes are important circuit components for dopamine signaling in PFC circuits.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

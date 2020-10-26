@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 16:30" data-end="2020-10-27 16:45">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Mesoscale brain dynamics reorganizes and stabilizes during learning tactile discrimination task</h1><h2>Yaroslav Sych</h2><h3>Aleksejs Fomins, University of Zurich; Leonardo Novelli, University of Zurich; Fritjof Helmchen, University of Zurich;</h3><h2>Abstract</h1><p>Adaptive behavior is coordinated by neuronal networks that are distributed across multiple brain regions. How cross-regional interactions reorganize during learning remains elusive. We applied multi-fiber photometry to chronically record simultaneous activity of 12-48 mouse brain regions while mice learned a tactile discrimination task. We found that with learning most regions shifted their peak activity from reward-related action to the reward-predicting stimulus. We corroborated this finding by functional connectivity estimation using transfer entropy, which revealed growth and stabilization of mesoscale networks encompassing basal ganglia, thalamus, cortex, and hippocampus, especially during stimulus presentation. The internal globus pallidus, ventromedial thalamus, and several regions in frontal cortex emerged as hub regions. Our results highlight the cooperative action of distributed brain regions to establish goal-oriented mesoscale network dynamics during learning.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

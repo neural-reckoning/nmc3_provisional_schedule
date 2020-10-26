@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 11:00" data-end="2020-10-27 11:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Processing structural and emotional features of younger, middle-aged, and older faces: An event-related potential (ERP) study</h1><h2>Jéssica Pereira</h2><h3>Carina Fernandes, Laboratory of Neuropsychophysiology, Faculty of Psychology and Education Sciences, University of Porto; Mariana R. Pereira, Laboratory of Neuropsychophysiology, Faculty of Psychology and Education Sciences, University of Porto; Helena Garcez, Laboratory of Neuropsychophysiology, Faculty of Psychology and Education Sciences, University of Porto; Ana R. Gonçalves, Laboratory of Neuropsychophysiology, Faculty of Psychology and Education Sciences, University of Porto; Fernando Barbosa, Laboratory of Neuropsychophysiology, Faculty of Psychology and Education Sciences, University of Porto; João Marques-Teixeira, Laboratory of Neuropsychophysiology, Faculty of Psychology and Education Sciences; Fernando Ferreira-Santos, Laboratory of Neuropsychophysiology, Faculty of Psychology and Education Sciences</h3><h2>Abstract</h1><p>Face processing is a crucial social ability that allows humans to infer other’s people emotions and inner psychological states. Although previous studies have investigated the role of facial age in attention, memory, and identification of facial expressions of emotion, the way facial age modulates the neuronal correlates of facial and emotional processing is not well known. Thus, the present study aims to investigate the behaviour of evoked potentials related to events associated with facial processing when induced by faces of different age groups. To this purpose, twenty-four healthy younger adults (between 20 and 40 years old) performed two tasks designed to assess facial age processing, during an electroencephalography recording. Participants viewed faces of adult actors of different ages (younger, middle-aged, and older), which were expressing different emotional categories (neutral, happiness, sadness, and disgust). The behavioural data showed a better performance in the identification of emotions expressed by younger faces compared to older faces, which suggests a greater facility in the identification of emotions expressed by individuals of the same age group. The electrophysiological results showed that older faces induced an increased N170, and that the N170 and P250 were modulated by the expressed emotion. These differences can be explained by changes in the characteristics of the face associated with aging, which can significantly modulate the capacity for emotional identification and, consequently, the quality of social interactions.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

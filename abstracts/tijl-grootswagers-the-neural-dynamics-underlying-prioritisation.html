@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 01:00" data-end="2020-10-28 01:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The neural dynamics underlying prioritisation of task-relevant information</h1><h2>Tijl Grootswagers</h2><h3>Tijl Grootswagers, Western Sydney University; Amanda K. Robinson, University of Sydney; Sophia M. Shatek,  University of Sydney; Thomas A. Carlson, University of Sydney</h3><h2>Abstract</h1><p>The human brain prioritises relevant sensory information to perform different tasks. Enhancement of task-relevant information requires flexible allocation of attentional resources, but it is still a mystery how this is operationalised in the brain. We investigated how attentional mechanisms operate in situations where multiple stimuli are presented in the same location and at the same time. In two experiments, participants performed a challenging two-back task on different types of visual stimuli that were presented simultaneously and superimposed over each other. Using electroencephalography and multivariate decoding, we analysed the effect of attention on the neural coding of each individual stimulus. Whole brain neural responses contained considerable information about both the attended and unattended stimuli, even though they were presented simultaneously and represented in overlapping receptive fields. As expected, attention enhanced stimulus-related information contained in the neural responses, but this enhancement was evident earlier for stimuli that were presented at smaller sizes. Our results show that early neural responses to stimuli in fast-changing displays contain remarkable detail about the sensory environment but are also modulated by attention in a manner dependent on perceptual characteristics of the relevant stimuli. Stimuli, code, and data for this study can be found at https://osf.io/7zhwp/.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

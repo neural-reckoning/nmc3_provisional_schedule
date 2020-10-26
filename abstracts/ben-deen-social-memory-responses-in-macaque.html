@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 6
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 17:30" data-end="2020-10-28 17:45">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Social memory responses in macaque medial prefrontal cortex</h1><h2>Ben Deen</h2><h3>Sofia Landi*, University of Washington; Winrich Freiwald, Rockefeller University</h3><h2>Abstract</h1><p>Humans have a sophisticated ability to understand other people’s behavior, in terms of knowledge about their personality, personal history, and internal mental states. This ability is thought to be supported by a distributed network of areas within the default mode or apex network, including regions of medial prefrontal cortex (mPFC). To what extent is the neural machinery underlying these abilities evolutionarily conserved, versus uniquely human? Here, we search for potential homologues of human social reasoning areas in the macaque, capitalizing on the observation that in humans, these areas also respond to images of familiar faces. We record fMRI responses from four macaques while viewing images of faces and objects, that are either novel, visually familiar, or personally familiar. Across all four animals, responses to faces over objects are observed in multiple (at least three) subregions of mPFC and superior frontal gyrus. These regions respond over baseline to personally familiar faces, at baseline for visually familiar or unfamiliar faces, and below baseline for objects, indicating a domain-specific, memory-related response. The regions also share characteristic functional properties with socially-responsive regions of human mPFC: 1) They are positioned with the apex network, both in terms of anatomical location and functional connectivity; 2) They respond below baseline to non-preferred stimulus categories; 3) They have a characteristic anatomical organization across mPFC, with alternating regions of socially-responsive and non-responsive cortex spanning ventral to dorsal mPFC. These results demonstrate that macaques have social memory responses in medial prefrontal cortex, with a strikingly similar functional profile to regions implicated in human social reasoning and memory.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

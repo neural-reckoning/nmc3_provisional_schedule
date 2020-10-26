@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 22:00" data-end="2020-10-29 22:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>A circuit-based theory of the impact of cortical state on information flow</h1><h2>Matt Getz (he/his)</h2><h3>Chengcheng Huang, University of Pittsburgh; Brent Doiron, University of Chicago</h3><h2>Abstract</h1><p>Cortical state changes such as attention or arousal are a frequent topic of study as they allow for the inference of relationships between changes in cortical activity and behavior. Intuition for these links has been derived from how response properties often subject to cortical state modulation, like tuning and correlated variability, relate to information flow. However, despite the widespread use of these results in unpacking experimental observations, it remains to fully consider how modulation of cortical state affects stimulus processing. To this end we look at the effect of cortical state on information flow in cortical circuit models and find that linear Fisher information does not change with cortical state if the operating regime of cortex is well-described by a linear response function. This is because any state-dependent changes in response gain are canceled by changes in population variability. We show that if one restricts a decoder to a subset of a cortical population, information within the subpopulation can increase through modulation of cortical state. One clear example is that of excitatory and inhibitory cells in a network: only excitatory cells project along the cortical hierarchy, and are thereby the only targets of interest to a downstream decoder. Surprisingly, we find that only those cells which are not accessible to the decoder can modulate how information flow changes within the decoded population. Our theory additionally reveals a parametrically simplified and intuitive framework for analyzing the effects of modulation on information processing, thereby adding valuable insight into a widespread phenomenon across cortical networks.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

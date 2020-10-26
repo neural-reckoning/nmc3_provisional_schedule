@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,13 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 09:30" data-end="2020-10-30 09:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Motor and cognitive real-life habits in Parkinson’s disease</h1><h2>Pasqualina  Guida</h2><h3>Mariana H.G. Monje, CINAC Hospital Universitario HM Puerta del Sur Móstoles Madrid, Spain; José Ángel Obeso, CINAC Hospital Universitario HM Puerta del Sur Móstoles Madrid, CIBERNED Madrid Spain; Ignacio Obeso, CINAC Hospital Universitario HM Puerta del Sur Móstoles Madrid, CIBERNED Madrid Spain</h3><h2>Abstract</h1><p>Humans can simultaneously and easily shift between automatic/habitual to voluntary/goal-directed modes of behavioural control. Habits (stimulus-response) allows us to perform well-practiced tasks with minimal or no conscious effort. In Parkinson disease (PD), there is a differential loss of dopamine (DA) along the caudal sensorimotor putamen initially transferring to more rostral regions as the disease progresses. The sensoriomotor putamen is primarily implicated in habitual control of behaviour therefore possibly explaining some motor deficits in PD such as arm swinging, walking and writing.
-Our aim was to to investigate with a more ecological approach whether early dopaminergic cell loss in PD (a) alters real-life motor habits and (b) if as well cognitive real-life habits are impaired in PD compared to controls.
-We measured habitual behaviour in 14 early PD patients and 14 HC during performance of a natural habitual motor (handwriting, one of the most well-learned and automatic tasks) and cognitive tasks (Go/noGo Associations Tasks GNAT on implicit prejudice). Tasks were developed to differentiate between habitual and goal directed components. In the writing task, we collected data from the most automatic (e.g. signature, Spanish) to more goal-directed conditions (e.g. Polish, Greek). In the GNAT, we used four kind of stimuli to create four possible Go conditions: two congruent and two incongruent associated to familiar and unfamiliar associations.
-In the natural habitual motor task (handwriting), PD patients showed reduced automatism in the execution of habitual conditions (Spanish and signature writing) compared to controls. However, in the cognitive habitual task, results reveal similar habitual responses in both groups, showing faster responses for congruent conditions than incongruent ones. 
-Our results suggest larger differences in the motor domain in real-life habits whereas the cognitive one remains unaffected in early PD, indicative of specific deficient use of motor habits in PD.
-</p>
+        <h1>Motor and cognitive real-life habits in Parkinson’s disease</h1><h2>Pasqualina  Guida</h2><h3>Mariana H.G. Monje, CINAC Hospital Universitario HM Puerta del Sur Móstoles Madrid, Spain; José Ángel Obeso, CINAC Hospital Universitario HM Puerta del Sur Móstoles Madrid, CIBERNED Madrid Spain; Ignacio Obeso, CINAC Hospital Universitario HM Puerta del Sur Móstoles Madrid, CIBERNED Madrid Spain</h3><h2>Abstract</h1><p>Humans can simultaneously and easily shift between automatic/habitual to voluntary/goal-directed modes of behavioural control. Habits (stimulus-response) allows us to perform well-practiced tasks with minimal or no conscious effort. In Parkinson disease (PD), there is a differential loss of dopamine (DA) along the caudal sensorimotor putamen initially transferring to more rostral regions as the disease progresses. The sensoriomotor putamen is primarily implicated in habitual control of behaviour therefore possibly explaining some motor deficits in PD such as arm swinging, walking and writing.<br/>Our aim was to to investigate with a more ecological approach whether early dopaminergic cell loss in PD (a) alters real-life motor habits and (b) if as well cognitive real-life habits are impaired in PD compared to controls.<br/>We measured habitual behaviour in 14 early PD patients and 14 HC during performance of a natural habitual motor (handwriting, one of the most well-learned and automatic tasks) and cognitive tasks (Go/noGo Associations Tasks GNAT on implicit prejudice). Tasks were developed to differentiate between habitual and goal directed components. In the writing task, we collected data from the most automatic (e.g. signature, Spanish) to more goal-directed conditions (e.g. Polish, Greek). In the GNAT, we used four kind of stimuli to create four possible Go conditions: two congruent and two incongruent associated to familiar and unfamiliar associations.<br/>In the natural habitual motor task (handwriting), PD patients showed reduced automatism in the execution of habitual conditions (Spanish and signature writing) compared to controls. However, in the cognitive habitual task, results reveal similar habitual responses in both groups, showing faster responses for congruent conditions than incongruent ones. <br/>Our results suggest larger differences in the motor domain in real-life habits whereas the cognitive one remains unaffected in early PD, indicative of specific deficient use of motor habits in PD.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

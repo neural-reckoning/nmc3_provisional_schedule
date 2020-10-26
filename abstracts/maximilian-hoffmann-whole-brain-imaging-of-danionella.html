@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 3
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 18:30" data-end="2020-10-29 18:45">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Whole-brain imaging of Danionella Translucida with oblique plane microscopy</h1><h2>Maximilian Hoffmann</h2><h3>Maximilian Hoffmann, Einstein Center for Neurosciences, NeuroCure Cluster of Excellence, Charité Universitätsmedizin, Berlin, Germany ; Jörg Heninnger,Einstein Center for Neurosciences, NeuroCure Cluster of Excellence, Charité Universitätsmedizin, Berlin, Germany; Benjamin Judkewitz,Einstein Center for Neurosciences, NeuroCure Cluster of Excellence, Charité Universitätsmedizin, Berlin, Germany;</h3><h2>Abstract</h1><p>Because the fish Danionella translucida remains small and transparent even in adulthood, it is potentially possible to optically interrogate neuronal networks at single-cell resolution across an entire adult brain. However a suitable microscopy technique, which has a field of view encompassing the whole brain and permits to record at least at the speed on the order of the decay time of Calcium indicators, is lacking.
-Here we present a novel microscope, which fulfils these criteria. By introducing a new solution for the central re-imaging geometry of oblique plane microscopy we extend the family of these microscopy techniques to larger field of views. We are therefore able to record from a volume of 2600 µm x 1000 µm x 850 µm at 1Hz, while maintaining an optical resolution below the size of a single cell. We use this technique to persistently record neural activity of a neural population distributed throughout the whole brain of Danionella translucida.</p>
+        <h1>Whole-brain imaging of Danionella Translucida with oblique plane microscopy</h1><h2>Maximilian Hoffmann</h2><h3>Maximilian Hoffmann, Einstein Center for Neurosciences, NeuroCure Cluster of Excellence, Charité Universitätsmedizin, Berlin, Germany ; Jörg Heninnger,Einstein Center for Neurosciences, NeuroCure Cluster of Excellence, Charité Universitätsmedizin, Berlin, Germany; Benjamin Judkewitz,Einstein Center for Neurosciences, NeuroCure Cluster of Excellence, Charité Universitätsmedizin, Berlin, Germany;</h3><h2>Abstract</h1><p>Because the fish Danionella translucida remains small and transparent even in adulthood, it is potentially possible to optically interrogate neuronal networks at single-cell resolution across an entire adult brain. However a suitable microscopy technique, which has a field of view encompassing the whole brain and permits to record at least at the speed on the order of the decay time of Calcium indicators, is lacking.<br/>Here we present a novel microscope, which fulfils these criteria. By introducing a new solution for the central re-imaging geometry of oblique plane microscopy we extend the family of these microscopy techniques to larger field of views. We are therefore able to record from a volume of 2600 µm x 1000 µm x 850 µm at 1Hz, while maintaining an optical resolution below the size of a single cell. We use this technique to persistently record neural activity of a neural population distributed throughout the whole brain of Danionella translucida.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

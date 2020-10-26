@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 20:30" data-end="2020-10-29 20:45">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The neuroprotective role of orphan nuclear receptor NR5A2/LRH-1 against oxidative stress</h1><h2>Katerina Dimitropoulou (she/her)</h2><h3>Ismini Rozani, Center for Basic Research, Biomedical Research Foundation of the Academy of Athens; Efstathia Tetringa, Center for Basic Research, Biomedical Research Foundation of the Academy of Athens; Dimitrios Gkikas, Center for Basic Research, Biomedical Research Foundation of the Academy of Athens; Matina Tsampoula, Center for Basic Research, Biomedical Research Foundation of the Academy of Athens; Panagiotis K. Politis, Center for Basic Research, Biomedical Research Foundation of the Academy of Athens</h3><h2>Abstract</h1><p>Oxidative stress is a major underlying factor that is a key player in the initiation and/or progression of various fatal neurodegenerative diseases and other brain-related neuropathological conditions. Up to this date there is no established therapy or pharmaceutical strategy to tackle this mutifactorial condition within the context of neurodegeneration, thus identification of new molecular pathways with neuroprotective action against oxidative stress-induced apoptosis may be proven essential for novel therapeutic approaches. To this end, we identify orphan nuclear receptor NR5A2 as a critical protective factor in neuronal cells against H2O2, a well-established oxidative stress model. More specifically, we provide evidence that adenoviral-mediated overexpression of NR5A2 significantly decreases apoptosis and promotes survival of H2O2-treated SH-SY5Y cells and ex vivo cultured murine cortical neurons. Most importantly, dilauroyl-phosphatidylcholine (DLPC), an efficient, FDA-approved pharmacological agonist of NR5A2, is sufficient to recapitulate its neuroprotective action in primary neuronal cells. In an attempt to unravel the molecular mechanism of NR5A2 neuroprotective function, we identify key anti-apoptotic genes, such as Bcl-xl and Bcl-2, as well as genes regulating cellular response to oxidative stress, such Sod2 and Nrf2, as potential downstream targets. Future analyses will include ChIP and transcriptional assays to test the direct binding of NR5A2 on these targets. Collectively, our observations render NR5A2 as a critical neuroprotective factor and promising drug target for brain-related diseases.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,15 +52,15 @@
             Track 8
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 18:30" data-end="2020-10-29 18:45">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Biologically Plausible Fast and Statistical Sequence Learning with RNNs</h1><h2>Huzi Cheng</h2><h3>Huzi Cheng, Indiana University Bloomington; Joshua William Brown, , Indiana University Bloomington;</h3><h2>Abstract</h1><p>Two dilemmas exist on sequence learning in brains and artificial RNNs. The first is the nature and function of well-known reverse replay in the hippocampus, which is crucial to memory consolidation and sequence learning. Different models have been proposed regarding replay, while how replays support learning remains unclear. Neural activities in existing models are usually limited to “one-hot” representations, i.e., only one neuron (or geometrically clustered neurons) is transiently active during the replay period.  This prevents flexible high dimensional sequence learning. Second, the main training algorithm used for RNNs, Backpropagation through time (BPTT), is thought to be biologically implausible, since it requires cached storage of hidden and input layer activity across multiple time steps.
-
-We propose here how a reverse replay RNN may act as a fast learning teacher (i.e. the hippocampus), which provides information to statistically train an RNN (i.e. memory consolidation in cortex).
-
-To demonstrate this, we developed a gated RNN (fast learning) and a mutually coupled RNN (slow, statistical learning). The fast RNN forms stable line attractors in the neural state space (not one-hot). It utilizes oscillations to facilitate fast, stable sequence learning and arbitrarily bidirectional replay on random sequence patterns. The slow RNN consists of two neuron groups with mutual excitatory/inhibitory connections. With different E/I balance levels and the help of reversed inputs, this competition determines the network running direction, generating either forward or backward replays. These replays may train the slow RNN with the power of BPTT but with only local connectivity and plasticity rules, and no requirement to cache neural activities of previous time steps.
-
-The coupled fast and slow RNNs may not only provide an alternative mechanism of biologically plausible sequence learning but also suggest how hippocampus and cortex produce memory consolidation.
-</p>
+        <h1>Biologically Plausible Fast and Statistical Sequence Learning with RNNs</h1><h2>Huzi Cheng</h2><h3>Huzi Cheng, Indiana University Bloomington; Joshua William Brown, , Indiana University Bloomington;</h3><h2>Abstract</h1><p>Two dilemmas exist on sequence learning in brains and artificial RNNs. The first is the nature and function of well-known reverse replay in the hippocampus, which is crucial to memory consolidation and sequence learning. Different models have been proposed regarding replay, while how replays support learning remains unclear. Neural activities in existing models are usually limited to “one-hot” representations, i.e., only one neuron (or geometrically clustered neurons) is transiently active during the replay period.  This prevents flexible high dimensional sequence learning. Second, the main training algorithm used for RNNs, Backpropagation through time (BPTT), is thought to be biologically implausible, since it requires cached storage of hidden and input layer activity across multiple time steps.<br/><br/>We propose here how a reverse replay RNN may act as a fast learning teacher (i.e. the hippocampus), which provides information to statistically train an RNN (i.e. memory consolidation in cortex).<br/><br/>To demonstrate this, we developed a gated RNN (fast learning) and a mutually coupled RNN (slow, statistical learning). The fast RNN forms stable line attractors in the neural state space (not one-hot). It utilizes oscillations to facilitate fast, stable sequence learning and arbitrarily bidirectional replay on random sequence patterns. The slow RNN consists of two neuron groups with mutual excitatory/inhibitory connections. With different E/I balance levels and the help of reversed inputs, this competition determines the network running direction, generating either forward or backward replays. These replays may train the slow RNN with the power of BPTT but with only local connectivity and plasticity rules, and no requirement to cache neural activities of previous time steps.<br/><br/>The coupled fast and slow RNNs may not only provide an alternative mechanism of biologically plausible sequence learning but also suggest how hippocampus and cortex produce memory consolidation.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

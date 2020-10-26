@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 9
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 20:00" data-end="2020-10-29 20:15">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Transsaccadic integration of object orientation vs. identity in human cortex: An fMRI paradigm</h1><h2>Bianca Baltaretu</h2><h3>Bianca R. Baltaretu [Centre for Vision Research, York University, Toronto, ON, CA; Vision, Science to Applications (VISTA) program, York University, Toronto, ON, CA; Department of Biology, York University, Toronto, ON, CA]; W. Dale Stevens [Centre for Vision Research, York University, Toronto, ON, CA; Vision, Science to Applications (VISTA) program, York University, Toronto, ON, CA; Department of Psychology, York University, Toronto, ON, CA]; Erez Freud [Centre for Vision Research, York University, Toronto, ON, CA; Vision, Science to Applications (VISTA) program, York University, Toronto, ON, CA; Department of Psychology, York University, Toronto, ON, CA]; J. Douglas Crawford [Centre for Vision Research, York University, Toronto, ON, CA; Vision, Science to Applications (VISTA) program, York University, Toronto, ON, CA; Departments of Biology, Psychology, Kinesiology & Neuroscience Diploma Program, York University, Toronto, ON, CA];</h3><h2>Abstract</h1><p>Recently, Dunkley et al. (Cortex, 2016) showed modulations in parietal cortex (i.e., supramarginal gyrus, SMG) for transsaccadic changes in object. However, this result did not generalize to other features, such as spatial frequency (Baltaretu et al., J Vis, 2016). We hypothesized that the fundamental difference between these results was the detection of transsaccadic changes in object orientation vs. identity. To test this, we used a double-dissociation fMRI task. Participants fixated a small cross 15.4° left or right of centre, where an object was subsequently presented (rectangle, barrel-shaped, or hourglass-shaped), oriented at ±45° from vertical. After this, the fixation cross either remained in the same position (Fixation condition) or shifted to the other side (Saccade condition). Then, either the same object would appear with the opposite orientation (Orientation change condition) or one of the other two objects would appear at the same orientation (Identity change condition). Button press was used to indicate whether object identity or orientation had changed. Results indicate that cortical modulations were larger for saccades (than fixations) when orientation changed in medial early occipital regions (e.g., V1) extending into later occipitotemporal regions. Activation for changes in identity were larger for saccades (than fixations) for identity change in regions similar to those for orientation change, but also in medial parietal regions (e.g., precuneus and superior parietal lobule). When looking for a feature (Orientation > Identity) change specifically in cortical regions showing a Saccade > Fixation preference, we found this activation within medial occipital/occipitotemporal cortex extending toward the border with parietal regions as well. These preliminary results suggest that differences in object features that occur across saccades also appear at the cortical level (largely within medial occipital cortex, extending both towards parietal and temporal cortex). Further controls will be applied to confirm that these results are task- and feature-specific. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

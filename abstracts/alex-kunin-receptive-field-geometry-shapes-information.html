@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 16:15" data-end="2020-10-26 16:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Receptive field geometry shapes information content of the neural code</h1><h2>Alex Kunin</h2><h3>Vladimir Itskov</h3><h2>Abstract</h1><p>A phenomenon observed in many neural populations, notably vertebrate retina, is the significance of weak pairwise correlations in shaping the collective behavior of the population. Models matching these second-order correlations but assuming no higher-order interactions successfully describe the distribution of population states and capture most of the information content of the neural code. We demonstrate that this phenomenon may largely be a consequence of receptive field geometry in the retina, and may extend to other populations of neurons which encode low-dimensional geometric information, such as place cells.
-
-We show these maximum-entropy models accurately capture the information-theoretic content of the activity of mouse retinal ganglion cells. Moreover, such models successfully describe a population of model neurons with identical receptive fields, driven purely by feed-forward input. In contrast, cells with spatially-scrambled receptive fields retain the same pattern of pairwise correlations, but second-order models capture only a small fraction of the information content of the resulting code, suggesting the specific geometric structure of receptive fields plays a part. We explain these phenomena using the mathematical theory of convex geometry, notably a result known as Helly's theorem.</p>
+        <h1>Receptive field geometry shapes information content of the neural code</h1><h2>Alex Kunin</h2><h3>Vladimir Itskov</h3><h2>Abstract</h1><p>A phenomenon observed in many neural populations, notably vertebrate retina, is the significance of weak pairwise correlations in shaping the collective behavior of the population. Models matching these second-order correlations but assuming no higher-order interactions successfully describe the distribution of population states and capture most of the information content of the neural code. We demonstrate that this phenomenon may largely be a consequence of receptive field geometry in the retina, and may extend to other populations of neurons which encode low-dimensional geometric information, such as place cells.<br/><br/>We show these maximum-entropy models accurately capture the information-theoretic content of the activity of mouse retinal ganglion cells. Moreover, such models successfully describe a population of model neurons with identical receptive fields, driven purely by feed-forward input. In contrast, cells with spatially-scrambled receptive fields retain the same pattern of pairwise correlations, but second-order models capture only a small fraction of the information content of the resulting code, suggesting the specific geometric structure of receptive fields plays a part. We explain these phenomena using the mathematical theory of convex geometry, notably a result known as Helly's theorem.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

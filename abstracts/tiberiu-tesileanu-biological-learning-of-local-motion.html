@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 13:15" data-end="2020-10-30 13:30">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Biological learning of local motion detectors</h1><h2>Tiberiu Tesileanu</h2><h3>Alexander Genkin, NYU; Dmitri Chklovskii, Flatiron Institute</h3><h2>Abstract</h1><p>Motion detectors in the brain are typically localized, using correlations between light intensities at nearby locations in combination with a small temporal delay. If motion is global, however, in the sense that the same transformation is applied uniformly across the entire field of view, locations arbitrarily far apart can in principle be used for motion detection. One explanation for why this does not happen in the brain is that it would require long-distance connections that would be prohibitively expensive. Here we suggest that, in fact, a normative model that posits that the brain is adapted to natural visual statistics is sufficient to lead to localized interactions, even without considering the costs of long-range connections. Our model further provides a biologically plausible mechanism that can be used to learn the connectivity pattern for local motion detectors. We adapt a method initially designed for learning infinitesimal generators for global motion, and show that, when the training data contains localized patterns and/or localized motion, the learned generators naturally cluster into groups involving small sets of nearby pixels. Our proposed learning algorithm is based on non-negative similarity matching, a normative approach that allows us to use an objective function to derive a biologically plausible circuit that solves the task.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

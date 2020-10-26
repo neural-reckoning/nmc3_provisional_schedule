@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 17:15" data-end="2020-10-29 17:30">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Teaching causality to neuroscientists</h1><h2>Ari Benjamin</h2><h3>Ari Benjamin, University of Pennsylvania; Tony Liu, University of Pennsylvania; Sofia Triantafillou, University of Pittsburgh; Eleanor Batty, Harvard University; Madineh Sarvestani, Max Planck Florida Institute; Konrad Kording, University of Pennsylvania; </h3><h2>Abstract</h1><p>The standard curriculum for neuroscientists does not include a formal definition of causality, or any formal treatment of what methods exist to estimate a causal effect. Since a great number of neuroscientific questions are causal in nature – including questions of mediation, of connection, and of mechanism – we developed a fast, one-day curriculum to provide neuroscientists a working concept of how causality can be treated formally. In the third week of Neuromatch Academy, we presented these materials in an interactive problem-solving format, interspersed with video instruction, to over 1,700 students. Students from around the globe worked through this curriculum in live video conferencing in groups of around 10, each guided by a teaching assistant. After conclusion of the academy, we evaluated the success of these materials and their presentation with surveys provided to students and teachers. This talk will present our educational goals and approaches in consideration of what was most and least successful. The full academy curriculum is published online and openly available for re-use.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

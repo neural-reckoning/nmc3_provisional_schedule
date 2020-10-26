@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 21:00" data-end="2020-10-29 21:15">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>PREDICTING AGE IN 8-TO-24-MONTH-OLDS USING RESTING-STATE FUNCTIONAL CONNECTIVITY MRI</h1><h2>Omid Kardan (he/him/his)</h2><h3>Omid Kardan, University of Chicago; Sydney Kaplan, Washington University in St. Louis School of Medicine; Muriah D. Wheelock, Washington University in St. Louis School of Medicine; Dominique Meyer, Washington University in St. Louis School of Medicine; Adam T. Eggebrecht, Washington University in St. Louis School of Medicine; Lucille A. Moore, Oregon Health & Science University; Eric Earl, Oregon Health & Science University; Eric Feczko, University of Minnesota; Óscar Miranda-Domínguez, University of Minnesota; Kathy Snider, Oregon Health & Science University; Alice Graham, Oregon Health & Science University; Marc G. Berman, University of Chicago; Sooyeon Sung, University of Minnesota; Kamil Uğurbil, University of Minnesota; Essa Yacoub, University of Minnesota; Jed T. Elison, University of Minnesota; Christopher D. Smyser, Washington University in St. Louis School of Medicine; Damien A. Fair, University of Minnesota; Monica D. Rosenberg, University of Chicago</h3><h2>Abstract</h1><p>Resting-state functional connectivity (rsFC) measured with functional MRI has been used to predict phenotypes such as chronological age and clinical diagnoses in typically and atypically developing adults and children. However, its utility for predicting phenotypes in infants and toddlers is less well-characterized. Here, we use fMRI data from the Baby Connectome Project sample to predict the age of 110 infants and toddlers age 8-24 months old using data collected during natural sleep. Successful prediction could provide initial evidence that rsFC in infancy is reliable and informative of chronological age, and thus potentially predictive of other measures of interest in this group such as language or motor development with age. Using 10-fold cross-validation, we trained and tested support vector regression (SVR) models to predict age-at-scan using whole-brain rsFC constructed from 333 cortical parcels. Models successfully predicted novel infants’ age with ±4.1 months error and predictive R2=0.32. To characterize the anatomy of predictive networks, we grouped connections into 11 infant-specific or 12 adult-defined canonical resting-state functional networks (e.g., the default mode network). We found that connections between regions of the same networks—i.e., within-network connections—predicted age as well as or better than the full functional connectome (RMSE=±4 months error and R2=0.35 for within-infant-network connections). Furthermore, control analyses confirmed that results are not driven by head motion. Looking ahead, the current findings can help characterize changes in functional brain organization across development and inform work predicting measures of cognitive development in infants. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

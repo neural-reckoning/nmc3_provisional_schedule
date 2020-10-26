@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 17:15" data-end="2020-10-29 17:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The different mechanisms that distinguish motor skill acquisition from adaptation</h1><h2>Raphael Gastrock</h2><h3>Bernard Marius 't Hart, York University; Denise Y. P. Henriques, York University</h3><h2>Abstract</h1><p>As people move within an environment, changes in circumstances may lead to movement errors. To produce correct movements, these errors must be processed regardless of whether people are acquiring a new motor skill (de novo learning) or adapting a well-known movement (motor adaptation). However, these two types of learning should develop differently and switching between response mappings in de novo learning should not lead to reach aftereffects typically observed after adaptation. Here, we conducted two experiments that differentiate de novo learning from adaptation and explore the mechanisms of de novo learning further. In experiment 1 (N = 16), we distinguished the two motor learning types by having each participant train with two perturbations in counterbalanced order: a 30-degree visuomotor rotation and a reversal of cursor feedback in the opposite direction of a mirror axis. Importantly, we matched the movements required to reach the targets in both tasks. We found no order effects, suggesting that learning for one perturbation does not affect the other. Although participants countered for both perturbations by the end of only 90 training trials, learning for the rotation task was more gradual while variability in learning was greater for the mirror task. Participants generally took longer to initiate and execute reaching movements in the mirror task. Moreover, participants only exhibited reach aftereffects after completing the rotation task. In experiment 2 (N = 116), we developed an online version of the mirror task, with target locations placed farther from the mirror axis than in experiment 1. Asymptotic learning of participants differed depending on target location, but reach aftereffects were also not observed. These results highlight the development of de novo learning and how it is distinct from adaptation. As such, our future work will investigate both behavioural and neural processes underlying these different types of motor learning.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

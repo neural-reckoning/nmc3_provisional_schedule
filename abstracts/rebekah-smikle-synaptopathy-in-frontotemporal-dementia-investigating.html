@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 6
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 20:00" data-end="2020-10-29 20:15">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Synaptopathy in Frontotemporal Dementia: investigating the pathogenic role of mutant CHMP2B </h1><h2>Rebekah Smikle</h2><h2>Abstract</h1><p>Frontotemporal dementia is the second most common form of early-onset dementia and senile neurodegenerative disease. One rare subtype is caused by a mutation in the gene CHMP2B. CHMP2B is a subunit of the endosomal sorting complexes required for transport (ESCRT) and CHMP2B mutation causes defects in certain protein degradation pathways. The ESCRT pathway is involved in degradation of synaptic vesicle proteins, and preliminary data by E. Clayton and S. Schorge demonstrates that several synaptic proteins accumulate in brains of aged mutant CHMP2B mice compared to age-matched controls. Synaptic vesicle protein accumulation would inevitably cause synaptic dysfunction, an effect not well studied in frontotemporal dementia. This project aimed to characterise this probable ‘synapto-pathogenic’ feature of CHMP2B-frontotemporal dementia, by investigating the neuronal subcellular localisation of mutant CHMP2B protein and examining the relative synaptic vesicle protein levels at early postnatal stages. Using immunofluorescence microscopy in mouse cortical neurons transfected with mutant CHMP2B, we found that mutant CHMP2B forms puncta which co-localise with presynaptic marker SV2. Wildtype CHMP2B shows diffuse staining, but also co-localises with SV2. Cycloheximide chase and subsequent western blot were conducted to inhibit protein synthesis in protein lysates and isolate levels of the synaptic vesicle proteins synapsin, synaptophysin and SV2 remaining after protein degradation. While no significant difference was found between mutant lysates and wildtype controls, a surprising trend of increased protein accumulation in wildtype and decreased protein accumulation in mutant samples was observed. Interestingly, an SV2 isoform not observed in wildtype samples accumulated in mutant samples. These findings demonstrate that mutant CHMP2B is localised to the presynaptic terminal, but point to the need for further investigation of its mechanism of action, including isoform-specific protein degradation. Understanding the pathogenic agency of mutant CHMP2B at the synapse will be useful for identifying therapeutic targets in CHMP2B-frontotemporal dementia. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

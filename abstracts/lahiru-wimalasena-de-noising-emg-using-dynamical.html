@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 13:00" data-end="2020-10-27 13:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>De-noising EMG using dynamical systems models of muscle population activity</h1><h2>Lahiru Wimalasena</h2><h3>Jonas F. Braun, École Polytechnique Fédérale de Lausanne, Technical University of Munich; Mohammad Reza Keshtkaran, Emory University and Georgia Tech;  Juan Alvaro-Gallego, Imperial College of London, Northwestern University; Cristiano Alessandro, University of Pavia, Northwestern University; Matthew C. Tresch, Northwestern University; Lee E. Miller, Northwestern University; Chethan Pandarinath, Emory University and Georgia Tech</h3><h2>Abstract</h1><p>Precise coordination of the activity of groups of muscles is critical for motor function. However, a major barrier to understanding how the brain coordinates muscle activation is that recordings of electromyographic (EMG) activity from muscles are a noisy measure of muscle activation, making them difficult to evaluate on a moment-to-moment basis. The standard approach to processing EMG (i.e., rectification and smoothing) treats high frequency features in EMG signals as noise. Here, we describe dynamically-estimated EMG (deEMG), a method to de-noise EMG signals recorded simultaneously from multiple muscles. Our working model is that, during movement, the coordinated activity of muscles is the output of an underlying dynamical system, and that accurately modeling these dynamics using recurrent neural networks might substantially de-noise EMG, while preserving any complex, high-frequency components that are present in multiple muscles. We tested deEMG using intramuscular EMG recorded from 12 muscles from two model systems: (1) rat hindlimb muscles during locomotion and (2) monkey forearm muscles during an isometric center-out wrist force task. deEMG had significant advantages over standard smoothing. When applied to the rat data, the model’s nonlinear filtering properties produced single-trial representations of muscle activity that improved decoding of joint kinematics and preserved behaviorally-linked, high frequency EMG features that are suppressed by linear filters. Similarly, when applied to the monkey data, deEMG enabled more accurate prediction of measured forces and was substantially more informative about simultaneously-recorded motor cortical activity, suggesting that deEMG-inferred representations better reflect descending cortical commands. Additionally, deEMG revealed unexpected high frequency oscillations that correlated with oscillations in the recorded force data but were not apparent after standard smoothing. Ultimately, this method opens new avenues to studying the coordination of multiple muscles and their precise control by upstream brain areas.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

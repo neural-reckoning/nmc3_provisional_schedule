@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,19 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 11:15" data-end="2020-10-29 11:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Spectral features of an oddball task across modalities</h1><h2>Priyanka Ghosh</h2><h3>Arpan Banerjee, National Brain Research Center</h3><h2>Abstract</h1><p>P300 complex is associated with cognitive processes such as attention and mem-
-ory.An oddball paradigm in which,a deviant stimulus is infrequently presented
-amidst a sequence of standard repetitive stimuli,typically exhibits a positive
-peak in the event related potential recording via electroencephalogram(EEG)
-at a latency of around 300ms from the onset of the stimulus.This study explores
-the spectral features of the P3 complex ERP and the underlying cortical areas
-involved in its generation,across unimodal and multimodal using 2 stimuli odd-
-ball paradigms.Further,we extrapolate to study the spectral changes acquired
-through 2 stimuli oddball paradigm,in which both the stimuli are of a different
-modalities.Consequently,we compare our empirical results and try to answer
-whether the P3 complex is modality specific and how does it vary spectrally
-and spatially(underlying cortical generators).</p>
+        <h1>Spectral features of an oddball task across modalities</h1><h2>Priyanka Ghosh</h2><h3>Arpan Banerjee, National Brain Research Center</h3><h2>Abstract</h1><p>P300 complex is associated with cognitive processes such as attention and mem-<br/>ory.An oddball paradigm in which,a deviant stimulus is infrequently presented<br/>amidst a sequence of standard repetitive stimuli,typically exhibits a positive<br/>peak in the event related potential recording via electroencephalogram(EEG)<br/>at a latency of around 300ms from the onset of the stimulus.This study explores<br/>the spectral features of the P3 complex ERP and the underlying cortical areas<br/>involved in its generation,across unimodal and multimodal using 2 stimuli odd-<br/>ball paradigms.Further,we extrapolate to study the spectral changes acquired<br/>through 2 stimuli oddball paradigm,in which both the stimuli are of a different<br/>modalities.Consequently,we compare our empirical results and try to answer<br/>whether the P3 complex is modality specific and how does it vary spectrally<br/>and spatially(underlying cortical generators).</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

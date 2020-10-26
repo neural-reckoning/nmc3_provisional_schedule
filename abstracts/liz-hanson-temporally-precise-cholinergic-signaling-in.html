@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 16:00" data-end="2020-10-29 16:15">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Temporally precise cholinergic signaling in the basal forebrain reflects reward-seeking and reinforcement during olfactory behavior.</h1><h2>Liz Hanson</h2><h3>Elizabeth Hanson, Baylor College of Medicine; Katie Brandel-Ankrapp, Baylor College of Medicine; Benjamin Arenkiel, Baylor College of Medicine</h3><h2>Abstract</h1><p>Sensory perception underlies how we internalize and interact with the world around us. In order to adapt to changing circumstances and interpret signals in a variety of contexts, sensation needs to be reliable, but perception of sensory input needs to be flexible. An important mediator of this flexibility is top-down regulation from cholinergic and GABAergic projection neurons in the basal forebrain. Basal forebrain projection neurons serve as pacemakers and gatekeepers for downstream neural networks, modulating circuit activity across neuronal populations in the cortex and hippocampus. This top-down control is necessary for sensory cue detection, learning, and memory, and is disproportionately disrupted in neurodegenerative diseases with symptoms of cognitive decline. Intriguingly, cholinergic signaling acts locally within the basal forebrain to sculpt the activity of basal forebrain output neurons. To determine how local cholinergic signaling impacts the basal forebrain output pathways that participate in top-down regulation, we sought to better define the dynamics of cholinergic signaling within the basal forebrain during motivated behavior and learning. Here we utilize fiber photometry and the genetically encoded acetylcholine indicator GAChR2.0 to determine temporal patterns of cholinergic signaling in the basal forebrain during olfactory-guided, motivated behaviors and learning. We show that cholinergic signaling reliably increases during reward seeking behaviors, but also reveal that cholinergic signaling in the basal forebrain is strongly suppressed by reward delivery in a Go/ No Go olfactory-cued discrimination learning task. Intriguingly, the observed transient reduction in cholinergic tone is mirrored by a suppression in basal forebrain GABAergic neuronal activity. Together, these results suggest that cholinergic tone in the basal forebrain changes rapidly to reflect engagement in goal-directed behavior, incorporate feedback signals, and impact basal forebrain circuit activity.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

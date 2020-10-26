@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 9
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 21:30" data-end="2020-10-30 21:45">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>High dimensional neural representations for low dimensional tasks: a compromise between complex discrimination and generalization</h1><h2>Ramon Nogueira</h2><h3>Chris C Rodgers, Randy M Bruno, Stefano Fusi</h3><h2>Abstract</h1><p>Adaptive behavior in humans, rodents, and other animals requires the combination of sensory cues from multiple input channels. Different neuronal representations of sensory variables can lead to a different discrimination and generalization ability, which entails different behavioral outcomes. In this study, we developed a novel behavioral task that required mice to integrate information from different whiskers to report the convexity of an object. The analysis of high speed videos of the whiskers revealed that the task could be solved by integrating linearly the whisker contacts with the object. This indicates that the task is low dimensional and does not require high dimensional neural representations. However, mouse barrel cortex represented stimuli using high dimensional representations, characterized by non-linear mixing of the different whisker channels. We show that this high dimensional representation would allow the animal to perform a broad class of significantly more complex tasks, with minimal disruption of the ability to generalize to novel situation in simpler tasks. A recurrent neural network (RNN) trained to perform an artificial analogous of the task reproduced both the behavioral and neuronal results from the experiment. Our work thus far suggests that the barrel cortex operates in a regime that represents an efficient compromise between generalization, which is guaranteed by low-dimensional representations, and the ability to perform complex discrimination tasks, which is granted by high-dimensional representations.
-</p>
+        <h1>High dimensional neural representations for low dimensional tasks: a compromise between complex discrimination and generalization</h1><h2>Ramon Nogueira</h2><h3>Chris C Rodgers, Randy M Bruno, Stefano Fusi</h3><h2>Abstract</h1><p>Adaptive behavior in humans, rodents, and other animals requires the combination of sensory cues from multiple input channels. Different neuronal representations of sensory variables can lead to a different discrimination and generalization ability, which entails different behavioral outcomes. In this study, we developed a novel behavioral task that required mice to integrate information from different whiskers to report the convexity of an object. The analysis of high speed videos of the whiskers revealed that the task could be solved by integrating linearly the whisker contacts with the object. This indicates that the task is low dimensional and does not require high dimensional neural representations. However, mouse barrel cortex represented stimuli using high dimensional representations, characterized by non-linear mixing of the different whisker channels. We show that this high dimensional representation would allow the animal to perform a broad class of significantly more complex tasks, with minimal disruption of the ability to generalize to novel situation in simpler tasks. A recurrent neural network (RNN) trained to perform an artificial analogous of the task reproduced both the behavioral and neuronal results from the experiment. Our work thus far suggests that the barrel cortex operates in a regime that represents an efficient compromise between generalization, which is guaranteed by low-dimensional representations, and the ability to perform complex discrimination tasks, which is granted by high-dimensional representations.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

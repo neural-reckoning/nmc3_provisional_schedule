@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 3
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 12:00" data-end="2020-10-27 12:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>The influence of FUS on axonal mRNA localisation and local protein synthesis in neurodegenerative disease</h1><h2>Francesca van Tartwijk (she/her/hers)</h2><h3>Francesca W. van Tartwijk, Department of Chemical Engineering and Biotechnology, University of Cambridge; Julie Qiaojin Lin, UK Dementia Research Institute at University of Cambridge, Department of Clinical Neurosciences, University of Cambridge; Christine E. Holt, Department of Physiology, Development and Neuroscience, University of Cambridge; Clemens F. Kaminski, Department of Chemical Engineering and Biotechnology, University of Cambridge</h3><h2>Abstract</h1><p>The phase-separating RNA-binding protein FUS is associated with familial forms of motor neuron disease and frontotemporal dementia. Disease-linked mutations have been shown to result in the protein adopting a poorly soluble and fibrillar hydrogel-like state [1,2]. However, the pathological significance of this aggregation is unknown. Potentially, entrapment of mRNAs and proteins in such aggregates contributes to axonal degeneration by compromising trafficking or local protein synthesis (LPS).
-In this project, we investigate this hypothesis. In particular, we are combining a range of advanced imaging techniques to probe structural changes to the axonal cytoskeleton, which is required to maintain cell structure and transport and is partly supported by LPS. To this purpose, we investigate changes in cell shape and LPS in cultured Xenopus laevis retinal ganglion cell (RGC) axons. We aim to link these observations to in vivo cell shape changes by investigating changes in RGC axonal branching. Furthermore, by tracking labelled RNA in RGC axons, we are quantifying the changes in dynamics of axonal transport. We will additionally measure changes in local translation of all mRNAs as well as of specific candidates using a combination of staining and live-cell imaging techniques. </p>
+        <h1>The influence of FUS on axonal mRNA localisation and local protein synthesis in neurodegenerative disease</h1><h2>Francesca van Tartwijk (she/her/hers)</h2><h3>Francesca W. van Tartwijk, Department of Chemical Engineering and Biotechnology, University of Cambridge; Julie Qiaojin Lin, UK Dementia Research Institute at University of Cambridge, Department of Clinical Neurosciences, University of Cambridge; Christine E. Holt, Department of Physiology, Development and Neuroscience, University of Cambridge; Clemens F. Kaminski, Department of Chemical Engineering and Biotechnology, University of Cambridge</h3><h2>Abstract</h1><p>The phase-separating RNA-binding protein FUS is associated with familial forms of motor neuron disease and frontotemporal dementia. Disease-linked mutations have been shown to result in the protein adopting a poorly soluble and fibrillar hydrogel-like state [1,2]. However, the pathological significance of this aggregation is unknown. Potentially, entrapment of mRNAs and proteins in such aggregates contributes to axonal degeneration by compromising trafficking or local protein synthesis (LPS).<br/>In this project, we investigate this hypothesis. In particular, we are combining a range of advanced imaging techniques to probe structural changes to the axonal cytoskeleton, which is required to maintain cell structure and transport and is partly supported by LPS. To this purpose, we investigate changes in cell shape and LPS in cultured Xenopus laevis retinal ganglion cell (RGC) axons. We aim to link these observations to in vivo cell shape changes by investigating changes in RGC axonal branching. Furthermore, by tracking labelled RNA in RGC axons, we are quantifying the changes in dynamics of axonal transport. We will additionally measure changes in local translation of all mRNAs as well as of specific candidates using a combination of staining and live-cell imaging techniques. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

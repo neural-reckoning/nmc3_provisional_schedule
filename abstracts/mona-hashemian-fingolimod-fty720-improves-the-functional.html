@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 10:00" data-end="2020-10-29 10:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Fingolimod (FTY720) improves the functional recovery and myelin preservation of the optic pathway in focal demyelination model of rat optic chiasm</h1><h2>mona hashemian</h2><h3>Maryam Ghasemi-Kasman, Cellular and Molecular Biology Research Center, Health Research Institute, Babol University of Medical Sciences, Babol, Iran ; Hadi Parsian, Department of Clinical Biochemistry, Faculty of Medicine, Babol University of Medical Sciences, Babol, Iran ; Farzin Sadeghi, Department of Medical Microbiology, Faculty of Medicine, Babol University of Medical Sciences, Babol, Iran</h3><h2>Abstract</h1><p>It has been shown that fingolimod (FTY720) possesses beneficial effects on remyelination in the central nervous system (CNS). In this study, the effects of FTY720 and sodium valproate (VPA) as histone deacetylase inhibitor (HDAC) on the conductivity of visual signals, extent of demyelination area, glial activation, and expression levels of HDAC1and S1PR1 have been evaluated in the optic chiasm of lysolecithin (LPC)-induced demyelination model. In order to produce this demyelination model, LPC (1%, 2 μL) was injected into the rat optic chiasm. Latency of visual waves was measured by visual evoked potential (VEP) recording. The extent of demyelination area and level of glial activation were assessed using immunostaining. Gene expression analysis was performed to evaluate the expression levels of HDAC1, S1PR1, Olig2, and MBP in the optic chiasm. Analysis of electrophysiological data showed that LPC administration increased the latency of visual signals. FTY720 improved the functional recovery of the visual pathway and reduced the level of glial activation in the optic chiasm. FTY720 enhanced myelin repair and up-regulated the expression levels of Olig2 and MBP. Additionally, the expression levels of HDAC1 and S1PR1 were significantly reduced in animals treated with FTY720. In contrast to FTY720 treated animals, administration of VPA could not significantly improve the functional recovery of optic pathway following LPC injection. Cumulatively, the results of the present study demonstrate that FTY720 application improves the functional recovery of the optic pathway by reducing demyelination levels, amelioration of glial activation, and down-regulating of S1PR1 and HDAC1.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

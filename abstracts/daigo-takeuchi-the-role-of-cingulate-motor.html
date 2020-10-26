@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 18:15" data-end="2020-10-27 18:30">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The role of cingulate-motor circuits for organizing sequential choice actions</h1><h2>Daigo Takeuchi</h2><h3>Andrea Bari, RIKEN-MIT Center for Neural Circuit Genetics at the Picower Institute for Learning and Memory, MIT; Shruti Muralidhar, RIKEN-MIT Center for Neural Circuit Genetics at the Picower Institute for Learning and Memory, MIT; Dheeraj Roy, RIKEN-MIT Center for Neural Circuit Genetics at the Picower Institute for Learning and Memory, MIT; Heather A. Sullivan, McGovern Institute for Brain Research at MIT; Ian R. Wickersham, McGovern Institute for Brain Research at MIT; Susumu Tonegawa, RIKEN-MIT Center for Neural Circuit Genetics at the Picower Institute for Learning and Memory, MIT/Howard Hughes Medical Institute</h3><h2>Abstract</h1><p>Motor cortex underlies planning and the execution of complex voluntary movements. However, how motor circuits support an animal’s flexible updating of choice behaviors in the face of an abrupt change of rules remains poorly understood. Using the genetic rabies virus tracing method, we first searched for brain areas projecting to motor cortex in the rat and found that anterior cingulate cortex (ACC) is one of the major sources of projections to premotor cortex (M2 cortex) specifically. Based on this anatomical observation, we hypothesized that this cortico-cortical projection is involved in some cognitive-mnemonic aspect of animal’s planning and the execution of hierarchical (e.g., sequential) choice behaviors. To examine its potential role, we developed a behavioral task that we named conditional action sequence task (CAS -task) in which the rule dictating an animal’s response for reward is sustained within a block and is changed between consecutive blocks. Silencing excitatory neurons in ACC using an inhibitory DREADD virus disrupted an animal’s ability to flexibly adjust its choice responses following the rule switches in the task without affecting its performance in tone cue discrimination (sensory capability) or motor execution (motor capability). The same chemogenetic manipulation (silencing of excitatory neurons in ACC) altered physiological neural activity in motor cortex. Furthermore, chemogenetic inhibition at ACC terminals in M2 cortex using bilateral cannulas showed a disruption of the performance of sequential choice actions in the CAS -task. Together, these findings highlight a role of cingulate cortex and its projection to motor cortex in organizing and reorganizing hierarchical choice behaviors.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,14 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 22:00" data-end="2020-10-26 22:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Effects of memory for emotional valence and episodic detail on decision-making in aging</h1><h2>Michael Cohen</h2><h3>Michael S. Cohen, University of Pennsylvania; Karolina M. Lempert, University of Pennsylvania; Kameron A. MacNear, University of Pennsylvania; Frances M. Reckers, University of Pennsylvania; Laura A. Zaneski, University of Pennsylvania; David A. Wolk, University of Pennsylvania; Joseph W. Kable, University of Pennsylvania</h3><h2>Abstract</h1><p>Objective: Older adults often show an increased vulnerability to fraud and frequently have decline in episodic memory. We examined how memory for a single prior experience influences older adults’ decision-making.
-
-Methods: We presented older (n = 41) and middle-aged (n = 31) adult participants with pictures of social partners in a “dictator game”, or of houses in an analogous non-social task. Participants could gain $5 (high-reward) or $0 (low-reward) from each face or house. Each image was shown once. Minutes later, participants were asked to choose whether to play again with each person or house. After choices, memory for each face/house and for associated reward was tested. Neuroimaging data were collected from a subset (n = 11) of older adults. In a behavioral follow-up study (n = 137), collected online and sampled across the lifespan, we examined whether choices are driven by memory for reward valence (i.e., high vs. low reward) or specific episodic details. Here, rewards were varied in 10-cent increments within each valence (low: $0-$1.50; high: $3.60-$5.00), and the memory test included the exact value (e.g., $3.80), a same-valence incorrect lure (e.g., $4.30), and 2 opposite-valence values (e.g., $1.00).
-
-Results: While older adults showed poorer associative memory overall, accuracy of confident responses was comparable across age groups. Confident memory for face/house-reward ($0 or $5) associations was related to subsequent choices in both age groups, as participants were much more likely to play again with faces or houses that they correctly believed were high vs. low value, though the effect was somewhat weaker in older adults. A preliminary analysis of fMRI data suggests that making adaptive choices (playing with rewarding partners or avoiding non-rewarding partners) was associated with increased BOLD signal in amygdala and hippocampus/parahippocampal cortex, relative to maladaptive choices. In the behavioral follow-up study, choices were consistent with memory responses even when the same-valence but incorrect lure was chosen. Memory for exact values was still above chance, however, and adaptive choices were even more likely when exact memory was available. 
-
-Conclusions: Older adults are capable of using explicit associative memory to guide decisions. However, across the lifespan, such decisions may rely largely on emotional valence memory (reliant on amygdala), which tends to be more preserved with age than episodic memory for details (e.g., Limbert et al., 2018). The latter appears to provide a further boost to decision-making, however, so age-related memory deficits could still lead to suboptimal choices.</p>
+        <h1>Effects of memory for emotional valence and episodic detail on decision-making in aging</h1><h2>Michael Cohen</h2><h3>Michael S. Cohen, University of Pennsylvania; Karolina M. Lempert, University of Pennsylvania; Kameron A. MacNear, University of Pennsylvania; Frances M. Reckers, University of Pennsylvania; Laura A. Zaneski, University of Pennsylvania; David A. Wolk, University of Pennsylvania; Joseph W. Kable, University of Pennsylvania</h3><h2>Abstract</h1><p>Objective: Older adults often show an increased vulnerability to fraud and frequently have decline in episodic memory. We examined how memory for a single prior experience influences older adults’ decision-making.<br/><br/>Methods: We presented older (n = 41) and middle-aged (n = 31) adult participants with pictures of social partners in a “dictator game”, or of houses in an analogous non-social task. Participants could gain $5 (high-reward) or $0 (low-reward) from each face or house. Each image was shown once. Minutes later, participants were asked to choose whether to play again with each person or house. After choices, memory for each face/house and for associated reward was tested. Neuroimaging data were collected from a subset (n = 11) of older adults. In a behavioral follow-up study (n = 137), collected online and sampled across the lifespan, we examined whether choices are driven by memory for reward valence (i.e., high vs. low reward) or specific episodic details. Here, rewards were varied in 10-cent increments within each valence (low: $0-$1.50; high: $3.60-$5.00), and the memory test included the exact value (e.g., $3.80), a same-valence incorrect lure (e.g., $4.30), and 2 opposite-valence values (e.g., $1.00).<br/><br/>Results: While older adults showed poorer associative memory overall, accuracy of confident responses was comparable across age groups. Confident memory for face/house-reward ($0 or $5) associations was related to subsequent choices in both age groups, as participants were much more likely to play again with faces or houses that they correctly believed were high vs. low value, though the effect was somewhat weaker in older adults. A preliminary analysis of fMRI data suggests that making adaptive choices (playing with rewarding partners or avoiding non-rewarding partners) was associated with increased BOLD signal in amygdala and hippocampus/parahippocampal cortex, relative to maladaptive choices. In the behavioral follow-up study, choices were consistent with memory responses even when the same-valence but incorrect lure was chosen. Memory for exact values was still above chance, however, and adaptive choices were even more likely when exact memory was available. <br/><br/>Conclusions: Older adults are capable of using explicit associative memory to guide decisions. However, across the lifespan, such decisions may rely largely on emotional valence memory (reliant on amygdala), which tends to be more preserved with age than episodic memory for details (e.g., Limbert et al., 2018). The latter appears to provide a further boost to decision-making, however, so age-related memory deficits could still lead to suboptimal choices.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

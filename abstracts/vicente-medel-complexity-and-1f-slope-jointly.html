@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 22:30" data-end="2020-10-27 22:45">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Complexity and 1/f slope jointly reflect cortical states across different E/I balances</h1><h2>Vicente Medel</h2><h3>Martín Irani, Pontificia Universidad Católica de Chile; Tomás Ossandón, Pontificia Universidad Católica de Chile; Gonzalo Boncompte, Pontificia Universidad Católica de Chile</h3><h2>Abstract</h1><p>Characterization of cortical states is essential for understanding brain functioning in the absence of external stimuli. The balance between excitation and inhibition and the number of non-redundant activity patterns, indexed by the 1/f slope and LZc respectively, distinguish cortical states. However, the relation between these two measures has not been characterized. Here we analyzed the relation between 1/f slope and LZc with two modeling approaches and in empirical human EEG and monkey ECoG data. We contrasted resting state with propofol anesthesia, which is known to modulate the excitation-inhibition balance. We found convergent results among all strategies employed, showing an inverse and not trivial monotonic relation between 1/f slope and complexity. This behavior was observed even when the signals’ spectral properties were heavily manipulated, consistent at ECoG and EEG scales. Models also showed that LZc was strongly dependent on 1/f slope but independent of the signal’s spectral power law’s offset. Our results show that, although these measures have very distinct mathematical origins, they are closely related. We hypothesize that differentially entropic regimes could underlie the link between the excitation-inhibition balance and the vastness of repertoire of cortical systems.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,14 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 22:30" data-end="2020-10-26 22:45">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Representation learning for neural population activity with Neural Data Transformers</h1><h2>Joel Ye</h2><h3>Chethan Pandarinath, Emory University and Georgia Institute of Technology</h3><h2>Abstract</h1><p>Neural populations are theorized to have an underlying dynamical structure which drives the evolution of population activity over time. This structure can be explicitly modeled with recurrent neural networks (RNNs), leading to state of the art modeling methods such as latent factor analysis via dynamical systems (LFADS). 
-
-However, explicitly modeling a recurrent state can require sequential processing of recorded activity, slowing real-time applications such as brain-computer interfaces or closed-loop control of network states. Here we introduce the Neural Data Transformer (NDT), a non-recurrent alternative. Its non-recurrence enables 3ms inference, comfortably within the loop time of real-time applications. In contrast, common LFADS inference times exceed 24 ms.
-
-Though the NDT lacks an explicit dynamics model, it can still predict dynamical activity. We first evaluate the NDT on large synthetic datasets (i.e. an order of magnitude larger than real-world data) with autonomous dynamics of varying complexity. Here, the NDT accurately infers neural firing rates with performance that matches LFADS (i.e., within 1% R2). Further, we develop an NDT variant that better models non-autonomous dynamics. When tested on firing rate inference of synthetic data with unpredictable perturbations, the NDT achieves 0.73 R2, approaching the 0.83 R2 of LFADS. Finally, to test performance in smaller real-world datasets, we apply the NDT to motor cortical data from a monkey performing a reaching task. We show that the NDT uncovers representations that enable behavioral decoding within 15% of the performance achieved by LFADS, outperforming spike-smoothing.
-
-Though the NDT’s speed and competent accuracy is already useful, the NDT is a forward-looking proposal. Transformers have attracted much attention in deep learning communities for their ability to scale to larger datasets and longer timescales than RNNs. We anticipate that new recording technologies, along with dataset standardization and aggregation, will further improve the NDT’s performance and applicability.</p>
+        <h1>Representation learning for neural population activity with Neural Data Transformers</h1><h2>Joel Ye</h2><h3>Chethan Pandarinath, Emory University and Georgia Institute of Technology</h3><h2>Abstract</h1><p>Neural populations are theorized to have an underlying dynamical structure which drives the evolution of population activity over time. This structure can be explicitly modeled with recurrent neural networks (RNNs), leading to state of the art modeling methods such as latent factor analysis via dynamical systems (LFADS). <br/><br/>However, explicitly modeling a recurrent state can require sequential processing of recorded activity, slowing real-time applications such as brain-computer interfaces or closed-loop control of network states. Here we introduce the Neural Data Transformer (NDT), a non-recurrent alternative. Its non-recurrence enables 3ms inference, comfortably within the loop time of real-time applications. In contrast, common LFADS inference times exceed 24 ms.<br/><br/>Though the NDT lacks an explicit dynamics model, it can still predict dynamical activity. We first evaluate the NDT on large synthetic datasets (i.e. an order of magnitude larger than real-world data) with autonomous dynamics of varying complexity. Here, the NDT accurately infers neural firing rates with performance that matches LFADS (i.e., within 1% R2). Further, we develop an NDT variant that better models non-autonomous dynamics. When tested on firing rate inference of synthetic data with unpredictable perturbations, the NDT achieves 0.73 R2, approaching the 0.83 R2 of LFADS. Finally, to test performance in smaller real-world datasets, we apply the NDT to motor cortical data from a monkey performing a reaching task. We show that the NDT uncovers representations that enable behavioral decoding within 15% of the performance achieved by LFADS, outperforming spike-smoothing.<br/><br/>Though the NDT’s speed and competent accuracy is already useful, the NDT is a forward-looking proposal. Transformers have attracted much attention in deep learning communities for their ability to scale to larger datasets and longer timescales than RNNs. We anticipate that new recording technologies, along with dataset standardization and aggregation, will further improve the NDT’s performance and applicability.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

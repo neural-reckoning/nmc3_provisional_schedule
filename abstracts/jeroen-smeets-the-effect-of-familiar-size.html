@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 12:30" data-end="2020-10-29 12:45">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The effect of familiar size on size perception.</h1><h2>Jeroen Smeets</h2><h3>Pauline Weijs, Eli Brenner</h3><h2>Abstract</h1><p>When interacting with the world around us, we use retinal size information to judge the distance of objects. It is known that this judgment is influenced by familiar size: a soccer ball looks farther away than a tennis ball if their images are equally large on the retina. On the other hand, when we lift a tennis ball and a soccer ball of the same weight, the soccer ball will not feel heavier, but lighter. So, familiarity has opposite effects on perceptual judgments of distance and weight. The effect of familiar properties on perception can thus be in two directions: assimilation or contrast. We here investigate how familiar size influences judgments about the size of images of objects that are presented on a computer screen. The images were about 5 cm in diameter, presented simultaneously 15 cm apart. Seventy participants had to indicate which of two objects appeared larger on the screen in a 2-alternative forced-choice discrimination task. The objects could be balls (tennis or soccer) or coins (10 eurocent or 2 euro). Participants also compared the images of the balls with a grey disk. The average precision of the size comparison was 3.5%, irrespective of the objects. We found that familiar size did indeed bias size perception: the size of the soccer ball was over-estimated by about 5% (assimilation). This overestimation varied considerably between participants. The bias in the comparison between the two balls was equal to the sum of the biases in the comparisons with the grey disk. The bias for the coins was smaller and in the opposite direction (contrast). We conclude that a depicted object’s familiar size can influence the perceived size of its image, but whether it is assimilation or contrast differs between experiments.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

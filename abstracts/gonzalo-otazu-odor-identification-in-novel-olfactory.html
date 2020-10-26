@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 8
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 18:15" data-end="2020-10-30 18:30">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Odor identification in novel olfactory environments is selectively impaired in a mouse model of autism</h1><h2>Gonzalo Otazu</h2><h3>Yan Li, Mitchell Swerdloff, Tianyu She,  Asiyah Rahman, Naveen Sharma, Reema Shah, Michael Castellano, Daniel Mogel, Jason Wu, Asim Ahmed,  James San Miguel, Jared Cohn, Nikesh Shah, Gonzalo H Otazu</h3><h2>Abstract</h1><p>Aversion to novel stimuli in autism affects quality of life. We developed a behavioral paradigm to study the effect of novel background odors on odor discrimination in mouse models of autism. We trained wild type mice to discriminate target odors in known background odors. When tested, mice could discriminate known targets in novel background odors, a task similar to the visual CAPTCHA used to distinguish humans from computers. Using glomerular imaging data, we showed that WT mice used an algorithm that required less training data than a linear classifier or nearest neighbor classifier. The Cntnap2-/- mouse model of autism matched wild type mice performance in the presence of known backgrounds, but performance fell almost to chance levels in the presence of novel backgrounds. Wild-type mice use a robust algorithm for detecting odors in novel environments and this computation is selectively affected in a mouse model of autism.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

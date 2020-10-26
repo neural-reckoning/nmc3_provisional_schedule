@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 7
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 12:30" data-end="2020-10-29 12:45">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>The time-course of prediction formation and revision in human visual motion processing</h1><h2>Tessel Blom</h2><h3>Stefan Bode, University of Melbourne; Hinze Hogendoorn, University of Melbourne</h3><h2>Abstract</h1><p>Establishing the real-time position of a moving object poses a challenge to the visual system due to neural processing delays. While sensory information is travelling through the visual hierarchy, the object continues moving and information about its position becomes outdated. By extrapolating the position of a moving object along its trajectory, predictive mechanisms might effectively decrease the processing time associated with these objects. 
- Here, we use time-resolved decoding of electroencephalographic (EEG) data from an apparent motion paradigm to demonstrate the interaction of two separate predictive mechanisms. First, we reveal predictive latency advantages for position representations as soon as the second object in an apparent motion sequence – even before the stimulus contains any physical motion energy. This is consistent with the existence of omni-directional, within-layer waves of sub-threshold activity that bring neurons coding for adjacent positions closer to their firing threshold, thereby reducing the processing time of the second stimulus in one of those positions. Second, we show that an additional direction-specific latency advantage emerges from the third sequence position onward, once the direction of the apparent motion stimulus is uniquely determined. Because the receptive fields of early visual areas are too small to encompass sequential apparent motion positions (as evidenced by the lack of latency modulation for the second stimulus position), this latency advantage most likely arises from descending predictions from higher to lower visual areas through feedback connections. Finally, we reveal that the same predictive activation that facilitates the processing of the object in its expected position needs to be overcome when the object’s trajectory unexpectedly reverses, causing an additional latency disadvantage for stimuli that violate predictions. Altogether, our results suggest that two complementary mechanisms interact to form and revise predictions in visual motion processing, modulating the latencies of neural position representations at different levels of visual processing.</p>
+        <h1>The time-course of prediction formation and revision in human visual motion processing</h1><h2>Tessel Blom</h2><h3>Stefan Bode, University of Melbourne; Hinze Hogendoorn, University of Melbourne</h3><h2>Abstract</h1><p>Establishing the real-time position of a moving object poses a challenge to the visual system due to neural processing delays. While sensory information is travelling through the visual hierarchy, the object continues moving and information about its position becomes outdated. By extrapolating the position of a moving object along its trajectory, predictive mechanisms might effectively decrease the processing time associated with these objects. <br/> Here, we use time-resolved decoding of electroencephalographic (EEG) data from an apparent motion paradigm to demonstrate the interaction of two separate predictive mechanisms. First, we reveal predictive latency advantages for position representations as soon as the second object in an apparent motion sequence – even before the stimulus contains any physical motion energy. This is consistent with the existence of omni-directional, within-layer waves of sub-threshold activity that bring neurons coding for adjacent positions closer to their firing threshold, thereby reducing the processing time of the second stimulus in one of those positions. Second, we show that an additional direction-specific latency advantage emerges from the third sequence position onward, once the direction of the apparent motion stimulus is uniquely determined. Because the receptive fields of early visual areas are too small to encompass sequential apparent motion positions (as evidenced by the lack of latency modulation for the second stimulus position), this latency advantage most likely arises from descending predictions from higher to lower visual areas through feedback connections. Finally, we reveal that the same predictive activation that facilitates the processing of the object in its expected position needs to be overcome when the object’s trajectory unexpectedly reverses, causing an additional latency disadvantage for stimuli that violate predictions. Altogether, our results suggest that two complementary mechanisms interact to form and revise predictions in visual motion processing, modulating the latencies of neural position representations at different levels of visual processing.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

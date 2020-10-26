@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 12:00" data-end="2020-10-29 12:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Dynamics of history-dependent perceptual judgment</h1><h2>Iacopo Hachen</h2><h3>Sebastian Reinartz, International School for Advanced Studies; Romain Brasselet, International School for Advanced Studies; Alisea Stroligo, International School for Advanced Studies; Mathew Diamond, International School for Advanced Studies</h3><h2>Abstract</h1><p>Perception is not the mere encoding of instantaneous physical features. A main determinant of perceptual choices is the pre-existing state of the subject as shaped by recent events. In other words, perceptual systems exhibit the important feature of being history-dependent. In a recent study (https://www.biorxiv.org/content/10.1101/2020.07.12.199489v1), we focused on the role of stimulus history and its updating dynamics. We trained rats to classify whisker-mediated vibrations according to their mean speed, assigning each stimulus to one of two possible categories, “strong” or “weak”. Rats showed a response bias that was inversely correlated to stimulus values received in the preceding trials, but not dependent on previous choices or rewards. Specifically, receiving a high-speed stimulus led to a lower probability of classifying upcoming stimuli as “strong”, and vice versa, an effect which lasted for several trials. Surprisingly, the repulsive bias in a given trial n, following a stimulus in trial n-1, increased with the time interval between the two. The same key results were obtained by testing human subjects in an analogous tactile discrimination task. We modeled subjects’ perceptual judgments as the result of a history-dependent shift in decision criterion applied to sensory input, outperforming an ideal observer model based on current sensory information only. We also discuss mechanistic hypotheses concerning the neuronal correlates of this phenomenon, that we are currently investigating.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

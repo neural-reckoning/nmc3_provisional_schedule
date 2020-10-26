@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 08:15" data-end="2020-10-27 08:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Spying on histamine dynamics by development of genetically encoded GRAB sensors</h1><h2>Mengyao Li</h2><h3>Mengyao Li, IDG/McGovern Institute for Brain Research at Peking University, School of Life Sciences, Peking University; Hui Donghui，IDG/McGovern Institute for Brain Research at Peking University, School of Life Sciences, Peking University；Yulong Li，IDG/McGovern Institute for Brain Research at Peking University, School of Life Sciences, Peking University</h3><h2>Abstract</h1><p>Histamine is an important biogenic monoamine, involved in many crucial physiological processes, including immune responses, sleep & awake regulation and cognitive function in the brain. In the central nervous system, histamine is mainly released from histaminergic neurons in the tuberomammillary nucleus, acting on a number of brain regions to execute its function. Despite of undisputable function of histaminergic transmission, how histamine release is regulated in the brain is poorly understood, in part due to lacking of sensitive methods to monitor the dynamics of histamine non-invasively with good cell specificity and high spatial-temporal resolution, especially in vivo. Here, we developed genetically-encoded histamine sensors by tapping into cpEGFP and histamine GPCR receptors[1]. We screened different histamine GPCRs and used structure-guided semi-rational screen to yield a histamine biosensor with ΔF/F around 400%. We named this sensor GPCR-Activation-Based sensor for histamine, or GRABHA for short. Now, we are in the developing GRABHA with different affinities and different color spectrum. This histamine sensor tool would likely enhance our understanding of complex histaminergic neuromodulation in vivo in both physiological and pathological conditions.
-</p>
+        <h1>Spying on histamine dynamics by development of genetically encoded GRAB sensors</h1><h2>Mengyao Li</h2><h3>Mengyao Li, IDG/McGovern Institute for Brain Research at Peking University, School of Life Sciences, Peking University; Hui Donghui，IDG/McGovern Institute for Brain Research at Peking University, School of Life Sciences, Peking University；Yulong Li，IDG/McGovern Institute for Brain Research at Peking University, School of Life Sciences, Peking University</h3><h2>Abstract</h1><p>Histamine is an important biogenic monoamine, involved in many crucial physiological processes, including immune responses, sleep & awake regulation and cognitive function in the brain. In the central nervous system, histamine is mainly released from histaminergic neurons in the tuberomammillary nucleus, acting on a number of brain regions to execute its function. Despite of undisputable function of histaminergic transmission, how histamine release is regulated in the brain is poorly understood, in part due to lacking of sensitive methods to monitor the dynamics of histamine non-invasively with good cell specificity and high spatial-temporal resolution, especially in vivo. Here, we developed genetically-encoded histamine sensors by tapping into cpEGFP and histamine GPCR receptors[1]. We screened different histamine GPCRs and used structure-guided semi-rational screen to yield a histamine biosensor with ΔF/F around 400%. We named this sensor GPCR-Activation-Based sensor for histamine, or GRABHA for short. Now, we are in the developing GRABHA with different affinities and different color spectrum. This histamine sensor tool would likely enhance our understanding of complex histaminergic neuromodulation in vivo in both physiological and pathological conditions.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

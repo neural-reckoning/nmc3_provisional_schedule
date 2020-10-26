@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 17:15" data-end="2020-10-28 17:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Visuomotor transformations in ventral premotor cortex during head-unrestrained reaches.</h1><h2>Veronica Nacher</h2><h3>Veronica Nacher, York Centre for Vision Research, Department of Psychology; Parisa Abedi Khoozani, York Centre for Vision Research, Vision: Science to Applications (VISTA) Program; Vishal Bharmauria, York Centre for Vision Research, Vision: Science to Applications (VISTA) Program; Harbandhan Arora, York Centre for Vision Research; Xiaogang Yan, York Centre for Vision Research, Vision: Science to Applications (VISTA) Program; Saihong Sun, York Centre for Vision Research, Vision: Science to Applications (VISTA) Program; Hongying Wang, York Centre for Vision Research, Vision: Science to Applications (VISTA) Program; John Douglas Crawford, York Centre for Vision Research, Vision: Science to Applications (VISTA) Program, Department of Psychology.</h3><h2>Abstract</h1><p>Reaching involves a coordinated sequence of gaze, head, and arm movements toward a visual stimulus. Several studies have examined eye-head-hand coordination in the human, but the underlying neural mechanisms, especially those controlling head motion, have not been studied. We addressed this problem by recording single neurons from ventral premotor cortex (PMv) while two trained monkeys performed a reaching paradigm, that allowed unencumbered head motion and reaching in depth. Animals touched one of three central LEDs at waist level while maintaining gaze on a central fixation dot and were rewarded if they touched a target appearing at one of 15 locations in a 40° x 20° array. Preliminary analysis of 271 neurons in both monkeys showed three groups of neuronal responses. ‘Early” neurons responded during target presentation and gaze onset. “Early-late” neurons responded in a sustained way from target presentation until reach. Finally, “Late” neurons responded during pre-reach and peak at reaching. We first tested for gaze, head and hand gain fields during the different neuronal responses and found in both animals that 38% of target, gaze, pre-reach and reach-aligned responses were gain modulated by initial hand position. A small fraction of neurons showed gain fields for initial eye position (4%), and for both initial eye and hand position (6%). After removing the gain field effects, we fitted the residual data against various spatial models and found that “Early” neurons best coded the target (T) during target presentation and, during gaze shifts, preferentially coded displacement of the arm (dA). “Early-late” neurons coded dA from target presentation until reach and “Late” neurons best coded T during pre-reach and arm position in future space (Afs) during reach. A more complete analysis will aim to describe the complete coding and distribution of gaze, head and reach signals in this region.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

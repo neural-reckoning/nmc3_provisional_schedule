@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 9
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 20:15" data-end="2020-10-29 20:30">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Home-Cage Environmental Refinements and Colony Conditions Influence Rats' Depression- and Anxiety-Related Behaviours</h1><h2>Samantha Irwin</h2><h3>Janet L. Menard, Queen's University; Jasmin Katz, University of Toronto </h3><h2>Abstract</h1><p>As the welfare of research animals’ garners rising attention, modest changes to standard housing conditions, known as ‘environmental refinements’, are increasingly employed to promote animals’ well-being. However, little consideration has been paid to whether such efforts truly improve animal welfare or lead to substantive changes in animal behaviour. The study at hand attempts to empirically validate whether providing rats with minor forms of refinements in their home-cage improves their wellbeing as indexed by anxiety-and depression-like behaviour. Rats (n = 12) in the refined condition were housed in cages that contained various refinements and compared to standard housed rats (n = 12) without access to any home-cage refinements. After one month of habituating to home-cage conditions, rats were tested in a battery of well-validated paradigms of anxiety- and depression-like behaviour including the Elevated Plus Maze, Novelty-Induced Suppression of Feeding (NSFT), Shock Probe Burying, and Sucrose Preference Tests (SPT). There were no significant between-group differences in rats’ behavioural profiles save the NSFT and SPT. Here, rats in the refined housing condition demonstrated heightened anxiety- and depression-like behaviour, which contradicted the prediction that refinements would improve behavioural indices of wellbeing. Notably, animals in both housing conditions displayed unusually high levels of anxiety-like behaviours across all behavioural assessments. These findings raise the possibility that the combination of refinements provided and/or other home-cage and colony variables can contribute to heightened stress, anxiety- and depression-like behaviour in laboratory animals. Beyond implications for animal welfare, disruptions to behavioural profiles pose a considerable challenge for neuroscientific researchers employing animal models as a means to study the brain and behaviour. As such, the impact of home-cage refinements on laboratory animals’ well-being and behavioural profiles requires further clarification. 
-
-Keywords: animal welfare, housing conditions, environmental refinements, anxiety, depression
-</p>
+        <h1>Home-Cage Environmental Refinements and Colony Conditions Influence Rats' Depression- and Anxiety-Related Behaviours</h1><h2>Samantha Irwin</h2><h3>Janet L. Menard, Queen's University; Jasmin Katz, University of Toronto </h3><h2>Abstract</h1><p>As the welfare of research animals’ garners rising attention, modest changes to standard housing conditions, known as ‘environmental refinements’, are increasingly employed to promote animals’ well-being. However, little consideration has been paid to whether such efforts truly improve animal welfare or lead to substantive changes in animal behaviour. The study at hand attempts to empirically validate whether providing rats with minor forms of refinements in their home-cage improves their wellbeing as indexed by anxiety-and depression-like behaviour. Rats (n = 12) in the refined condition were housed in cages that contained various refinements and compared to standard housed rats (n = 12) without access to any home-cage refinements. After one month of habituating to home-cage conditions, rats were tested in a battery of well-validated paradigms of anxiety- and depression-like behaviour including the Elevated Plus Maze, Novelty-Induced Suppression of Feeding (NSFT), Shock Probe Burying, and Sucrose Preference Tests (SPT). There were no significant between-group differences in rats’ behavioural profiles save the NSFT and SPT. Here, rats in the refined housing condition demonstrated heightened anxiety- and depression-like behaviour, which contradicted the prediction that refinements would improve behavioural indices of wellbeing. Notably, animals in both housing conditions displayed unusually high levels of anxiety-like behaviours across all behavioural assessments. These findings raise the possibility that the combination of refinements provided and/or other home-cage and colony variables can contribute to heightened stress, anxiety- and depression-like behaviour in laboratory animals. Beyond implications for animal welfare, disruptions to behavioural profiles pose a considerable challenge for neuroscientific researchers employing animal models as a means to study the brain and behaviour. As such, the impact of home-cage refinements on laboratory animals’ well-being and behavioural profiles requires further clarification. <br/><br/>Keywords: animal welfare, housing conditions, environmental refinements, anxiety, depression<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

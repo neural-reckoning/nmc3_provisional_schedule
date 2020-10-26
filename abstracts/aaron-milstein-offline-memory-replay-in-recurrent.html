@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 18:15" data-end="2020-10-27 18:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Offline memory replay in recurrent spiking neuronal networks</h1><h2>Aaron Milstein</h2><h3>Sarah Tran, Stanford University; Grace Ng, Stanford University; Ivan Soltesz, Stanford University</h3><h2>Abstract</h1><p>When foraging for food, rodents rapidly store memories of sequences of events including visual and sensory landmarks and behavioral choices, often based on a single experience. In parallel with behavioral learning, pyramidal neurons in the hippocampus rapidly acquire selectivity for "snippets of the animal's experience", including selectivity for spatial positions explored in the environment (a.k.a. "place fields”). We recently showed that a special event in the dendrites of pyramidal cells called a dendritic plateau potential can induce bidirectional synaptic plasticity to rapidly shift the location of a cell's place field in a single trial. Interestingly, this rapid plasticity also results in recruitment of these neurons to fire during hippocampal sharp wave/ripple events, which occur during "offline" resting periods, and often feature temporally compressed firing of neurons in the same sequential order that occurred during "online" exploration of the environment. Here we explore the circuit mechanisms of offline memory replay in a recurrent spiking neuronal network model. We tuned a simple network model with an architecture similar to hippocampal area CA3 to exhibit physiological levels of sparsity, selectivity, and rhythmicity, and found that this network can be cued by random input to emit sequences of neuronal firing resembling offline memory replay events.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

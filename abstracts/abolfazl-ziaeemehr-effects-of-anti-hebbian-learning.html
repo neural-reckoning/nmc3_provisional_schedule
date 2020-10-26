@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 13:00" data-end="2020-10-30 13:15">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Effects of Anti-Hebbian learning on the synchronization and structure of directed networks with pure and hybrid inhibitory and excitatory couplings</h1><h2>Abolfazl Ziaeemehr </h2><h3>Abolfazl Ziaeemehr, Institute for Advanced Studies in Basic Sciences; Mir Mohammad Ebrahimi, Institute for Advanced Studies in Basic Sciences; Mina Zarei, Institute for Advanced Studies in Basic Sciences</h3><h2>Abstract</h1><p>The interplay between structure and dynamics of the complex networks has been vigorously investigated in recent years. It has been shown that directed acyclic graphs are optimal structures for the synchronization of identical oscillators. However, feedback loops are required for noise-resistant synchronization of non-identical oscillators. On the other hand, the interaction structures of many real networks vary over time according to their dynamics. Here we employ a rewiring strategy based on an anti-Hebbian learning rule to modulate the structure of directed networks of Kuramoto oscillators. The results show that the anti-Hebbian learning rule leads to the global synchronization of the networks. Indeed, information flow is created from the nodes with average frequencies to the nodes with low or high frequencies in the emerged optimal structure, where the nodes with average frequencies are engaged only in the feed-forward loops, but the nodes with low and high frequencies are mostly joined together with the feedback loops. Similar results were also found in the Hybrid Excitatory-Inhibitory networks of oscillators. In the previous studies, the balance between neural excitation and inhibition has been shown to be crucial for brain computations. Here, we found that excitatory and inhibitory in-degrees of each oscillator are approximately balanced in the evolved network.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 17:30" data-end="2020-10-29 17:45">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Transferring structural knowledge across cognitive maps in humans and models </h1><h2>Shirley Mark</h2><h3>Rani Moran;Thomas Parr; Steve Kennerley; Tim Behrens</h3><h2>Abstract</h1><p>Relations between task elements often follow hidden underlying structural forms such as periodicities or hierarchies, whose inferences fosters performance. However, transferring structural knowledge to novel environments requires flexible representations that are generalizable over particularities of the current environment, such as its stimuli and size. We suggest that humans represent structural forms as abstract basis sets and that in novel tasks, the structural form is inferred and the relevant basis set is transferred. Using a computational model, we show that such representation allows inference of the underlying structural form, important task states, effective behavioural policies and the existence of unobserved state-trajectories. In two experiments, participants learned three abstract graphs during two successive days. We tested how structural knowledge acquired on Day-1 affected Day-2 performance. In line with our model, participants who had a correct structural prior were able to infer the existence of unobserved state-trajectories and appropriate behavioural policies.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

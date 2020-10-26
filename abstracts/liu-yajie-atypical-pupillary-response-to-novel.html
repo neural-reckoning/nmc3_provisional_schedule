@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 10:15" data-end="2020-10-28 10:30">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Atypical pupillary response to novel auditory stimuli in children with autism spectrum disorder</h1><h2>LIU YAJIE</h2><h3>Yajie Liu, School of Psychological and Cognitive Sciences, Peking University, Beijing, China; Linlin Gong, School of Psychological and Cognitive Sciences, Peking University, Beijing, China; Sijia Zhao, Department of Experimental Psychology, University of Oxford, Oxford OX1 3PH, UK; Kunlin Wei, School of Psychological and Cognitive Sciences, Peking University, Beijing, China</h3><h2>Abstract</h1><p>Autism Spectrum Disorder (ASD) is characterized by impaired social interaction and interpersonal communication. Researchers have suggested that aberrant attentional function to exogenous stimuli contribute substantially to social deficits among individuals with ASD. The attentional function is modulated by locus coeruleus (LC) and its noradrenergic projections throughout the brain, and the LC activity has been shown abnormal among the ASD population. As an index of LC-NA activity, PDR provides a convenient and non-invasive measure for studying attentional deficits. However, previous research has focused on examining PDR when individuals with ASD process social stimuli (e.g., face pictures) or engage in complicated cognitive tasks. Here we used a simple auditory oddball task to test children with ASD and their age-matched typically-developed controls (TD group). Participants were required to listen to the stimuli without task responses while their PDR was continuously monitored. Compared to standard stimuli (pure-tone beeps), deviant stimuli induced phasic PDR in both groups. Social (laughter) and non-social (noise) deviants elicit similar PDR. Importantly, the ASD group exhibited significantly smaller PDR than the TD group. Controlling for age and IQ, we observed a strong negative relationship between PDR and ASD symptom severity across groups and a weak correlation within the ASD group. Our results suggest that aberrant attention function among individuals with ASD is not limited to social stimuli but probably include stimuli without social or affective content. Reduced LC-related responsivity to novel stimuli has important implications for affected attention orientating that has been proposed as a fundamental problem for social development in ASD. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

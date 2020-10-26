@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 12:30" data-end="2020-10-30 12:45">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Surprisingly little evidence for task- or belief-dependent signals in macaque V1</h1><h2>Richard Lange</h2><h3>Camille Gomez-Laberge, Harvard Medical School; Ariana Sherdil, Harvard Medical School; Richard Born, Harvard Medical School; Ralf Haefner, University of Rochester</h3><h2>Abstract</h1><p>We set out to test two general predictions of how approximate Bayesian inference may manifest in sensory neural activity: that choice probabilities and noise correlations contain significant feedback components reflecting variability in posterior beliefs about a category. Specifically, a general prediction of optimal Bayesian learning and inference is excess choice-related variability in the direction of neural sensitivity, f’ (Lange & Haefner 2020). We trained two macaque monkeys to switch between two coarse orientation discrimination tasks while we recorded simultaneously from dozens of V1 units using planar 10x10 multi-electrode arrays. This is a rich dataset, including neural data recorded over the course of learning and while monkeys randomly switched discrimination tasks, cued at the start of each trial. Despite our original goal of extending previous experimental results on purported feedback both in choice probabilities and in noise correlations (Cohen & Newsome 2008, Nienborg & Cumming 2014, Rabinowitz et al 2015, Haefner et al 2016, Bondy et al 2018), we failed to find both main effects. Our experiment design and analysis pipeline include numerous stages designed to reduce possible confounds, such as the selection of neurons with diverse tuning properties, automatic outlier detection, spike detection designed to minimize spurious coincident spikes across channels, and regression methods that account for both pseudo-replication and measurement error. We were also able to recover post-mortem histology from these animals and thus assign each electrode on the array to a cortical layer. Our results on choice probabilities are consistent with Jasper et al (2019), who similarly used electrode arrays in V1. We invite further discussion of possible methodological or theoretical failures both on our part and on the part of earlier studies. Alternatively, we may conclude that choice-related signals in V1 are weaker or contain different structure than previously thought.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

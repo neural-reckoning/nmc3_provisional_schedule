@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,14 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 16:30" data-end="2020-10-27 16:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Brain-Wide Tracing of Inputs to the LP-ACC Reciprocal Circuit</h1><h2>Blake Zhou (they / them)</h2><h3>Yi-Ning Leow, MIT; Grayson O. Sipe, MIT; Ian R. Wickersham, MIT; Mriganka Sur, MIT</h3><h2>Abstract</h1><p>The rodent lateral posterior thalamus (LP) plays an important role in cortical communication through dense reciprocal connectivity with multiple cortical areas. A defining input to the medial subdivision of LP is the anterior cingulate cortex (ACC), which plays an integral role in top-down sensory processing and modulates visual selectivity via LP and the superior colliculus (SC). With broader receptive fields and feature tuning, LP is unlikely to provide precise visual encoding. Instead, LP likely provides ACC neurons with visual inputs filtered for behavioral context and convey top-down behavioral priorities from the ACC to other visual areas. To define the inputs that can ultimately shape this reciprocal interaction, we sought to map brain-wide monosynaptic inputs to the bottom-up LP-ACC and top-down ACC-LP circuits.
-
-Brain-wide inputs to these two circuits differ significantly. Although LP activity is believed to be largely driven by cortical inputs, subcortical structures comprise more than half of input to LP-ACC, many possibly serving as inhibitory modulators. Cortical inputs to LP-ACC neurons largely originate from sensory and associative areas, with somatosensory and auditory inputs comparable to visual inputs. In contrast, most ACC-LP neurons receive inputs from frontal and sensorimotor cortical areas. Notably, both nodes of the reciprocal circuit receive extensive retrosplenial cortex (RSC) input and from higher visual areas AM & PM. Our data also show that SC is the largest single input to LP-ACC. Importantly, these originate from the intermediate and deep layers of the SC, which integrates multimodal information and orienting. This contrasts to posterior LP which receives SC input from superficial layers conveying visual information. This also points to LP as a potential node for SC feedback to the ACC. 
-
-Our brain-wide anatomical mapping of inputs to the reciprocal LP-ACC pathways provide a roadmap to understanding LP’s interaction with frontal areas for attentional control and visuomotor functions. 
-
-Support: NIH grant EY028219</p>
+        <h1>Brain-Wide Tracing of Inputs to the LP-ACC Reciprocal Circuit</h1><h2>Blake Zhou (they / them)</h2><h3>Yi-Ning Leow, MIT; Grayson O. Sipe, MIT; Ian R. Wickersham, MIT; Mriganka Sur, MIT</h3><h2>Abstract</h1><p>The rodent lateral posterior thalamus (LP) plays an important role in cortical communication through dense reciprocal connectivity with multiple cortical areas. A defining input to the medial subdivision of LP is the anterior cingulate cortex (ACC), which plays an integral role in top-down sensory processing and modulates visual selectivity via LP and the superior colliculus (SC). With broader receptive fields and feature tuning, LP is unlikely to provide precise visual encoding. Instead, LP likely provides ACC neurons with visual inputs filtered for behavioral context and convey top-down behavioral priorities from the ACC to other visual areas. To define the inputs that can ultimately shape this reciprocal interaction, we sought to map brain-wide monosynaptic inputs to the bottom-up LP-ACC and top-down ACC-LP circuits.<br/><br/>Brain-wide inputs to these two circuits differ significantly. Although LP activity is believed to be largely driven by cortical inputs, subcortical structures comprise more than half of input to LP-ACC, many possibly serving as inhibitory modulators. Cortical inputs to LP-ACC neurons largely originate from sensory and associative areas, with somatosensory and auditory inputs comparable to visual inputs. In contrast, most ACC-LP neurons receive inputs from frontal and sensorimotor cortical areas. Notably, both nodes of the reciprocal circuit receive extensive retrosplenial cortex (RSC) input and from higher visual areas AM & PM. Our data also show that SC is the largest single input to LP-ACC. Importantly, these originate from the intermediate and deep layers of the SC, which integrates multimodal information and orienting. This contrasts to posterior LP which receives SC input from superficial layers conveying visual information. This also points to LP as a potential node for SC feedback to the ACC. <br/><br/>Our brain-wide anatomical mapping of inputs to the reciprocal LP-ACC pathways provide a roadmap to understanding LP’s interaction with frontal areas for attentional control and visuomotor functions. <br/><br/>Support: NIH grant EY028219</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

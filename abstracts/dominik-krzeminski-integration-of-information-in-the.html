@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 12:15" data-end="2020-10-29 12:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Integration of information in the perceptual decision making task</h1><h2>Dominik Krzeminski</h2><h3>Jiaxiang Zhang</h3><h2>Abstract</h1><p>Perceptual decision making describes a process of deciding between available options based on the information from their senses. Recently, progress has been made to relate this behaviour to neural data. A number of computational models have been proposed to explain various aspects of the perceptual decision. Typically, those studies consider only a single dimensional binary decision. The multi-attribute decision-making research often focuses on multi-modal stimuli, ie. with different accumulation rates between attributes. Moreover, the evidence from animal studies shows that the brain tends to sum reward predictions from multiple cues. The details of the combination of evidence have not been studied in details in the perceptual decision paradigm, especially among the human subjects. In this study, we test whether the human brain combines the input from two information sources linearly (additively). We modify the classical random dots motion discrimination task by adding an additional axis of dots movement. We show that there are significant differences in terms of accuracy and reaction time between decisions made from the same amount of information provided by a single and two axes. In the congruent condition the accuracy and reaction times were lower when participants had to combine the data, but for the incongruent condition, participants were faster (but less accurate) when exposed to two axes. The angle between the access did not have a significant effect on analysed behaviour.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

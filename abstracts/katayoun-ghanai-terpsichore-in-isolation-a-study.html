@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,19 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 18:00" data-end="2020-10-30 18:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Terpsichore in Isolation: A study on the Correlation between Online Dancing and Telehealth during COVID-19 Pandemic on People with Parkinson's Disease</h1><h2>Katayoun Ghanai</h2><h3>Joseph FX Desouza, Centre for Vision Research, Psychology, Interdisciplinary graduate studies, VISTA, York  University, CAPnet, Toronto, Canada; Michael Coghlan, Music Department, AMPD, York University, Toronto, Canada</h3><h2>Abstract</h1><p>Terpsichore, one of the nine Muses and the Goddess of the dance, is known for playing her lyre and leading the dance. My interest in the lyre was enhanced upon learning of the “healing” properties” of David’s lyre as presented in the Old Testament. A new window opens and the concept of art serving a function betony mere enjoyment becomes as magical as the mythology itself. “Dancing with Parkinson’s” expands the participants perception of music and dance within the studio and occurs in more than 25 countries all over the world. Parkinson’s disease (PD) is a degenerative neurological disorder with no known cure and no disease modifying treatments. The rising tide of 60,000 Americans with PD per year presents a huge challenge for society for affected individuals, medical professional and care givers. The disease demands intense patient care while negatively impacting quality of life on all those involved. Our group conducts research on the impact of dance upon individuals diagnosed with PD since 2013 (Bearss, Desouza, 2017). Weekly dance classes for people with PD, a dance choreographer, and a pianist have been occurring for seven years. We sample all people’s data through multimodal brain imaging scans, behaviour analysis, clinical tests and self-reported questionnaires. Results indicate promising positive effects of participating in dance (Bearss et al 2017; DeSouza and Bearss, 2018; Ciantar et al 2019). The Covid-19 Pandemic diminished the possibility of continuing the classes although the program administrators tried to maintain the spirit of this long running program via online sessions. No additional tests can be run on studying the effects of virtual dance classes on the participants’ brains but collecting data through online questionnaires can help studying the correlation between on-line dancing and telehealth. The desire of patients for continuing the online delivery is a definite sign of some benefits.
-References
-Bearss, K., Mcdonald, K., Bar, R., & DeSouza, J. (2017). Improvements in balance and gait speed after a 12 week dance intervention for Parkinson’s disease. Advances in Integrative Medicine, 4(1), 10-13. doi:http://dx.doi.org/10.1016/j.aimed.2017.02.002  
-Ciantar, S., Bearss, K., Bar, R., Levkov, G., & DeSouza, J. (2019). Investigating Affective and Motor Improvements with Dance in Parkinson’s Disease. Biorxiv,
- Katayoun Ghanai
- PhD3 Music, Neuroscience Graduate Diploma, York University, Canada
- Centre for Vision Research, Psychology, Interdisciplinary graduate studies, VISTA, York
- University, CAPnet, Toronto, Canada
- Michael Coghlan
- Department of Music, AMPD, York University, Toronto, Canada
-doi:https://doi.org/10.1101/665711  
-DeSouza, J., & Bearss, K. (2018). Progression of Parkinson’s disease symptoms halted using dance over 3-years as assessed with MDS-UPDRS. Neuroscience Meeting Planner. San Diego: Society for Neuroscience Abstracts. Online, doi:https://abstractsonline.com/pp8/#!/4649/presentation/22209  </p>
+        <h1>Terpsichore in Isolation: A study on the Correlation between Online Dancing and Telehealth during COVID-19 Pandemic on People with Parkinson's Disease</h1><h2>Katayoun Ghanai</h2><h3>Joseph FX Desouza, Centre for Vision Research, Psychology, Interdisciplinary graduate studies, VISTA, York  University, CAPnet, Toronto, Canada; Michael Coghlan, Music Department, AMPD, York University, Toronto, Canada</h3><h2>Abstract</h1><p>Terpsichore, one of the nine Muses and the Goddess of the dance, is known for playing her lyre and leading the dance. My interest in the lyre was enhanced upon learning of the “healing” properties” of David’s lyre as presented in the Old Testament. A new window opens and the concept of art serving a function betony mere enjoyment becomes as magical as the mythology itself. “Dancing with Parkinson’s” expands the participants perception of music and dance within the studio and occurs in more than 25 countries all over the world. Parkinson’s disease (PD) is a degenerative neurological disorder with no known cure and no disease modifying treatments. The rising tide of 60,000 Americans with PD per year presents a huge challenge for society for affected individuals, medical professional and care givers. The disease demands intense patient care while negatively impacting quality of life on all those involved. Our group conducts research on the impact of dance upon individuals diagnosed with PD since 2013 (Bearss, Desouza, 2017). Weekly dance classes for people with PD, a dance choreographer, and a pianist have been occurring for seven years. We sample all people’s data through multimodal brain imaging scans, behaviour analysis, clinical tests and self-reported questionnaires. Results indicate promising positive effects of participating in dance (Bearss et al 2017; DeSouza and Bearss, 2018; Ciantar et al 2019). The Covid-19 Pandemic diminished the possibility of continuing the classes although the program administrators tried to maintain the spirit of this long running program via online sessions. No additional tests can be run on studying the effects of virtual dance classes on the participants’ brains but collecting data through online questionnaires can help studying the correlation between on-line dancing and telehealth. The desire of patients for continuing the online delivery is a definite sign of some benefits.<br/>References<br/>Bearss, K., Mcdonald, K., Bar, R., & DeSouza, J. (2017). Improvements in balance and gait speed after a 12 week dance intervention for Parkinson’s disease. Advances in Integrative Medicine, 4(1), 10-13. doi:http://dx.doi.org/10.1016/j.aimed.2017.02.002  <br/>Ciantar, S., Bearss, K., Bar, R., Levkov, G., & DeSouza, J. (2019). Investigating Affective and Motor Improvements with Dance in Parkinson’s Disease. Biorxiv,<br/> Katayoun Ghanai<br/> PhD3 Music, Neuroscience Graduate Diploma, York University, Canada<br/> Centre for Vision Research, Psychology, Interdisciplinary graduate studies, VISTA, York<br/> University, CAPnet, Toronto, Canada<br/> Michael Coghlan<br/> Department of Music, AMPD, York University, Toronto, Canada<br/>doi:https://doi.org/10.1101/665711  <br/>DeSouza, J., & Bearss, K. (2018). Progression of Parkinson’s disease symptoms halted using dance over 3-years as assessed with MDS-UPDRS. Neuroscience Meeting Planner. San Diego: Society for Neuroscience Abstracts. Online, doi:https://abstractsonline.com/pp8/#!/4649/presentation/22209  </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

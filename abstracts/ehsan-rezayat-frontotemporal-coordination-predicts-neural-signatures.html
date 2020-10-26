@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 10:00" data-end="2020-10-27 10:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Frontotemporal Coordination Predicts Neural Signatures of Working Memory in Sensory Areas</h1><h2>Ehsan Rezayat</h2><h3>Ehsan Rezayat, School of Cognitive Sciences, Institute for Research in Fundamental Sciences (IPM), PO Box 1954851167, Tehran, Iran ; Mohmmad-Reza A. Dehaqani, Cognitive Systems Laboratory, Control and Intelligent Processing Center of Excellence (CIPCE), School of Electrical and Computer Engineering, College of Engineering, University of Tehran, Tehran, Iran, School of Cognitive Sciences, Institute for Research in Fundamental Sciences (IPM), PO Box 1954851167, Tehran, Iran; Kelsey Clark, Department of Ophthalmology and Visual Sciences; University of Utah; Salt Lake city, UT   ; Zahra Bahmani, Department of Biomedical Engineering, Tarbiat Modares University, Tehran, Iran ; Tirin Moore, Department of Neurobiology Stanford University, Stanford, California 94305, USA, Howard Hughes Medical Institute, Stanford University, Stanford, California 94305, USA; Behrad Noudoost, Department of Ophthalmology and Visual Sciences; University of Utah; Salt Lake city, UT   </h3><h2>Abstract</h1><p>Neurons in some sensory areas reflect the content of working memory (WM) in their spiking activity. However, this spiking activity is seldom related to behavioral performance. We studied the responses of inferotemporal (IT) neurons, which exhibit object-selective activity, along with Frontal Eye Field (FEF) neurons, which exhibit spatially-selective activity, during the delay period of an object WM task. Unlike the spiking activity and local field potentials (LFPs) within these areas, which were poor predictors of behavioral performance, the phase-locking of IT spikes and LFPs with the beta band of FEF LFPs robustly predicted successful WM maintenance. In addition, IT neurons exhibited greater object-selective persistent activity when their spikes were locked to the phase of FEF LFPs.  These results demonstrate a key role of coordination between prefrontal and temporal cortex in the successful maintenance of visual information during WM. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

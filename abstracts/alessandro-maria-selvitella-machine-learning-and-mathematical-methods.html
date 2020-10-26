@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 8
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-26 16:15" data-end="2020-10-26 16:30">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Machine Learning and Mathematical Methods for the Brain Age Problem</h1><h2>Alessandro Maria Selvitella</h2><h3>Justin Asher, Purdue University Fort Wayne; Khoa Tan Dang, Purdue University Fort Wayne; Peter Klopfenstein, Purdue University Fort Wayne; Maxwell Masters, Purdue University Fort Wayne; Jucoen Yeater, Purdue University Fort Wayne</h3><h2>Abstract</h1><p>Overall, the global population is aging and, as a result, there is an increasing frequency of age-related  diseases. Researchers have tried to establish neuroanatomical biomarkers of aging and understand how the healthy adult brain changes with age. This is the Brain Age Problem (BAP). Our research concentrates on the use of brain biometrics, machine learning methods, and pure mathematics to improve the current answers to the Brain Age Problem (BAP). In this work, we derived the Normalized Stretching Ratio (NSR) given by (Thickness)^2/(Surface Area), which is a surrogate of the isoperimetric ratio that quantifies the stretching of a brain region. We used the NSRs of 68 brain regions as the predictors of a classification model on a freely available data set of young adults, collected by the Human Connectome Project. Our model does not sacrifice prediction accuracy when compared to a similar model on the raw data and so the dimensionality reduction provided by the NSRs yields a simpler explanation of the changes that occur in the brain. Our model reduces the gap between explainability and prediction accuracy by merging ideas from pure mathematical fields, such as differential geometry, machine learning, and neuroscience. This is joint work with my students Justin Asher, Khoa Tan Dang, Peter Klopfenstein, Maxwell Masters, and Jucoen Yeater.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

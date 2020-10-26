@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 5
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 12:00" data-end="2020-10-28 12:15">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>The classification system of hand motor-imagery EEG signals </h1><h2>Qiying Chang</h2><h2>Abstract</h1><p>The classification system of hand motor-imagery EEG signals is generally used in intelligent rehabilitation robots for hand movement disorders caused by nerve injury during stroke. The intelligent rehabilitation device based on the brain-computer interface can effectively activate the damaged brain area from the perspective of rehabilitation medicine and improve the rehabilitation effect of the patient.  However, due to the inherent differences between human brain signals, and the fact that most middle-aged and elderly patients suffer from imagination decline, the actual effect of most classification systems is poorer than expected, which limits the effectiveness of rehabilitation training.
-The hand motor-imagery EEG signal classification system designed and implemented in this paper proposes a method to solve this personalized difference problem. Research details are as followed: 1) This paper studies and verifies the algorithm of signal preprocessing, feature extraction and classification. A set of methods with superior performance are applied to the system implementation; 2) A feature selection method based on classification effect is designed. This method is only based on the selection of channel and frequency features, which can effectively improve the generalization ability of the classification system; 3)  The characteristics and classification effects of the data collected from different rehabilitation patterns are compared, and a combination of two rehabilitation patterns is applied to the classification system.
-This system can achieve 88.4028% accuracy in 5×5 folds cross-validation on self-collected data. Compared with the existing EEG signal classification system, the result achieved by this system is quite good.</p>
+        <h1>The classification system of hand motor-imagery EEG signals </h1><h2>Qiying Chang</h2><h2>Abstract</h1><p>The classification system of hand motor-imagery EEG signals is generally used in intelligent rehabilitation robots for hand movement disorders caused by nerve injury during stroke. The intelligent rehabilitation device based on the brain-computer interface can effectively activate the damaged brain area from the perspective of rehabilitation medicine and improve the rehabilitation effect of the patient.  However, due to the inherent differences between human brain signals, and the fact that most middle-aged and elderly patients suffer from imagination decline, the actual effect of most classification systems is poorer than expected, which limits the effectiveness of rehabilitation training.<br/>The hand motor-imagery EEG signal classification system designed and implemented in this paper proposes a method to solve this personalized difference problem. Research details are as followed: 1) This paper studies and verifies the algorithm of signal preprocessing, feature extraction and classification. A set of methods with superior performance are applied to the system implementation; 2) A feature selection method based on classification effect is designed. This method is only based on the selection of channel and frequency features, which can effectively improve the generalization ability of the classification system; 3)  The characteristics and classification effects of the data collected from different rehabilitation patterns are compared, and a combination of two rehabilitation patterns is applied to the classification system.<br/>This system can achieve 88.4028% accuracy in 5×5 folds cross-validation on self-collected data. Compared with the existing EEG signal classification system, the result achieved by this system is quite good.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

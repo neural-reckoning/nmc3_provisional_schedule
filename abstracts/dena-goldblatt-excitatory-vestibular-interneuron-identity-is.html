@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 22:15" data-end="2020-10-27 22:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Excitatory vestibular interneuron identity is spatiotemporally organized and develops independently of motoneurons in the larval zebrafish</h1><h2>Dena Goldblatt</h2><h3>Marie R. Greaney, New York University; Basak Rosti, New York University; Venkatakaushik Voleti, Columbia University; Citlali Perez Campos, Columbia University; Kripa B. Patel, Columbia University; Wenze Li, Columbia University; Elizabeth M.C. Hillman, Columbia University; David Schoppik, New York University</h3><h2>Abstract</h1><p>Neural circuits must achieve precise wiring between distinct cell subtypes to produce appropriate behaviors. Identity specification and wiring precision in the circuit that stabilizes gaze is a particular case of this general developmental problem. Vertebrates stabilize gaze using excitatory vestibular interneurons that relay head and body destabilization to motoneurons that counter-rotate the eyes. Precise connectivity between directionally-sensitive interneuron subtypes and particular motoneurons is therefore crucial for behavior. The developmental mechanisms that specify excitatory vestibular interneuron identity and connectivity are unresolved, though previous work has suggested a role for spatiotemporal cues and/or motoneuron-derived factors. We tested these hypotheses in the tangential nucleus (TAN) of the larval zebrafish, which contains the excitatory vestibular interneurons necessary for vertical gaze stabilization. We first developed an assay using 2-photon and swept, confocally-aligned planar excitation (SCAPE) microscopy to rapidly and reliably define functional nose-up and nose-down vestibular interneuron subtypes. We used this assay to ask whether functional subtypes are spatiotemporally organized and discovered functional organization complementary to spatiotemporal development. Our results are the first demonstration of functional sub-organization within a vestibular nucleus and reflect a putative role for spatiotemporal factors in identity specification. Next, to investigate the requirement of motoneuron-derived signals for TAN identity specification, we used these functional assays to measure changes in TAN identity following constitutive motoneuron knockouts. Our results demonstrate that TAN functional identity and organization is preserved in the absence of motoneurons, arguing against a role for motoneuron-derived cues. Taken together, we predict that spatiotemporally-linked factors organize TAN subtypes into dorsoventral and rostrocaudal microdomains. We propose that functional identity acquisition and organization occurs in a motoneuron-independent manner.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

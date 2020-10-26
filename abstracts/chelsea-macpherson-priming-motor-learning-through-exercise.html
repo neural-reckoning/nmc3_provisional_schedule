@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,24 +52,15 @@
             Track 6
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 21:30" data-end="2020-10-26 21:45">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Priming Motor Learning through Exercise in those with Cerebellar Ataxia: A Pilot Study (PRIME-ATAXIA)</h1><h2>Chelsea Macpherson</h2><h3>Chelsea E. Macpherson, PT, DPT, NCS (affiliation: Biobehavioral Sciences Department, EdD student in Motor Learning and Control, Teachers College, Columbia University, New York, New York, USA) ; Lori Quinn, PT, EdD (affiliation: Biobehavioral Sciences Department, EdD student in Motor Learning and Control, Teachers College, Columbia University, New York, New York, USA); Sheng-Han Kuo, MD (affiliation: Department of Neurology, Columbia University Medical Center, New York, New York, USA) </h3><h2>Abstract</h1><p>Keywords (separated by semicolons)
-Cerebellar Ataxia; Motor Learning; Exercise; Neuroplasticity; Neurorehabilitation; Reliability; Feasibility
-
-Background: 
-Impairments in gait and balance are hallmark symptoms for individuals with spinocerebellar Ataxias (SCAs) and they contribute to functional limitations including fall risk and loss of independent ambulation.  Rehabilitation interventions hold great promise for improving physical function and delaying disease progression, however research specifically in SCA remains limited, especially so for remote or hybrid delivered interventions. Recent literature supports priming aerobic exercise can enhance task-specific motor performance in individuals with neurological disorders. Activation of neural circuitries following aerobic exercise may lead to downstream retention of cognitive and motor skills, and may provide a crucial link to enhancing motor performance and facilitating motor learning in individuals with SCAs. Exercise interventions are therefore optimally positioned as both a method to improve motor symptoms and slow disease progression, as well as to evaluate the responsiveness of outcome measures for use in a range of clinical trials. Establishing the feasibility of a remotely delivered motor-priming exercise intervention is crucial to support clinical trial readiness. 
-
-Aims: 
-1.To determine the reliability and responsiveness of a remotely-administered standardized clinical outcome battery in individuals with SCA.  
-2.To determine the feasibility of delivering a remotely-delivered 8-week high intensity exercise intervention in individuals with SCAs. 
-
-Methods: 
-The proposed aims will be nested in a single cohort study evaluating an 8-week remotely-delivered exercise intervention for individuals with genetically-confirmed SCAs (n=20). The intervention will be delivered twice a week for 8 weeks and consist of combined 30-minute high intensity interval training (HIIT) on a recumbent stationary cycle ergometer, followed immediately by intensive, individualized 20-minute balance training. A caregiver/support person will be required for engagement in intervention sessions. Participants and their caregiver/support person will be instructed in identifying a space at home to sufficiently and safely perform tests/interventions. Participants will use FitBit Wearable Activity Monitors with heart rate capabilities as a method to evaluate exercise intensity and duration. Remotely-administered standardized outcome battery will be conducted during two baseline assessments (1 week apart), mid-intervention (week 5) and post intervention (week 8) and will include the first 4-items of the Scale for Assessment and Rating of Ataxia (SARA), Cerebellar Cognitive Assessment Scale (CCAS), Neurologic Quality of Life (NeuroQOL), Timed Up and Go Test (TUG) and measures of postural sway through a smartphone app (Encephalog, Mon4t, LLC, Binyamina, Israel). To determine the test-retest reliability of the remotely-administered standardized clinical outcome battery, we will calculate intraclass correlation coefficients as well as minimal detectable change values. To determine the responsiveness of the outcome battery, we will calculate the effect estimates comparing baseline, mid-intervention and post intervention. To determine the feasibility of delivering a high intensity exercise intervention remotely, we will evaluate the safety, retention and adherence rates.  
-
-Results/Conclusion: Participants are currently being recruited for this study. 
-
-Clinical Implications: This project will provide knowledge on the feasibility of measuring clinical outcomes and delivering an exercise intervention remotely while additionally developing physiological and functional biomarkers for clinical trial readiness in SCA.
-</p>
+        <h1>Priming Motor Learning through Exercise in those with Cerebellar Ataxia: A Pilot Study (PRIME-ATAXIA)</h1><h2>Chelsea Macpherson</h2><h3>Chelsea E. Macpherson, PT, DPT, NCS (affiliation: Biobehavioral Sciences Department, EdD student in Motor Learning and Control, Teachers College, Columbia University, New York, New York, USA) ; Lori Quinn, PT, EdD (affiliation: Biobehavioral Sciences Department, EdD student in Motor Learning and Control, Teachers College, Columbia University, New York, New York, USA); Sheng-Han Kuo, MD (affiliation: Department of Neurology, Columbia University Medical Center, New York, New York, USA) </h3><h2>Abstract</h1><p>Keywords (separated by semicolons)<br/>Cerebellar Ataxia; Motor Learning; Exercise; Neuroplasticity; Neurorehabilitation; Reliability; Feasibility<br/><br/>Background: <br/>Impairments in gait and balance are hallmark symptoms for individuals with spinocerebellar Ataxias (SCAs) and they contribute to functional limitations including fall risk and loss of independent ambulation.  Rehabilitation interventions hold great promise for improving physical function and delaying disease progression, however research specifically in SCA remains limited, especially so for remote or hybrid delivered interventions. Recent literature supports priming aerobic exercise can enhance task-specific motor performance in individuals with neurological disorders. Activation of neural circuitries following aerobic exercise may lead to downstream retention of cognitive and motor skills, and may provide a crucial link to enhancing motor performance and facilitating motor learning in individuals with SCAs. Exercise interventions are therefore optimally positioned as both a method to improve motor symptoms and slow disease progression, as well as to evaluate the responsiveness of outcome measures for use in a range of clinical trials. Establishing the feasibility of a remotely delivered motor-priming exercise intervention is crucial to support clinical trial readiness. <br/><br/>Aims: <br/>1.To determine the reliability and responsiveness of a remotely-administered standardized clinical outcome battery in individuals with SCA.  <br/>2.To determine the feasibility of delivering a remotely-delivered 8-week high intensity exercise intervention in individuals with SCAs. <br/><br/>Methods: <br/>The proposed aims will be nested in a single cohort study evaluating an 8-week remotely-delivered exercise intervention for individuals with genetically-confirmed SCAs (n=20). The intervention will be delivered twice a week for 8 weeks and consist of combined 30-minute high intensity interval training (HIIT) on a recumbent stationary cycle ergometer, followed immediately by intensive, individualized 20-minute balance training. A caregiver/support person will be required for engagement in intervention sessions. Participants and their caregiver/support person will be instructed in identifying a space at home to sufficiently and safely perform tests/interventions. Participants will use FitBit Wearable Activity Monitors with heart rate capabilities as a method to evaluate exercise intensity and duration. Remotely-administered standardized outcome battery will be conducted during two baseline assessments (1 week apart), mid-intervention (week 5) and post intervention (week 8) and will include the first 4-items of the Scale for Assessment and Rating of Ataxia (SARA), Cerebellar Cognitive Assessment Scale (CCAS), Neurologic Quality of Life (NeuroQOL), Timed Up and Go Test (TUG) and measures of postural sway through a smartphone app (Encephalog, Mon4t, LLC, Binyamina, Israel). To determine the test-retest reliability of the remotely-administered standardized clinical outcome battery, we will calculate intraclass correlation coefficients as well as minimal detectable change values. To determine the responsiveness of the outcome battery, we will calculate the effect estimates comparing baseline, mid-intervention and post intervention. To determine the feasibility of delivering a high intensity exercise intervention remotely, we will evaluate the safety, retention and adherence rates.  <br/><br/>Results/Conclusion: Participants are currently being recruited for this study. <br/><br/>Clinical Implications: This project will provide knowledge on the feasibility of measuring clinical outcomes and delivering an exercise intervention remotely while additionally developing physiological and functional biomarkers for clinical trial readiness in SCA.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

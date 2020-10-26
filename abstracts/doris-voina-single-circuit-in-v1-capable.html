@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 21:00" data-end="2020-10-29 21:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Single circuit in V1 capable of switching contexts during movement usingVIP population as a switch</h1><h2>Doris Voina</h2><h3>Stefano Recanatesi; Brian Hu; Eric Shea-Brown; Stefan Mihalas</h3><h2>Abstract</h1><p>As  animals  adapt  to  their  environments,  their  brains  are  tasked  with  processing  stimuli  in  different  sensory contexts.  This suggests that neural architectures have evolved to respond flexibly to a range of stimulus conditions and  statistics.   As  the  number  of  possible  contexts  is  virtually  infinite,  making parallel  circuits  for  each  context unfeasible, a crucial question is what architectures permit implementation of multiple related computations within a single circuit.  Here, we address this question in the specific case of the circuitry of the visual system, focusing on the role of distinct cell types in context integration of visual scenes.  We show that a population of inhibitory neurons, the VIP cells, can enable such context integration — defined as the integration of feedforward and surround information across visual space — in two different contexts, in which the viewer is static vs.  moving.  Moreover, the VIP population is efficient, requiring only a relatively small number of neurons to switch contexts.  Our findings shed light on a minimally complex architecture that is capable of switching between two naturalistic contexts using few switching units.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

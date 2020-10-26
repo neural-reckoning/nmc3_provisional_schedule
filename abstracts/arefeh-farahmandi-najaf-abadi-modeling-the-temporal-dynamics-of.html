@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-26 16:00" data-end="2020-10-26 16:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Modeling the temporal dynamics of neurons in the IT cortex</h1><h2>Arefeh Farahmandi Najaf Abadi</h2><h3>Ahmad Kalhor , School of Electrical and Computer Engineering, College of Engineering, University of Tehran, Tehran, Iran ; Mohammad-Reza A. Dehaqani , 1- School of Electrical and Computer Engineering, College of Engineering, University of Tehran, Tehran, Iran , 2- School of Cognitive Sciences, Institute for Research in Fundamental Sciences, Tehran, Iran.</h3><h2>Abstract</h1><p>Understanding the neural mechanism of image processing in the visual brain is one of the main efforts in system neuroscience. The ventral stream is thought to function as a series of hierarchical stages that encode visual information increasingly in successive cortical areas. Recent electrophysiological studies have been suggested that the early and late phases of neural response encode multiple levels of hierarchical abstractions, i.e. an earlier representation of mid-level categories in the IT responses compared with superordinate-level and subordinate-level categories. However, the neural mechanism of this temporal category representation at multiple levels is poorly understood. To address this, we applied a combination of convolutional neural networks and a partial least squares regression (PLS) model to predict firing rates of IT neurons in response to the stimuli. To train a model, in the first phase, the feature vectors of images are extracted from a convolution neural network. Then, the feature vectors used as input to  PLS regression to predict the dynamics of neural response. We found that the predicted firing rates are highly correlated with the neuron’s actual firing rates. Furthermore, the encoding of predicted neural responses illustrated an earlier representation of mid-level category representation. The suggested model proposes a neural mechanism for temporal dynamics of category representation in the IT cortex. Moreover, the trained model can be applied to extract informative feature vectors for machine vision applications.
-</p>
+        <h1>Modeling the temporal dynamics of neurons in the IT cortex</h1><h2>Arefeh Farahmandi Najaf Abadi</h2><h3>Ahmad Kalhor , School of Electrical and Computer Engineering, College of Engineering, University of Tehran, Tehran, Iran ; Mohammad-Reza A. Dehaqani , 1- School of Electrical and Computer Engineering, College of Engineering, University of Tehran, Tehran, Iran , 2- School of Cognitive Sciences, Institute for Research in Fundamental Sciences, Tehran, Iran.</h3><h2>Abstract</h1><p>Understanding the neural mechanism of image processing in the visual brain is one of the main efforts in system neuroscience. The ventral stream is thought to function as a series of hierarchical stages that encode visual information increasingly in successive cortical areas. Recent electrophysiological studies have been suggested that the early and late phases of neural response encode multiple levels of hierarchical abstractions, i.e. an earlier representation of mid-level categories in the IT responses compared with superordinate-level and subordinate-level categories. However, the neural mechanism of this temporal category representation at multiple levels is poorly understood. To address this, we applied a combination of convolutional neural networks and a partial least squares regression (PLS) model to predict firing rates of IT neurons in response to the stimuli. To train a model, in the first phase, the feature vectors of images are extracted from a convolution neural network. Then, the feature vectors used as input to  PLS regression to predict the dynamics of neural response. We found that the predicted firing rates are highly correlated with the neuron’s actual firing rates. Furthermore, the encoding of predicted neural responses illustrated an earlier representation of mid-level category representation. The suggested model proposes a neural mechanism for temporal dynamics of category representation in the IT cortex. Moreover, the trained model can be applied to extract informative feature vectors for machine vision applications.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

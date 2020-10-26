@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 22:15" data-end="2020-10-26 22:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Alteration of perineuronal net expression in the primary somatosensory cortex during maternal behavior</h1><h2>Dana Layo (she, her, hers)</h2><h3>Dana E. Layo, University of Tennessee Knoxville; Keerthi Krishnan, University of Tennessee Knoxville</h3><h2>Abstract</h1><p>Rett Syndrome (RTT) is a neurological disorder caused by mutations in MECP2, a gene expression regulator. RTT is hypothesized to be a sensory processing disorder, which could contribute to the higher-order cognition and social communication phenotypes. How MECP2 deficiency causes sensory processing issues is currently unknown. We use a female mouse model of RTT (Het) to study how MECP2 regulates the timing of experience-dependent plasticity during complex multisensory behaviors, such as the pup gathering paradigm. MECP2 is essential for regulating experience-dependent plasticity, as measured by perineuronal net (PNN) expression, in the auditory cortex during pup gathering. PNNs are extracellular matrix structures surrounding parvalbumin + GABAergic neurons in the cortex, and regulate their synaptic activity. Since efficient pup gathering behavior requires auditory, olfactory and somatosensory cues, we chose to look at PNN expression within the primary somatosensory cortex (SS1). We found that adult Hets perform the pup gathering behavior poorly and show an increase in PNN density within SS1 before (Naïve) and after (Sur) behavioral experience. This suggests that adult NaiveHets are unable to process tactile information causing their poor behavioral performance. By time course analysis, we found that adolescent Naïve Hets had similar PNN density to Naïve WT. Interestingly, adolescent SurHets still performed poorly in the pup gathering paradigm. Through whole brain immunohistochemical analysis of the SS1 in adolescent SurHets, we found 1) PNN density is increased in the SS1of SurHet in specific subregions and 2) the pattern of PNN density alterations in the adolescent and adult SS1 SurHet is different. This shows that, regardless of age, MECP2 is needed in SS1 to regulate the timing of PNN formation, during a complex sensory behavior. Overall, experience-dependent plasticity in the auditory and primary somatosensory cortex is dysregulated in the MECP2-Het mutant resulting in poor execution of a social communication paradigm.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

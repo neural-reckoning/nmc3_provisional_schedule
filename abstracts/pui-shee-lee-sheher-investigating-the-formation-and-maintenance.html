@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 21:15" data-end="2020-10-30 21:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Investigating the formation and maintenance of a horizontal cell mosaic in the zebrafish retina</h1><h2>Pui-Shee Lee (she/her)</h2><h3>Leanne Godinho, Institute of Neuronal Cell Biology, Technical University Munich</h3><h2>Abstract</h1><p>In many parts of the nervous system, the somata of functionally distinct neuronal subtypes are spatially organized in non-random planar arrays. Such mosaic cellular patterns are particularly characteristic for sensory neurons, which in many notable cases additionally exhibit dendritic tiling to ensure complete sampling of afferent information. How such cellular organizations are established during development remains to be fully elucidated. With its stereotypic organization, the vertebrate retina is an attractive model for investigating how such cellular patterns emerge during development. We have been investigating the spatial arrangement of H1 horizontal cells, an inhibitory interneuron subtype located in the outer retina. Using a transgenic line that fluorescently labels H1 horizontal cells we characterized the statistical properties of this sub-mosaic and investigated when during development its mosaic pattern first emerges. Using Nearest Neighbor Regularity Index, Voronoi Domain Regularity Index and Density Recovery Profile, our data suggests that the H1 mosaic is established as early as 3dpf. To visualize the formation of horizontal cell mosaics, we use high resolution in vivo time-lapse imaging and perform comprehensive quantitative analysis on individual cell trajectories dynamics. Preliminary analysis suggests that mosaic formation could be divided into at least 3 phases – proliferation, migration and finally a refinement phase. We hypothesized that cell-cell interaction is crucial in the active migration phase in which cells are sampling the space to ensure maximal spacing to its immediate neighbors. Using these datasets, we are implementing a data driven approach to build an agent-based model to serve as a platform to test various hypotheses of neural circuit formation. Taken together we anticipate that our approach will reveal mechanistic insights into how a distinct horizontal cell subtype establishes and maintains its mosaic arrangement.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

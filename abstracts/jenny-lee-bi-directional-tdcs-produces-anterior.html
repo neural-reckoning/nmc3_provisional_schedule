@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,20 +52,15 @@
             Track 5
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 12:15" data-end="2020-10-28 12:30">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Bi-directional tDCS produces anterior and posterior current flow in neighbouring cortical targets.</h1><h2>Jenny Lee</h2><h3>Jenny Lee, Department of Clinical and Movement Neurosciences, Queen Square Institute of Neurology, University College London; Carys Evans, Department of Clinical and Movement Neurosciences, Queen Square Institute of Neurology, University College London; Nick Ward, Department of Clinical and Movement Neurosciences, Queen Square Institute of Neurology, University College London; Sven Bestmann, 1Department of Clinical and Movement Neurosciences, Queen Square Institute of Neurology, University College London, Wellcome Trust Centre for Neuroimaging.</h3><h2>Abstract</h1><p>Introduction. Motor- and sensory-evoked potentials (MEPs and SEPs) are well-established biomarkers of the physiological effects of tDCS, and the primary motor (M1) and sensory (S1) cortices are positioned in close proximity on either bank of the central sulcus. De- or hyper-polarisation of neurons by tDCS is dependent on the orientation of current flow. 
-
-Conventional tDCS montages produce unidirectional current flow across M1 and S1. Since the principal axes of pyramidal neurons in the pre- and post-central gyral walls are predominantly oriented in opposite directions, conventional montages could produce orthogonal effects. Given the intimate connectivity between M1 and S1, this may contribute to variability in tDCS outcomes, and adds complexity to interpretation of observed biomarker changes. 
-
-Informed by current flow models, we propose a novel, bi-directional tDCS montage whereby current is directed to flow predominantly in the same direction along pyramidal neurons in M1 and S1, and therefore in opposite directions with respect to the whole head. 
-
-Objectives. To model a bi-directional tDCS montage which produces posterior-anterior (PA) current flow through M1 (PAM1) and anterior-posterior (AP) current flow through S1 (APS1). An ongoing physiological study will compare M1/S1 excitability changes after application of bi-directional and conventional tDCS.
-
-Materials & Methods. E-field intensity and direction are modelled in MRI scans from the Human Connectome Project using Realistic Volumetric Approach to Simulate Transcranial Electric Stimulation (ROAST) and Freesurfer software. 
-
-Results. A custom HD-tDCS montage can produce uniformly polarizing current in M1 and S1. However, bi-directional current flow is achieved at the cost of E-field intensity at cortical targets. A conventional montage achieves desired E-field intensity at the cost of direction. 
-
-Summary and Outlook. Bi-directional tDCS can be achieved in neighbouring cortical regions. Model optimisation and physiological validation is ongoing, to improve E-field intensity and quantify the effects of bi-directional tDCS on cortical excitability.</p>
+        <h1>Bi-directional tDCS produces anterior and posterior current flow in neighbouring cortical targets.</h1><h2>Jenny Lee</h2><h3>Jenny Lee, Department of Clinical and Movement Neurosciences, Queen Square Institute of Neurology, University College London; Carys Evans, Department of Clinical and Movement Neurosciences, Queen Square Institute of Neurology, University College London; Nick Ward, Department of Clinical and Movement Neurosciences, Queen Square Institute of Neurology, University College London; Sven Bestmann, 1Department of Clinical and Movement Neurosciences, Queen Square Institute of Neurology, University College London, Wellcome Trust Centre for Neuroimaging.</h3><h2>Abstract</h1><p>Introduction. Motor- and sensory-evoked potentials (MEPs and SEPs) are well-established biomarkers of the physiological effects of tDCS, and the primary motor (M1) and sensory (S1) cortices are positioned in close proximity on either bank of the central sulcus. De- or hyper-polarisation of neurons by tDCS is dependent on the orientation of current flow. <br/><br/>Conventional tDCS montages produce unidirectional current flow across M1 and S1. Since the principal axes of pyramidal neurons in the pre- and post-central gyral walls are predominantly oriented in opposite directions, conventional montages could produce orthogonal effects. Given the intimate connectivity between M1 and S1, this may contribute to variability in tDCS outcomes, and adds complexity to interpretation of observed biomarker changes. <br/><br/>Informed by current flow models, we propose a novel, bi-directional tDCS montage whereby current is directed to flow predominantly in the same direction along pyramidal neurons in M1 and S1, and therefore in opposite directions with respect to the whole head. <br/><br/>Objectives. To model a bi-directional tDCS montage which produces posterior-anterior (PA) current flow through M1 (PAM1) and anterior-posterior (AP) current flow through S1 (APS1). An ongoing physiological study will compare M1/S1 excitability changes after application of bi-directional and conventional tDCS.<br/><br/>Materials & Methods. E-field intensity and direction are modelled in MRI scans from the Human Connectome Project using Realistic Volumetric Approach to Simulate Transcranial Electric Stimulation (ROAST) and Freesurfer software. <br/><br/>Results. A custom HD-tDCS montage can produce uniformly polarizing current in M1 and S1. However, bi-directional current flow is achieved at the cost of E-field intensity at cortical targets. A conventional montage achieves desired E-field intensity at the cost of direction. <br/><br/>Summary and Outlook. Bi-directional tDCS can be achieved in neighbouring cortical regions. Model optimisation and physiological validation is ongoing, to improve E-field intensity and quantify the effects of bi-directional tDCS on cortical excitability.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

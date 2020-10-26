@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 6
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 13:30" data-end="2020-10-30 13:45">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Global Brain Volume is Associated with General Psychopathology in Children</h1><h2>Leighton Durham (she/her/hers)</h2><h3>E. Leighton Durham, Vanderbilt University; Hee Jung Jeong, Vanderbilt University; Tyler M. Moore, University of Pennsylvania; Randolph M. Dupont, Vanderbilt University; Carlos Cardenas-Iniguez, University of Chicago; Zaixu Cui, University of Pennsylvania; Farrah E. Stone, Vanderbilt University; Marc G. Berman, University of Chicago; Benjamin B. Lahey, University of Chicago; Antonia N. Kaczkurkin, Vanderbilt University</h3><h2>Abstract</h1><p>Childhood is important for the onset of psychopathology and for brain development. Psychopathology is characterized by considerable comorbidity, which is mirrored in its underlying neural correlates. Both common and dissociable variations in brain volume have been found across multiple mental disorders in adult and youth samples. However, the majority of related research has used samples with broad age ranges, which may obscure developmental differences. The present study examined associations between regional gray matter volumes (GMV) and dimensional psychopathology in a large sample (N = 9,608) of children (9-10 years) collected as part of the Adolescent Brain and Cognitive Development (ABCD) Study. A bifactor model identified four dimensions of psychopathology: a general factor, which reflects common variance across disorders, as well as three subfactors measuring specific internalizing, conduct, and ADHD symptoms. Brain volume was acquired using 3T MRI. Results from SEM analyses demonstrate nearly global inverse associations between regional GMVs and the general psychopathology and conduct factors, with significant associations for the ADHD factor as well (p-values ≤ .048, FDR-corrected). Sensitivity analyses including total GMV and intracranial volume as covariates further support this global effect, as region-specific results became non-significant, with the exception of the bilateral hippocampus. Sensitivity analyses controlling for income, parent’s level of education, and medication use as additional covariates yielded largely convergent results. Together, these results suggest that smaller brain volume is a common risk factor for psychopathology across disorders, and possibly for conduct and ADHD symptoms in particular.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

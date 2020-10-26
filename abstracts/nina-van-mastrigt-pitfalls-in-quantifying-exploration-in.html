@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,14 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 12:00" data-end="2020-10-30 12:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Pitfalls in quantifying exploration in reward-based motor learning</h1><h2>Nina van Mastrigt</h2><h3>K. van der Kooij, Vrije Universiteit Amsterdam; J.B.J. Smeets, Vrije Universiteit Amsterdam</h3><h2>Abstract</h1><p>Movements are variable. It is unclear how much different variability sources contribute to this variability and how these contributions can be quantified. These questions are especially of interest in studying reward-based motor learning, where people are thought to add exploratory variability to their inevitable motor noise to discover which movements lead to reward. Whether variability promotes or hampers learning is however controversial. To clarify this relation between variability and learning, it is important to separate variability caused by exploration from motor noise. 
-
-We developed the additional trial-to-trial change (ATTC) method for quantifying exploration as the additive variability following non-rewarded movements over variability following rewarded movements. Here, we aimed to validate the ATTC method by simulating learning using existing models of reward-based motor learning. This is important because we developed the method in a random reward paradigm, in which participants cannot use the feedback to improve their performance. Furthermore, learning contributes to trial-to-trial changes in behavior in a systematic, rather than random, manner, and may hence influence the quantification of exploration. We calculated the similarity between input exploration and exploration estimated from model behavior, for four models and their parameters.
-
-The fairly simple rationale behind the ATTC method is that exploration is higher following reward absence, which is a key feature of all models, too. Nevertheless, similarity is sensitive to the ratio of input motor noise and exploration, and exploration is generally underestimated.
-
-Our results reveal two important pitfalls in quantifying exploration based on trial-to-trial changes. Firstly, performance-dependent reward causes considerable correlations in samples of motor noise, thereby affecting estimates of exploration depending on the ratio of the learners’ exploration and motor noise. Secondly, using trial-to-trial changes to quantify exploration results in an underestimation of exploration since the exploration relative to which the change is calculated is unstable. </p>
+        <h1>Pitfalls in quantifying exploration in reward-based motor learning</h1><h2>Nina van Mastrigt</h2><h3>K. van der Kooij, Vrije Universiteit Amsterdam; J.B.J. Smeets, Vrije Universiteit Amsterdam</h3><h2>Abstract</h1><p>Movements are variable. It is unclear how much different variability sources contribute to this variability and how these contributions can be quantified. These questions are especially of interest in studying reward-based motor learning, where people are thought to add exploratory variability to their inevitable motor noise to discover which movements lead to reward. Whether variability promotes or hampers learning is however controversial. To clarify this relation between variability and learning, it is important to separate variability caused by exploration from motor noise. <br/><br/>We developed the additional trial-to-trial change (ATTC) method for quantifying exploration as the additive variability following non-rewarded movements over variability following rewarded movements. Here, we aimed to validate the ATTC method by simulating learning using existing models of reward-based motor learning. This is important because we developed the method in a random reward paradigm, in which participants cannot use the feedback to improve their performance. Furthermore, learning contributes to trial-to-trial changes in behavior in a systematic, rather than random, manner, and may hence influence the quantification of exploration. We calculated the similarity between input exploration and exploration estimated from model behavior, for four models and their parameters.<br/><br/>The fairly simple rationale behind the ATTC method is that exploration is higher following reward absence, which is a key feature of all models, too. Nevertheless, similarity is sensitive to the ratio of input motor noise and exploration, and exploration is generally underestimated.<br/><br/>Our results reveal two important pitfalls in quantifying exploration based on trial-to-trial changes. Firstly, performance-dependent reward causes considerable correlations in samples of motor noise, thereby affecting estimates of exploration depending on the ratio of the learners’ exploration and motor noise. Secondly, using trial-to-trial changes to quantify exploration results in an underestimation of exploration since the exploration relative to which the change is calculated is unstable. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

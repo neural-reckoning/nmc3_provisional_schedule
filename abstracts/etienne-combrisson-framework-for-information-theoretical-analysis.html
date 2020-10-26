@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 12:15" data-end="2020-10-30 12:30">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Framework for Information Theoretical analysis of Electrophysiological data and Statistics (FRITES)</h1><h2>Etienne Combrisson</h2><h3>Etienne Combrisson,  Institut de Neurosciences de la Timone, UMR 7289, Aix Marseille Université, CNRS, 13385 Marseille, France; Michele Allegra, Institut de Neurosciences de la Timone, UMR 7289, Aix Marseille Université, CNRS, 13385 Marseille, France; Ruggero Basanisi, Institut de Neurosciences de la Timone, UMR 7289, Aix Marseille Université, CNRS, 13385 Marseille, France; Robin A.A Ince, Institute of Neuroscience and Psychology, University of Glasgow, Glasgow, UK; Bruno L. Giordano, Institut de Neurosciences de la Timone, UMR 7289, Aix Marseille Université, CNRS, 13385 Marseille, France; Andrea Brovelli, Institut de Neurosciences de la Timone, UMR 7289, Aix Marseille Université, CNRS, 13385 Marseille, France;</h3><h2>Abstract</h1><p>We present analysis pipelines that aim at characterising the dynamics of cortico-cortical interactions underlying cognitive brain networks. Our hierarchical Functional Connectivity (FC) approach is able to isolate first regions whose linear correlation and mutual information (i.e., the total interdependence between neural signals) increases transiently or statically in relation to task conditions, then parses the relative direction of this influence using covariance-based Granger causality methods. Covariance-based Granger causality measures are particularly suited, because they are computationally simple to estimate, provide an intuitive link between directed and undirected FC measures and can be used on short neural signals (e.g., single-trials) and large networks (e.g., hundreds of brain areas). The workflows are applied to human source-level high-gamma activity (HGA) estimated from MEG data (Brovelli et al, JNeurosci 2015; JNeurosci 2017). The workflows exploit an anatomical atlas named MarsAtlas (Auzias et al, Human Brain Mapp 2016), and provide single-trial and ROI-based estimates of HGA time courses. Statistical analysis searching for task-related modulations in FC and group-level inference is performed using gaussian copula mutual information approaches combined with cluster-based statistics and permutation tests. The end results are time-resolved and task-related information routing patterns characterising the dynamics of cognitive brain networks.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

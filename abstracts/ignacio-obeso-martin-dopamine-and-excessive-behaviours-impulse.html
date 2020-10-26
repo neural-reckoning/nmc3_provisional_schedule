@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 17:15" data-end="2020-10-30 17:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Dopamine and excessive behaviours: impulse control disorders in Parkinson disease</h1><h2>Ignacio Obeso Martin</h2><h2>Abstract</h1><p>Dopamine mediates a wide range of reward processes and when dysfunctional, excessive behaviours may be encountered. Under dopaminergic treatments, Parkinson´s disease (PD) patients may develop impulse control disorders (ICDs) resulting in excessive behaviours towards appetitive items, hence representing an optimal human model to study addiction. The wide spectrum of excessive approach tendencies towards appetitive options include primary and secondary rewards such as binge eating, hypersexuality, pathological gambling or compulsive shopping. In addition, the neurocognitive profile of ICD is marked by preference of immediate gratification and lack of adaptation to negative outcomes paralleled by enhanced signalling of the mesocortical valuation system. To date, the precise behavioural and neural changes involved in ICD are unclear. More precisely, is unclear whether ICD is a deficit of impulsive choice or impulsive actions that cannot override excessive desire of appetitive items. Here, evidence will be presented to put forward the field on one specific ICD (i.e. hypersexuality) in choice behaviour and action impulsivity (using fMRI and computational modelling). Ultimately, preliminary findings may support a transfer towards clinical consequences that will impact ICD with neuromodulation techniques. Our findings give rise to a new neurocognitive and imaging profile on one ICD subtype to open new research avenues and bridge our findings into clinical contexts.  </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

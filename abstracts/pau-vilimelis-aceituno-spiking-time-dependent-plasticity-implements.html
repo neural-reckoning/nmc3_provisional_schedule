@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 8
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 18:00" data-end="2020-10-29 18:15">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Spiking Time-Dependent Plasticity implements self-organized resonances</h1><h2>Pau Vilimelis Aceituno</h2><h3>Pau Vilimelis Aceituno, ETH Zürich</h3><h2>Abstract</h1><p>Neural populations exposed to a certain stimulus learn to represent it better. However, the process that leads local, self-organized rules to do so is unclear. We address the question of how can a neural periodic input be learned and use the Differential Hebbian Learning framework, coupled with a homeostatic mechanism to derive two self-consistency equations that lead to increased responses to the same stimulus. Although all our simulations are done with simple Leaky-Integrate and Fire neurons and standard Spiking Time Dependent Plasticity learning rules,
-our results can be easily interpreted in terms of rates and population codes.
-This talk is mostly theoretical, but during the interactive part I would like to discuss biological predictions and neurorobotic implementations.
-</p>
+        <h1>Spiking Time-Dependent Plasticity implements self-organized resonances</h1><h2>Pau Vilimelis Aceituno</h2><h3>Pau Vilimelis Aceituno, ETH Zürich</h3><h2>Abstract</h1><p>Neural populations exposed to a certain stimulus learn to represent it better. However, the process that leads local, self-organized rules to do so is unclear. We address the question of how can a neural periodic input be learned and use the Differential Hebbian Learning framework, coupled with a homeostatic mechanism to derive two self-consistency equations that lead to increased responses to the same stimulus. Although all our simulations are done with simple Leaky-Integrate and Fire neurons and standard Spiking Time Dependent Plasticity learning rules,<br/>our results can be easily interpreted in terms of rates and population codes.<br/>This talk is mostly theoretical, but during the interactive part I would like to discuss biological predictions and neurorobotic implementations.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

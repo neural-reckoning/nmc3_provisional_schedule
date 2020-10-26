@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 11:00" data-end="2020-10-30 11:15">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Just-in-time computations by non-normal attractor dynamics in the prefrontal cortex</h1><h2>Jake Stroud</h2><h3>Jake P. Stroud, University of Cambridge; Kei Watanabe, Osaka University; Takafumi Suzuki, National Institute of Communication and Information Technology Osaka; Mark G. Stokes, University of Oxford; Mate Lengyel, University of Cambridge and Central European University Budapest</h3><h2>Abstract</h1><p>Prefrontal cortex plays a central role in working memory maintenance. However, both the neural circuit mechanisms supporting this role and the precise computational objective underlying those mechanisms remain unknown. There have been two distinct proposals for what circuit dynamics may underlie memory maintenance: attractor dynamics giving rise to stable (persistent) activities, or feed-forward dynamics resulting in sequential (time varying) activities. Here, we analyze multiple datasets recorded in monkeys performing memory-guided saccade tasks across multiple task epochs. We show that neither of the previously proposed dynamical regimes alone accounts for experimentally observed neural activities, which instead display a rich combination of both sequential and stable dynamical motifs. Specifically, we found strongly dynamic transitions and hence sequential neural activity between different task epochs, together with stable activity during the delay epoch. We propose a novel unifying model that explains these puzzling findings. Our model combines two dynamical regimes that have hitherto been studied in isolation: non-normal feed-forward and attractor dynamics. Critically, in our model, optimal stimulus inputs are orthogonal to stable activity patterns, naturally producing strongly sequential stimulus-to-delay activity followed by stable delay activity, as seen in experiments. To understand the computational function of these dynamics, we trained recurrent neural networks for different objectives: to produce target activities at the time of the response, or throughout the delay period, or “just-in-time” (before the response, at the end of the delay period). Using these objectives, we respectively recovered either of the classical dynamics (sequential and stable), or their combination as observed in data. These results also generalised to neural responses recorded in a task involving distractor stimuli. In summary, our results identify a new class of non-normal attractor network dynamics, unifying sequential and stable motifs, and suggest that they serve a new functional objective: just-in-time computation.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

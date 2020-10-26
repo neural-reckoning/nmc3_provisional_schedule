@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 8
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 13:30" data-end="2020-10-27 13:45">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Active probing enhances the extraction of features for predicting seizures in a coupled neural mass model</h1><h2>Vinícius Carvalho</h2><h3>Márcio F.D. Moraes, Universidade Federal de Minas Gerais; Sydney S. Cash, Massachusetts General Hospital; Eduardo Mazoni A.M. Mendes, Universidade Federal de Minas Gerais</h3><h2>Abstract</h1><p>Active probing stimuli may be used to uncover underlying system dynamics that would be otherwise unobservable with passive analysis. The use of such approaches could be a way to tackle the challenging and yet unsolved problem of reliably forecasting the occurrence of seizures. That is, electrographic responses to period stimuli could highlight neuronal excitability and synchrony changes involved in the transition from interictal to ictal activity. In this work, we evaluate this hypothesis in two coupled populations of a commonly used seizure-generating neural mass model. Features are extracted while system parameters are slowly shifted from normal towards ictal activity and different scenarios or model settings are evaluated: low-frequency stimuli are applied to the input of one or both populations, while increasing neuronal excitability gain, decreasing slow inhibitory gain, or increasing inter-population coupling. Results show that the use of probing stimuli provided predictive value, as similar feature changes were observed while model parameters were shifted towards ictal activity. Observed changes such as increased lag-1 autocorrelation and increased variance may be related to the phenomenon of critical slowing. These increased recovery times from perturbations could be indicators of the loss of the system’s resilience and are common hallmarks of impending critical transitions. Overall, our results indicate that low-frequency probing stimuli may play a role in uncovering some of the neuronal dynamics leading up to seizure states and assist in designing accurate and reliable seizure forecasting systems. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

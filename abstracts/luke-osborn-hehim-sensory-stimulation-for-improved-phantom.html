@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 22:15" data-end="2020-10-28 22:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Sensory stimulation for improved phantom limb perception and control</h1><h2>Luke Osborn (he/him)</h2><h3>Keqin Ding, Johns Hopkins University; Mark Hays, Johns Hopkins University; Rohit Bose, University of Pittsburgh; Mark Iskarous, Johns Hopkins University; Andrei Dragomir, National University of Singapore; Zied Tayeb, Technical University of Munich; Gyorgy Levay, Infinite Biomedical Technologies; Christopher Hunt, Johns Hopkins University; Gordon Cheng, Technical University of Munich; Robert Armiger, Johns Hopkins Applied Physics Laboratory; Anastasios Bezerianos, National University of Singapore; Matthew Fifer, Johns Hopkins Applied Physics Laboratory; Nitish Thakor, Johns Hopkins University</h3><h2>Abstract</h1><p>A major challenge for controlling a prosthetic arm is communication between the device and the user’s phantom limb. The lack of sensory information to the phantom hand weakens the internal sensorimotor model that drives movement. We showed that targeted transcutaneous electrical nerve stimulation (tTENS) can be used to provide sensory stimulation and improve phantom limb perception and control. Transcutaneous nerve stimulation experiments were performed with four participants with arm amputation to map and understand their phantom limb perception. Results show that sensory stimulation improves the participants’ ability to perceive and move the phantom hand, which leads to improved movement decoding and functional prosthesis control. In an extended study with one participant, we found that sensory mapping remained stable over 2 years. Sensory stimulation improved within-day movement decoding while overall performance over 1 year remained stable. Using electroencephalogram (EEG) monitoring with two participants, we observed cortical correlates of sensorimotor integration and increased motor-related neural activity as a result of enhanced phantom limb perception. This work demonstrates the benefit of targeted nerve stimulation for improving phantom limb perception and control. Future directions include finding sensory stimulation strategies to optimally improve both short and long term prosthesis control improvements and investigating the effect of enhanced phantom perception on long term changes in motor-related neural activity.  </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

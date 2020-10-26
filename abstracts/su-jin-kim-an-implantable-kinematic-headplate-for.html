@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 18:00" data-end="2020-10-30 18:15">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>An implantable kinematic headplate for sub-micron skull positioning in mice</h1><h2>Su Jin Kim</h2><h3>Su Jin Kim, Boston University Neurophotonics Center;Benjamin B. Scott, Boston University Center for Systems Neuroscience</h3><h2>Abstract</h1><p>Head immobilization is widely used in neuroscience studies to facilitate sensory stimulus control, behavioral monitoring, and neurophysiological recordings. Head-fixation strategies that combine mechanical stability and repeatable positioning over time or across instruments are particularly important for cellular resolution imaging or manipulation experiments. Headplates using kinematic coupling principles have been developed for precise micron-scale stability and position repeatability in rats (Scott et al. 2013, Rich et al. 2018). Here, we sought to extend this technology to a system small enough to be worn by mice (weighing <2 grams) and capable of submicron registration accuracy. To achieve these goals, we designed a headplate and clamp based on the Maxwell kinematic coupling system. The clamp was an anodized aluminum mount with three vee grooves, oriented at 120 degrees relative to each other. The headplate was a stainless steel triangle with three half spheres at the triangular vertices. Neodymium magnets attached to the clamp were used to provide the clamp force. We assessed the registration accuracy of the system using super resolution two-photon imaging of fluorescent microspheres (1μm diameter) fixed to the headplate following repeated attachments of the headplate. In initial experiments, registration accuracy (root mean square displacement) was 1.35μm in x, 1.42μm in y, and 0.28μm in z. Surgically implanted mice tolerated the headplate well and behaved normally. Scanning electron microscopy of the half spheres revealed mesoscale ridges and grooves in the metal surface. We replaced the stainless steel half spheres with precision ruby spheres. This improved repositioning accuracy to 0.17μm in x, 0.32μm in y, and 0.21μm in z. We anticipate that our system may facilitate experiments in mice where high precision and stability are required, such as imaging experiments using voluntary head restraint, time-lapse developmental studies, and registration of the same subject across multiple instruments.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

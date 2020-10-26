@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,14 +52,15 @@
             Track 5
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 11:15" data-end="2020-10-30 11:30">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Is the Kiki-Bouba effect specific to pronounceable words?</h1><h2>Ananya Passi</h2><h3>SP Arun, Indian Institute of Science Bangalore</h3><h2>Abstract</h1><p>INTRODUCTION. Across cultures, people associate spiky shapes to the word “Kiki” and rounded shapes to the word “Bouba”. What causes this highly systematic shape-sound association? One possibility is that our mouth forms an angular shape while uttering the word “Kiki” and circular shape while saying “Bouba”. Alternatively, objects with sharp edges produce high-pitched (“Kiki”-like) sounds while those with rounded edges produce low-pitched (“Bouba”-like) sounds. Repeated cross-modal experiences could enable learning this association. Here, we investigated the reason behind this effect using a series of behavioral experiments.
-
-METHODS. We conducted four online behavioral experiments using Google Forms. Ten spiky and ten rounded shapes were created. In Experiments 1 & 2, subjects had to associate each shape to a Kiki-like or Bouba-like word. In Experiment 3 & 4, multiple audio clips were played and subjects had to associate them with either a spiky or a rounded shape. The audio clips were either (1) pronounceable Kiki & Bouba words; (2) the same words but reversed in time so that they were no longer pronouncable, but contained the same sound frequencies; (3) pure tones matched to the mean frequency of the Kiki and Bouba words; and (4) Sounds produced by natural objects when struck.
-
-RESULTS. In the shape-validation experiment, 80% of the subjects associated spiky shapes with Kiki-like words and rounded shapes with Bouba-like words. In Experiments 3 & 4, subjects associated Bouba-like words with rounded shapes (~85%), Kiki-like words with spiky shapes(~60%), reversed Bouba words with rounded shapes (~85%), reversed Kiki words with spiky shapes (~55%), metal clanks with spiky shapes (~90%) and pillow hits with rounded shapes (~55%). There was a strong positive correlation between mean frequency of sound and the Kiki-ness of the word.
-
-CONCLUSIONS. We conclude that the Kiki-Bouba effect reflects a robust association between shapes and sound frequency irrespective of whether the sounds can be pronounced.</p>
+        <h1>Is the Kiki-Bouba effect specific to pronounceable words?</h1><h2>Ananya Passi</h2><h3>SP Arun, Indian Institute of Science Bangalore</h3><h2>Abstract</h1><p>INTRODUCTION. Across cultures, people associate spiky shapes to the word “Kiki” and rounded shapes to the word “Bouba”. What causes this highly systematic shape-sound association? One possibility is that our mouth forms an angular shape while uttering the word “Kiki” and circular shape while saying “Bouba”. Alternatively, objects with sharp edges produce high-pitched (“Kiki”-like) sounds while those with rounded edges produce low-pitched (“Bouba”-like) sounds. Repeated cross-modal experiences could enable learning this association. Here, we investigated the reason behind this effect using a series of behavioral experiments.<br/><br/>METHODS. We conducted four online behavioral experiments using Google Forms. Ten spiky and ten rounded shapes were created. In Experiments 1 & 2, subjects had to associate each shape to a Kiki-like or Bouba-like word. In Experiment 3 & 4, multiple audio clips were played and subjects had to associate them with either a spiky or a rounded shape. The audio clips were either (1) pronounceable Kiki & Bouba words; (2) the same words but reversed in time so that they were no longer pronouncable, but contained the same sound frequencies; (3) pure tones matched to the mean frequency of the Kiki and Bouba words; and (4) Sounds produced by natural objects when struck.<br/><br/>RESULTS. In the shape-validation experiment, 80% of the subjects associated spiky shapes with Kiki-like words and rounded shapes with Bouba-like words. In Experiments 3 & 4, subjects associated Bouba-like words with rounded shapes (~85%), Kiki-like words with spiky shapes(~60%), reversed Bouba words with rounded shapes (~85%), reversed Kiki words with spiky shapes (~55%), metal clanks with spiky shapes (~90%) and pillow hits with rounded shapes (~55%). There was a strong positive correlation between mean frequency of sound and the Kiki-ness of the word.<br/><br/>CONCLUSIONS. We conclude that the Kiki-Bouba effect reflects a robust association between shapes and sound frequency irrespective of whether the sounds can be pronounced.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

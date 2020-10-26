@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 06:30" data-end="2020-10-28 06:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>What is it like to have a disorder of consciousness? Interpreting neural measures of conscious “level”</h1><h2>Jasmine Walter</h2><h2>Abstract</h1><p>Disorders of consciousness (DOC) pose a significant clinical and ethical challenge because they allow for complex forms of conscious experience in patients where behavioural responses and communication are highly limited or non-existent. We currently know very little about what it is like to have a DOC, but richer information about the lived conscious experience of these patients could positively influence research and practice. For example, such knowledge may inform welfare-improving decisions about treatment, rehabilitation, social interaction and environmental enhancements for DOC patients. There has been considerable research into neuroscientific measures that could provide further insight by quantitatively assessing an unresponsive individual’s conscious “level” based on neural data. However, there is a growing consensus that consciousness is a multidimensional phenomenon and that unidimensional measures cannot capture all relevant kinds of variation in DOC consciousness. It remains unclear which dimensions of consciousness these unidimensional neural measures may reflect. 
-Given the paucity of subjective reports about DOC consciousness, I propose that to make progress on this question, we can investigate how neural measures behave in other conscious states where subjective reports are available (like sleep, psychedelic experiences, and anaesthesia). I survey such evidence for neural measures of consciousness and based on this, I argue that these measures may often be sensitive to particular features of consciousness, like sensory richness and unconstrained mental activity, but cannot be thought to index conscious level per se. These neural measures, if conceived of and applied as markers of specific conscious or neurocognitive properties, may offer significant insight into the subjective quality of DOC experience and as such may inform treatment and welfare related decisions for this patient group.</p>
+        <h1>What is it like to have a disorder of consciousness? Interpreting neural measures of conscious “level”</h1><h2>Jasmine Walter</h2><h2>Abstract</h1><p>Disorders of consciousness (DOC) pose a significant clinical and ethical challenge because they allow for complex forms of conscious experience in patients where behavioural responses and communication are highly limited or non-existent. We currently know very little about what it is like to have a DOC, but richer information about the lived conscious experience of these patients could positively influence research and practice. For example, such knowledge may inform welfare-improving decisions about treatment, rehabilitation, social interaction and environmental enhancements for DOC patients. There has been considerable research into neuroscientific measures that could provide further insight by quantitatively assessing an unresponsive individual’s conscious “level” based on neural data. However, there is a growing consensus that consciousness is a multidimensional phenomenon and that unidimensional measures cannot capture all relevant kinds of variation in DOC consciousness. It remains unclear which dimensions of consciousness these unidimensional neural measures may reflect. <br/>Given the paucity of subjective reports about DOC consciousness, I propose that to make progress on this question, we can investigate how neural measures behave in other conscious states where subjective reports are available (like sleep, psychedelic experiences, and anaesthesia). I survey such evidence for neural measures of consciousness and based on this, I argue that these measures may often be sensitive to particular features of consciousness, like sensory richness and unconstrained mental activity, but cannot be thought to index conscious level per se. These neural measures, if conceived of and applied as markers of specific conscious or neurocognitive properties, may offer significant insight into the subjective quality of DOC experience and as such may inform treatment and welfare related decisions for this patient group.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

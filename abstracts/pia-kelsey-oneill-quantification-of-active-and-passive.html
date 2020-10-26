@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 21:15" data-end="2020-10-27 21:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Quantification of active and passive defense responses in head-fixed mice.</h1><h2>Pia-Kelsey O'Neill</h2><h3>Jozsef Meszaros</h3><h2>Abstract</h1><p>Animals display a variety of defensive behaviors in response to aversive stimuli. The particular response that an animal selects may depend on the proximity of the threat, competing stimuli, or the animal's internal state. Responses to an aversive stimuli are diverse and dynamic, and capturing this complexity while also collecting neurophysiological data has been a challenge. In the virtual burrow assay, mice display both active and passive learned responses to odorants that have been associated with an aversive stimulus. As previously described, mice in this virtual burrow will actively ingress (entering the burrow enclosure) or passively tremble (leading to small oscillations in the burrow position). Here, we developed a method to compare and quantify ingresses and trembles. We observed tremble responses that consist of a 4-6Hz oscillation. These responses are more prominent during the presentation of aversive conditioned stimuli (both in duration and magnitude). Tremble, like ingress, undergoes extinction, but is not associated with ingress responses and thus seems to reflect a distinct behavioral response.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

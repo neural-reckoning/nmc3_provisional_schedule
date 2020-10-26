@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 01:30" data-end="2020-10-29 01:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Optimizing detailed L5 pyramidal tract cell models in the rodent motor cortex to predict in vivo microcircuit function</h1><h2>Ben Latimer</h2><h3>Adin Aberbach, University of Missouri; Drew B. Headley, Rutgers University; Satish S. Nair, University of Missouri</h3><h2>Abstract</h1><p>Detailed biophysical modeling techniques are beginning to be used in conjunction with anatomical, biophysical, and extracellular multi-electrode recordings to shed light on cellular functioning in vivo (e.g., Egger et al., 2020). However, biophysical single cell models of neurons are typically constrained by in vitro data. These properties are impacted by factors such as cellular morphology, variations in extrinsic inputs received by up to 10K synapses, and the neuromodulatory state. In contrast, in vitro the synaptic inputs (random neurotransmitter release or pre-synaptic AP firing) that affect membrane potential and input resistance are much less pronounced. Thus, our picture of the cell’s in vivo characteristics is incomplete. We attempt to bridge this gap by developing a detailed biophysical model constrained by in vivo data. 
-We report the development of a morphologically realistic biophysical model of an L5 pyramidal tract neuron in the rodent primary motor cortex with active channels in the dendrites, including Nat, Ca, SK, Im, Ih, and a dense Ca2+ rich region at the base of the apical tuft. The model is used to conduct parametric studies to probe the effect that synaptic conductances, afferent firing rates, coherence of afferent spike times, and dendritic attenuation have on the baseline firing rate of the neuron. The single cell model will then be inserted into a network model of the motor cortex for investigating computations in motor cortex circuits during a voluntary reaching task.
-</p>
+        <h1>Optimizing detailed L5 pyramidal tract cell models in the rodent motor cortex to predict in vivo microcircuit function</h1><h2>Ben Latimer</h2><h3>Adin Aberbach, University of Missouri; Drew B. Headley, Rutgers University; Satish S. Nair, University of Missouri</h3><h2>Abstract</h1><p>Detailed biophysical modeling techniques are beginning to be used in conjunction with anatomical, biophysical, and extracellular multi-electrode recordings to shed light on cellular functioning in vivo (e.g., Egger et al., 2020). However, biophysical single cell models of neurons are typically constrained by in vitro data. These properties are impacted by factors such as cellular morphology, variations in extrinsic inputs received by up to 10K synapses, and the neuromodulatory state. In contrast, in vitro the synaptic inputs (random neurotransmitter release or pre-synaptic AP firing) that affect membrane potential and input resistance are much less pronounced. Thus, our picture of the cell’s in vivo characteristics is incomplete. We attempt to bridge this gap by developing a detailed biophysical model constrained by in vivo data. <br/>We report the development of a morphologically realistic biophysical model of an L5 pyramidal tract neuron in the rodent primary motor cortex with active channels in the dendrites, including Nat, Ca, SK, Im, Ih, and a dense Ca2+ rich region at the base of the apical tuft. The model is used to conduct parametric studies to probe the effect that synaptic conductances, afferent firing rates, coherence of afferent spike times, and dendritic attenuation have on the baseline firing rate of the neuron. The single cell model will then be inserted into a network model of the motor cortex for investigating computations in motor cortex circuits during a voluntary reaching task.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

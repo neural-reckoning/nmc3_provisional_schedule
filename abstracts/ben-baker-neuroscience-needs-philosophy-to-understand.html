@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 12:30" data-end="2020-10-28 12:45">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Neuroscience Needs Philosophy to Understand Representations</h1><h2>Ben Baker</h2><h3>Ben Lansdell</h3><h2>Abstract</h1><p>Typical systems neuroscience experiments vary stimuli and correlate these with firing rates of recorded neurons. Such experiments are commonly taken to reveal that the neural activity is a representation of the stimulus. However, representation is a philosophical concept with a rich history. Within philosophy the concept of a representation goes far beyond correlation, typically implying semantically evaluable content and the possibility of misrepresentation. Here we summarize the standard investigative approach in neuroscience as well as the philosophical notion of representation as relates to understanding the mind. We point out how typical neuroscientific experiments stay well short of establishing what philosophers mean with representation. We then discuss approaches in neuroscience that rely on recording from much or all of an organism's nervous system, and approaches that use Deep Neural Nets to models intelligent behavior. We argue for a way that contemporary philosophy ought to be used to allow neuroscience to rework its approaches to meaningfully get at neural representations within these novel approaches.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

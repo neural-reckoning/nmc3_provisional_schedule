@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 09:30" data-end="2020-10-29 09:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Effects of the stress hormone cortisol on spontaneous activity in the larval zebrafish tectum</h1><h2>Elina Jacobs (she/her)</h2><h3>Matthew J. Harvey, Kings College London; Martin Meyer, Kings College London</h3><h2>Abstract</h1><p>Early life stress can have lifelong negative health consequences, but we still lack an understanding of the mechanisms that cause this. In the brain, exposure to stress during development is known to affect neural plasticity and excitability in the limbic system. The limbic system in turn is intimately interconnected with sensorimotor systems, which represent key stages in receiving information about the world and coordinating behavioural responses to environmental stimuli including stressors. Yet, how stress affects sensorimotor systems remains largely unknown. Here we used the optic tectum of the larval zebrafish as a model to investigate how exposure to the stress hormone cortisol affects processing in a visual circuit. Specifically, we hypothesized that cortisol would have an effect on tectal physiology and that we would observe differences in tectal population dynamics. We employed two-photon calcium imaging to probe single-cell resolution changes in activity during spontaneous (stimulus free) tectal activity before and after addition of cortisol. We applied machine learning approaches to characterise the dynamics before and after cortisol. Preliminary results suggest that cortisol significantly alters the population dynamics in the larval tectum. These results suggest that the larval zebrafish is a promising model for investigating the effects of stress on sensorimotor physiology and development. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

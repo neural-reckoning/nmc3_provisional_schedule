@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 21:15" data-end="2020-10-26 21:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>When the ventral visual stream is not enough: A deep learning account of medial temporal lobe involvement in perception</h1><h2>tyler bonnen</h2><h3>Daniel L.K. Yamins, Stanford Universiry; Anthony D. Wagner, Stanford University</h3><h2>Abstract</h1><p>The medial temporal lobe (MTL) supports a constellation of memory-related behaviors. Its involvement in perceptual processing, however, has been subject to an enduring debate. This debate centers on perirhinal cortex (PRC), an MTL structure at the apex of the ventral visual stream (VVS), beset by decades of seemingly inconsistent experimental outcomes. We suggest that these apparent inconsistencies can be resolved by situating experimental behavior in relation to perceptual processing supported by the VVS. To evaluate this claim we leverage a deep learning approach that approximates visual behaviors supported by the VVS. We first apply this approach retroactively, modeling 29 published concurrent visual discrimination experiments: Excluding misclassified stimuli, there is a striking correspondence between a computational proxy for the VVS and PRC-lesioned behavior. Conversely, PRC-intact subjects outperform this model and PRC-lesioned subjects. We corroborate these results using novel, high-throughput psychophysics experiments: PRC-intact participants outperform a linear readout of electrophysiological recordings from the macaque VVS. Finally, in silico experiments suggest PRC enables out-of-distribution visual behaviors at rapid timescales: VVS-like models achieve PRC-dependent accuracy, but only with extensive training, while failing to generalize to out-of-sample stimuli. By situating these lesion, electrophysiological, and behavioral results within a shared computational framework, our work resolves decades of seemingly inconsistent experimental findings surrounding PRC involvement in perception. In doing so, we have identified biologically constraints that may inform future models of human-level visual behaviors.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

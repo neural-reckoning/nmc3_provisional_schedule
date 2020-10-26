@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 22:15" data-end="2020-10-28 22:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Large-scale calcium imaging of spontaneous activity in larval zebrafish reveals signatures of criticality</h1><h2>Michael McCullough</h2><h3>Robert Wong, University of Queensland, Queensland Brain Institute; Zac Pujic, University of Queensland, Queensland Brain Institute; Biao Sun, University of Queensland, Queensland Brain Institute; Geoffrey J Goodhill, University of Queensland, Queensland Brain Institute, School of Mathematics and Physics;</h3><h2>Abstract</h1><p>Neural networks in the brain may self-organise such that they operate near criticality, that is, poised on the boundary between phases of order and disorder. Models of neural networks tuned close to criticality are optimal in terms of dynamic range, information transmission, information storage and computational adaptability. Much of the experimental evidence for criticality in the brain has come from studies of neural spiking data recorded from tissue cultures or anaesthetised animals using microelectrode arrays, or from studies of mesoscopic-scale neural activity using magnetic resonance imaging or electroencephalograms. These approaches are inherently limited either by under-sampling of the neural population or by coarse spatial resolution.
-
-In this study, we investigated neural criticality by utilising the unique properties of the larval zebrafish that enable whole-brain imaging of neural activity in vivo and without anaesthetic. We used 2-photon calcium imaging to observe truly spontaneous activity, and extracted neural activity data at single-cell resolution via state-of-the-art image segmentation. Our data comprise fluorescence time series for large populations of neurons from 3-dimensional volumetric recordings of spontaneous activity in the optic tectum and cerebellum of larval zebrafish with pan-neuronal expression of GCaMP6s (n=5; approx. 10000 neurons per fish). Neuronal avalanche statistics revealed power-law relationships and scale-invariant avalanche shape collapse which are consistent with crackling noise dynamics from a 3-dimensional random field Ising model. This result provides the first evidence of criticality in the brain from large-scale in vivo neural activity at single cell resolution. Our findings demonstrate the potential of larval zebrafish as a model for the investigation of critical phenomena in the context of neurodevelopmental disorders that may perturb the brain away from criticality. </p>
+        <h1>Large-scale calcium imaging of spontaneous activity in larval zebrafish reveals signatures of criticality</h1><h2>Michael McCullough</h2><h3>Robert Wong, University of Queensland, Queensland Brain Institute; Zac Pujic, University of Queensland, Queensland Brain Institute; Biao Sun, University of Queensland, Queensland Brain Institute; Geoffrey J Goodhill, University of Queensland, Queensland Brain Institute, School of Mathematics and Physics;</h3><h2>Abstract</h1><p>Neural networks in the brain may self-organise such that they operate near criticality, that is, poised on the boundary between phases of order and disorder. Models of neural networks tuned close to criticality are optimal in terms of dynamic range, information transmission, information storage and computational adaptability. Much of the experimental evidence for criticality in the brain has come from studies of neural spiking data recorded from tissue cultures or anaesthetised animals using microelectrode arrays, or from studies of mesoscopic-scale neural activity using magnetic resonance imaging or electroencephalograms. These approaches are inherently limited either by under-sampling of the neural population or by coarse spatial resolution.<br/><br/>In this study, we investigated neural criticality by utilising the unique properties of the larval zebrafish that enable whole-brain imaging of neural activity in vivo and without anaesthetic. We used 2-photon calcium imaging to observe truly spontaneous activity, and extracted neural activity data at single-cell resolution via state-of-the-art image segmentation. Our data comprise fluorescence time series for large populations of neurons from 3-dimensional volumetric recordings of spontaneous activity in the optic tectum and cerebellum of larval zebrafish with pan-neuronal expression of GCaMP6s (n=5; approx. 10000 neurons per fish). Neuronal avalanche statistics revealed power-law relationships and scale-invariant avalanche shape collapse which are consistent with crackling noise dynamics from a 3-dimensional random field Ising model. This result provides the first evidence of criticality in the brain from large-scale in vivo neural activity at single cell resolution. Our findings demonstrate the potential of larval zebrafish as a model for the investigation of critical phenomena in the context of neurodevelopmental disorders that may perturb the brain away from criticality. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

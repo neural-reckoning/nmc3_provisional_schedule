@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 18:15" data-end="2020-10-30 18:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Adult-born hippocampal neurons undergo extended development and are morphologically distinct from neonatally-born neurons</h1><h2>Jason Snyder</h2><h3>John Darby Cole, University of British Columbia; Delane Espinueva, University of British Columbia; Désirée R. Seib, University of British Columbia; Alyssa M. Ash, University of British Columbia; Matthew B. Cooke, University of British Columbia;  Shaina P. Cahill, University of British Columbia; Timothy O’Leary, University of British Columbia; Sharon S. Kwan, University of British Columbia; Jason S. Snyder</h3><h2>Abstract</h1><p>During immature stages, adult-born neurons pass through critical periods for survival and plasticity. It is generally assumed that by 2 months of age adult-born neurons are mature and equivalent to the broader neuronal population, raising questions of how they might contribute to hippocampal function in old age when neurogenesis has declined. However, few have examined adult-born neurons beyond the critical period, or directly compared them to neurons born in infancy. Here, we used a retrovirus to visualize functionally-relevant morphological features of 2- to 24-week-old adult-born neurons in male rats. From 2-7 weeks neurons grew and attained a relatively mature phenotype. However, several features of 7-week-old neurons suggested a later wave of growth: these neurons had larger nuclei, thicker dendrites and more dendritic filopodia than all other groups. Indeed, between 7-24 weeks, adult-born neurons gained additional dendritic branches, grew a 2nd primary dendrite, acquired more mushroom spines and had enlarged mossy fiber presynaptic terminals. Compared to neonatally-born neurons, old adult-born neurons had greater spine density, larger presynaptic terminals, and more putative efferent filopodial contacts onto inhibitory neurons. By integrating rates of cell birth and growth across the lifespan, we estimate that adult neurogenesis ultimately produces half of the cells and the majority of spines in the dentate gyrus. Critically, protracted development contributes to the plasticity of the hippocampus through to the end of life, even after cell production declines. Persistent differences from neonatally-born neurons may additionally endow adult-born neurons with unique functions even after they have matured.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

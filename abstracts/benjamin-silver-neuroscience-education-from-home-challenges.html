@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 13:00" data-end="2020-10-27 13:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Neuroscience education from home: Challenges and opportunities</h1><h2>Benjamin Silver</h2><h3>Benjamin M. Silver, Department of Psychology, Columbia University; Diana H. Li, Zuckerman Institute, Columbia University; Alyssa Mayers, Zuckerman Institute, Columbia University; Paula L. Croxson, Zuckerman Institute, Columbia University</h3><h2>Abstract</h1><p>Despite the growing popularity of neuroscience, courses with significant neuroscience components are not part of most high school curricula. In addition, providing high school students with research experience can complement classroom learning, and is particularly helpful for underrepresented groups. The COVID-19 pandemic, and the transition to virtual learning that has accompanied it, presents unique challenges as well as opportunities for neuroscience education initiatives. At Columbia University’s Zuckerman Institute, our summer high school internship program, BRAINYAC (Brain Research Apprenticeships in New York at Columbia), was upended this past March by COVID-19, forcing us to migrate our teaching online and to assess the efficacy of the program in a virtual context. While the difficulties of virtual education are clear, virtual learning has also been touted as a solution to making quality education more accessible. As neuroscience researchers and educators, it is essential that we collectively take a critical look at our practices in this moment so we can continue to provide high school students with rigorous and engaging neuroscience curricula. In an interactive talk, we will discuss how we pivoted a hands-on, lab-based program to a purely virtual format that utilized both synchronous virtual teaching and asynchronous resources and projects focused on multimedia science communication, computational skills, and community building. We will also provide a forum for others who facilitate neuroscience education initiatives to share their own experiences. Some discussion points we will pose to others include the challenges faced in both the abrupt transition to online learning and online learning itself, as well as how virtual teaching presents an opportunity to make neuroscience education more engaging and accessible than it was before.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

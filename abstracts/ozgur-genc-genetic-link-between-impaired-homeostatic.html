@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 02:15" data-end="2020-10-27 02:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Genetic link between impaired homeostatic plasticity and neurodevelopmental disorders</h1><h2>Ozgur Genc</h2><h3>Graeme Davis, UCSF; Stephan Sanders, UCSF; Joon An, Korea University; Richard Fetter, UCSF, Giulia Zunino, UCSF; Yelena Kulik, UCSF</h3><h2>Abstract</h1><p>Homeostatic plasticity is an evolutionarily conserved form of neuromodulation. It has been hypothesized that loss of homeostatic plasticity will make the nervous system more susceptible to disease. But, this has yet to be clearly demonstrated, particularly with respect to the homeostatic modulation of synaptic function in the central nervous system and brain disorders. To address this fundamental question, I use different model organisms (fly, mouse and IPSc-derived neurons) and combine genetic screening, electrophysiological and transcriptomic analysis methods. With this approach, I recently identified a novel class of autism-gene modifiers causing homeostatic plasticity to fail. This defines a model, where de novo risk mutations impair the robustness of neuronal activity when combined with the modifier mutations lurked in the genetic background. This validated approach helps us identify new genetic and molecular mechanisms, thereby providing a new framework for advancing our understanding of neurogenetic diseases. 
-It seems plausible that restoring the buffering capacity of homeostatic plasticity could be broadly relevant to the treatment of neurological disorders of any genetic origin. In the central nervous system, several neurological disorders such as Parkinson’s, manifest impaired neuronal function before the onset of the neuronal degeneration. Thus, this is an important stage when neurons cope with genetic and environmental insults by engaging homeostatic protective mechanisms, thereby maintaining the functional well-being. Using mammalian models, my current and future research aims to generate mechanistic insights on how homeostatic plasticity is compromised in neurological disorders including neurodegenerative diseases, stroke and neurovascular abnormalities. With this information, I hope to develop interventional strategies that will boost the homeostatic capacity of the brain to stabilize the neuron and circuit function.
-</p>
+        <h1>Genetic link between impaired homeostatic plasticity and neurodevelopmental disorders</h1><h2>Ozgur Genc</h2><h3>Graeme Davis, UCSF; Stephan Sanders, UCSF; Joon An, Korea University; Richard Fetter, UCSF, Giulia Zunino, UCSF; Yelena Kulik, UCSF</h3><h2>Abstract</h1><p>Homeostatic plasticity is an evolutionarily conserved form of neuromodulation. It has been hypothesized that loss of homeostatic plasticity will make the nervous system more susceptible to disease. But, this has yet to be clearly demonstrated, particularly with respect to the homeostatic modulation of synaptic function in the central nervous system and brain disorders. To address this fundamental question, I use different model organisms (fly, mouse and IPSc-derived neurons) and combine genetic screening, electrophysiological and transcriptomic analysis methods. With this approach, I recently identified a novel class of autism-gene modifiers causing homeostatic plasticity to fail. This defines a model, where de novo risk mutations impair the robustness of neuronal activity when combined with the modifier mutations lurked in the genetic background. This validated approach helps us identify new genetic and molecular mechanisms, thereby providing a new framework for advancing our understanding of neurogenetic diseases. <br/>It seems plausible that restoring the buffering capacity of homeostatic plasticity could be broadly relevant to the treatment of neurological disorders of any genetic origin. In the central nervous system, several neurological disorders such as Parkinson’s, manifest impaired neuronal function before the onset of the neuronal degeneration. Thus, this is an important stage when neurons cope with genetic and environmental insults by engaging homeostatic protective mechanisms, thereby maintaining the functional well-being. Using mammalian models, my current and future research aims to generate mechanistic insights on how homeostatic plasticity is compromised in neurological disorders including neurodegenerative diseases, stroke and neurovascular abnormalities. With this information, I hope to develop interventional strategies that will boost the homeostatic capacity of the brain to stabilize the neuron and circuit function.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

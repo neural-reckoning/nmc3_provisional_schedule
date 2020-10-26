@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 16:15" data-end="2020-10-29 16:30">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Decoding stimuli in a Visual Working Memory Task</h1><h2>Nikolaos Chrysanthidis</h2><h3>Nikolaos Chrysanthidis, Department of Computational Science and Technology, Royal Institute of Technology, Stockholm, 10044, Sweden; Hande Tunbak, The Wolfson Institute for Biomedical Research, Rockefeller Building,University Street, University College London, United Kingdom; Keerthi Krishnan, Department of Biochemistry and Cellular and Molecular Biology, University of Tennessee, Knoxville, TN 37996; </h3><h2>Abstract</h1><p>Decoding information from fMRI data has been shown to be informative in a range of vision, language and motor tasks. More specifically, differences in neuronal activity in task-related brain areas (e.g. prefrontal cortex) and specific phases of information processing are predictive of correct/incorrect recall in related working memory tasks. Subtraction analyses have demonstrated that activation differs depending on the presented stimuli, suggesting that we can also decode stimulus information from the Blood-Oxygen-Level-Dependent signal. In this study, we analyse the published Human Connectome Project (HCP) dataset, which studies brain connectivity in healthy adults. We focus on the Working Memory N-back task, with the specific contrasts: a high working memory load (“2-back”) versus a low working memory load (“0-back”). The already published results showed robust mixed-effects group-level activation in dorsal frontal-parietal and cingulate areas which are linked with working memory. Here we further extend the existing analysis by using non-linear models trained with parcels from different brain areas collectively to predict the type of stimulus. Furthermore, we investigate the role of certain brain areas in distinguishing stimuli by comparing specific parcels. Our analysis shows a close relationship between participants performances and categories of stimuli explained by response times. Our study also reveals that different types of stimuli have distinct brain signatures and a simple SVM classifier with a non-linear kernel can successfully decode stimuli with high accuracy in both Working Memory tasks. Finally, we train a GLM with samples from different brains areas and report that decoding stimuli success rate varies significantly, suggesting that some brain areas are more crucial in decoding stimuli in a working memory task, i.e. Secondary Visual Cortex, 96%(±0.01). *This study was conducted under the umbrella of NMA Summer School - Summer 2020</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

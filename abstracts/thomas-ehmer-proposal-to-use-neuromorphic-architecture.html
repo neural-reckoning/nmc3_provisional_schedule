@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 09:15" data-end="2020-10-30 09:30">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Proposal to use neuromorphic architecture to emulate neurological disease progression or neurotoxicity</h1><h2>Thomas Ehmer</h2><h2>Abstract</h1><p>This is combining topics A and E - and is supposed to be not a real scientific talk but rather an open discussion about the roadmap to achieve a novel instrument which is using multi-scale (bottom up / top down) inputs to emulate ("in mimicko") two things. 1) disease progression and effect of drug to slow the progression - and 2) long-term neurotoxicity side effects. 
-Topic1: the progression of neurological disease - over a very long range (computing 1h emulation  - resulting in 10 years "real life progression) for a speedup of 100k (e.g. using Spinnaker)). What is needed is a collaboration from neuroanatomists, pharmaceutics, neuromorphic modelling, neurology medical expertise, behavior modelling as well as a deep understanding of the mechanism of action for both the disease as well as the potential treatment. E.g. monitoring the onset of blurry vision in MS - and delay of this onset by drugs.
-Topic2: using the same mechanism to emulate potential long term neurotoxic effects which accumulate over time given "drug exposure". This is more speculative.
-The challenge is mapping neuroanatomic details to the emulation - as well as precise mapping of the biochemistry - including blood-brain barrier.  </p>
+        <h1>Proposal to use neuromorphic architecture to emulate neurological disease progression or neurotoxicity</h1><h2>Thomas Ehmer</h2><h2>Abstract</h1><p>This is combining topics A and E - and is supposed to be not a real scientific talk but rather an open discussion about the roadmap to achieve a novel instrument which is using multi-scale (bottom up / top down) inputs to emulate ("in mimicko") two things. 1) disease progression and effect of drug to slow the progression - and 2) long-term neurotoxicity side effects. <br/>Topic1: the progression of neurological disease - over a very long range (computing 1h emulation  - resulting in 10 years "real life progression) for a speedup of 100k (e.g. using Spinnaker)). What is needed is a collaboration from neuroanatomists, pharmaceutics, neuromorphic modelling, neurology medical expertise, behavior modelling as well as a deep understanding of the mechanism of action for both the disease as well as the potential treatment. E.g. monitoring the onset of blurry vision in MS - and delay of this onset by drugs.<br/>Topic2: using the same mechanism to emulate potential long term neurotoxic effects which accumulate over time given "drug exposure". This is more speculative.<br/>The challenge is mapping neuroanatomic details to the emulation - as well as precise mapping of the biochemistry - including blood-brain barrier.  </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

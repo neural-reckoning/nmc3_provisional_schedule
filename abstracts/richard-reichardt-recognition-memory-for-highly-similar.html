@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 09:15" data-end="2020-10-30 09:30">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Recognition memory for highly similar visual stimuli: when novelty is not new</h1><h2>Richárd Reichardt</h2><h3>Bertalan Polner; Péter Simor</h3><h2>Abstract</h1><p>Novelty in cognitive neuroscience is often taken for granted: anything that the researcher describes as novel should elicit similar neurocognitive responses in the participants. For example, novel stimuli are expected to elicit neural activation in the hippocampus and are also expected to be recognized with a higher probability in a memory test. The experimental results however reveal a more complex picture. It seems that not all novel stimuli are processed in the same manner by the human brain, instead the difference of a stimulus from already seen stimuli determines the neurocognitive responses ascribed to novelty. It follows from this idea, that the more different a stimulus is from a given set of stimuli, the more likely it is to be recognized later. We aimed to test this hypothesis with a unique task, in which the participants are first familiarized with patterned visual stimuli. Next, they have to distinguish these familiar items from similar novel stimuli, and finally their memory is tested for the familiar and novel stimuli alike. The stimuli are algorithmically generated, and the degree of difference across the stimuli is controlled and quantified. Our results show that the more different a stimulus is from the familiars the more likely it is that a participant correctly recognized it, while highly similar stimuli were often confused with the familiars. This result supports the idea that novelty as a category is not necessarily meaningful in cognitive psychological experiments, instead the difference from other stimuli, or unexpectedness should be assessed. This is in line with the basic idea of predictive coding that unexpected information should be prioritized in neurocognitive processing. Our results thus support the idea that predictive coding is universally utilized in the brain, as memory systems also seem to employ this information processing strategy.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

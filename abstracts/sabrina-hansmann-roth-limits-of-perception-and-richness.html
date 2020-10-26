@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 09:30" data-end="2020-10-30 09:45">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Limits of perception and richness of behaviour: Dissociating implicit and explicit representations of visual ensembles</h1><h2>Sabrina Hansmann-Roth</h2><h3>Sabrina Hansmann-Roth, Icelandic Vision Lab, School of Health Sciences, University of Iceland, Reykjavík, Iceland; Árni Kristjánsson, Icelandic Vision Lab, School of Health Sciences, University of Iceland, Reykjavík, Iceland; David Whitney, Department of Psychology, The University of California, Berkeley, CA, USA; Andrey Chetverikov, Donders Institute for Brain, Cognition, and Behavior, Radboud University, Nijmegen, The Netherlands</h3><h2>Abstract</h1><p>All natural scenes contain elements, for example the leaves on a tree, that share visual features such as shape, texture, and colour. How are these ensembles represented in the visual system? During the last decade, studies have suggested that the visual system encodes summary statistics (e.g., mean and variance) of ensembles to save resources and bypass the bottlenecks of attention and working memory. Claims have even been made that representing visual information as summary statistics is what determines the richness and limitations of our conscious experience. In this study we show that such explicit reports severely underestimate the richness of visual representations. In a set of behavioural experiments our observers searched for an odd-one-out target among heterogeneous distractors and their memory of distractor characteristics was tested using explicit or implicit measures. Observers could explicitly distinguish distractor sets with different mean and variance, but not differently shaped probability distributions. In contrast, our implicit assessment revealed the encoding of mean, variance, and even distribution shape. Furthermore, explicit measures had common noise sources that distinguished them from implicit measures. This shows that the visual system does not reduce information about visual features to summary statistics, but instead that explicit decisions about summary statistics are limited, as if they were based on small samples from an otherwise fully encoded probabilistic representation of visual features. This discovery has implications for the understanding of how information is stored in the visual system and how it is accessed for decision making, suggesting that perception for action can be less limited than visual awareness. Our results provide new insights into the nature of representations of visual information and invite speculation about whether different types of information from encoded feature distributions are available to different visual streams in the brain that may serve different functions. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

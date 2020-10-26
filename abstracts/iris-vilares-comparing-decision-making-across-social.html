@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 22:00" data-end="2020-10-29 22:15">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1> Comparing decision-making across social, emotional, and perceptual tasks</h1><h2>Iris Vilares</h2><h3>Nathan Torunsky</h3><h2>Abstract</h1><p>Every day we are making decisions that have associated uncertainty. They range from the perceptual, sensorimotor ones (e.g. grabbing a cup of coffee) to high-level, social ones (should I trust this person?). However, while considerable research has been done within each domain, how the decision-making at the perceptual/sensorimotor level relates to decisions at higher levels is still largely unknown. Furthermore, existing research suggests that, for certain psychiatric disorders, there may be decision-making differences already at a perceptual level (e.g. autism; schizophrenia). However, the extent to which this happens in different conditions and pre-clinical traits is still not well understood. My research combines perceptual, sensorimotor, emotional and social decision-making to better understand the connection (or lack thereof) between these different decision-making levels. In addition, we analyze how decision-making at different levels is affected by psychiatric conditions and personality traits. In our more recent, pre-registered study, we analyzed people’s behavior in a perceptual task (dot-motion), an emotion recognition task (the Reading the Mind in the Eyes test, RMET), and a social decision-making task (trust game), in a Midwest community sample (Minnesota State Fair goers, n = 123). We found no correlation between participants' performance across tasks. However, we found a strong positive correlation of decision confidence across tasks: participants more confident in their responses in a perceptual task also tended to be more confident in their responses on the emotion-recognition task and social task. Furthermore, reported confidence across tasks correlated negatively with participant’s alexithymia scores (a subclinical trait characterized by low emotional awareness). Altogether, our results suggest that confidence in one’s decisions is a personality trait that spans different types of decisions, and that it may be related to the degree of emotional awareness one has. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

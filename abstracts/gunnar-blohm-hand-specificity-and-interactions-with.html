@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 16:30" data-end="2020-10-26 16:45">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>HAND SPECIFICITY AND INTERACTIONS WITH MOVEMENT PLANNING IN CORTICAL OSCILLATIONS</h1><h2>Gunnar Blohm</h2><h3>Gunnar Blohm, Centre of Neuroscience Studies, Queen’s University, Kingston, Ontario, Canada; Douglas O. Cheyne, Program in Neurosciences and Mental Health, The Hospital for Sick Children Research Institute, Toronto, Ontario, Canada; J. Douglas Crawford, Centre for Vision Research, York University, Toronto, Ontario, Canada</h3><h2>Abstract</h1><p>To plan a reach or pointing movement, sensory information about the movement goal needs to be converted into a representation that specifies the desired movement with respect to the hand to be used. Here we use a pro/anti-pointing task that has been performed separately with the left and right hand and record MEG signals to investigate which brain areas in the reaching network reflect hand specificity. We also ask which of those areas are involved in computing a hand-specific movement plan as revealed by differences between both hands in the coding for the movement plan. We found eight areas that showed specific hand-related changes in oscillatory beta band power prior to movement onset: POJ, SPOC, IPL, SPL, VIP, S1, M1 and PMd. However, of those, only SPOC, IPL, VIP and M1 showed significant interactions between hand use and motor coding during movement planning, indicative of a hand-specific movement plan. Together with previous findings (Blohm, et al. 2019), we interpret these results as evidence for independent coding of the motor plan and hand use in areas POJ and PMd. In contrast, SPL and S1 seem to code for hand use, but might not represent an explicit motor plan. Finally, SPOC, IPL, VIP and M1 show evidence for a motor plan that is specific to the hand used.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

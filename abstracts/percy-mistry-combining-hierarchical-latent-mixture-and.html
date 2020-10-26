@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 09:00" data-end="2020-10-30 09:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Combining hierarchical latent-mixture and evidence accumulation-based models of cognition with fMRI data</h1><h2>Percy Mistry</h2><h2>Abstract</h1><p>We show how the functional resolution of mapping neural circuit features to distinct cognitive and behavioral components of decision-making process can be improved, by combining hierarchical latent-mixture and evidence-accumulation based models with neural (fMRI) data. These models are implemented within a Bayesian inference framework. Theory based and structural assumptions are used to develop evidence accumulation models whose parameters are hierarchically governed by cognitive subsystems, such as performance monitoring, belief updating, error-feedback, and executive control. Such models explicitly account for the temporal dynamics and learning associated with repeated decision making. They dissociate between different potential cognitive processes and strategies that may be used on a trial-by-trial basis, and account for the hierarchical process of strategy switching. The hierarchical cognitive processes and subsystems are characterized by cognitive parameters that potentially capture and mediate the relationship between neural (fMRI) and behavioral data. Such neuro-cognitive modeling allows us to differentiate between theories, provide insights into the developmental maturation of brain networks, and improve the identification of differential brain feature characteristics associated with different cognitive processes in clinical and neuro-diverse populations. Applications include identifying the joint neural and behavioral basis of individual differences in mathematical decision making, response inhibition, and perceptual decision making tasks.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

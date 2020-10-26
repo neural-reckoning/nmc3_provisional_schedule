@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 10:00" data-end="2020-10-28 10:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Machine Learning methods for predicting conversion from mild cognitive impairment to Alzheimer’s disease. A systematic review.</h1><h2>Sergio Grueso</h2><h3>Raquel Viejo-Sobera, Universitat Oberta de Catalunya</h3><h2>Abstract</h1><p>Increase in life-span in our society is a double-edged sword that entails a growing number of patients with neurocognitive disorders, being Alzheimer’s disease (AD) the most prevalent. Advances in medical imaging and computational power, allow new methods to detect and hopefully prevent cognitive decline, especially in patients with mild cognitive impairment (MCI), a condition that might be considered a prodromal stage of AD. We conducted a systematic review following PRISMA guidelines of studies where Machine Learning (ML) was applied to neuroimaging data obtained from public databases in order to predict the progression from MCI to AD. We selected 30 studies and assessed their model performance based on its accuracy, sensitivity, specificity, and area under the receiver operating characteristic curve, to determine which algorithms combined with which neuroimaging techniques achieved better predictions. Results show that the best method to detect group differences between healthy, MCI (progressive and stable), and AD subjects is using large samples with multimodal and multidimensional data (neuroimage, clinical, cognitive, biological, and behavioral data) combined with Deep Learning models (as compared with other ML models such as Random Forest or Support Vector Machine). Although performance of the different models still have room for improvement, the results are promising and this methodology has a great potential as a support tool for clinicians and professionals from health institutions.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

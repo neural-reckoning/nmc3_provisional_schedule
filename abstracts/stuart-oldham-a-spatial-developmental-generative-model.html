@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 01:00" data-end="2020-10-27 01:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>A spatial developmental generative model of human brain structural connectivity</h1><h2>Stuart Oldham</h2><h3>Ben Fulcher, The University of Sydney; Kevin Aquino, Monash University; Aurina Arnatkevičiūtė, Monash University; Rosita Shishegar, Monash University; Alex Fornito, Monash University</h3><h2>Abstract</h1><p>The complex wiring of the human connectome is thought to support integrated brain function and adaptive behaviour. Yet the mechanisms leading to the emergence of this connectome topology are unknown. Generative network models have begun to shed light on these mechanisms by showing that stochastic wiring rules, subject to simple constraints based on a trade-off between the wiring cost and putative functional value of a connection, can reproduce many key topological features of empirical connectome data. However, recent evidence suggest that they may not accurately capture the way in which these properties are spatially embedded. One potential reason for this limitation is that current models assume a fixed geometry based on the adult brain, ignoring the major changes in shape and size that occur early in development, when connections form. Here, we propose a new generative network model that proposes a new cost-value trade-off formulation, and which can readily incorporate developmental changes in brain geometry, informed by structural MRIs obtained from a public database of foetal scans acquired from 21–38 weeks gestational age. Using a cross-validated procedure to fit these models to connectomes generated from 100 healthy adults with diffusion MRI, we show that our new model more accurately reproduces the topological properties of empirical data than existing models, but that developmental changes in brain shape and size do not lead to major gains in model fit. Critically, none of the models accurately capture the spatial embedding of network topology, being unable to reproduce the observed spatial topography of hubs. Our results suggest that generative models based on stochastic wiring rules can capture statistical properties of brain networks, but that they may be insufficient to comprehensively explain the way in which these properties are spatially embedded.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

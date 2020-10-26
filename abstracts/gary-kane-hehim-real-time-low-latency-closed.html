@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 8
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 21:30" data-end="2020-10-30 21:45">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Real-time, low-latency closed-loop feedback using markerless posture tracking</h1><h2>Gary Kane (he/him)</h2><h3>Gonçalo Lopes, NeuroGEARS Ltd; Jonny L. Saunders, Institute of Neuroscience, Department of Psychology, University of Oregon; Alexander Mathis, Center for Neuroprosthetics, Center for Intelligent Systems, & Brain Mind Institute, School of Life Sciences, Swiss Federal Institute of Technology (EPFL); Mackenzie W. Mathis, Center for Neuroprosthetics, Center for Intelligent Systems, & Brain Mind Institute, School of Life Sciences, Swiss Federal Institute of Technology (EPFL)</h3><h2>Abstract</h1><p>The ability to control a behavioral task or stimulate neural activity based on animal behavior in real-time is an important tool for experimental neuroscientists. Ideally, such tools are (1) noninvasive, (2) low-latency, and (3) provide interfaces to trigger external hardware based on posture (i.e., not just object based-tracking). Recent advances in pose estimation with deep learning allows researchers to train deep neural networks to accurately quantify a wide variety of animal behaviors. Here, we extend the DeepLabCut pose estimation toolbox to perform closed-loop feedback based on pose estimation in real time. First, we provide a new DeepLabCut-Live! package that serves as a simple API that facilitates incorporating DeepLabCut pose estimation into new or existing software for real-time, closed-loop feedback applications. Performance of this package was extensively tested on multiple hardware configurations and achieves rates > 150 FPS with reasonable image sizes (> 400 x 300 pixels) using GPUs. In addition to the DeepLabCut-Live! API, we provide three new software tools for implementing closed-loop feedback using DeepLabCut into experiments with ease: a stand-alone GUI (called DLC-Live! GUI), and integration of DeepLabCut into the experimental design frameworks Bonsai and AutoPilot. We benchmarked the performance of all three software packages, and observed closed loop feedback with delays as low as 10-15 ms using GPUs, and delays of 15-50 ms using inexpensive embedded systems (NVIDIA Jetson Developer Kits) or conventional computers with only CPUs. Furthermore, we describe an additional forward prediction module that can achieve sub-zero to zero-latency feedback. Altogether, these tools provide users with the ability to perform closed-loop feedback based on pose estimation with state-of-the-art performance without difficult installation procedures and with little to no additional programming required.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

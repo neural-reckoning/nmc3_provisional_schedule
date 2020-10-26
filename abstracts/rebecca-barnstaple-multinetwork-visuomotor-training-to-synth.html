@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 6
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 21:15" data-end="2020-10-26 21:30">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>MULTINETWORK VISUOMOTOR TRAINING TO SYNTH-MUSIC INVESTIGATED WITH MOBILE EEG</h1><h2>Rebecca Barnstaple</h2><h3>Joseph FX DeSouza, York University; Lydia Jaufmann, Sein Jeung, Janna Protzak, Klaus Gramann, TU Berlin</h3><h2>Abstract</h1><p>We investigated the contribution of multinetwork training with music to neurorehabilitation. Previous studies showed that dance-based learning over 8-months produced BOLD signal changes in SMA using fMRI (Bar & DeSouza 2016) and resting state alpha power increases in frontal cortex post-dance in people with Parkinson’s disease compared to controls (Levkov et al 2014). 
-Our current project assesses the impact of motor learning while subjects (n=16) learn a 30-second choreography. Trials include watching VIDEO (4 times), watching LIVE performances of the choreography (6 times), moving with the teacher (LEARN; 6 to 20 times), imagining performing from a first-person perspective (IMAGINE; 6 times), and finally performing in space (PERFORM; 6 times).  Sessions were recorded at the Berlin Mobile Brain/Body Imaging lab (BeMoBIL) which allows for acquisition of motion capture data synced with continuous recording of wireless mobile EEG (Brain Products ActiCap; 128 electrodes) in a dedicated 150 m2 lab space Movements are measured using 10 HTC Vive trackers running on Steam VR; music was rated for valence pre/post learning. 
-Preliminary results show a significant shift (p=.0009) in participants’ affective scoring of the music post-learning, suggesting that the experience of dance learning impacts perception of previously unfamiliar music. This is important, as music is a consistent factor in rehabilitation programs using dance; however, to this point, the effects of motor learning on affective music perception have not been studied in this context.  Additionally, all participants reached our target of 80% or higher accuracy in reproducing the movement sequence within 20 LEARN trials, with expertise correlating to fewer trials. Next steps include frequency analysis of EEG data pre/post and during learning, along with movement analysis to determine the contribution of motor learning to observed brain-based changes.
-</p>
+        <h1>MULTINETWORK VISUOMOTOR TRAINING TO SYNTH-MUSIC INVESTIGATED WITH MOBILE EEG</h1><h2>Rebecca Barnstaple</h2><h3>Joseph FX DeSouza, York University; Lydia Jaufmann, Sein Jeung, Janna Protzak, Klaus Gramann, TU Berlin</h3><h2>Abstract</h1><p>We investigated the contribution of multinetwork training with music to neurorehabilitation. Previous studies showed that dance-based learning over 8-months produced BOLD signal changes in SMA using fMRI (Bar & DeSouza 2016) and resting state alpha power increases in frontal cortex post-dance in people with Parkinson’s disease compared to controls (Levkov et al 2014). <br/>Our current project assesses the impact of motor learning while subjects (n=16) learn a 30-second choreography. Trials include watching VIDEO (4 times), watching LIVE performances of the choreography (6 times), moving with the teacher (LEARN; 6 to 20 times), imagining performing from a first-person perspective (IMAGINE; 6 times), and finally performing in space (PERFORM; 6 times).  Sessions were recorded at the Berlin Mobile Brain/Body Imaging lab (BeMoBIL) which allows for acquisition of motion capture data synced with continuous recording of wireless mobile EEG (Brain Products ActiCap; 128 electrodes) in a dedicated 150 m2 lab space Movements are measured using 10 HTC Vive trackers running on Steam VR; music was rated for valence pre/post learning. <br/>Preliminary results show a significant shift (p=.0009) in participants’ affective scoring of the music post-learning, suggesting that the experience of dance learning impacts perception of previously unfamiliar music. This is important, as music is a consistent factor in rehabilitation programs using dance; however, to this point, the effects of motor learning on affective music perception have not been studied in this context.  Additionally, all participants reached our target of 80% or higher accuracy in reproducing the movement sequence within 20 LEARN trials, with expertise correlating to fewer trials. Next steps include frequency analysis of EEG data pre/post and during learning, along with movement analysis to determine the contribution of motor learning to observed brain-based changes.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 11:15" data-end="2020-10-29 11:30">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The subjective understanding of actions and emotions in the brain involves the interplay of the semantic network and the action observation network</h1><h2>Minye Zhan</h2><h3>Minye Zhan, NeuroSpin; Rainer Goebel, Maastricht University; Beatrice de Gelder, Maastricht University;</h3><h2>Abstract</h1><p>How brain areas interact to understand other people’s bodily actions and emotions is still poorly understood. Apart from the involvement of the action observation network and areas related to human body perception, evidence of other brain areas’ involvement is still scarce. In this high-resolution 7T fMRI study with representational similarity analysis (RSA), we examined the representational geometry of participants’ subjective understandings of whole body images, using a large set of exemplars of bodily actions and emotions. Besides using conventional univariate/multivariate analysis, we obtained subjective reports of the perceived actions and emotions from the participants, and mapped these individual reports to a common high-dimensional space using pre-trained word embeddings. The representations for perceived action and emotion were high dimensional, both correlated to but not reducible to the predefined action and emotion categories. The perceived emotion representations further contained dimensions for the valence, and for fear and sad expressions.  With searchlight RSA, we found that the left middle superior temporal sulcus (L mSTS) and left dorsal premotor cortex (L PMd) respectively corresponded to these behavioral representations. Further with task-residual functional connectivity and hierarchical clustering, we found that areas in the action observation network and the semantic/default-mode network were functionally connected to these two seed regions, and showed the most similar representations to them. Our study provides direct evidence of the concurrent involvement of both networks in action and emotion understanding.  </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

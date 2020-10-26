@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 22:30" data-end="2020-10-28 22:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Human neuromarkers of tactile perception: state of the art in methods and findings</h1><h2>Gianna Cannestro Cannestro (she/her)</h2><h3>M. A. Abd, Ocean and Mechanical Engineering, Florida Atlantic University; E. Engeberg, Center for Complex Systems and Brain Sciences & Ocean and Mechanical Engineering, Florida Atlantic University; E. Tognoli, Center for Complex Systems and Brain Sciences, Florida Atlantic University</h3><h2>Abstract</h1><p>Tactile perception is a multifaceted sense with complicated convergent/divergent peripheral pathways. Its neuromarkers remain poorly understood, due to the sense’s inherent complexity and the confounding factor of intricate motor, cognitive and affective correlates. This gap hinders research evaluating interventions to restore touch in artificial hands. We inventorize state-of-the-art and recent innovations in control systems with soft and hard robotics that are poised to unlock more targeted non-invasive stimulations. We review neuromarkers observed for pressure, vibration, brushing, texture discrimination, pain, heat and cold, complemented with the covariates from movement, attention, working memory, multisensory and sensorimotor integration or competition (audition, vision) and affect. We analyze neural oscillations during sensory and (peripheral and central) electro-magnetic stimulation. This review matures a framework of reverse prediction, in which non-invasive observation of neural activity robustly and unobtrusively quantifies tactile perception.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

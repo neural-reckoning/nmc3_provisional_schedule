@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,23 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 09:30" data-end="2020-10-28 09:45">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Divided attention in the tactile modality</h1><h2>Sharon Daniel</h2><h3>Thomas Andrillon ; Naotsugu Tsuchiya ;  Jeroen J. A. van Boxtel;</h3><h2>Abstract</h1><p>Most of our knowledge about the interplay between attention and consciousness comes from the
-visual domain, which suggests that some stimuli can be consciously perceived in the near absence of
-top-down attention, while other stimuli cannot. Here, we investigated whether tactile conscious
-discrimination remains intact in the near absence of attention. We used the well-established dual-task
-paradigm from the visual domain, in which participants are instructed to perform a central demanding
-task while performing a secondary task in parallel. We compared the performance of a frequency
-discrimination task in N=16 participants in three conditions with different attentional requirements but
-identical input. Four fingers on one hand and 2 fingers on the other hand were stimulated with
-vibrators. In the single-task, participants focused on one finger pair, while in the dual-task condition,
-they focused on two finger pairs either on the same hand or across hands. Performance in the
-dual-task was worse than in the single task. In contrast to previous visual experiments reported
-improved performance when tasks were divided across hemifields compared to within a hemifield, we
-did not find comparable result in the tactile modality. Specifically, we found that in the dual-task
-conditions, performance was the same for same-hand and across-hands conditions. Our results
-suggest that simple haptic tasks, such as frequency discrimination, cannot be performed in the near
-absence of attention.</p>
+        <h1>Divided attention in the tactile modality</h1><h2>Sharon Daniel</h2><h3>Thomas Andrillon ; Naotsugu Tsuchiya ;  Jeroen J. A. van Boxtel;</h3><h2>Abstract</h1><p>Most of our knowledge about the interplay between attention and consciousness comes from the<br/>visual domain, which suggests that some stimuli can be consciously perceived in the near absence of<br/>top-down attention, while other stimuli cannot. Here, we investigated whether tactile conscious<br/>discrimination remains intact in the near absence of attention. We used the well-established dual-task<br/>paradigm from the visual domain, in which participants are instructed to perform a central demanding<br/>task while performing a secondary task in parallel. We compared the performance of a frequency<br/>discrimination task in N=16 participants in three conditions with different attentional requirements but<br/>identical input. Four fingers on one hand and 2 fingers on the other hand were stimulated with<br/>vibrators. In the single-task, participants focused on one finger pair, while in the dual-task condition,<br/>they focused on two finger pairs either on the same hand or across hands. Performance in the<br/>dual-task was worse than in the single task. In contrast to previous visual experiments reported<br/>improved performance when tasks were divided across hemifields compared to within a hemifield, we<br/>did not find comparable result in the tactile modality. Specifically, we found that in the dual-task<br/>conditions, performance was the same for same-hand and across-hands conditions. Our results<br/>suggest that simple haptic tasks, such as frequency discrimination, cannot be performed in the near<br/>absence of attention.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

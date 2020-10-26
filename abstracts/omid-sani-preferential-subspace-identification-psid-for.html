@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 22:15" data-end="2020-10-26 22:30">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Preferential subspace identification (PSID) for modeling behaviorally relevant neural dynamics</h1><h2>Omid Sani</h2><h3>Hamidreza Abbaspourazad, University of Southern California; Yan Wong, New York University; Bijan Pesaran, New York University; Maryam Shanechi, University of Southern California</h3><h2>Abstract</h1><p>In addition to any specific behavior of interest, neural activity often relates to other brain functions as well as brain states with distributed representations such as thirst. Dissociating these behaviorally irrelevant neural dynamics from the behaviorally relevant ones is key in understanding how neural dynamics explain behavior. We develop a novel algorithm termed PSID for dissociating and modeling behaviorally relevant neural dynamics. PSID models the temporal structure of neural activity in terms of a latent brain state that dissociates the behaviorally relevant dynamics from other dynamics. First, with extensive numerical simulations, we show that PSID learns behaviorally relevant neural dynamics much more accurately, using orders of magnitude less training data and latent states with fewer dimensions. Next, we use PSID to study motor cortical dynamics in two non-human primates performing 3D reach-return movements toward targets while all joint angles in their upper-extremity were being tracked. PSID reveals that behaviorally relevant neural dynamics are markedly lower dimensional than implied by standard methods. In addition, PSID uncovers distinct rotational dynamics in neural activity during reach and return movements that are missed by standard methods and are significantly more predictive of behavior. Moreover, PSID learns more accurate behaviorally relevant dynamics from almost all recording channels and for almost all joints. Finally, to show that the benefit of PSID is due to its novel two-stage learning algorithm that considers both neural activity and behavior and can dissociate behaviorally relevant dynamics, we compare the results with example nonlinear modeling methods and find that PSID more accurately learns the behaviorally relevant neural dynamics. Taken together, PSID provides a new tool for studying and modeling behaviorally relevant neural dynamics that can otherwise be missed. PSID also serves as a dynamic dimension reduction method that can preserve behaviorally relevant neural dynamics. Finally, PSID can also be used to model shared dynamics between any two signals, e.g. neural activity in two brain regions.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

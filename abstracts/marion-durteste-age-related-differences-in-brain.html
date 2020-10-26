@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 10:30" data-end="2020-10-27 10:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Age-related differences in brain regions linked to visuo-spatial processing during landmark-based navigation </h1><h2>Marion Durteste</h2><h3>Marion Durteste, Sorbonne Universités, INSERM, CNRS, Institut de la Vision, 17 rue Moreau, F-75012 Paris, France; Stephen Ramanoël, Sorbonne Universités, INSERM, CNRS, Institut de la Vision, 17 rue Moreau, F-75012 Paris, France/University of Côte d'Azur, LAMHESS, Nice, France; Marcia Bécu, Sorbonne Universités, INSERM, CNRS, Institut de la Vision, 17 rue Moreau, F-75012 Paris, France; Christophe Habas, CHNO des Quinze-Vingts, DHU Sight Restore, INSERM-DHOS CIC, 28 rue de Charenton, 75012 Paris, France; Angelo Arleo, Sorbonne Universités, INSERM, CNRS, Institut de la Vision, 17 rue Moreau, F-75012 Paris, France</h3><h2>Abstract</h1><p>Healthy older adults are impaired in their capacity to navigate efficiently which significantly reduces their autonomy and mobility. Behavioral studies have revealed age-related changes in multiple visuospatial abilities including the capacity to perceive and integrate visual landmarks for spatial navigation (e.g., a lamppost). However, the functional and neurobiological factors underlying the decline of landmark processing in healthy ageing remain insufficiently characterized. To address this caveat, we used functional magnetic resonance imaging to investigate the brain activity associated with landmark-based navigation in young and older participants. 25 young and 17 older adults took part in an active virtual navigation task in which they had to orient in a simple maze using landmarks. Whole-brain as well as region-of-interest (ROI) analyses were conducted with a focus on high-level visual regions linked to navigational functions: the parahippocampal place area (PPA), the occipital place area (OPA) and the retrosplenial cortex (RSC). Results showed that older adults made more errors and that they relied on different navigational strategies to solve the task. Direct comparisons between groups revealed greater anterior temporal activity in young participants. In addition, only young adults showed activity in occipital areas dedicated to processing information from the central visual field. ROI analyses unveiled age-related differences exclusively in the OPA, with significantly higher OPA activity in older subjects. Overall, our results suggest that brain regions involved in the representation of fine-grained visual information may be disrupted in ageing which could in turn diminish the ability to use landmarks for navigation. This work helps towards a better comprehension of the neural dynamics subtending landmark-based navigation and it provides new insights on the impact of age-related visuospatial processing differences on navigation capabilities.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

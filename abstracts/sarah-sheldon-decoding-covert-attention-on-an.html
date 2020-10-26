@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 17:15" data-end="2020-10-28 17:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Decoding Covert Attention on an Orientation Perception Task from EEG Alpha Activity</h1><h2>Sarah Sheldon</h2><h3>Mathewson, Kyle E.</h3><h2>Abstract</h1><p>Alpha oscillations (8-14 Hz) were the first electroencephalograph (EEG) frequency band identified and are thought to have a critical role in visual perception and attention. However, despite its long history, it is unclear whether alpha power alone or alpha’s modulation of other frequency bands best accounts for attentional and perceptual task performance. To address this question, we plan to use quadratic discriminant analysis (QDA) classifier to test whether covert attentional states can be decoded from alpha power alone or from alpha modulated gamma activity prior to target onset. 
-The data to be analyzed was collected from 34 participants performing a cued orientation detection task while EEG was recorded simultaneously. The task consisted of an informative cue (indicating right or left side) or uninformative cue (pointing towards both the left and right), then a target on the left or right pointing in one direction followed by a backward mask, a short delay, and then a response screen where participants used the mouse to rotate the pointing stimuli so that it matches the orientation of the target. Participants were instructed to use covert attention only. Errors on each trial were quantified as the difference between the target orientation and the orientation of participants’ response. 
-</p>
+        <h1>Decoding Covert Attention on an Orientation Perception Task from EEG Alpha Activity</h1><h2>Sarah Sheldon</h2><h3>Mathewson, Kyle E.</h3><h2>Abstract</h1><p>Alpha oscillations (8-14 Hz) were the first electroencephalograph (EEG) frequency band identified and are thought to have a critical role in visual perception and attention. However, despite its long history, it is unclear whether alpha power alone or alpha’s modulation of other frequency bands best accounts for attentional and perceptual task performance. To address this question, we plan to use quadratic discriminant analysis (QDA) classifier to test whether covert attentional states can be decoded from alpha power alone or from alpha modulated gamma activity prior to target onset. <br/>The data to be analyzed was collected from 34 participants performing a cued orientation detection task while EEG was recorded simultaneously. The task consisted of an informative cue (indicating right or left side) or uninformative cue (pointing towards both the left and right), then a target on the left or right pointing in one direction followed by a backward mask, a short delay, and then a response screen where participants used the mouse to rotate the pointing stimuli so that it matches the orientation of the target. Participants were instructed to use covert attention only. Errors on each trial were quantified as the difference between the target orientation and the orientation of participants’ response. <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

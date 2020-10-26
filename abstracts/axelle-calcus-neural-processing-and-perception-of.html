@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 17:30" data-end="2020-10-28 17:45">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Neural processing and perception of speech in children with mild to moderate sensorineural hearing loss</h1><h2>Axelle Calcus</h2><h2>Abstract</h1><p>Mild (21-40 dB HL) or moderate (41-70 dB HL) sensorineural hearing loss (HL) can lead to persistent changes to the cortical processing of speech sounds (Calcus et al., 2019). However, to date no studies have examined speech processing at the subcortical level in children with HL. Moreover, the effects of amplification on the neural encoding of speech remain poorly understood, with previous data suggesting a benefit at the subcortical but not the cortical level.
-Here, I will present a study aiming to investigate (1) the subcortical and cortical processing of speech sounds in children with HL, and (2) the effects of amplification on the neural processing of speech, in children with HL. Subcortical and cortical EEG activity evoked by speech stimuli were simultaneously recorded in n = 18, 8- to 16-year old children with HL and n = 15 age-matched NH controls. The frequency-following-response (FFR) and MMN were used as indices of speech processing at the subcortical and cortical levels, respectively. For the HL group, stimuli were presented both unamplified (70 dB SPL), and with a frequency-specific gain (without compression) based on their individual audiograms. 
-At the subcortical level, children with HL showed a smaller FFR than NH controls’ in the unamplified condition. With simulated amplification, the FFR of the HL group was comparable to that of NH controls. At the cortical level, there was no significant MMN in children with HL presented with either unamplified or amplified speech. 
-The neural processing of unamplified speech may be impaired at both subcortical and cortical levels in children with HL. Moreover, amplification may benefit auditory processing at subcortical but not cortical levels in this group. I will offer two alternative explanations for our findings: increasing multi-sensory integration at successive levels of the auditory system, and/or later maturation of the auditory cortex compared to the inferior colliculus. The relationship with behavioural measures of language perception will be discussed.</p>
+        <h1>Neural processing and perception of speech in children with mild to moderate sensorineural hearing loss</h1><h2>Axelle Calcus</h2><h2>Abstract</h1><p>Mild (21-40 dB HL) or moderate (41-70 dB HL) sensorineural hearing loss (HL) can lead to persistent changes to the cortical processing of speech sounds (Calcus et al., 2019). However, to date no studies have examined speech processing at the subcortical level in children with HL. Moreover, the effects of amplification on the neural encoding of speech remain poorly understood, with previous data suggesting a benefit at the subcortical but not the cortical level.<br/>Here, I will present a study aiming to investigate (1) the subcortical and cortical processing of speech sounds in children with HL, and (2) the effects of amplification on the neural processing of speech, in children with HL. Subcortical and cortical EEG activity evoked by speech stimuli were simultaneously recorded in n = 18, 8- to 16-year old children with HL and n = 15 age-matched NH controls. The frequency-following-response (FFR) and MMN were used as indices of speech processing at the subcortical and cortical levels, respectively. For the HL group, stimuli were presented both unamplified (70 dB SPL), and with a frequency-specific gain (without compression) based on their individual audiograms. <br/>At the subcortical level, children with HL showed a smaller FFR than NH controls’ in the unamplified condition. With simulated amplification, the FFR of the HL group was comparable to that of NH controls. At the cortical level, there was no significant MMN in children with HL presented with either unamplified or amplified speech. <br/>The neural processing of unamplified speech may be impaired at both subcortical and cortical levels in children with HL. Moreover, amplification may benefit auditory processing at subcortical but not cortical levels in this group. I will offer two alternative explanations for our findings: increasing multi-sensory integration at successive levels of the auditory system, and/or later maturation of the auditory cortex compared to the inferior colliculus. The relationship with behavioural measures of language perception will be discussed.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

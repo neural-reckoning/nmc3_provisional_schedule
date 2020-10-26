@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,19 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 16:00" data-end="2020-10-29 16:15">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Representing Fly Behavior with Recurrent Neural Networks</h1><h2>Ishan Saran</h2><h2>Abstract</h1><p>Behavior is a complex process that operates across many time and length
-scales, in many different contexts, and differentially to a variety of external
-and internal stimuli. The necessity to quantify behavior in a precise and
-meaningful manner, however, is growing as the advent of new technologies -
-optogenetics, connectomics, optical imaging techniques - in the world of
-neuroscience has led to an explosion of assembling and analyzing large swaths
-of neural data. Here we investigate recurrent neural networks (RNNs) as a
-model of the underlying dynamics of Drosophila melanogaster and find the
-behavioral representation it constructs similar to representations built from the
-previously published results of postural time series. This is a markedly different
-result from that of RNNs applied to rat models and we investigate the
-implications. </p>
+        <h1>Representing Fly Behavior with Recurrent Neural Networks</h1><h2>Ishan Saran</h2><h2>Abstract</h1><p>Behavior is a complex process that operates across many time and length<br/>scales, in many different contexts, and differentially to a variety of external<br/>and internal stimuli. The necessity to quantify behavior in a precise and<br/>meaningful manner, however, is growing as the advent of new technologies -<br/>optogenetics, connectomics, optical imaging techniques - in the world of<br/>neuroscience has led to an explosion of assembling and analyzing large swaths<br/>of neural data. Here we investigate recurrent neural networks (RNNs) as a<br/>model of the underlying dynamics of Drosophila melanogaster and find the<br/>behavioral representation it constructs similar to representations built from the<br/>previously published results of postural time series. This is a markedly different<br/>result from that of RNNs applied to rat models and we investigate the<br/>implications. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

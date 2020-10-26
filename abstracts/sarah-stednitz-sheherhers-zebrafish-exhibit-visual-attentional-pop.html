@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 9
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 13:30" data-end="2020-10-29 13:45">
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Mdmwu-Ul9Pc'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Zebrafish exhibit visual attentional pop-out effects in their behavior</h1><h2>Sarah Stednitz, she/her/hers</h2><h3>Sarah Stednitz, MPI Biological Cybernetics; Jennifer Li, MPI Biological Cybernetics; Drew Robson, MPI Biological Cybernetics; Zhaoping Li, MPI Biological Cybernetics</h3><h2>Abstract</h1><p>Sensory inputs drive our interactions with the world, but the raw sensory inputs contain far more data than could be fully processed by our brain, which is constrained by limited resources. To overcome this processing bottleneck, the brain has evolved attentional selectional mechanisms to select only a fraction of the sensory inputs for deeper processing, and for survival this selection is often rapid and exogenously driven (“bottom-up”) so that it does not require any higher-order (“top-down”) cognitive guidance. Such attentional selection for visual inputs has been studied extensively in mammals, particularly in humans. To study the underlying neural mechanism for bottom-up visual selection, the zebrafish (Danio rerio) is perhaps an ideal model system. They rely on visual input for many behaviors early in development, possess evolutionarily conserved brain regions including a large optic tectum associated with attentional selection, and are amenable to live imaging using genetically encoded fluorescent indicators of neuronal activity. However, bottom-up visual attentional selection behavior has not yet been well characterized in zebrafish. A hallmark of the bottom-up visual selection is pop-out, when a uniquely featured visual item in a background of uniformly featured items, e.g., a red dot among green dots, elicits a rapid orienting behavior. Such orienting can be by gaze shifts (often in humans), and/or by turning of head, limb, tentacles, and body. We first demonstrate the pop-out effect in zebrafish using colored dot stimuli, and measure the orienting responses by shifts in the animal’s body orientation. We characterize the orientation response in relation to the sensory inputs, in particular the colors and spatial configurations of the dots. Our findings suggest conserved mechanisms of visual attention across evolution, and lay the groundwork for imaging studies to describe the underlying neuronal computations.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

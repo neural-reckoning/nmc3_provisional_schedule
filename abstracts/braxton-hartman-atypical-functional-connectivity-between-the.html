@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 22:30" data-end="2020-10-27 22:45">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Atypical Functional Connectivity Between the Default, Dorsal Attention, and Frontoparietal Control Networks in Autism Spectrum Disorder</h1><h2>Braxton Hartman</h2><h3>Naail Kahn, York University; W. Dale Stevens, York University; Alex Martin, NIMH</h3><h2>Abstract</h1><p>Autism spectrum disorders (ASD) are characterized by difficulties in social interaction and communication, as well as restricted and repetitive behaviours. Although widely accepted as being neurodevelopmental in nature, the specific abnormalities of brain function which underlie the disorder remain poorly understood. A growing number of studies have investigated the neuropathology of autism using functional connectivity MRI, which investigates the relations among large-scale, functionally specialized brain networks. Research with healthy adults has demonstrated that the antagonistic “default” and “dorsal attention” networks, which subserve internally and externally directed cognition, respectively, are modulated by a third “frontoparietal control” network, which flexibly couples with either the default or dorsal attention network depending upon locus of attention. We investigated resting-state functional connectivity within and between the default, dorsal attention and frontoparietal control networks in a group of 25 adult males with ASD and a control group matched on age, I.Q., and motion parameters. Differentiation of all three networks, reflecting the relative strength of functional connectivity within vs. between nodes of these networks, was reduced in the ASD group. In addition, the number of nodes exhibiting anticorrelation between the default and dorsal attention networks was significantly reduced in ASD. Region-of-interest analyses identified abnormal functional connectivity of the left frontal eye fields, which were hyperconnected to the medial prefrontal cortex and hypoconnected to the insula, which are thought to mediate context-memory binding and salient stimulus detection, respectively. Finally, graph theoretic analysis demonstrated an increase in betweenness-centrality of the left middle frontal gyrus (Brodmann Area 6), a crucial interconnector node, in the ASD group. These results provide evidence that the typical resting-state relationships among the default, dorsal attention, and frontoparietal control networks are altered in ASD.  </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

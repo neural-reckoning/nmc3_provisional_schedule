@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 22:30" data-end="2020-10-29 22:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Constrained brain volume in an efficient coding model explains the fraction of excitatory and inhibitory neurons in sensory cortices</h1><h2>Arish Alreja</h2><h3>Ilya Nemenman, Emory University; Christopher Rozell, Georgia Institute of Technology</h3><h2>Abstract</h1><p>The number of neurons in mammalian cortex varies by multiple orders of magnitude across different species. In contrast, the ratio of excitatory to inhibitory neurons (E:I ratio) varies in a much smaller range, from 3:1 to 9:1 and remains roughly constant for different sensory areas within a species. Despite this structure being important for understanding the function of neural circuits, the reason for this consistency is not yet understood. While recent models of vision based on the efficient coding hypothesis show that increasing the number of both excitatory and inhibitory cells improves stimulus representation, the two cannot increase simultaneously due to constraints on brain volume. In this work, we implement an efficient coding model of vision under a volume (i.e., total number of neurons) constraint while varying the E:I ratio. We show that the performance of the model is optimal at biologically observed E:I ratios under several metrics. We argue that this happens due to trade-offs between the computational accuracy and the representation capacity for natural stimuli. Further, we make experimentally testable predictions that 1) the optimal E:I ratio should be higher for species with a higher sparsity in the neural activity and 2) the character of inhibitory synaptic distributions and firing rates should change depending on E:I ratio. Our findings, which are supported by our new preliminary analyses of publicly available data, provide the first quantitative and testable hypothesis based on optimal coding models for the distribution of neural types in the mammalian sensory cortices.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

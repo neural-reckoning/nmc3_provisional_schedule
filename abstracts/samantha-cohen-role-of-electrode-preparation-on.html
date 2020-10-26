@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 22:00" data-end="2020-10-30 22:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Role of Electrode Preparation on Static Impedance in Electroconvulsive Therapy </h1><h2>Samantha Cohen</h2><h3>Gozde Unal, Department of Biomedical Engineering, The City College of New York, CUNY, New York, NY; Mohamad Fallah Rad,Department of Biomedical Engineering, The City College of New York, CUNY, New York, NY; Marom Bikson, Department of Biomedical Engineering, The City College of New York, CUNY, New York, NY</h3><h2>Abstract</h1><p>Electroconvulsive therapy (ECT) has long been recognized as an effective treatment for neurological disorders; chief among them is major depressive disorder. The preparation of skin and electrodes for ECT is an important procedure, but there is significant variability in electrode preparation protocols used and questions about which steps are important. Static impedance, measured by the ECT device prior to administration of ECT, is used to indicate the quality of electrode setup. The current pilot study examined the contributions of skin preparation on static impedance in healthy subjects. Using adhesive ECT electrodes, six electrode placements procedures were considered: saline skin preparation with conducting gel PRE TAC, 70% isopropyl alcohol skin preparation, saline skin preparation with PRE TAC and 50% electrode contact area, 70% isopropyl alcohol skin preparation with PRE TAC, saline skin preparation with 1% PVP-K90 application, saline skin preparation with 1% PVP-K90 application plus KCL. Electrodes were placed in the bifrontal position on the forehead. Static impedance was measured every minute using two commercial ECT machines for 17 minutes, or until impedance stabilized. All preparations containing an adhesive, namely PRE TAC and the PVP-K90 solutions, had improved adhesion of electrode onto skin, resulting in lower static impedance. The absence of adhesive (alcohol skin preparation only) drove up static impedance. These results suggest that even under apparent full electrode coverage the quality of electrode-skin contact impacts static impedance. Intentionally reducing contact area of electrode to skin by ~50% increased impedance by a factor of ~2x. The results also demonstrate significant difference among individuals, even under our tightly controlled experimental conditions with optimal preparation, indicating that head impedance contributes to impedance measurements. Improving adhesion of the electrode to skin reduces impedance despite this variability.
-</p>
+        <h1>Role of Electrode Preparation on Static Impedance in Electroconvulsive Therapy </h1><h2>Samantha Cohen</h2><h3>Gozde Unal, Department of Biomedical Engineering, The City College of New York, CUNY, New York, NY; Mohamad Fallah Rad,Department of Biomedical Engineering, The City College of New York, CUNY, New York, NY; Marom Bikson, Department of Biomedical Engineering, The City College of New York, CUNY, New York, NY</h3><h2>Abstract</h1><p>Electroconvulsive therapy (ECT) has long been recognized as an effective treatment for neurological disorders; chief among them is major depressive disorder. The preparation of skin and electrodes for ECT is an important procedure, but there is significant variability in electrode preparation protocols used and questions about which steps are important. Static impedance, measured by the ECT device prior to administration of ECT, is used to indicate the quality of electrode setup. The current pilot study examined the contributions of skin preparation on static impedance in healthy subjects. Using adhesive ECT electrodes, six electrode placements procedures were considered: saline skin preparation with conducting gel PRE TAC, 70% isopropyl alcohol skin preparation, saline skin preparation with PRE TAC and 50% electrode contact area, 70% isopropyl alcohol skin preparation with PRE TAC, saline skin preparation with 1% PVP-K90 application, saline skin preparation with 1% PVP-K90 application plus KCL. Electrodes were placed in the bifrontal position on the forehead. Static impedance was measured every minute using two commercial ECT machines for 17 minutes, or until impedance stabilized. All preparations containing an adhesive, namely PRE TAC and the PVP-K90 solutions, had improved adhesion of electrode onto skin, resulting in lower static impedance. The absence of adhesive (alcohol skin preparation only) drove up static impedance. These results suggest that even under apparent full electrode coverage the quality of electrode-skin contact impacts static impedance. Intentionally reducing contact area of electrode to skin by ~50% increased impedance by a factor of ~2x. The results also demonstrate significant difference among individuals, even under our tightly controlled experimental conditions with optimal preparation, indicating that head impedance contributes to impedance measurements. Improving adhesion of the electrode to skin reduces impedance despite this variability.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

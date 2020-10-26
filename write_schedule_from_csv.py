@@ -8,6 +8,20 @@ import unicodedata
 import re
 
 
+youtube_link = {
+    0: "https://www.youtube.com/watch?v=YWYsHlZ2Utk",
+    1: "https://www.youtube.com/watch?v=wZzFE3dyQlU",
+    2: "https://www.youtube.com/watch?v=GBd2goR_WLU",
+    3: "https://www.youtube.com/watch?v=R0Jbw983eYg",
+    4: "https://www.youtube.com/watch?v=57jnkd3reAI",
+    5: "https://www.youtube.com/watch?v=I6F_sU1OPrQ",
+    6: "https://www.youtube.com/watch?v=Ic6pNxh9cuU",
+    7: "https://www.youtube.com/watch?v=k0C7mrbBiy8",
+    8: "https://www.youtube.com/watch?v=kZoZKSpWGTI",
+    9: "https://www.youtube.com/watch?v=Mdmwu-Ul9Pc",
+}
+
+
 # From https://github.com/django/django/blob/master/django/utils/text.py
 def slugify(value, allow_unicode=False):
     """
@@ -26,6 +40,8 @@ def slugify(value, allow_unicode=False):
 
 
 def write_abstract(talk, t, track):
+    start = dateutil.parser.parse(talk.starttime)
+    end = dateutil.parser.parse(talk.endtime)
     talkid = []
     if isinstance(talk.fullname, str):
         talkid.append(slugify(talk.fullname))
@@ -41,12 +57,33 @@ def write_abstract(talk, t, track):
     if isinstance(talk.coauthors, str):
         contents += f'<h3>{talk.coauthors}</h3>'
     if isinstance(talk.abstract, str):
-        contents += f'<h2>Abstract</h1><p>{talk.abstract}</p>'
+        abstract = talk.abstract.replace('\n', '<br/>')
+        contents += f'<h2>Abstract</h1><p>{abstract}</p>'
     js = r'''
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     '''
     css = '''
     * {
@@ -68,6 +105,7 @@ def write_abstract(talk, t, track):
         <script type="text/JavaScript">
             {js}
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -77,8 +115,15 @@ def write_abstract(talk, t, track):
             Track {track}
             /
             {talk.talk_format}
+            <div class="visible_at_time" data-start="{start.strftime('%Y-%m-%d %H:%M')}" data-end="{end.strftime('%Y-%m-%d %H:%M')}">
+                <a href='{youtube_link[track]}'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='{youtube_link[track]}'>Watch now on YouTube</a>
+            </div>
         </h3>
         {contents}
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     '''
@@ -158,6 +203,8 @@ def write_static_html_schedule(filename='submissions-final.csv'):
                     row.append(cell)
             else:
                 talk = talk_at[t, track]
+                talk_start_time = dateutil.parser.parse(talk.starttime)
+                talk_end_time = dateutil.parser.parse(talk.endtime)
                 abstract_link = write_abstract(talk, t, track)
                 ongoing[track] = talk
                 cell = [getattr(talk, v) for v in ['title', 'fullname'] if isinstance(getattr(talk, v), str)]
@@ -195,6 +242,10 @@ def write_static_html_schedule(filename='submissions-final.csv'):
                 cell = f'''
                 <td class="talk_cell {talk.talk_format.replace(' ', '_')}" {span}>
                     <i>{talk.talk_format}</i><br/>
+                    <div class="visible_at_time" data-start="{talk_start_time.strftime('%Y-%m-%d %H:%M')}" data-end="{talk_end_time.strftime('%Y-%m-%d %H:%M')}">
+                        <a href='{youtube_link[track]}'><i class="fa fa-youtube-play" style="font-size: 120%; color:red"></i></a>
+                        <a href='{youtube_link[track]}'>Watch now</a>
+                    </div>
                     {cell}
                     {details}
                 </td>
@@ -291,7 +342,27 @@ def write_static_html_schedule(filename='submissions-final.csv'):
         for (var i = 0; i < elems.length; i++){
             elems[i].removeAttribute("open");
         }
-    }    
+    }
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);    
     '''.replace("COLSPAN", f'{num_tracks+1}')
     html = f'''
     <!doctype html>
@@ -308,6 +379,7 @@ def write_static_html_schedule(filename='submissions-final.csv'):
         <script type="text/JavaScript">
             {js}
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h1>Neuromatch 3.0 provisional schedule</h1>
@@ -322,6 +394,9 @@ def write_static_html_schedule(filename='submissions-final.csv'):
         <table>
             {table}
         </table>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     '''

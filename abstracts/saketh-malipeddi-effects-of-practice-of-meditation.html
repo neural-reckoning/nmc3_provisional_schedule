@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,18 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 10:30" data-end="2020-10-29 10:45">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Effects of practice of meditation on Brain EEG dynamics</h1><h2>Saketh Malipeddi</h2><h3>Prof. Bindu M. Kutty; Dr. John P John; Prof. Seema Mehrotra</h3><h2>Abstract</h1><p>Background: Humanity is going through unprecedented challenges. Chronic lifestyle diseases and mental health issues have skyrocketed in the last few decades, posing a significant threat to human well-being. Ancient Indian mind and body practices like Yoga and meditation prove beneficial in these times.
-
-Aims: To assess the effects of the practice of Isha Yoga on the Brain using EEG
-
-Methods: EEG data was acquired using a 128-channel Geodesic EEG system, in 7 advanced meditators, 5 novice meditators, and 6 controls (those with no previous history of any meditation). EEG data was recorded in all the three groups for 62 minutes (4 mins rest – 30 mins cognitive task – 4 mins rest – 6 mins of Pranayama – 14 mins of meditation – 4 mins of rest). EEG data preprocessing was done using Makoto’s PREP pipeline in EEGLAB v13.4.4b and MATLAB version R2017a.
-
-Results: There was a statistically significant difference (p < 0.05 with FDR correction) in power spectral plots between the three groups: For Pranayama at 6 – 8 Hz (frontal mid-line and occipital regions) and 30 – 40 Hz (fronto-parietal and occipital regions); For Meditation at 6 – 8 Hz (occipital regions) and 30 – 40 Hz (Frontal and occipital regions)
-
-Conclusion: Advanced practitioners of Isha Yoga had an increased frontal mid-line theta power (indicating greater parasympathetic activation and calmness) and an increased gamma wave power (indicating brain-wide synchronization and a high degree of attentional control). The results indicate that the long-term practice of Isha Yoga leads to greater well-being and higher cognitive control.
-
-</p>
+        <h1>Effects of practice of meditation on Brain EEG dynamics</h1><h2>Saketh Malipeddi</h2><h3>Prof. Bindu M. Kutty; Dr. John P John; Prof. Seema Mehrotra</h3><h2>Abstract</h1><p>Background: Humanity is going through unprecedented challenges. Chronic lifestyle diseases and mental health issues have skyrocketed in the last few decades, posing a significant threat to human well-being. Ancient Indian mind and body practices like Yoga and meditation prove beneficial in these times.<br/><br/>Aims: To assess the effects of the practice of Isha Yoga on the Brain using EEG<br/><br/>Methods: EEG data was acquired using a 128-channel Geodesic EEG system, in 7 advanced meditators, 5 novice meditators, and 6 controls (those with no previous history of any meditation). EEG data was recorded in all the three groups for 62 minutes (4 mins rest – 30 mins cognitive task – 4 mins rest – 6 mins of Pranayama – 14 mins of meditation – 4 mins of rest). EEG data preprocessing was done using Makoto’s PREP pipeline in EEGLAB v13.4.4b and MATLAB version R2017a.<br/><br/>Results: There was a statistically significant difference (p < 0.05 with FDR correction) in power spectral plots between the three groups: For Pranayama at 6 – 8 Hz (frontal mid-line and occipital regions) and 30 – 40 Hz (fronto-parietal and occipital regions); For Meditation at 6 – 8 Hz (occipital regions) and 30 – 40 Hz (Frontal and occipital regions)<br/><br/>Conclusion: Advanced practitioners of Isha Yoga had an increased frontal mid-line theta power (indicating greater parasympathetic activation and calmness) and an increased gamma wave power (indicating brain-wide synchronization and a high degree of attentional control). The results indicate that the long-term practice of Isha Yoga leads to greater well-being and higher cognitive control.<br/><br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

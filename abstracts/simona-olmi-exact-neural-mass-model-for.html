@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,30 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 10:15" data-end="2020-10-27 10:30">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Exact neural mass model for synaptic-based working memory</h1><h2>Simona  Olmi</h2><h3>Halgurd Taher,  Inria Sophia Antipolis Méditerranée Research Centre; Alessandro Torcini, Laboratoire de Physique Théorique et Modélisation, Université de Cergy-Pontoise; Simona Olmi, Inria Sophia Antipolis Méditerranée Research Centre</h3><h2>Abstract</h1><p>A synaptic theory of Working Memory (WM) has been developed in the last decade to overcome
-several drawbacks related to the persistent spiking paradigm. Memory items are maintained in
-the synaptic facilitation and refreshed thanks to Population Bursts (PBs) promoted by synaptic
-depression. We have developed a neural mass model based on a recent study on the macroscopic
-description of spiking neuronal networks and a well established model for plastic synapses. It is
-capable of reproducing exactly the dynamics of heterogeneous spiking neural networks with short-
-term synaptic plasticity. This neural mass model gives access not only to the population firing rate,
-but also to the mean membrane potential. The latter is correlated to the Local Field Potentials
-and to electroencephalographic signals, usually measured during WM tasks to characterize the brain
-dynamics. The model is able to mimic several operations required by WM : memory loading, memory
-maintenance, competition of memory items and multi-item memory juggling. Memory access and
-loading is associated to self-sustained oscillations in the β-γ band and to transient evoked responses
-in the δ band, analogous to what is observed in the prefrontal cortex of monkeys during object
-recognition tasks. More items can be stored in the WM by considering neural architectures composed
-by multiple excitatory populations and a common inhibitory pool. The items can be loaded and
-maintained at the same time: they are represented as trains of PBs with the same period, but
-delivered at evenly shifted phases. A memory competition is observable already by loading only two
-items. Depending on the stimulation features we can observe three different outcomes: maintenance
-of the first or second loaded item or their juggling in the memory. As reported in many experiments,
-the γ-band power increases with the number of loaded items. The power in the α-β instead shows
-a non monotonic behaviour. Finally, we report an expression for the maximal capacity adapted to
-the present model and architecture.
-</p>
+        <h1>Exact neural mass model for synaptic-based working memory</h1><h2>Simona  Olmi</h2><h3>Halgurd Taher,  Inria Sophia Antipolis Méditerranée Research Centre; Alessandro Torcini, Laboratoire de Physique Théorique et Modélisation, Université de Cergy-Pontoise; Simona Olmi, Inria Sophia Antipolis Méditerranée Research Centre</h3><h2>Abstract</h1><p>A synaptic theory of Working Memory (WM) has been developed in the last decade to overcome<br/>several drawbacks related to the persistent spiking paradigm. Memory items are maintained in<br/>the synaptic facilitation and refreshed thanks to Population Bursts (PBs) promoted by synaptic<br/>depression. We have developed a neural mass model based on a recent study on the macroscopic<br/>description of spiking neuronal networks and a well established model for plastic synapses. It is<br/>capable of reproducing exactly the dynamics of heterogeneous spiking neural networks with short-<br/>term synaptic plasticity. This neural mass model gives access not only to the population firing rate,<br/>but also to the mean membrane potential. The latter is correlated to the Local Field Potentials<br/>and to electroencephalographic signals, usually measured during WM tasks to characterize the brain<br/>dynamics. The model is able to mimic several operations required by WM : memory loading, memory<br/>maintenance, competition of memory items and multi-item memory juggling. Memory access and<br/>loading is associated to self-sustained oscillations in the β-γ band and to transient evoked responses<br/>in the δ band, analogous to what is observed in the prefrontal cortex of monkeys during object<br/>recognition tasks. More items can be stored in the WM by considering neural architectures composed<br/>by multiple excitatory populations and a common inhibitory pool. The items can be loaded and<br/>maintained at the same time: they are represented as trains of PBs with the same period, but<br/>delivered at evenly shifted phases. A memory competition is observable already by loading only two<br/>items. Depending on the stimulation features we can observe three different outcomes: maintenance<br/>of the first or second loaded item or their juggling in the memory. As reported in many experiments,<br/>the γ-band power increases with the number of loaded items. The power in the α-β instead shows<br/>a non monotonic behaviour. Finally, we report an expression for the maximal capacity adapted to<br/>the present model and architecture.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

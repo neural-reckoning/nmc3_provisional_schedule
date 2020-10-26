@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 22:30" data-end="2020-10-29 22:45">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Economic Choices with Simultaneous or Sequential Offers Rely on the Same Neural Circuit Mechanism</h1><h2>Weikang Shi</h2><h3>Weikang Shi, Washington University in St. Louis; Sebastien Ballesta, Washington University in St. Louis; Camillo Padoa-Schioppa, Washington University in St. Louis</h3><h2>Abstract</h1><p>Economic choices entail assigning values to the available options; a decision is then made by comparing values. Studies in which monkeys chose between two juices identified in the orbitofrontal cortex (OFC) different groups of cells encoding the value of individual options (offer value), the binary choice outcome (chosen juice) and the chosen value. These variables capture both the input and the output of the choice process, suggesting that these groups of neurons constitute the building blocks of a decision circuit. Experimental and theoretical results support this hypothesis. However, current notions emerged from studies where offers were presented simultaneously; conversely, it was suggested that choices between goods offered (or attended) sequentially rely on different mechanisms. Ballesta et al. recently examined OFC activity during economic decisions under sequential offers. They found different groups of cells seemingly analogous to those identified under simultaneous offers: group1 cells encoded the value of one particular juice whenever that juice was offered; group2 cells encoded the value of the juice currently offered and, subsequently, the chosen value; group3 cells encoded in a binary way the juice type present on the monitor and, subsequently, the chosen juice. Here we directly examined the relation between these cell groups and those previously identified under simultaneous offers. Monkeys performed economic decisions alternating between the two task modalities in a trial-by-trial way. Our results indicate that decisions under sequential offers and under simultaneous offers rely on the same neural circuit.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 08:00" data-end="2020-10-28 08:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Cellular mechanisms for rapidly dynamic neural code in spatial navigation</h1><h2>Ching-Lung Hsu</h2><h3>Xinyu Zhao, Janelia Research Campus; Aaron Milstein, Neurosurgery Department, Stanford University School of Medicine; Nelson Spruston, Janelia Research Campus</h3><h2>Abstract</h1><p>Navigation usually involves complex tasks that require neural representation of environments, with the flexibility to respond to rapidly dynamic behavioral or cognitive variables. For instance, in the hippocampus, a brain area important for navigation, relatively small changes in cues can quickly modulate the neural representation of space. Besides, animals also learn to form such neural maps incorporated with task-relevant information. Remarkably, these processes can happen as promptly as in no more than a few seconds.
-
-Dynamic hippocampal coding likely supports a hallmark complexity of spatial cognition, but the cellular mechanisms are poorly understood. In this talk, I will discuss our recent findings that the rapid and flexible formation and adaptation of place-dependent neural firing could be mediated by nonlinear subcellular integration or via synaptic plasticity, through experiments applying whole-cell patch-clamp recording to CA1 pyramidal neurons in acute hippocampal slices and in awake, behaving mice, as well as computational modeling. These results suggest a cellular and biophysical basis for neural computations fundamental to flexible and adaptive behavior.
-</p>
+        <h1>Cellular mechanisms for rapidly dynamic neural code in spatial navigation</h1><h2>Ching-Lung Hsu</h2><h3>Xinyu Zhao, Janelia Research Campus; Aaron Milstein, Neurosurgery Department, Stanford University School of Medicine; Nelson Spruston, Janelia Research Campus</h3><h2>Abstract</h1><p>Navigation usually involves complex tasks that require neural representation of environments, with the flexibility to respond to rapidly dynamic behavioral or cognitive variables. For instance, in the hippocampus, a brain area important for navigation, relatively small changes in cues can quickly modulate the neural representation of space. Besides, animals also learn to form such neural maps incorporated with task-relevant information. Remarkably, these processes can happen as promptly as in no more than a few seconds.<br/><br/>Dynamic hippocampal coding likely supports a hallmark complexity of spatial cognition, but the cellular mechanisms are poorly understood. In this talk, I will discuss our recent findings that the rapid and flexible formation and adaptation of place-dependent neural firing could be mediated by nonlinear subcellular integration or via synaptic plasticity, through experiments applying whole-cell patch-clamp recording to CA1 pyramidal neurons in acute hippocampal slices and in awake, behaving mice, as well as computational modeling. These results suggest a cellular and biophysical basis for neural computations fundamental to flexible and adaptive behavior.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

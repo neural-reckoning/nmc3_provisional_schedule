@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 6
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-26 22:00" data-end="2020-10-26 22:15">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Coordinate transform mechanisms mediating tactile motion representations on the hand</h1><h2>Himanshu Ahuja</h2><h3>Himanshu Ahuja, Brain and Cognitive Science Department, University of Rochester; Ralf Haefner,  Brain and Cognitive Science Department, University of Rochester; Greg De Angelis, Brain and Cognitive Science Department, University of Rochester; Manuel Gomez-Ramirez, Brain and Cognitive Science Department, University of Rochester;  </h3><h2>Abstract</h1><p>Humans’ hand dexterity is largely facilitated by the brain’s ability to provide invariant object representations regardless of how fingers enclose the object. When an object slips between our fingers, it is perceived sliding down regardless of whether the hand is in a pronated vs. supinated position. Yet, the motion on the skin is completely reversed across both hand postures. This dichotomy indicates that tactile motion representations are remapped into a coordinate frame that is controlled, at least in part, by proprioception. A fundamental question that arises is whether tactile motion coordinate transforms are anchored on a skin- vs. ego-centric reference frame. In the skin-centric frame, the brain computes the object’s motion by combining cutaneous signals with the spatial position of the hand. In the World-centric frame, the brain uses the position of external cues (e.g., the object’s position relative to the floor) to derive the object’s motion irrespective of hand position. Top-down mechanisms may also allow switching between reference frames to provide invariant motion representations relative to hand movements vs. movements of external objects.
-We conducted a series of human psychophysics experiments to study coordinate transform mechanisms in the somatosensory system. We designed a tactile stimulator that delivers cutaneous motion stimuli with the hand placed in different postures. Data show that humans can readily switch between Hand-centric and World-centric reference frames when judging the direction of tactile motion stimuli. Data also show that vision biases proprioceptive representations that control the coordinate transforms of cutaneous motion stimuli. Taken together, these data indicate that tactile motion representations are derived by integrating cutaneous, proprioceptive and visual-spatial signals, and that the haptics sensorimotor network can flexibly shift reference frames to accommodate for the current task demands.
-</p>
+        <h1>Coordinate transform mechanisms mediating tactile motion representations on the hand</h1><h2>Himanshu Ahuja</h2><h3>Himanshu Ahuja, Brain and Cognitive Science Department, University of Rochester; Ralf Haefner,  Brain and Cognitive Science Department, University of Rochester; Greg De Angelis, Brain and Cognitive Science Department, University of Rochester; Manuel Gomez-Ramirez, Brain and Cognitive Science Department, University of Rochester;  </h3><h2>Abstract</h1><p>Humans’ hand dexterity is largely facilitated by the brain’s ability to provide invariant object representations regardless of how fingers enclose the object. When an object slips between our fingers, it is perceived sliding down regardless of whether the hand is in a pronated vs. supinated position. Yet, the motion on the skin is completely reversed across both hand postures. This dichotomy indicates that tactile motion representations are remapped into a coordinate frame that is controlled, at least in part, by proprioception. A fundamental question that arises is whether tactile motion coordinate transforms are anchored on a skin- vs. ego-centric reference frame. In the skin-centric frame, the brain computes the object’s motion by combining cutaneous signals with the spatial position of the hand. In the World-centric frame, the brain uses the position of external cues (e.g., the object’s position relative to the floor) to derive the object’s motion irrespective of hand position. Top-down mechanisms may also allow switching between reference frames to provide invariant motion representations relative to hand movements vs. movements of external objects.<br/>We conducted a series of human psychophysics experiments to study coordinate transform mechanisms in the somatosensory system. We designed a tactile stimulator that delivers cutaneous motion stimuli with the hand placed in different postures. Data show that humans can readily switch between Hand-centric and World-centric reference frames when judging the direction of tactile motion stimuli. Data also show that vision biases proprioceptive representations that control the coordinate transforms of cutaneous motion stimuli. Taken together, these data indicate that tactile motion representations are derived by integrating cutaneous, proprioceptive and visual-spatial signals, and that the haptics sensorimotor network can flexibly shift reference frames to accommodate for the current task demands.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

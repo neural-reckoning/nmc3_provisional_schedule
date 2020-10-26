@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,16 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 16:30" data-end="2020-10-27 16:45">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Associations of pickleball-play with cognition among older adults: A longitudinal study</h1><h2>Abbie Hutton</h2><h3>Inga Sogaard, Rui Ni</h3><h2>Abstract</h1><p>Inevitably, physical and cognitive abilities decline with age. The population of those over the age of 65 is currently doubling (Passel & Cohn, 2008). Contrary to aerobic exercises, open skill exercise has been shown to improve decision making, RT, and visual capabilities (Guo et al., 2016; Marks, 2006; Jafarzadehpur et al., 2012). Pickleball is rapidly growing and is recommended for older adults because of the court size, interaction, and is easy to learn, yet is moderate in intensity (Ryu et al., 2018). Pickleball can increase physical well-being and life satisfaction, but lacks research on cognition. We hypothesized that older adults who participate in pickleball will show improved cognition through perceptual learning. 
-A non-experimental, longitudinal study was used to compare 83 healthy older adults. Groups were based on exercise characteristics (advanced pickleball-AP, novice pickleball-NP, aerobic exercise, inactive). A battery of eight standard and cognitive assessments (Multiple object tracking, Useful Field of View, Flanker, N-back) were given. 
-UFOV. The aerobic and AP groups had quicker processing times. Older participants in the AP group had decreased processing times. As pickleball players age, it seems that the continuation of the sport can help maintain processing speed. 
-MOT. The aerobic group was more accurate. The reason we may not have found the pickleball groups performing like the aerobic group is that these visual functions may take consecutive years and multiple methods of exercising. 
-Flanker. The aerobic group had quicker RT. Playing pickleball more times a week can increase comfort level and familiarity with an unpredictable environment which could be why their RT was quicker.
-N-back. In general, aerobic exercise can strengthen WM more than pickleball or that the N-back is not sensitive enough to assess changes in WM. 
-Open skilled exercise can potentially maintain and improve cognitive decline in older adults more than traditional aerobic exercise. As the population of older adults grows, it’s important to maximize their quality of life and a game of pickleball could be part of the solution. 
-
-</p>
+        <h1>Associations of pickleball-play with cognition among older adults: A longitudinal study</h1><h2>Abbie Hutton</h2><h3>Inga Sogaard, Rui Ni</h3><h2>Abstract</h1><p>Inevitably, physical and cognitive abilities decline with age. The population of those over the age of 65 is currently doubling (Passel & Cohn, 2008). Contrary to aerobic exercises, open skill exercise has been shown to improve decision making, RT, and visual capabilities (Guo et al., 2016; Marks, 2006; Jafarzadehpur et al., 2012). Pickleball is rapidly growing and is recommended for older adults because of the court size, interaction, and is easy to learn, yet is moderate in intensity (Ryu et al., 2018). Pickleball can increase physical well-being and life satisfaction, but lacks research on cognition. We hypothesized that older adults who participate in pickleball will show improved cognition through perceptual learning. <br/>A non-experimental, longitudinal study was used to compare 83 healthy older adults. Groups were based on exercise characteristics (advanced pickleball-AP, novice pickleball-NP, aerobic exercise, inactive). A battery of eight standard and cognitive assessments (Multiple object tracking, Useful Field of View, Flanker, N-back) were given. <br/>UFOV. The aerobic and AP groups had quicker processing times. Older participants in the AP group had decreased processing times. As pickleball players age, it seems that the continuation of the sport can help maintain processing speed. <br/>MOT. The aerobic group was more accurate. The reason we may not have found the pickleball groups performing like the aerobic group is that these visual functions may take consecutive years and multiple methods of exercising. <br/>Flanker. The aerobic group had quicker RT. Playing pickleball more times a week can increase comfort level and familiarity with an unpredictable environment which could be why their RT was quicker.<br/>N-back. In general, aerobic exercise can strengthen WM more than pickleball or that the N-back is not sensitive enough to assess changes in WM. <br/>Open skilled exercise can potentially maintain and improve cognitive decline in older adults more than traditional aerobic exercise. As the population of older adults grows, it’s important to maximize their quality of life and a game of pickleball could be part of the solution. <br/><br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

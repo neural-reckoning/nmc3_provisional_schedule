@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 21:00" data-end="2020-10-27 21:15">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Presaccadic stimulus affects postsaccadic neural activity during  realistic visual search</h1><h2>Atanas Stankov</h2><h3>Atanas D Stankov, City College of New York; Jonathan Touryan, Army Research Lab; Stephen Gordon, Army Research Lab; Jason Ki, City College of New York; Lucas Parra, City College of New York;</h3><h2>Abstract</h1><p>Little is known about visual processing during realistic visual search in dynamic environments. Saccades during free viewing generate large neural responses, which have been linked to enhanced visual processing during the subsequent fixations. The content of fixation prior to a saccade is known to modulate post-saccading processing during free viewing of static images. But this phenomenon has not yet been established for more realistic dynamic visual stimuli. To emulate a natural setting, subjects were asked to detect visual targets that appear on the road while being driven through a 3D virtual town. We predicted that target- and saccade-evoked potentials are modulated by the visibility of those targets and their location in the visual field. Virtual “fog” reduced the visibility of targets, and decreased target- and saccade-evoked potentials, as expected. Saccade-evoked responses were stronger when saccades are prompted by a target appearing on the road as compared to spontaneous saccades. When targets appeared in peripheral vision, they elicited larger eye movements with a concomitant increase in saccade-evoked response. However, contrary to our expectations, targets elicited similar evoked responses regardless of where they appeared in the visual field. In conclusion, visibility of stimuli appearing before saccades affect post-saccadic processing. However, differences in neural responses to events occurring in foveal vs peripheral vision, could not be disentangled from differences in saccade behavior.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

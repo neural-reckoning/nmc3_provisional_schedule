@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 21:15" data-end="2020-10-30 21:30">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Sculpting New Visual Concepts into the Human Brain</h1><h2>Marius Cătălin Iordan</h2><h3>Marius Cătălin Iordan, Princeton University; Victoria J. H. Ritvo, Princeton University; Kenneth A. Norman, Princeton University; Nicholas B. Turk-Browne, Yale University; Jonathan D. Cohen, Princeton University</h3><h2>Abstract</h1><p>Learning requires changing the brain. This typically occurs through experience, study, or instruction. We report a new way of acquiring conceptual knowledge by directly sculpting activity patterns in the human brain. We used a non-invasive technique (closed-loop real-time functional magnetic resonance imaging) to create novel categories of visual objects in the brain. After training, participants exhibited behavioral and neural biases for the sculpted, but not control categories. The ability to sculpt new conceptual distinctions in the human brain, applied here to perception, has broad relevance to other domains of cognition such as decision-making, memory, and motor control. As such, the work opens up new frontiers in brain-machine interface design, neuroprosthetics, and neurorehabilitation.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

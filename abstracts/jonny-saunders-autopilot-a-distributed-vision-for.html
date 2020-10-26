@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 17:30" data-end="2020-10-30 17:45">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Autopilot: a distributed vision for the extravagant complexity of naturalistic neuroscience experiments</h1><h2>Jonny Saunders</h2><h3>Michael Wehr</h3><h2>Abstract</h1><p>To understand the brain, it is increasingly clear that neuroscientists need to study it in its natural context of complex, contingent, and open-ended behavior. Naturalistic experiments invite neuroscientists to imagine beyond the constraints of their traditional rigs, but dreams of observing neural activity in multiple unrestrained animals in complex, hardware-dense environments are rudely grounded by technical complexity. Neuroscientists are intrepid, used to cobbling together the many mutually unintelligible components their experimental apparatuses require, but idiosyncratic builds are costly to re-develop and place hard limits on experimental replication. Autopilot is a Python framework for behavioral neuroscience that tackles problems of technical scale by distributing experiments over swarms of networked computers, principally Raspberry Pis. Rather than relying on an ecosystem of system-specific components, Autopilot provides the infrastructure to integrate your existing hardware or to use the many inexpensive peripherals available to the Raspberry Pi. Its distributed design allows effectively arbitrary numbers of hardware components to be coordinated in an experiment -- just add more computers. We attempted to blur the line between using and developing Autopilot: rather than writing scripts that "sit on top of" a fixed library, users are encouraged to be playful with its core components and write their experiments "within" it. Our vision is to nudge heroic reinventions of the wheel towards a shared, communally developed library of hardware controllers and experimental prototypes. Autopilot balances flexibility with reproducibility by separating an experiment's design from the particularities of its implementation. Data produced by Autopilot are clean and exhaustive at the time of collection, allowing direct replication of an experiment from a single file. In sum we built Autopilot to give neuroscientists the freedom to design the hare-brainedly complex experiments needed to study the behaving brain in a framework that encourages communally-developed and reproducible science. I will be presenting Autopilot's motivation, design, and recent work like the integration of DeepLabCut-Live -- and if lab access and instrumentation permits, a demonstration of the experiments we're designing with it now.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

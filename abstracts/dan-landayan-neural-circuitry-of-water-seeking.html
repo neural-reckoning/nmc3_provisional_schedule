@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 2
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 22:15" data-end="2020-10-29 22:30">
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=GBd2goR_WLU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Neural Circuitry of Water Seeking in Drosophila</h1><h2>Dan Landayan</h2><h3>Dan Landayan, Stanford; Jennifer Zhou, UC Merced; Brian Wang, UC Merced; Fred Wolf, UC Merced</h3><h2>Abstract</h1><p>Thirst is an evolutionarily ancient motivational state that is hard-wired and critical for survival. How thirst circuits in the brain coordinate the appropriate goal-directed behavior, and how it can do so in the presence of opposing behavioral states such as hunger, is not well understood. We show that a persistent state of thirst is evoked by the precise activation and inactivation of overlapping central brain neuronal circuit elements in Drosophila. In a neuronal activation screen, we identified a subset of glutamatergic neurons that evoke robust thirst-related behaviors, including water seeking and intake; we named these neurons Durstig, the German for thirsty.These central brain neurons function downstream of sensory input and internal osmotic sensors to drive seeking to either open orin accessible water.Importantly, activation of Durstig neurons overrides food seeking in water replete but hungry flies. Thus, neural circuit elements that regulate hunger and thirst are tightly integrated. These studies provide an entry point for mapping the fundamental homeostatic thirst neurons and the hierarchical wiring of neural circuits that encode opposing motivational states.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

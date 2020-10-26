@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-30 12:15" data-end="2020-10-30 12:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Head direction cells: the three-dimensional neuronal compass</h1><h2>Jean Laurens</h2><h2>Abstract</h1><p>Here we show that head direction (HD) cells in mice encode a 3D neural compass. We recorded the responses of HD cells in the Anterior Thalamus, Cingulum fiber bundle and Retrosplenial Cortex of mice across the entire range of 3D head orientations. The 3D responses of HD cells can be decomposed into a 1D azimuth component that encodes head orientation in the horizontal plane, and a 2D pitch/roll component that encodes head orientation relative to vertical. The azimuth component is visually anchored, whereas the vertical component is anchored to gravity. Individual cells may encode azimuth, gravity or both; and the probability of encoding azimuth (~50%) and gravity (~66%) are independent. Furthermore, in those cells that encode both, the responses azimuth and gravity superimpose multiplicatively. We propose a conceptual framework of 3D orientation encoding in the HD system which is compatible with previous finding in bats, primates and rodents.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

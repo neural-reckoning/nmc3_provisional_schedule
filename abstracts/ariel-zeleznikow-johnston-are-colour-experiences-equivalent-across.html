@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,15 +52,15 @@
             Track 3
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 21:15" data-end="2020-10-27 21:30">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Are colour experiences equivalent across the visual field?</h1><h2>Ariel Zeleznikow-Johnston</h2><h3>Ariel Zeleznikow-Johnston, Monash University; Naotsugu Tsuchiya, Monash University</h3><h2>Abstract</h1><p>Perplexingly, our naïve impression of a vividly coloured experience across the visual field is challenged on empirical and theoretical grounds. Empirically, recent findings that subjects can be unaware of extensive desaturation of their peripheral vision demonstrates that our experiences have no guarantee of accuracy with respect to the external world (veridicality). Theoretically, objective verification of colour experience is hampered by claims that some subjective properties of experience are private and incommunicable. As a result, the connection between internal colour experience and external light properties seems arbitrary. This is epitomised by the "inverted qualia" argument, which posits the plausibility of different wavelength-experience mappings between individuals (e.g. colour inversion).
- 
-Here, we tested a reduced version of this claim by searching for evidence of colour inversion from central to peripheral vision within subjects. We sought to determine this by obtaining subjective similarity judgments between pairs of colours presented at varying eccentricities. We deemed colour experiences equivalent if stimuli presented at different eccentricities elicited equivalent similarity relationships.  We tested for the possibility of inversion by seeing whether artificially swapping peripheral colour labels during analysis would decrease these correlations. Additionally, we investigated whether the presence/absence of accounting for cortical magnification by using stimuli scaled by eccentricity affected these similarity judgments.
- 
-Using dissimilarity analysis, we found that the similarity judgments between experiences induced by coloured stimuli were highly correlated regardless of the eccentricity of presentation. Our preliminary analysis suggests that swapping the colour labels (e.g. inversion) produced detectable decreases in correlations between central and peripheral dissimilarity judgments. Additionally, we found that similarity judgments between experiences induced by unscaled (but not scaled) stimuli decreased in correlation as stimulus size decreased. 
- 
-These results do not support the possibility of colour inversion across the visual field and instead suggest the equivalence of central and peripheral colour experiences, irrespective of veridicality.
-</p>
+        <h1>Are colour experiences equivalent across the visual field?</h1><h2>Ariel Zeleznikow-Johnston</h2><h3>Ariel Zeleznikow-Johnston, Monash University; Naotsugu Tsuchiya, Monash University</h3><h2>Abstract</h1><p>Perplexingly, our naïve impression of a vividly coloured experience across the visual field is challenged on empirical and theoretical grounds. Empirically, recent findings that subjects can be unaware of extensive desaturation of their peripheral vision demonstrates that our experiences have no guarantee of accuracy with respect to the external world (veridicality). Theoretically, objective verification of colour experience is hampered by claims that some subjective properties of experience are private and incommunicable. As a result, the connection between internal colour experience and external light properties seems arbitrary. This is epitomised by the "inverted qualia" argument, which posits the plausibility of different wavelength-experience mappings between individuals (e.g. colour inversion).<br/> <br/>Here, we tested a reduced version of this claim by searching for evidence of colour inversion from central to peripheral vision within subjects. We sought to determine this by obtaining subjective similarity judgments between pairs of colours presented at varying eccentricities. We deemed colour experiences equivalent if stimuli presented at different eccentricities elicited equivalent similarity relationships.  We tested for the possibility of inversion by seeing whether artificially swapping peripheral colour labels during analysis would decrease these correlations. Additionally, we investigated whether the presence/absence of accounting for cortical magnification by using stimuli scaled by eccentricity affected these similarity judgments.<br/> <br/>Using dissimilarity analysis, we found that the similarity judgments between experiences induced by coloured stimuli were highly correlated regardless of the eccentricity of presentation. Our preliminary analysis suggests that swapping the colour labels (e.g. inversion) produced detectable decreases in correlations between central and peripheral dissimilarity judgments. Additionally, we found that similarity judgments between experiences induced by unscaled (but not scaled) stimuli decreased in correlation as stimulus size decreased. <br/> <br/>These results do not support the possibility of colour inversion across the visual field and instead suggest the equivalence of central and peripheral colour experiences, irrespective of veridicality.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

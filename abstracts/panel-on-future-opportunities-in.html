@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,25 +52,15 @@
             Track 0
             /
             Special Event
+            <div class="visible_at_time" data-start="2020-10-26 17:00" data-end="2020-10-26 18:00">
+                <a href='https://www.youtube.com/watch?v=YWYsHlZ2Utk'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=YWYsHlZ2Utk'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Panel on Future Opportunities in Neuroscience and Neurotechnologies with BRAIN Initiative Alliance Leadership</h1><h2>Abstract</h1><p>Join a discussion on the future of neuroscience and neurotechnology funding with leadership from federal and non-government members of the BRAIN Initiative Alliance. Listen, learn, and engage with long-time collaborators in the U.S. BRAIN Initiative as they consider questions like:
-
-- What might we expect for neuroscience funding in the coming years? 
-- What will the priorities be and will the focus of research opportunities shift? 
-- What is the long-term plan for government-supported projects like data archives? 
-- How might we support technology dissemination to the broader neuroscience community?
-
-Panelists:
-
-- Michelle Elekonich, Deputy Division Director, Division of Integrative Organismal Systems, Directorate for Biological Sciences, National Science Foundation
-
-- David Markowitz, Program Manager, IARPA
-
-- Caroline Montojo, Director, Life Sciences and Director, Brain Initiatives, The Kavli Foundation
-
-- John Ngai, Director of NIH BRAIN Initiative, National Institute of Neurological Disorders and Stroke
-
-- Alyssa Picchini Schaffer, Senior Scientist & Administrative Director, Neuroscience Collaborations, The Simons Foundation</p>
+        <h1>Panel on Future Opportunities in Neuroscience and Neurotechnologies with BRAIN Initiative Alliance Leadership</h1><h2>Abstract</h1><p>Join a discussion on the future of neuroscience and neurotechnology funding with leadership from federal and non-government members of the BRAIN Initiative Alliance. Listen, learn, and engage with long-time collaborators in the U.S. BRAIN Initiative as they consider questions like:<br/><br/>- What might we expect for neuroscience funding in the coming years? <br/>- What will the priorities be and will the focus of research opportunities shift? <br/>- What is the long-term plan for government-supported projects like data archives? <br/>- How might we support technology dissemination to the broader neuroscience community?<br/><br/>Panelists:<br/><br/>- Michelle Elekonich, Deputy Division Director, Division of Integrative Organismal Systems, Directorate for Biological Sciences, National Science Foundation<br/><br/>- David Markowitz, Program Manager, IARPA<br/><br/>- Caroline Montojo, Director, Life Sciences and Director, Brain Initiatives, The Kavli Foundation<br/><br/>- John Ngai, Director of NIH BRAIN Initiative, National Institute of Neurological Disorders and Stroke<br/><br/>- Alyssa Picchini Schaffer, Senior Scientist & Administrative Director, Neuroscience Collaborations, The Simons Foundation</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 16:15" data-end="2020-10-29 16:30">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Spatial theta-phase coding in the lateral septum: a theory of allocentric feedback during navigation</h1><h2>Joseph Monaco</h2><h3>H. T. Blair, UCLA; Kechen Zhang, Johns Hopkins University</h3><h2>Abstract</h1><p>During spatial navigation, the frequency and timing of spikes from spatial neurons including place cells in hippocampus and grid cells in medial entorhinal cortex are temporally organized by continuous theta oscillations (6–11 Hz). The theta rhythm is regulated by subcortical structures including the medial septum, but it is unclear how spatial information from place cells may reciprocally organize subcortical theta-rhythmic activity. Here we recorded single-unit spiking from a constellation of subcortical and hippocampal sites to study spatial modulation of rhythmic spike timing in rats freely exploring an open environment. Our analysis revealed a novel class of neurons that we termed 'phaser cells,' characterized by a symmetric coupling between firing rate and spike theta-phase. Phaser cells encoded space by assigning distinct phases to allocentric isocontour levels of each cell's spatial firing pattern. In our dataset, phaser cells were predominantly located in the lateral septum, but also the hippocampus, anteroventral thalamus, lateral hypothalamus, and nucleus accumbens. Unlike the unidirectional late-to-early phase precession of place cells, bidirectional phase modulation acted to return phaser cells to the same theta-phase along a given spatial isocontour, including cells that characteristically shifted to later phases at higher firing rates. Our dynamical models of intrinsic theta-bursting neurons demonstrated that experience-independent temporal coding mechanisms can qualitatively explain (1) the spatial rate-phase relationships of phaser cells and (2) the observed temporal segregation of phaser cells according to phase-shift direction. In open-field phaser cell simulations, competitive learning embedded phase-code entrainment maps into the weights of downstream targets, including path integration networks. Bayesian phase decoding revealed error correction capable of resetting path integration at subsecond timescales. Our findings suggest that phaser cells may instantiate a subcortical theta-rhythmic loop of spatial feedback. We outline a framework in which location-dependent synchrony reconciles internal idiothetic processes with the allothetic reference points of sensory experience.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

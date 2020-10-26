@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 7
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 21:30" data-end="2020-10-27 21:45">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Exploring the Role of the Endoplasmic Reticulum in Regulating Activity-Driven Intracellular Calcium Signaling in Drosophila Elementary Motion Detection</h1><h2>Vicky Mak</h2><h2>Abstract</h1><p>Intracellular Ca2+ regulates several processes, including synaptic plasticity and neurotransmission. The endoplasmic reticulum (ER) is a major neuronal Ca2+ reservoir. Although much is known about the molecular mechanisms underlying ER Ca2+ uptake and release, it is unclear how these dynamics contribute to neuronal activity in vivo. In this work, we investigated the role of the ER in intracellular Ca2+ signaling in Drosophila local motion detection. Cell-types within this circuit exhibit cytosolic Ca2+ response kinetics spanning various timescales. This cell-type-specific temporal filtering is critical for motion detection, but the cellular mechanisms underlying temporal filtering are unknown. Since ER Ca2+ handling can regulate cytosolic Ca2+, we hypothesized that the ER tunes cell-type-specific temporal filtering properties in motion detection. To test this, we measured stimulus-evoked ER and cytosolic Ca2+ signals in neurons in flies using two-photon microscopy. We found, first, that visual stimuli drive different ER Ca2+ signals depending on the cell-type and compartment. For example, within Mi1 neurons, dendrites exhibit slow, sustained (~1s) ER Ca2+ release, and axon terminals exhibit rapid, sustained (~100ms-1s) Ca2+ uptake. Thus, the ER acts as a Ca2+ source or sink during activation over different timescales. Second, we found that RNAi knockdown of ER Ca2+ efflux channel inositol trisphosphate receptor (IP3R) perturbs ER and cytosolic Ca2+ signaling. IP3R knockdown reduces ER Ca2+ uptake in Mi1 axons and Ca2+ release in dendrites, suggesting that homeostatic mechanisms reduce Ca2+ uptake when Ca2+ release is impaired. Finally, we found that reduced ER Ca2+ uptake in Mi1 axon terminals after IP3R knockdown is associated with more sustained cytosolic Ca2+ responses to visual stimuli, suggesting that ER Ca2+ handling regulates temporal filtering properties underlying motion detection. Altogether, we propose that the ER plays a critical role in regulating activity-driven intracellular Ca2+ signals in neurons in vivo, thereby tuning single-cell processing and circuit function. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

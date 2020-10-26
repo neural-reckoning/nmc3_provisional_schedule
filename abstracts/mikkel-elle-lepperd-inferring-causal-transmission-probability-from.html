@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,13 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 12:00" data-end="2020-10-27 12:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Inferring causal transmission probability from pairwise recordings and optogenetics</h1><h2>Mikkel Elle Lepperød</h2><h3>Marianne Fyhn; Torkel Hafting; Tristan Stoeber; Konrad Kording</h3><h2>Abstract</h1><p>To study how the brain works, it is crucial to identify causal interactions between neurons, which is thought to require perturbations. 
-However, when using optogenetics, we typically perturb multiple neurons, producing a confound - any of the stimulated neurons can have affected the postsynaptic neuron. 
-In this study we show how this produces large biases, and how they can be reduced using the instrumental variable (IV) technique from econometrics. 
-The interaction between stimulation and the absolute refractory period produces a weak, approximately random signal which can be exploited to estimate causal transmission probability. 
-When simulating integrate-and-fire neurons, we find that estimates from IV are better than na\"ive techniques. 
-Presented is a robust analysis framework for mapping out network connectivity based on causal neuron interactions. </p>
+        <h1>Inferring causal transmission probability from pairwise recordings and optogenetics</h1><h2>Mikkel Elle Lepperød</h2><h3>Marianne Fyhn; Torkel Hafting; Tristan Stoeber; Konrad Kording</h3><h2>Abstract</h1><p>To study how the brain works, it is crucial to identify causal interactions between neurons, which is thought to require perturbations. <br/>However, when using optogenetics, we typically perturb multiple neurons, producing a confound - any of the stimulated neurons can have affected the postsynaptic neuron. <br/>In this study we show how this produces large biases, and how they can be reduced using the instrumental variable (IV) technique from econometrics. <br/>The interaction between stimulation and the absolute refractory period produces a weak, approximately random signal which can be exploited to estimate causal transmission probability. <br/>When simulating integrate-and-fire neurons, we find that estimates from IV are better than na\"ive techniques. <br/>Presented is a robust analysis framework for mapping out network connectivity based on causal neuron interactions. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

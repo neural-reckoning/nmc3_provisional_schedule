@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 03:30" data-end="2020-10-30 03:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Embryonic Neuronal Activity in the Circuit Assembly of the Mouse Piriform Cortex</h1><h2>David Wang</h2><h3>David C. Wang, Stanford University Department of Biology; Jun Ding, Stanford School of Medicine Neurosurgery and Neurology; Liqun Luo, Stanford University Department of Biology</h3><h2>Abstract</h1><p>Throughout development, neuronal activity plays a vital role in the assembly of neuronal circuits. While this has been explored in many afferent sensory circuits, the role of activity in shaping recurrent intracortical networks remains largely unexplored. The mouse piriform cortex is an interesting region to study this as it contains highly recurrently connected neuronal assemblies which respond to different olfactory stimuli. While the time and mechanism of the development of these assemblies is unclear, there is much evidence suggesting neonatal mice have olfactory learning capability at birth and require olfaction to survive. Given the potential ethological importance of these assemblies in early development, the perinatal maturation of these assemblies may elucidate principles of activity-dependent formation of recurrent intracortical circuits.
-
-Using genetic techniques to label active neurons in the developing mouse brain, I found that the piriform cortex is one of the only cerebral cortical regions that is robustly active in late embryogenesis. I propose this embryonic neuronal activity may shape piriform assembly maturation in utero, which may in turn facilitate neonatal olfactory learning and behavior. One possible mechanism is that synchronized in utero activity of piriform neurons may strengthen assembly connectivity through Hebbian plasticity, and well-connected assemblies may promote robust pattern completion to facilitate neonatal olfactory learning. To explore this, I am probing the role of these embryonically labeled piriform neurons with immediate-early gene labeling and neonatal behavior, and the physiological connectivity of assemblies with optogenetics and whole-cell recordings in acute neonatal brain slices.</p>
+        <h1>Embryonic Neuronal Activity in the Circuit Assembly of the Mouse Piriform Cortex</h1><h2>David Wang</h2><h3>David C. Wang, Stanford University Department of Biology; Jun Ding, Stanford School of Medicine Neurosurgery and Neurology; Liqun Luo, Stanford University Department of Biology</h3><h2>Abstract</h1><p>Throughout development, neuronal activity plays a vital role in the assembly of neuronal circuits. While this has been explored in many afferent sensory circuits, the role of activity in shaping recurrent intracortical networks remains largely unexplored. The mouse piriform cortex is an interesting region to study this as it contains highly recurrently connected neuronal assemblies which respond to different olfactory stimuli. While the time and mechanism of the development of these assemblies is unclear, there is much evidence suggesting neonatal mice have olfactory learning capability at birth and require olfaction to survive. Given the potential ethological importance of these assemblies in early development, the perinatal maturation of these assemblies may elucidate principles of activity-dependent formation of recurrent intracortical circuits.<br/><br/>Using genetic techniques to label active neurons in the developing mouse brain, I found that the piriform cortex is one of the only cerebral cortical regions that is robustly active in late embryogenesis. I propose this embryonic neuronal activity may shape piriform assembly maturation in utero, which may in turn facilitate neonatal olfactory learning and behavior. One possible mechanism is that synchronized in utero activity of piriform neurons may strengthen assembly connectivity through Hebbian plasticity, and well-connected assemblies may promote robust pattern completion to facilitate neonatal olfactory learning. To explore this, I am probing the role of these embryonically labeled piriform neurons with immediate-early gene labeling and neonatal behavior, and the physiological connectivity of assemblies with optogenetics and whole-cell recordings in acute neonatal brain slices.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

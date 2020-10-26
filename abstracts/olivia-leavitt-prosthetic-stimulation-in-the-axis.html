@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-26 18:30" data-end="2020-10-26 18:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Prosthetic stimulation in the axis corresponding to support surface perturbation improves postural control in a BVL primate</h1><h2>Olivia Leavitt</h2><h3>Kathleen Cullen, Johns Hopkins Medicine</h3><h2>Abstract</h1><p>Bilateral vestibular loss (BVL) is a debilitating condition that can cause impairments in posture and balance. Studies in human subjects with profound BVL have proven useful in quantifying the contribution of vestibular sensation to posture. Generally, human studies involve the application of dynamic perturbations to support surface during stance. Analysis of the resultant upper body and head motion has demonstrated a shift from a platform-fixed to a head-fixed pattern of compensation around 0.5 Hz in normal subjects. In contrast, BVL subjects have difficulty with this platform-fixed compensation strategy. 
-
-Notably, vestibular prostheses are an emerging technology that improves outcomes in human BVL patients, however continued work in animal models is essential for understanding the current functional limitations of the technology. Accordingly, here we explored postural responses to platform tilts in a normal monkey vs. monkey with profound BVL. Both animals were trained to maintain a relaxed posture within a behavioral chamber mounted on a 6-dof hexapod motion platform. Dynamic perturbations were applied to animal’s support surface in roll and yaw (0.25-10 Hz, maximum velocity 5 deg/s). The BVL animal received vestibular stimulation with a biomimetic transfer function in either the horizontal or posterior semicircular canal. A wireless IMU was placed on the animal’s head, and center of pressure, and joint positions (DeepLabCut) were recorded. Analysis revealed that postural sway decreased from lower to higher frequencies, similar to the platform-fixed to head-fixed strategy shift observed in humans. Further, the BVL monkey demonstrated a relative increase in sway at lower frequencies, which was mitigated by posterior but not horizontal canal stimulation. These results suggest that profound BVL causes detectible impairments in postural compensation, which is partially corrected by a vestibular prosthesis, particularly at lower frequencies. 
-</p>
+        <h1>Prosthetic stimulation in the axis corresponding to support surface perturbation improves postural control in a BVL primate</h1><h2>Olivia Leavitt</h2><h3>Kathleen Cullen, Johns Hopkins Medicine</h3><h2>Abstract</h1><p>Bilateral vestibular loss (BVL) is a debilitating condition that can cause impairments in posture and balance. Studies in human subjects with profound BVL have proven useful in quantifying the contribution of vestibular sensation to posture. Generally, human studies involve the application of dynamic perturbations to support surface during stance. Analysis of the resultant upper body and head motion has demonstrated a shift from a platform-fixed to a head-fixed pattern of compensation around 0.5 Hz in normal subjects. In contrast, BVL subjects have difficulty with this platform-fixed compensation strategy. <br/><br/>Notably, vestibular prostheses are an emerging technology that improves outcomes in human BVL patients, however continued work in animal models is essential for understanding the current functional limitations of the technology. Accordingly, here we explored postural responses to platform tilts in a normal monkey vs. monkey with profound BVL. Both animals were trained to maintain a relaxed posture within a behavioral chamber mounted on a 6-dof hexapod motion platform. Dynamic perturbations were applied to animal’s support surface in roll and yaw (0.25-10 Hz, maximum velocity 5 deg/s). The BVL animal received vestibular stimulation with a biomimetic transfer function in either the horizontal or posterior semicircular canal. A wireless IMU was placed on the animal’s head, and center of pressure, and joint positions (DeepLabCut) were recorded. Analysis revealed that postural sway decreased from lower to higher frequencies, similar to the platform-fixed to head-fixed strategy shift observed in humans. Further, the BVL monkey demonstrated a relative increase in sway at lower frequencies, which was mitigated by posterior but not horizontal canal stimulation. These results suggest that profound BVL causes detectible impairments in postural compensation, which is partially corrected by a vestibular prosthesis, particularly at lower frequencies. <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

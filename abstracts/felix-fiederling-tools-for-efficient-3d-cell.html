@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,14 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 17:00" data-end="2020-10-29 17:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Tools for efficient 3D cell and projection analysis and atlas registration of whole mouse spinal cord.</h1><h2>Felix Fiederling</h2><h3>Luke A. Hammond, Columbia University; Carol A. Mason, Columbia University; Jane Dodd, Columbia University</h3><h2>Abstract</h1><p>The spinal cord (SC) contains a remarkable and complex variety of interconnected cells that relay and process somatosensory information and execute movement. Classic research on the embryonic and adult SC has identified major classes of neurons, based on embryonic markers, morphology and position within the SC. But recent advances in transcriptional profiling have revealed that the extent of spinal cell diversity far exceeds previous assumptions.
-
-To achieve better characterization of spinal cell types and the detailed connectivity between cells that form functional circuits, it is necessary to map the spatial relations of neurons and projections. To date, however, unbiased approaches to map positional information in the context of the whole SC are severely limited by a lack of tools for efficient data collection and analysis. Moreover, the absence of a standardized 3D reference atlas for the mouse SC complicates anatomical mapping of data and comparison between samples and results across the field.
-
-Here we present tools for practicable analysis of labelled cells and projections in whole mouse SC in the context of a novel 3D anatomical atlas. We have designed soluble, 3D-printed, ‘Spine Racks’ that guide oriented and parallel embedding of serial tissue segments of the entire SC within a single block for synchronous cryo-sectioning. Spine Racks precisely position tissue pieces within each block section array, permitting automated imaging of slides and rostro-caudal sorting of section images. Additionally, we have developed “SpinalJ”, a user-friendly plugIn for ImageJ, to register section images and to map the reconstructed data to a prototype 3D reference atlas. SpinalJ further combines various tools for manual and automated cell and projection analysis, as well as for data visualization.
-
-Together, these tools capacitate high-throughput comparative analyses of neurons and their projections in whole SC.</p>
+        <h1>Tools for efficient 3D cell and projection analysis and atlas registration of whole mouse spinal cord.</h1><h2>Felix Fiederling</h2><h3>Luke A. Hammond, Columbia University; Carol A. Mason, Columbia University; Jane Dodd, Columbia University</h3><h2>Abstract</h1><p>The spinal cord (SC) contains a remarkable and complex variety of interconnected cells that relay and process somatosensory information and execute movement. Classic research on the embryonic and adult SC has identified major classes of neurons, based on embryonic markers, morphology and position within the SC. But recent advances in transcriptional profiling have revealed that the extent of spinal cell diversity far exceeds previous assumptions.<br/><br/>To achieve better characterization of spinal cell types and the detailed connectivity between cells that form functional circuits, it is necessary to map the spatial relations of neurons and projections. To date, however, unbiased approaches to map positional information in the context of the whole SC are severely limited by a lack of tools for efficient data collection and analysis. Moreover, the absence of a standardized 3D reference atlas for the mouse SC complicates anatomical mapping of data and comparison between samples and results across the field.<br/><br/>Here we present tools for practicable analysis of labelled cells and projections in whole mouse SC in the context of a novel 3D anatomical atlas. We have designed soluble, 3D-printed, ‘Spine Racks’ that guide oriented and parallel embedding of serial tissue segments of the entire SC within a single block for synchronous cryo-sectioning. Spine Racks precisely position tissue pieces within each block section array, permitting automated imaging of slides and rostro-caudal sorting of section images. Additionally, we have developed “SpinalJ”, a user-friendly plugIn for ImageJ, to register section images and to map the reconstructed data to a prototype 3D reference atlas. SpinalJ further combines various tools for manual and automated cell and projection analysis, as well as for data visualization.<br/><br/>Together, these tools capacitate high-throughput comparative analyses of neurons and their projections in whole SC.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

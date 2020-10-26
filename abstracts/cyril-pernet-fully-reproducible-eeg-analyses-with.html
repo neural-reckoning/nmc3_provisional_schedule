@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 10:00" data-end="2020-10-30 10:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Fully reproducible EEG analyses with EEGLAB and LIMO EEG</h1><h2>Cyril Pernet</h2><h3>Cyril Pernet, University of Edinburgh, Ramon Martinez-Cancino, Dung Truong, Scott Makeig & Arnaud Delorme, University of California San Diego</h3><h2>Abstract</h1><p>Reproducibility is a cornerstone of scientific communication without which one cannot build upon each other's work. Because modern human brain imaging relies on many integrated steps with a variety of possible algorithms, it has however become impossible to report every detail of a data processing workflow. In response to this analytical complexity, community recommendations are to share data analysis pipelines (scripts that implement workflows). Here we show that this can easily be done using EEGLAB and tools built around it. BIDS tools allow importing all the necessary information and create a study from EEG-Brain Imaging Data Structure compliant data. From there preprocessing can be carried out in only a few steps using EEGLAB and statistical analyses performed using the LIMO EEG plug-in. Using Wakeman and Henson (Wakeman & Henson, 2015)  face dataset, we illustrate how to prepare data and build different statistical models, a standard factorial design (faces * repetition) and a more modern trial based regression approach for the stimulus repetition effect, all in a few reproducible command lines.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

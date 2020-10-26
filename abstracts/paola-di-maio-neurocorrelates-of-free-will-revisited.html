@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,20 +52,15 @@
             Track 1
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 06:00" data-end="2020-10-28 06:15">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Neurocorrelates of Free Will Revisited</h1><h2>Paola Di Maio</h2><h2>Abstract</h1><p>
-Neither science nor neuroscience explain free will. Some research shows humans have no free will, that it may be an illusion, [1], while other identifies networks of brain areas, including the pre-supplementary motor area, the anterior prefrontal cortex and the parietal cortex, that underlie voluntary action and cause distinctive conscious experience of intending to act and then controlling one's own actions, concluding that volition consists of a series of decisions regarding whether to act, what action to perform and when to perform it [2]
-New findings identify networks of brain areas, including the pre-supplementary motor area, the anterior prefrontal cortex and the parietal cortex, that underlie voluntary action. These areas generate information for forthcoming actions, and also cause the distinctive conscious experience of intending to act and then controlling one's own actions.
-The peak of evolution of human consciousness manifests at psychological and behavioural level with the ability to exercise conscious actions with less conditioning, particularly in the form of control over one's thoughts and emotions,
-Such evolution of consciousness  can be observed within certain network dynamics and could even visibly manifests in the morphology of the cortex, 
-
-The ability to make choices according to values and intents, and the awareness that animal instincts are determined by mechanical and biological responses to external stimuli, is what distinguishes human behaviour, develops awareness, consciousness and possibly drives evolution. This research  revisits historical hypotheses based on recent findings, and proposes a novel interpretation of  recent findings A theory of consciousness and free will as factors impacting consciousness and evolution is formulated. 
-
-[1]  http://www.nature.com/news/2011/110831/full/477023a.html
-[2]https://www.nature.com/articles/nrn2497#:~:text=Modern%20neuroscience%20rejects%20the%20traditional,open%20decisions%20between%20alternative%20actions.
-
- [3] https://www.nature.com/articles/nrn2497)
-</p>
+        <h1>Neurocorrelates of Free Will Revisited</h1><h2>Paola Di Maio</h2><h2>Abstract</h1><p><br/>Neither science nor neuroscience explain free will. Some research shows humans have no free will, that it may be an illusion, [1], while other identifies networks of brain areas, including the pre-supplementary motor area, the anterior prefrontal cortex and the parietal cortex, that underlie voluntary action and cause distinctive conscious experience of intending to act and then controlling one's own actions, concluding that volition consists of a series of decisions regarding whether to act, what action to perform and when to perform it [2]<br/>New findings identify networks of brain areas, including the pre-supplementary motor area, the anterior prefrontal cortex and the parietal cortex, that underlie voluntary action. These areas generate information for forthcoming actions, and also cause the distinctive conscious experience of intending to act and then controlling one's own actions.<br/>The peak of evolution of human consciousness manifests at psychological and behavioural level with the ability to exercise conscious actions with less conditioning, particularly in the form of control over one's thoughts and emotions,<br/>Such evolution of consciousness  can be observed within certain network dynamics and could even visibly manifests in the morphology of the cortex, <br/><br/>The ability to make choices according to values and intents, and the awareness that animal instincts are determined by mechanical and biological responses to external stimuli, is what distinguishes human behaviour, develops awareness, consciousness and possibly drives evolution. This research  revisits historical hypotheses based on recent findings, and proposes a novel interpretation of  recent findings A theory of consciousness and free will as factors impacting consciousness and evolution is formulated. <br/><br/>[1]  http://www.nature.com/news/2011/110831/full/477023a.html<br/>[2]https://www.nature.com/articles/nrn2497#:~:text=Modern%20neuroscience%20rejects%20the%20traditional,open%20decisions%20between%20alternative%20actions.<br/><br/> [3] https://www.nature.com/articles/nrn2497)<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-27 18:30" data-end="2020-10-27 18:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Data-driven automatic exercise feedback</h1><h2>Nidhi Seethapathi (she/her)</h2><h3>Titipat Achakulvisut, University of Pennsylvania; Vanessa Moody, University of Pennsylvania; Irene Jeong, University of Pennsylvania; Konrad Kording, University of Pennsylvania</h3><h2>Abstract</h1><p>The current approach to correct a trainee’s exercise technique relies on expert feedback based on visual and qualitative assessment. Emerging computer vision-based pose estimation algorithms, built using neural networks, have extraordinary potential to automate and quantify the process of exercise training and injury prediction from videos. In this study, we build an automated pipeline with computer vision, machine learning and predictive modeling to translate weightlifting videos into insights and feedback without human overview. We first curated over 600 videos of people performing a deadlift from online forums along with natural language feedback provided by forum users in the form of over 1500 comments. Body pose information from these videos were obtained with the use of a computer vision-based pose estimation software called OpenPose. The pose data thus obtained was processed  using dynamic time warping so as to align and normalize the videos with each other in time and space for ease of comparison. Using unsupervised machine learning in the form of principal component analysis and k-nearest neighbours clustering, we automatically classify well performed deadlifts from poorly performed ones. Further, we outline a procedure using natural language processing to create a virtual trainer who provides interpretable feedback by analyzing the nature of deviations in the movements of a given video from example expert movements. We envision the automated pipeline used here as being generalizable to other exercises thus, setting the stage for the use of artificial intelligence in exercise training and injury prediction.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

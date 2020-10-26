@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 8
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-26 18:15" data-end="2020-10-26 18:30">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Cerebral representation of two languages in the dog’s brain</h1><h2>Laura V.  Cuaya (she/her)</h2><h3>Raúl Hernández-Pérez, Department of Ethology, Institute of Biology, Eötvös Loránd University, Budapest, Hungary & MTA-ELTE ‘Lendület’ Neuroethology of Communication Research Group, Hungarian Academy of Sciences – Eötvös Loránd University, Budapest, Hungary; Marianna Boros, Department of Ethology, Institute of Biology, Eötvös Loránd University, Budapest, Hungary & MTA-ELTE ‘Lendület’ Neuroethology of Communication Research Group, Hungarian Academy of Sciences – Eötvös Loránd University, Budapest, Hungary; Andrea Deme, Department of Applied Linguistics and Phonetics, Faculty of Humanities, Eötvös Loránd University, Budapest, Hungary & MTA-ELTE “Lendület” Lingual Articulation Research Group, Budapest, Hungary; Attila Andics, Department of Ethology, Institute of Biology, Eötvös Loránd University, Budapest, Hungary & MTA-ELTE ‘Lendület’ Neuroethology of Communication Research Group, Hungarian Academy of Sciences – Eötvös Loránd University, Budapest, Hungary</h3><h2>Abstract</h1><p>Family dogs are exposed to a continuous flow of human speech throughout their lives. However, the extent of their abilities in speech perception is unknown. Our aims were to test the cerebral processing for speech detection and language discrimination in the dog auditory cortex. Using functional magnetic resonance imaging (fMRI) we studied awake and unrestrained dogs (n = 18). As speech stimuli, dogs heard fragments of speech in a familiar and an unfamiliar language, as control we scrambled the same stimuli. We hypothesized that if dogs can extract auditory regularities of speech, and of a familiar language, then the cerebral patterns in the auditory cortex would discriminate between speech and scrambled speech, and also between languages. Using multivoxel pattern analysis (MVPA) we found that the cerebral patterns of activity in the bilateral primary auditory regions discriminated between speech and scrambled speech, this means that the auditory primary cortex performed speech detection; and the secondary auditory regions (the right rostral Sylvian gyrus, the left rostral suprasylvian gyrus, and the left caudal ectosylvian gyrus) were related with language discrimination (i.e. the cerebral patterns of cerebral activity discriminated between familiar and unfamiliar language in the speech condition). No auditory region discriminated between languages based on scrambled speech, this suggests that language discrimination wasn’t based on speaker-related cues. Additionally, we didn’t find a significant effect of the familiarity of the language in the primary auditory cortex response, this could suggest either that speech detection is independent of experience or that dogs extrapolate the rules that they learned in a familiar language to a unfamiliar language. These findings corroborate recent evidence that speech processing is functionally organized in the dog auditory cortex. Our results demonstrate abilities in a non-primate species to extract auditory regularities of a familiar language without explicit training. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

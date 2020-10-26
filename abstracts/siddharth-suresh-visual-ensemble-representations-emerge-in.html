@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,9 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 21:30" data-end="2020-10-26 21:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Visual ensemble representations emerge in Deep Neural Networks trained for object recognition</h1><h2>Siddharth Suresh</h2><h3>Emily Ward, University of Wisconsin–Madison (grid.14003.36)</h3><h2>Abstract</h1><p>Humans are able to quickly pool information from across many individual objects to perceive ensemble properties, like the average size of objects, the color diversity of objects, or even the gender ratio in a group of faces. Such ensemble perception in humans is thought to occur extremely efficiently and automatically, but how it arises in the first place is unknown. Does ensemble perception arise because the human visual system must solve many different types of perceptual problems, or are ensemble properties represented even in a system with only the goal of recognizing individual objects?  Here, we used an artificial visual system -- a deep neural network -- to determine whether the ensemble property of color diversity emerges in a network pre-trained to recognize natural objects (using ImageNet). We presented the network with new images that were completely different from its training set: images of letter arrays containing four colored consonants on a black background. The color of each letter within an array was drawn either from a broad sample of 19 colors (high color diversity) or a randomly selected range of six adjacent colors (low color diversity). The ensemble property of interest -- color diversity -- was therefore a summary statistic for the whole array and not recoverable from any individual element. We tested whether a ResNet50 neural network could distinguish high vs. low color diversity arrays by using the activations from different layers as input to a linear classifier (SVM). We found that the network was highly accurate at identifying color diversity, with deeper layers more accurate than earlier layers. This demonstrates the presence of ensemble representations for the first time in deep neural networks, and also suggests that ensemble perception of multiple objects can emerge even in a system only trained to recognize individual objects. 
-</p>
+        <h1>Visual ensemble representations emerge in Deep Neural Networks trained for object recognition</h1><h2>Siddharth Suresh</h2><h3>Emily Ward, University of Wisconsin–Madison (grid.14003.36)</h3><h2>Abstract</h1><p>Humans are able to quickly pool information from across many individual objects to perceive ensemble properties, like the average size of objects, the color diversity of objects, or even the gender ratio in a group of faces. Such ensemble perception in humans is thought to occur extremely efficiently and automatically, but how it arises in the first place is unknown. Does ensemble perception arise because the human visual system must solve many different types of perceptual problems, or are ensemble properties represented even in a system with only the goal of recognizing individual objects?  Here, we used an artificial visual system -- a deep neural network -- to determine whether the ensemble property of color diversity emerges in a network pre-trained to recognize natural objects (using ImageNet). We presented the network with new images that were completely different from its training set: images of letter arrays containing four colored consonants on a black background. The color of each letter within an array was drawn either from a broad sample of 19 colors (high color diversity) or a randomly selected range of six adjacent colors (low color diversity). The ensemble property of interest -- color diversity -- was therefore a summary statistic for the whole array and not recoverable from any individual element. We tested whether a ResNet50 neural network could distinguish high vs. low color diversity arrays by using the activations from different layers as input to a linear classifier (SVM). We found that the network was highly accurate at identifying color diversity, with deeper layers more accurate than earlier layers. This demonstrates the presence of ensemble representations for the first time in deep neural networks, and also suggests that ensemble perception of multiple objects can emerge even in a system only trained to recognize individual objects. <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

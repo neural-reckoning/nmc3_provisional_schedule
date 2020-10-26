@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,11 +52,15 @@
             Track 7
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 13:30" data-end="2020-10-28 13:45">
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=k0C7mrbBiy8'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Right and Left Neglect are not Anatomically Homologous: A Voxel-Lesion Symptom Mapping Study</h1><h2>Margaret Jane Moore</h2><h3>Celline Gilbert, KU Leuven; Nele Demeyere, University of Oxford</h3><h2>Abstract</h1><p>Visuospatial neglect is a heterogenous syndrome which can occur following damage to either right or left hemisphere areas. This study employs voxel-lesion symptom mapping to identify the neural correlates of left and right egocentric and allocentric neglect in large, representative acute stroke cohort.
-499 acute stroke survivors (age=71.6, 41.5% female) completed neuropsychological neglect assessment and routine clinical imaging. Similar to previous investigations, left egocentric and left allocentric neglect were associated with damage to distinct clusters of voxels within the posterior parietal and temporo-parietal junction areas. Unlike previous investigations, right egocentric neglect was found to most strongly associated with damage to ipsilateral voxels within the right parietal operculum and superior longitudinal fasciculus. Interestingly, the left hemisphere homologues of the areas implicated in left-lateralised egocentric neglect were not found to act as significant predictors of right egocentric neglect impairment (F(7,317)=1.041, R2=0.028, p=0.396). Right allocentric neglect was found to be most strongly associated with damage to the anterior division of the left parahippocampal gyrus. 
-The results of this investigation suggest that right egocentric neglect should not be characterised as a consequence of damage to left-hemisphere homologues of the right hemisphere attentional systems.  These findings support the characterisation of visuospatial neglect as a heterogenous cluster of impairments rather than a unitary syndrome and provide novel insight into the neural correlates of spatial attention. 
-</p>
+        <h1>Right and Left Neglect are not Anatomically Homologous: A Voxel-Lesion Symptom Mapping Study</h1><h2>Margaret Jane Moore</h2><h3>Celline Gilbert, KU Leuven; Nele Demeyere, University of Oxford</h3><h2>Abstract</h1><p>Visuospatial neglect is a heterogenous syndrome which can occur following damage to either right or left hemisphere areas. This study employs voxel-lesion symptom mapping to identify the neural correlates of left and right egocentric and allocentric neglect in large, representative acute stroke cohort.<br/>499 acute stroke survivors (age=71.6, 41.5% female) completed neuropsychological neglect assessment and routine clinical imaging. Similar to previous investigations, left egocentric and left allocentric neglect were associated with damage to distinct clusters of voxels within the posterior parietal and temporo-parietal junction areas. Unlike previous investigations, right egocentric neglect was found to most strongly associated with damage to ipsilateral voxels within the right parietal operculum and superior longitudinal fasciculus. Interestingly, the left hemisphere homologues of the areas implicated in left-lateralised egocentric neglect were not found to act as significant predictors of right egocentric neglect impairment (F(7,317)=1.041, R2=0.028, p=0.396). Right allocentric neglect was found to be most strongly associated with damage to the anterior division of the left parahippocampal gyrus. <br/>The results of this investigation suggest that right egocentric neglect should not be characterised as a consequence of damage to left-hemisphere homologues of the right hemisphere attentional systems.  These findings support the characterisation of visuospatial neglect as a heterogenous cluster of impairments rather than a unitary syndrome and provide novel insight into the neural correlates of spatial attention. <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 12:00" data-end="2020-10-29 12:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Alpha-beta oscillations in the human substantia nigra signal the anticipation of appetitive and aversive social feedback: evidence from intracranial recordings</h1><h2>Alexandra Sobczak</h2><h3>Alexandra Sobczak, Institute of Psychology I, University of Lübeck, Ratzeburger Allee 160, 23562 Lübeck, Germany; Eva M. Bauch, Faculty of Life Sciences, University of Applied Sciences and Medical University, Am Kaiserkai 1, 20457 Hamburg; Kai Heimrath, Departments of Neurology and Stereotactic Neurosurgery, Otto-von-Guericke University, Leipziger Straße 44, 39120 Magdeburg, Germany; Norbert Brüggemann, Klinik für Neurologie, University of Lübeck, Ratzeburger Allee 160, 23562 Lübeck, Germany; Christina Lohse, Klinik für Neurologie, University of Lübeck, Ratzeburger Allee 160, 23562 Lübeck, Germany; Hermann Hinrichs, Departments of Neurology and Stereotactic Neurosurgery, Otto-von-Guericke University, Leipziger Straße 44, 39120 Magdeburg, Germany; Friedhelm C. Schmitt, Departments of Neurology and Stereotactic Neurosurgery, Otto-von-Guericke University, Leipziger Straße 44, 39120 Magdeburg, Germany; Jürgen Voges, Departments of Neurology and Stereotactic Neurosurgery, Otto-von-Guericke University, Leipziger Straße 44, 39120 Magdeburg, Germany; Hans-Jochen Heinze, Departments of Neurology and Stereotactic Neurosurgery, Otto-von-Guericke University, Leipziger Straße 44, 39120 Magdeburg, Germany, Department of Behavioral Neurology, Leibniz Institute for Neurobiology. Leipziger Straße 44, 39120 Magdeburg, Germany; Tino Zaehle, Departments of Neurology and Stereotactic Neurosurgery, Otto-von-Guericke University, Leipziger Straße 44, 39120 Magdeburg, Germany, Department of Behavioral Neurology, Leibniz Institute for Neurobiology. Leipziger Straße 44, 39120 Magdeburg, Germany; Nico Bunzeck, Institute of Psychology I, University of Lübeck, Ratzeburger Allee 160, 23562 Lübeck, Germany</h3><h2>Abstract</h1><p>The substantia nigra/ventral tegmental area (SN/VTA) is well known for its involvement in reward anticipation and prediction error signaling. Moreover, recent work in animals shows that the SN/VTA does not only process rewarding but also aversive events. However, direct evidence from human subjects, which often learn through social interactions, is sparse. Therefore, we used intracranial electroencephalography recordings (iEEG) from SN dopamine (DA) neurons in Parkinson’s Disease (PD) patients (n=12, intraoperative, off medication) in combination with a social incentive delay task (SID) including photos of either neutral, approving or disapproving faces. At the behavioral level, patients’ response times did not differ between conditions. Healthy controls (young adults n=51; older adults n=52) and a slightly larger control group of PD patients (n = 19, on and off medication) exposed faster responses when anticipating positive and negative versus neutral feedback. Finally, time-frequency analysis revealed an effect within the alpha-beta range (8-20 Hz) from 300-600 ms after cue onset. Specifically, alpha-beta power significantly increased for positive vs neutral and negative vs neutral cues, but there was no significant difference between positive vs negative cues. As such, our findings provide new evidence for a role of the SN in processing appetitive and aversive social information via specific oscillatory mechanisms in the alpha-beta range. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

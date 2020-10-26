@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 1
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-28 17:30" data-end="2020-10-28 17:45">
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=wZzFE3dyQlU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The Effects of Attention on Alpha and Afferent V1 Responses</h1><h2>Audrey Morrow</h2><h3>Jason Samaha</h3><h2>Abstract</h1><p>Endogenous shifts of attention towards an upcoming stimulus cause topographical shifts in alpha power and enhanced sensory evoked responses, and both of these changes are associated with improved perceptual processing of the stimulus. However, there is little examination of the relationship between attention-related alpha changes and attention-related sensory changes. Additionally, it is still inconclusive whether attention can affect the earliest cortical visual evoked response – the C1 ERP component – which is putatively generated from afferent input into V1. This study attempts to assess changes in the C1 related to attention, and related to prestimulus alpha, through a spatial-2AFC cued contrast discrimination task. A cue at central fixation indicates whether participants should shift their attention to the upper or lower visual field with 80% validity. Participants respond according to which of two stimuli has greater contrast, a variable that was parametrically manipulated to span individual’s psychometric functions. Preliminary findings (n=4, 1,000 trials each) show the expected improvements in speed and accuracy when responding to stimuli in the cued, as compared to the uncued, location. Upper and lower visual field cues differentially affected the topography of alpha power, confirming that participants were endogenously shifting attention. Despite the fact that the stimuli reliably elicited a strong C1 response, there is little evidence of an attention effect on the C1 component or changes in C1 amplitude related to prestimulus alpha power. Rather, attention seemed to induce changes in a late ERP component (the “central parietal positivity”; CPP) thought to index evidence accumulation. Our findings suggest that endogenous attention speeds up evidence accumulation independent of early sensory changes.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

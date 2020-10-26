@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 6
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 17:30" data-end="2020-10-29 17:45">
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=Ic6pNxh9cuU'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Endothelin-1 signaling maintains glial progenitor proliferation in the postnatal subventricular zone</h1><h2>Katrina Adams</h2><h3> Giulia Riparini, University of Urbino "Carlo Bo", Italy; Payal Banerjee, Children's National Hospital, USA;  Marjolein Breur, VU University Medical Center, The Netherlands;  Marianna Bugiani, VU University Medical Center, The Netherlands;  Vittorio Gallo, Children's National Hospital, USA.</h3><h2>Abstract</h1><p>Signaling molecules that regulate neurodevelopmental processes in the early postnatal subventricular zone (SVZ) are critical for proper brain development yet remain poorly characterized. Here, we report that Endothelin-1 (ET-1), a molecular component of the postnatal SVZ, promotes radial glial cell maintenance and proliferation in an autocrine manner via Notch signaling. Loss of ET-1 signaling increases neurogenesis and reduces oligodendrocyte progenitor cell proliferation (OPC) in the developing SVZ, thereby altering cellular output of the stem cell niche. We also show that ET-1 is required for increased neural stem cell and OPC proliferation in the adult mouse SVZ following demyelination. Lastly, high levels of ET-1 in the SVZ of patients with Cathepsin A-related arteriopathy with strokes and leukoencephalopathy correlate with an increased number of SVZ OPCs, suggesting ET-1's role as a regulator of glial progenitor proliferation may be conserved in humans. ET-1 signaling therefore presents a potential new therapeutic target for promoting SVZ-mediated cellular repair.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

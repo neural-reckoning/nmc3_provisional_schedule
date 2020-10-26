@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 5
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-26 18:15" data-end="2020-10-26 18:30">
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=I6F_sU1OPrQ'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>The Effects of Social Rewards on Incidental Episodic Memory</h1><h2>Gaia Molinaro</h2><h3>Charlotte Russell, King's College London</h3><h2>Abstract</h1><p>Episodic memory is our memory for specific, personally experienced events. Although remembering the “what, where and when” of an instance may be highly beneficial, the brain’s memory capacity is limited and must therefore be selective. Rewards are important enhancers of episodic memory acquisition and storage. Among them, social rewards have been proposed as important drivers of motivated behaviour. Whether the benefits of social rewards on memory still operate on incidental (unplanned) memorization of neutral events has not been tested yet. In this study, we explored the effects of social rewards on memory for neutral scenes that were completely unrelated, except for proximity in time, to the sources of reward (here, the presentation of happy versus neutral faces). One day after the completion of an encoding task, participants were given a surprise memory test that assessed their recollection of spatial or temporal information related to such incidental scenes. Differences in memory for space versus time-related information were observed. Although participants were expected to have better memory for scenes that occurred after delivery of social rewards, this was not the case; possible explanations for this are discussed. However, strong interactions between the anticipated effect and participants’ mood were noted, and our initial hypothesis did hold true in a subset of participants who experienced exceptionally low mood on the day of encoding. These findings hint at the limitations of a reward-driven enhancement of incidental episodic memory and highlight the important role of mood in modulating the extent of such an effect. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

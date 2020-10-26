@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,12 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-30 21:30" data-end="2020-10-30 21:45">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Clusters of Müller glia display sporadic radial burst of activity after eye opening</h1><h2>Cyril Eleftheriou</h2><h3>Cyril Eleftheriou, Burke Neurological Institute; Carlo Corona, Burke Neurological Institute; Paola Bianchimano, Burke Neurological Institute; Elena Ivanova, Burke Neurological Institute; Botir Sagdullaev, Burke Neurological Institute</h3><h2>Abstract</h1><p>Müller glia are an import populations of cells in the retina mediating  a wide array of functions including immune response, neurotransmitter recycling, structural support, metabolic support and light-guidance. Although they have been known to connect to each other via gap junctions, their ability to propagate waves of activity, similar to retinal and cortical astrocytes, has never been demonstrated. 
-We characterized the live spontaneous calcium dynamics of neurons and glia throughout the layers of murine retinas expressing GCaMP6f in neurons and glia (under the NG2 promoter) at key developmental stages: Stage II retinal Waves (P10-11), Eye opening (P14-15), Early vision (P20-22), and Adult Vision (P60-90). Calcium dynamics were imaged using multiphoton microscopy on live ex-vivo retinal explants of 6 mice per condition.
-Groups of Muller glia displayed spontaneous burst of calcium fluorescence, in a coordinated manner, and displaying a radial propagation profile. These spontaneous coordinated events were abolished by the pharmacological application of glutamate antagonists, indicating a potential point of origin. Interestingly, these events only appeared regularly after eye opening. In the 9 explants (n = 6 mice) investigated aged P10-11, only 1 such event was observed, whilst they displayed average frequencies over 0.12 (± 0.03 SEM) events/min after eye opening. 
-Our investigations provide a novel observation in an understudied cell-type which could lead to a better understanding of the signaling between neurons and glia in visual signal processing of the retina.  
-</p>
+        <h1>Clusters of Müller glia display sporadic radial burst of activity after eye opening</h1><h2>Cyril Eleftheriou</h2><h3>Cyril Eleftheriou, Burke Neurological Institute; Carlo Corona, Burke Neurological Institute; Paola Bianchimano, Burke Neurological Institute; Elena Ivanova, Burke Neurological Institute; Botir Sagdullaev, Burke Neurological Institute</h3><h2>Abstract</h1><p>Müller glia are an import populations of cells in the retina mediating  a wide array of functions including immune response, neurotransmitter recycling, structural support, metabolic support and light-guidance. Although they have been known to connect to each other via gap junctions, their ability to propagate waves of activity, similar to retinal and cortical astrocytes, has never been demonstrated. <br/>We characterized the live spontaneous calcium dynamics of neurons and glia throughout the layers of murine retinas expressing GCaMP6f in neurons and glia (under the NG2 promoter) at key developmental stages: Stage II retinal Waves (P10-11), Eye opening (P14-15), Early vision (P20-22), and Adult Vision (P60-90). Calcium dynamics were imaged using multiphoton microscopy on live ex-vivo retinal explants of 6 mice per condition.<br/>Groups of Muller glia displayed spontaneous burst of calcium fluorescence, in a coordinated manner, and displaying a radial propagation profile. These spontaneous coordinated events were abolished by the pharmacological application of glutamate antagonists, indicating a potential point of origin. Interestingly, these events only appeared regularly after eye opening. In the 9 explants (n = 6 mice) investigated aged P10-11, only 1 such event was observed, whilst they displayed average frequencies over 0.12 (± 0.03 SEM) events/min after eye opening. <br/>Our investigations provide a novel observation in an understudied cell-type which could lead to a better understanding of the signaling between neurons and glia in visual signal processing of the retina.  <br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

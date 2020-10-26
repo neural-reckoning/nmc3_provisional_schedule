@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 3
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-29 01:30" data-end="2020-10-29 01:45">
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=R0Jbw983eYg'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Horizontal connections for enhancing machine visual grouping</h1><h2>Vijay Veerabadran</h2><h3>Virginia R. de Sa, University of California San Diego</h3><h2>Abstract</h1><p>Evidence from biological vision supports the hypothesis that horizontal interactions in the early visual cortex facilitate low-level grouping. We explore whether such recurrent nonlinear horizontal connections enhance the grouping abilities of deep convolutional networks (DCNs) optimized to solve contour integration problems. We introduce V1Net -- a bio-inspired recurrent unit implementing linear and nonlinear excitatory-inhibitory (E-I) lateral connections; spatial convolutional layers in DCNs can be substituted with V1Net to create a V1Net-DCN. We compare the performance of a shallow V1Net-DCN against 15 carefully selected feedforward and recurrent neural architectures (including state-of-the-art DCNs) on the MarkedLong and Pathfinder challenges -- two synthetic image classification tasks based on low-level grouping with 1 million images each. Our results demonstrate that a compact 3-layer V1Net-DCN matches or outperforms the test accuracy and sample efficiency of all comparison models with varied capacity and architectural diversity. Our experiments are suggestive of the importance of implementing recurrent long-range E-I horizontal connections to enhance the low-level grouping abilities of feedforward deep learning models. Our ablation studies highlight interesting differences in the relative importance of linear and nonlinear horizontal connections. In the future, we are interested in exploring whether this enhanced grouping utility of V1Net translates to more data efficient image segmentation methods.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

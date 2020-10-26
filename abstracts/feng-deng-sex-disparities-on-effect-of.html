@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,8 +52,15 @@
             Track 4
             /
             Interactive talk
+            <div class="visible_at_time" data-start="2020-10-27 10:00" data-end="2020-10-27 10:15">
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=57jnkd3reAI'>Watch now on YouTube</a>
+            </div>
         </h3>
         <h1>Sex Disparities on Effect of Ageing on Brain Network Integrity Across the Lifespan</h1><h2>Feng Deng</h2><h3>Feng Deng, Trinity College Dublin; Erika Steward, Trinity College Dublin; Lorina Naci, Trinity College Dublin</h3><h2>Abstract</h1><p>Midlife presents a critical period for the beginning of age-related neuropathology and a unique disease-altering window, prior to the manifestation of substantial brain damage. However, how healthy and pathological brain ageing diverge in midlife is poorly understood. It is estimated that 60% of people with Alzheimer’s Disease are women, but the impact of sex differences on age-related brain changes remains largely uncharted territory. We examine changes in functional brain network architecture in a lifespan cohort (N=652) from the Cambridge Centre for Ageing and Neuroscience, including young (18-39 years, N=170), midlife (40-59 years, N=204) and older adults (60-88 years, N=278), with a focus on midlife, as well as sex differences. Modular segregation of 10 predefined networks was calculated in resting-state functional Magnetic Resonance Imaging data. Sex differences in segregation of the auditory, ventral attention and frontal-parietal networks were present in young adulthood, suggesting inherent differences. Two key brain networks that support high-order cognition, the default mode and frontal-parietal, showed significant age-related loss of segregation from midlife, well before older age. Females showed significantly lower segregation in the frontal-parietal network than males in midlife. The salience network showed sex differences in older adults; again, females had significantly heavier loss of segregation relative to males. The heavier loss of segregation in females from midlife and continuing into older age, in brain networks key for high-order cognition, may provide an avenue for understanding the higher risk load and incidence of age-related neurodegenerative disorders in females relative to males.</p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     

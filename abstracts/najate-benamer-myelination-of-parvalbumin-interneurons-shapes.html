@@ -19,9 +19,30 @@
 	function LT(t) {
         var m = moment.utc(t).tz(moment.tz.guess());
 		document.write(m.format('MMMM Do YYYY, HH:mm z'));
-	}
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
     
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h3>
@@ -31,10 +52,15 @@
             Track 8
             /
             Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 12:00" data-end="2020-10-29 12:15">
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=kZoZKSpWGTI'>Watch now on YouTube</a>
+            </div>
         </h3>
-        <h1>Myelination of parvalbumin interneurons shapes the function of cortical sensory inhibitory circuits and mouse whisker-mediated behaviour </h1><h2>Najate Benamer</h2><h3>Najate Benamer, Marie Vidal, Maddalena Balia, María Cecilia Angulo Institut of Psychiatry and Neurosciences of Paris (IPNP), INSERM U1266, Paris, France</h3><h2>Abstract</h1><p>Oligodendrocyte precursor cells (OPCs) represent the only non-neuronal cells that receive bona fide synapses from neurons. In the developing somatosensory cortex, we previously showed that OPCs are highly innervated by fast-spiking parvalbumin-expressing (PV) interneurons (Orduz et al., 2015, eLife; Orduz*, Benamer* et al., 2019, Nat Commun). Interestingly, the PV interneuron subtype represents the largest proportion of myelinated GABAergic neurons in the cerebral cortex. Despite several studies on neuron-OPC synapses, the function of these synapses remains poorly understood. In a recent work, we genetically inactivated γ2-mediated GABAergic synaptic signaling of OPCs to disturb PV interneuron-OPC synapses. We found that PV interneuron-OPC synapses does not highly affect OPC proliferation, oligodendrocyte differentiation and the developmental myelination pattern of the somatosensory cortex (Balia et al., 2017, Glia). Nonetheless, it has remained unclear whether neuron-OPC synapses could guide the correct myelination of the presynaptic neuron, impacting its function in neuronal circuits. 
-Here, we demonstrate that the disruption of GABAergic synaptic signaling of OPCs prior to myelination onset resulted in severe PV interneuron myelination defects characterized by longer internodes and nodes and proximal axon malformation. Consequently, high-frequency PV interneuron discharges as well as PV interneuron-dependent postsynaptic latencies and strengths of excitatory neurons were reduced during postnatal cortical development. These dysfunctions generated a strong excitation-inhibition imbalance that was correlated with whisker-dependent texture discrimination impairments. We concluded that, during cortical development, the inactivation of γ2-mediated OPC synapses have profound consequences in the myelination of PV interneurons, affecting the function of mature cortical inhibitory circuits. Our data reveal that PV interneuron-OPC synaptic activity during postnatal development constitute a key step in the construction of cortical circuits involved in rapid and strong inhibition during sensory processing (Benamer et al., 2020, Nat Commun, In Press).
-</p>
+        <h1>Myelination of parvalbumin interneurons shapes the function of cortical sensory inhibitory circuits and mouse whisker-mediated behaviour </h1><h2>Najate Benamer</h2><h3>Najate Benamer, Marie Vidal, Maddalena Balia, María Cecilia Angulo Institut of Psychiatry and Neurosciences of Paris (IPNP), INSERM U1266, Paris, France</h3><h2>Abstract</h1><p>Oligodendrocyte precursor cells (OPCs) represent the only non-neuronal cells that receive bona fide synapses from neurons. In the developing somatosensory cortex, we previously showed that OPCs are highly innervated by fast-spiking parvalbumin-expressing (PV) interneurons (Orduz et al., 2015, eLife; Orduz*, Benamer* et al., 2019, Nat Commun). Interestingly, the PV interneuron subtype represents the largest proportion of myelinated GABAergic neurons in the cerebral cortex. Despite several studies on neuron-OPC synapses, the function of these synapses remains poorly understood. In a recent work, we genetically inactivated γ2-mediated GABAergic synaptic signaling of OPCs to disturb PV interneuron-OPC synapses. We found that PV interneuron-OPC synapses does not highly affect OPC proliferation, oligodendrocyte differentiation and the developmental myelination pattern of the somatosensory cortex (Balia et al., 2017, Glia). Nonetheless, it has remained unclear whether neuron-OPC synapses could guide the correct myelination of the presynaptic neuron, impacting its function in neuronal circuits. <br/>Here, we demonstrate that the disruption of GABAergic synaptic signaling of OPCs prior to myelination onset resulted in severe PV interneuron myelination defects characterized by longer internodes and nodes and proximal axon malformation. Consequently, high-frequency PV interneuron discharges as well as PV interneuron-dependent postsynaptic latencies and strengths of excitatory neurons were reduced during postnatal cortical development. These dysfunctions generated a strong excitation-inhibition imbalance that was correlated with whisker-dependent texture discrimination impairments. We concluded that, during cortical development, the inactivation of γ2-mediated OPC synapses have profound consequences in the myelination of PV interneurons, affecting the function of mature cortical inhibitory circuits. Our data reveal that PV interneuron-OPC synaptic activity during postnatal development constitute a key step in the construction of cortical circuits involved in rapid and strong inhibition during sensory processing (Benamer et al., 2020, Nat Commun, In Press).<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
     </body>
     </html>
     
