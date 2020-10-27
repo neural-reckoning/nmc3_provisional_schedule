@@ -21,6 +21,25 @@ youtube_link = {
     9: "https://www.youtube.com/watch?v=Mdmwu-Ul9Pc",
 }
 
+rooms = {
+    "stage": "iA7b9DJjA_Y",
+    "room 1": "OBmtAVSWc08",
+    "room 2": "6UzkdlYH4MQ",
+    "room 3": "P6Y_-ojtvp8",
+    "room 4": "SmdfsMa7bHM",
+    "room 5": "KZaeUw7vWZs",
+    "room 6": "M1TpiYsRvt0",
+    "room 7": "s-hyV60ecmc",
+    "room 8": "JnHsXHjU3QU",
+    "room 9": "_3YdiwxavVs",
+}
+for k, v in rooms.items():
+    if k=='stage':
+        k = 0
+    else:
+        k = int(k[5:])
+    youtube_link[k] = f'https://www.youtube.com/watch?v={v}'
+
 
 # From https://github.com/django/django/blob/master/django/utils/text.py
 def slugify(value, allow_unicode=False):

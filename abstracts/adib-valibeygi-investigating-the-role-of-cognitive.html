@@ -1,0 +1,66 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>Investigating The role of cognitive systems in moral judgments according to social intuitionism and dual process theory</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
+    
+        </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-29 11:30");</script>
+            /
+            Track 2
+            /
+            Traditional talk
+            <div class="visible_at_time" data-start="2020-10-29 11:30" data-end="2020-10-29 11:45">
+                <a href='https://www.youtube.com/watch?v=6UzkdlYH4MQ'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=6UzkdlYH4MQ'>Watch now on YouTube</a>
+            </div>
+        </h3>
+        <h1>Investigating The role of cognitive systems in moral judgments according to social intuitionism and dual process theory</h1><h2>Adib Valibeygi</h2><h3>Adib Valibeygi, Fasa Neuroscience Circle (FNC), Student research committee, Fasa University of Medical Sciences, Fasa, Iran  Mehrnaz Hosseinzadeh, Fasa Neuroscience Circle (FNC), Student research committee, Fasa University of Medical Sciences, Fasa, Iran  Fatemeh Saadat, Fasa Neuroscience Circle (FNC), Student research committee, Fasa University of Medical Sciences, Fasa, Iran  Hadis Jalalinezhad, Fasa Neuroscience Circle (FNC), Student research committee, Fasa University of Medical Sciences, Fasa, Iran  Laaya Rezaian, Fasa Neuroscience Circle (FNC), Student research committee, Fasa University of Medical Sciences, Fasa, Iran  Elma Azhdehakosh, Fasa Neuroscience Circle (FNC), Student research committee, Fasa University of Medical Sciences, Fasa, Iran  Guyonne Rogier, Department of dynamic and clinical psychology, Spienza University of Rome, Rome, Italy</h3><h2>Abstract</h1><p>Emotionally demanding decision-making situations, with conflicting utilitarian and deontological consideration, would make moral dilemmas the most challenging decision-making scenarios. According to dual-process theory, the fast intuitive and slow rational systems contribute to decision makings. But the extent that each system imparts in making judgments remains unknown. As social intuitionism theory considers the role of deliberation just in post-hoc justifications. In the present study, we hypothesized that usually slow thinking is preceded by fast intuitive thinking unless the individuals are asked to provide reasons when making judgments. <br/>sample of 57 (female= 30, age (19-27), undergraduate students at Fasa University of Medical Sciences) participates voluntarily in the study. Participants were randomly assigned to two groups. and were presented with six classic scenarios representing moral and reasoning dilemmas and were ask to judge the righteous of the action. Groups were different in concurrency of judgment and providing explanations, as group one, were asked to simultaneously judge actions and provide explanations; but group two weren't informed the need for explaining.  Then participants in either group were asked about their subjective inference of the judgments. Next, they had the chance to revise decisions. After this, all participants were asked to provide demographic data, and answers to Beck's Depression Inventory, and Yale-Brown Obsessive-Compulsive Scale. <br/>The results indicate that the initial judgments were not affected by the grouping, and insufficient (p=0.06) to show group one tends more to revise their judgments. Also, revisions mostly happen in those scenarios subjects regards themselves emotional. Subjective inferences of judgments show a positive association of confident with being rational, and satisfaction, challenging with being annoyed and emotional. Female individuals tend more to revise but other variables such as obsession, and depression didn’t affect the judgments.<br/>The study had limitations due to small sample size and lack of normalization. We didn't significantly show that the need for writing explanation would effectively induce the utilization of system two.<br/></p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
+    </body>
+    </html>
+    

@@ -1,0 +1,66 @@
+
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">    
+        <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+        <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <title>MEG visual gamma oscillations reflect individual differences in sensory sensitivity</title>
+        <style>
+            
+    * {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
+        </style>
+        <script type="text/JavaScript">
+            
+	function LT(t) {
+        var m = moment.utc(t).tz(moment.tz.guess());
+		document.write(m.format('MMMM Do YYYY, HH:mm z'));
+	};
+    function time_between(start, end) {
+        var s = moment.utc(start);
+        var e = moment.utc(end);
+        var now = moment();
+        return (s<=now) && (now<=e);
+    };
+    function update_visibility() {
+        var now = moment();
+        var elems = document.getElementsByClassName("visible_at_time");
+        for(var i=0; i<elems.length; i++) {
+            s = moment.utc(elems[i].dataset.start);
+            e = moment.utc(elems[i].dataset.end);
+            if ( (s<=now) && (now<=e) ) {
+                elems[i].style.display = "block";
+            } else {
+                elems[i].style.display = "none";
+            }
+        }
+    };
+    setInterval(update_visibility, 60*1000);
+    
+        </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <h3>
+            <a href="https://neuromatch.io">Neuromatch</a> 3 /
+            <script type="text/JavaScript">LT("2020-10-28 12:00");</script>
+            /
+            Track 4
+            /
+            Traditional talk
+            <div class="visible_at_time" data-start="2020-10-28 12:00" data-end="2020-10-28 12:15">
+                <a href='https://www.youtube.com/watch?v=SmdfsMa7bHM'><i class="fa fa-youtube-play" style="font-size:24px;color:red"></i></a>
+                <a href='https://www.youtube.com/watch?v=SmdfsMa7bHM'>Watch now on YouTube</a>
+            </div>
+        </h3>
+        <h1>MEG visual gamma oscillations reflect individual differences in sensory sensitivity</h1><h2>Viktoriya Manyukhina</h2><h3>E.N. Rostovtseva, Center for Neurocognitive Research (MEG Center) of MSUPE; A.O. Prokofiev, Center for Neurocognitive Research (MEG Center) of MSUPE; T.A. Stroganova, Center for Neurocognitive Research (MEG Center) of MSUPE; E.O. Orekhova, Center for Neurocognitive Research (MEG Center) of MSUPE</h3><h2>Abstract</h1><p>Visual gamma oscillations arise through interplay between excitatiory (E) and inhibitory (I) neurons  in the brain and are characterized by high reliability and heritability. Therefore gamma oscillations in the visual cortex were proposed as a biomarker of E/I balance, which is related to neural processing and is disturbed in many psychiatric conditions. Little is known, however, about how gamma oscillations are related to individual differences in perception, and in particular, how it is related to sensitivity to sensory stimuli. In a recent magnetoencephalography (MEG) study in a sample of neurotypical males and in males with ASD we found that less efficient gamma response (GR) suppression in response to increase of motion of high-contrast gratings is associated with greater sensory sensitivity to stimuli in the everyday life. In this MEG study we replicated this result in a sample of neurotypical females. We found that efficacy of GR attenuation by  visual stimuli of different intensity predicts individual differences in sensory sensitivity. This finding extends our previous result and demonstrates that the observed correlation is not sex-specific. Besides, this suggests that intensity-related changes in power of gamma oscillations may provide useful information about E/I balance in the visual cortex. </p>
+        <script type="text/JavaScript">
+            update_visibility();
+        </script>
+    </body>
+    </html>
+    
