@@ -22,16 +22,16 @@ youtube_link = {
 }
 
 rooms = {
-    "stage": "iA7b9DJjA_Y",
-    "room 1": "OBmtAVSWc08",
-    "room 2": "6UzkdlYH4MQ",
-    "room 3": "P6Y_-ojtvp8",
-    "room 4": "SmdfsMa7bHM",
-    "room 5": "KZaeUw7vWZs",
-    "room 6": "M1TpiYsRvt0",
-    "room 7": "s-hyV60ecmc",
-    "room 8": "JnHsXHjU3QU",
-    "room 9": "_3YdiwxavVs",
+    "stage": "2d-59fTTjJ0",
+    "room 1": "WOlN8NwDRmk",
+    "room 2": "hYBrHmw4tuU",
+    "room 3": "FaMMQK8ub0s",
+    "room 4": "DA7vgHrT3OU",
+    "room 5": "-hR1FtcGu1A",
+    "room 6": "GDV5heQOdUk",
+    "room 7": "1gAtVTbcfiQ",
+    "room 8": "uifmtaHi_Uo",
+    "room 9": "gX3I0xTpLLU",
 }
 for k, v in rooms.items():
     if k=='stage':
